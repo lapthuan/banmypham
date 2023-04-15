@@ -24,8 +24,6 @@ const Navbars = () => {
   const dispatch = useDispatch();
   const { isauth } = useSelector((store) => store.login);
 
- 
-
   // for navigating the user to the different pages
   const navigate = useNavigate();
 
@@ -35,23 +33,21 @@ const Navbars = () => {
 
   // For search operation in input box
   const handleSearch = async (e) => {
-   const searcheddata=e.target.value
-   
+    const searcheddata = e.target.value;
+
     try {
       let res = await axios.get(
         `https://blossombackend.onrender.com/products/Sale/${searchdata}`
       );
-      if(searcheddata===''){
-
+      if (searcheddata === "") {
         setdata([]);
-      }else{
-        setdata(res.data)
+      } else {
+        setdata(res.data);
         setIsNav(true);
-       setTimeout(() => {
-        setIsNav(false)
-       }, 4000);
+        setTimeout(() => {
+          setIsNav(false);
+        }, 4000);
       }
-      
     } catch (error) {
       console.log(error);
     }
@@ -127,33 +123,38 @@ const Navbars = () => {
               {/* <span style={{ padding: 5 }}></span> */}
               {isauth ? (
                 <div>
-                 <AiOutlineUserAdd className="userfont"/>
+                  <AiOutlineUserAdd className="userfont" />
                   <button className="btnhai">{userEmail}</button>
                   <button className="btnhaisec" onClick={handlelogout}>
                     Logout
                   </button>
-                  <select name="Profile"
-                  id=""
-                  onChange={handleChange}
-                  className={"select-taglogin"}>
-                    <option value='addproduct'>Seller Dashboard</option>
-                    <option value='userinfo'>User Profile</option>
-                    <option value='showusers'>Admin Dashboard</option>
+                  <select
+                    name="Profile"
+                    id=""
+                    onChange={handleChange}
+                    className={"select-taglogin"}
+                  >
+                    <option value="addproduct">Seller Dashboard</option>
+                    <option value="userinfo">User Profile</option>
+                    <option value="showusers">Admin Dashboard</option>
                   </select>
                 </div>
               ) : (
-                <select
-                  name="Profile"
-                  id=""
-                  onChange={handleChange}
-                  className={"select-tag"}
-                >
-                  <option value="Register">Signup</option>
-                  <option value="login">Login</option>
-                  <option value="addproduct">Seller Dashboard</option>
-                  <option value="userinfo">User profile</option>
-                  <option value="showusers">Admin Dashboard</option>
-                </select>
+                // <select
+                //   name="Profile"
+                //   id=""
+                //   onChange={handleChange}
+                //   className={"select-tag"}
+                // >
+                //   <option value="Register">Signup</option>
+                //   <option value="login">Login</option>
+                //   <option value="addproduct">Seller Dashboard</option>
+                //   <option value="userinfo">User profile</option>
+                //   <option value="showusers">Admin Dashboard</option>
+                // </select>
+                <div>
+                  <a href="/Login">Đăng nhập / Đăng ký</a>
+                </div>
               )}
 
               {/* {userEmail ? <Link to="/Login"><button>{userEmail}</button></Link> : <Link to="/Register"><li className="BaSign"><AiOutlineUserAdd /> SignUp</li></Link>} */}
@@ -163,7 +164,7 @@ const Navbars = () => {
               <BsMinecartLoaded style={{ marginTop: "32px" }} />
             </span> */}
 
-            <li >
+            <li>
               <Link to={`/Sale/:id/Carts`}>
                 <BsMinecartLoaded /> Cart{" "}
               </Link>
@@ -222,21 +223,19 @@ const Navbars = () => {
         </div>
       </div> */}
 
-      {(setdata.length!=0 && isNav)? (
-        
-          <div className="suggestionwala">
-            {data.map((el) => (
-              <Link to="/Sale">
-                <div key={el.id} className="searchkro">
-                  <img src={el.image} alt="Image" className="products_image" />
-                  <h3>{el.title}</h3>
-                </div>
-              </Link>
-            ))}
-          </div>
-       
+      {setdata.length != 0 && isNav ? (
+        <div className="suggestionwala">
+          {data.map((el) => (
+            <Link to="/Sale">
+              <div key={el.id} className="searchkro">
+                <img src={el.image} alt="Image" className="products_image" />
+                <h3>{el.title}</h3>
+              </div>
+            </Link>
+          ))}
+        </div>
       ) : (
-        ' '
+        " "
       )}
     </div>
   );
@@ -262,7 +261,7 @@ const Navbars22 = () => {
           className={isNav ? "navigation-menu expanded" : "navigation-menu"}
         >
           <ul>
-          <li>
+            <li>
               <a href="/Register">Sign Up</a>
             </li>
             <li>
