@@ -1,29 +1,29 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import { BrowserRouter } from 'react-router-dom';
-import { CartStateContext } from './Static-Pages/Context/CartContext';
-import {Provider} from 'react-redux'
-import {store} from './redux/store'
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { BrowserRouter } from "react-router-dom";
+import { CartStateContext } from "./Static-Pages/Context/CartContext";
+import { Provider } from "react-redux";
+import { store } from "./redux/store";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   // <React.StrictMode>
-   <BrowserRouter>
-      <CartStateContext>
-<Provider store={store}>
-  <App />
-</Provider>
-     
-      </CartStateContext>
-   </BrowserRouter>
-    
+  <BrowserRouter>
+    <CartStateContext>
+      <Provider store={store}>
+        <GoogleOAuthProvider
+          clientId={`722041318373-32h31v5k9bd5pnhisovdvnq12mb1eh5j.apps.googleusercontent.com`}
+        >
+          <App />
+        </GoogleOAuthProvider>
+      </Provider>
+    </CartStateContext>
+  </BrowserRouter>
 
-      
-   
-   
   // </React.StrictMode>
 );
 

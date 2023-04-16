@@ -5,6 +5,8 @@ import facebook from "./logo/Facebook_F_icon.svg.png";
 import google from "./logo/Google__G__Logo.svg.png";
 import { useSelector, useDispatch } from "react-redux";
 import { login } from "../../redux/login/login.actions";
+import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
+import { Button, Input, Space } from "antd";
 
 const Login = () => {
   const { isauth, iserror, isloading, user } = useSelector(
@@ -64,23 +66,21 @@ const Login = () => {
             <h4>Đăng nhập</h4>
             <div className={styles.ip_label}>
               Đăng nhập để mua hàng và sử dụng những tiện ích mới nhất từ
-              www.lixifake.com
+              www.luxubu.com
             </div>
             <div className={styles.social_links}>
-              <a href="./" className={styles.btn_fb}>
+              <Link to={""} className={styles.btn_fb}>
                 <img src={facebook} alt="facebook_logo" />
                 Facebook
-              </a>
-              <a href="./" className={styles.btn_email}>
+              </Link>
+              <Link to="./" className={styles.btn_email}>
                 <img src={google} alt="google_logo" />
                 Google
-              </a>
+              </Link>
             </div>
             <div>
               <span>Bạn chưa có tài khoản?</span>
-              <a href="/Register" className={styles.forget_password}>
-                Đăng ký
-              </a>
+              <Link to={"/Register"}>Đăng ký</Link>
             </div>
           </form>
         </div>
@@ -91,24 +91,25 @@ const Login = () => {
               className={styles.existing_content}
               onSubmit={handleLogin}
             >
-              <input
+              <Input
+                autoFocus
                 type="email"
                 name="email"
-                placeholder="Email"
-                className={styles.ip_email}
+                required
+                placeholder="Nhập email..."
                 onChange={handleChange}
               />
-              <input
-                type="password"
-                name="password"
-                placeholder="Mật khẩu"
-                className={styles.ip_password}
+              <Input.Password
+                required
                 onChange={handleChange}
+                placeholder="Nhập mật khẩu ..."
+                iconRender={(visible) =>
+                  visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
+                }
               />
+
               <button className={styles.sing_in_button}>Đăng nhập</button>
-              <a href="./" className={styles.forget_password}>
-                Quên mật khẩu?
-              </a>
+              <Link to={"/Login"}>Quên mật khẩu?</Link>
             </form>
             {/* <button className={styles.new_continue}>
               {" "}
