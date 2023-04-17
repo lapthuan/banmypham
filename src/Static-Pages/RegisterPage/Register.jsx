@@ -77,7 +77,7 @@ function Register() {
     //       <label htmlFor="">
     //         Cell Phone Number <span>(Optional)</span>
     //       </label>
-    //       <input type="number" />
+    //       <input type="number" />n
     //       <p className={styles.option}>
     //         We will use this number to send occasional promotional messages.
     //       </p>

@@ -153,7 +153,9 @@ const Navbars = () => {
                 //   <option value="showusers">Admin Dashboard</option>
                 // </select>
                 <div>
-                  <a href="/Login">Đăng nhập / Đăng ký</a>
+                  <a href="/Login" className={"item-login"}>
+                    Đăng nhập / Đăng ký
+                  </a>
                 </div>
               )}
 
