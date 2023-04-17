@@ -9,24 +9,20 @@ import {
 export const login = (creds) => async (dispatch) => {
   dispatch({ type: LOGIN_GET_LOADING });
   try {
-    let res = await axios.post(
-      "https://blossombackend.onrender.com/users/login",
-      creds
-    );
+    let res = await axios.post("http://localhost:5000/api/user/login", creds);
     let data = await res.data;
-   
-   
+    // return console.log(res);
     return dispatch({ type: LOGIN_GET_SUCCESS, payload: data });
   } catch (e) {
+    console.log(e);
     return dispatch({ type: LOGIN_GET_ERROR, payload: e.message });
   }
 };
 
 export const logout = () => {
-    // to remove all userinfo at the time of user logout 
-    
-    return{
+  // to remove all userinfo at the time of user logout
 
-         type: LOGOUT_GET 
-    }
+  return {
+    type: LOGOUT_GET,
+  };
 };
