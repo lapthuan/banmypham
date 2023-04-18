@@ -87,9 +87,9 @@ nav form button{
   border-radius: 2px;
   cursor: pointer;
 }
-nav form button:hover{
+/* nav form button:hover{
   background: #e63600;
-}
+} */
 nav .menu-icon,
 nav .cancel-icon,
 nav .search-icon{
