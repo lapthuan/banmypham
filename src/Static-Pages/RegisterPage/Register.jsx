@@ -44,20 +44,15 @@ function Register() {
         sForm.password !== "" &&
         sForm.confirmPassword !== "" &&
         sForm.email !== ""
-
       ) {
-       
         console.log(sForm);
         dispatch(signup(sForm, nagivate));
       }
     } else {
-      toast.success("Nhập lại mật khẩu không chính xác")
-
+      toast.success("Nhập lại mật khẩu không chính xác");
     }
-
   }
   const login = useGoogleLogin({ onSuccess: handleGoogleLoginSuccess });
-
 
   return (
     <div className={styles.main_register}>
@@ -70,11 +65,14 @@ function Register() {
               www.lixifake.com
             </div>
             <div className={styles.register_social_links}>
-              <span>
-
+              <Link to={""} className={styles.register_btn_fb}>
+                <img src={facebook} alt="facebook_logo" />
                 Facebook
-              </span>
-              <Link onClick={() => login()}>
+              </Link>
+              <Link
+                onClick={() => login()}
+                className={styles.register_btn_email}
+              >
                 <img src={google} alt="google_logo" />
                 Google
               </Link>
@@ -87,42 +85,51 @@ function Register() {
         </div>
         <div className={styles.new_user}>
           <div className={styles.new_register_content}>
-
-            <Input
-              required
-              placeholder="Họ"
-              name="firstname"
-              onChange={handleChange}
-            />
-            <Input
-              required
-              placeholder="Tên"
-              name="lastname"
-              onChange={handleChange}
-            />
-            <Input
-              required
-              placeholder="Email"
-              name="email"
-              onChange={handleChange}
-            />
-            <Input
-              required
-              type="Number"
-              placeholder="Số điện thoại"
-              name="mobile"
-              onChange={handleChange}
-            />
-            <Input placeholder="Mã giới thiệu" />
-            <Input.Password
-              placeholder="Nhập mật khẩu"
-              name="password"
-              onChange={handleChange}
-            />
-            <Input.Password placeholder="Nhập lại mật khẩu" name="confirmPassword" onChange={handleChange} />
-            {/* <ReCAPTCHA sitekey="Your client site key" onChange={onChange} />, */}
-            <button className={styles.sing_register_button} onClick={handleOnSubmit}>Đăng ký</button>
-
+            <form className={styles.existing_register}>
+              <Input
+                required
+                placeholder="Họ"
+                name="firstname"
+                onChange={handleChange}
+              />
+              <Input
+                required
+                placeholder="Tên"
+                name="lastname"
+                onChange={handleChange}
+              />
+              <Input
+                required
+                placeholder="Email"
+                name="email"
+                onChange={handleChange}
+              />
+              <Input
+                required
+                type="Number"
+                placeholder="Số điện thoại"
+                name="mobile"
+                onChange={handleChange}
+              />
+              <Input placeholder="Mã giới thiệu" />
+              <Input.Password
+                placeholder="Nhập mật khẩu"
+                name="password"
+                onChange={handleChange}
+              />
+              <Input.Password
+                placeholder="Nhập lại mật khẩu"
+                name="confirmPassword"
+                onChange={handleChange}
+              />
+              {/* <ReCAPTCHA sitekey="Your client site key" onChange={onChange} />, */}
+              <button
+                className={styles.sing_register_button}
+                onClick={handleOnSubmit}
+              >
+                Đăng ký
+              </button>
+            </form>
           </div>
         </div>
       </div>
