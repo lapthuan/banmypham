@@ -7,17 +7,16 @@ import Navbar from '../Static-Pages/Navbardivs/Navbar'
 function FinalNavbar() {
   return (
     <div style={{
-      position:'sticky',
-      zIndex:999,
-      top:0,
-      backgroundColor:'white'
+      zIndex: 999,
+      top: 0,
+      backgroundColor: 'white'
     }}>
 
-    <Navbars/>
-    <MainNavbar/>
-    <Top/>
+      <Navbars />
+      <MainNavbar />
+      <Top />
 
-<Navbar/>
+      {/* <Navbar/> */}
     </div>
   )
 }
