@@ -13,10 +13,10 @@
   margin: auto;
   display: flex;
   box-sizing: border-box;
-  
+
 }
 
-.new_existing > div {
+.new_existing>div {
   width: 100%;
   height: auto;
 }
@@ -29,7 +29,8 @@
   gap: 10px;
   background: white;
 }
-.existing_content_login{
+
+.existing_content_login {
   padding: 20px 30px;
   box-sizing: border-box;
   display: flex;
@@ -38,13 +39,14 @@
   background: white;
   background-image: url(https://js.lixibox.com/image-assets/login/desktop-signin.png);
 }
+
 .existing_content_login h4 {
   text-align: left;
   color: rgb(32, 32, 32);
   font-weight: 600;
   line-height: 30px;
   margin-bottom: 10px;
-  position: relative;  
+  position: relative;
 }
 
 .existing_content h4 {
@@ -53,14 +55,16 @@
   font-weight: 600;
   line-height: 30px;
   margin-bottom: 10px;
-  position: relative;  
+  position: relative;
 }
-.ip_label{
+
+.ip_label {
   font-size: 14px;
   text-align: left;
   color: rgb(32, 32, 32);
   line-height: 20px;
 }
+
 .existing_content label {
   font-weight: 700;
   font-size: 14px;
@@ -80,14 +84,17 @@
   line-height: 40px;
   letter-spacing: 0.2px;
 }
-.ip_email{
+
+.ip_email {
   border-radius: 8px;
   border: 1px solid #e5ebee;
 }
-.ip_password{
+
+.ip_password {
   border-radius: 8px;
   border: 1px solid #e5ebee;
 }
+
 .new_user_content {
   padding: 20px 30px;
   box-sizing: border-box;
@@ -133,7 +140,7 @@
 }
 
 
-.sing_in_button + p {
+.sing_in_button+p {
   color: #333333;
   font-size: 15px;
 }
@@ -159,15 +166,18 @@
   font-size: 15px;
   padding: 10px;
 }
-.btn_fb{
+
+.btn_fb {
   border-radius: 8px;
   background: white;
 }
-.btn_email{
+
+.btn_email {
   border-radius: 8px;
   background: white;
 }
-.social_links > a > img {
+
+.social_links>a>img {
   width: 13%;
 }
 
@@ -236,7 +246,7 @@
 }
 
 @media (max-width: 480px) {
-  .social_links > a > img {
+  .social_links>a>img {
     width: 20%;
   }
 
