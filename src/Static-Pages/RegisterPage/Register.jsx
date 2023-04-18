@@ -62,7 +62,7 @@ function Register() {
             <h4>Đăng ký</h4>
             <div className={styles.ip_register_label}>
               Đăng nhập để mua hàng và sử dụng những tiện ích mới nhất từ
-              www.lixifake.com
+              www.luxubu.com
             </div>
             <div className={styles.register_social_links}>
               <Link to={""} className={styles.register_btn_fb}>

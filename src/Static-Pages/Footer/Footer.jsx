@@ -4,8 +4,6 @@
 // import "./Footer.css";
 // import styles from "./Footer.module.css";
 
-
-
 // const Footer = () => {
 
 //   return (
@@ -143,15 +141,11 @@
 
 // export default Footer;
 
-
-
-
 // const BelowSession = () => {
 
 //   const paymentdata = data.payment;
 
 //   const [pay, setPay] = useState(paymentdata);
-
 
 //   return (
 //     <div>
@@ -178,160 +172,147 @@
 //   )
 // }
 
-
-
 // import "@fortawesome/fontawesome-free/css/all.min.css";
 import "mdb-react-ui-kit/dist/css/mdb.min.css";
 
-import React from 'react';
-import { MDBFooter, MDBContainer, MDBRow, MDBCol, MDBIcon } from 'mdb-react-ui-kit';
-import { AiFillFacebook, AiFillGithub, AiFillGoogleCircle, AiFillLinkedin, AiFillTwitterSquare, AiOutlineInstagram } from "react-icons/ai";
-
-
+import React from "react";
+import {
+  MDBFooter,
+  MDBContainer,
+  MDBRow,
+  MDBCol,
+  MDBIcon,
+} from "mdb-react-ui-kit";
+import {
+  AiFillFacebook,
+  AiFillGithub,
+  AiFillGoogleCircle,
+  AiFillLinkedin,
+  AiFillTwitterSquare,
+  AiOutlineInstagram,
+} from "react-icons/ai";
 
 export const Footer = () => {
   return (
     <div>
       <Footer2 />
     </div>
-  )
-}
-
+  );
+};
 
 const Footer2 = () => {
   return (
-    <MDBFooter  bgColor='light' className='text-center text-lg-start text-muted'>
+    <MDBFooter className="text-center text-lg-start text-[#a0a1a2] bg-black">
       <div className="line"></div>
 
-      <section className=''>
-        <MDBContainer className='text-center text-md-start mt-5'>
-          <MDBRow className='mt-3'>
-            <MDBCol md="3" lg="4" xl="3" className='mx-auto mb-4'>
-            <h6 className='text-uppercase fw-bold mb-4'>Help & Information</h6>
+      <section className="">
+        <MDBContainer className="text-center text-md-start mt-5">
+          <MDBRow className="mt-3">
+            <MDBCol md="3" lg="4" xl="3" className="mx-auto mb-4">
+              <h1 className="text fw-bold mb-4 ">LUXUBU</h1>
               <p>
-                <a href='#!' className='text-reset'>
-                Customer Service
+                <p className="text-reset">
+                  Lixibox - Bringing affordable luxury to the urban population
+                </p>
+              </p>
+              {/* <p>
+                <a href="#!" className="text-reset">
+                  Delivery Information
+                </a>
+              </p> */}
+            </MDBCol>
+
+            <MDBCol md="2" lg="2" xl="2" className="mx-auto mb-4">
+              <h6 className="text-uppercase fw-bold mb-4">Danh Mục</h6>
+              <p>
+                <a href="#!" className="text-reset">
+                  Quà tặng
                 </a>
               </p>
               <p>
-                <a href='#!' className='text-reset'>
-                Delivery Information
+                <a href="#!" className="text-reset">
+                  Hộp quà làm đẹp
                 </a>
               </p>
               <p>
-                <a href='#!' className='text-reset'>
-                Returns & Refunds
+                <a href="#!" className="text-reset">
+                  Phụ kiện
                 </a>
               </p>
               <p>
-                <a href='#!' className='text-reset'>
-                Help Center
+                <a href="#!" className="text-reset">
+                  Chăm sóc da
                 </a>
               </p>
               <p>
-                <a href='#!' className='text-reset'>
-                Track my order
+                <a href="#!" className="text-reset">
+                  Trang điểm
                 </a>
               </p>
               <p>
-                <a href='#!' className='text-reset'>
-                Accessibility
-                </a>
-              </p>
-              <p>
-                <a href='#!' className='text-reset'>
-                Cookie Settings
+                <a href="#!" className="text-reset">
+                  Thực phẩm chức năng
                 </a>
               </p>
             </MDBCol>
 
-            <MDBCol md="2" lg="2" xl="2" className='mx-auto mb-4'>
-              <h6 className='text-uppercase fw-bold mb-4'>About SkinStore</h6>
+            <MDBCol md="3" lg="2" xl="2" className="mx-auto mb-4">
+              <h6 className="text-uppercase fw-bold mb-4">Hướng dẫn</h6>
               <p>
-                <a href='#!' className='text-reset'>
-                Key Workers Discount
+                <a href="#!" className="text-reset">
+                  HDSD & Bảo hành
                 </a>
               </p>
               <p>
-                <a href='#!' className='text-reset'>
-                About Us
+                <a href="#!" className="text-reset">
+                  Hướng dẫn đặt hàng
                 </a>
               </p>
               <p>
-                <a href='#!' className='text-reset'>
-                Affiliate Program
+                <a href="#!" className="text-reset">
+                  Phương thức giao hàng
                 </a>
               </p>
               <p>
-                <a href='#!' className='text-reset'>
-                Brand Directory
+                <a href="#!" className="text-reset">
+                  Chính sách đổi trả
                 </a>
               </p>
               <p>
-                <a href='#!' className='text-reset'>
-                Coupon Codes
-                </a>
-              </p>
-              <p>
-                <a href='#!' className='text-reset'>
-                Refer A Friend
-                </a>
-              </p>
-       
-            </MDBCol>
-
-            <MDBCol md="3" lg="2" xl="2" className='mx-auto mb-4'>
-              <h6 className='text-uppercase fw-bold mb-4'>Legal</h6>
-              <p>
-                <a href='#!' className='text-reset'>
-                Cookie Information
-                </a>
-              </p>
-              <p>
-                <a href='#!' className='text-reset'>
-                Privacy Policy
-                </a>
-              </p>
-              <p>
-                <a href='#!' className='text-reset'>
-                Terms & Conditions
-                </a>
-              </p>
-              <p>
-                <a href='#!' className='text-reset'>
-                Modern Slavery Statement
+                <a href="#!" className="text-reset">
+                  Chính sách bảo mật
                 </a>
               </p>
             </MDBCol>
 
-            <MDBCol md="4" lg="3" xl="3" className='mx-auto mb-md-0 mb-4'>
-            <h6 className='text-uppercase fw-bold mb-4'>follow us</h6>
+            <MDBCol md="4" lg="3" xl="3" className="mx-auto mb-md-0 mb-4">
+              <h6 className="text-uppercase fw-bold mb-4">Thông tin</h6>
               <p>
-                <a href='#!' className='text-reset'>
-                Message Us
+                <a href="#!" className="text-reset">
+                  Giới thiệu về Luxubu
                 </a>
               </p>
               <p>
-                <a href='#!' className='text-reset'>
-                Free Beauty Consultations
+                <a href="#!" className="text-reset">
+                  Chương trình Luxubu
                 </a>
               </p>
               <p>
-                <a href='#!' className='text-reset'>
-                Terms & Conditions
+                <a href="#!" className="text-reset">
+                  Hỗ trợ đơn hàng
                 </a>
               </p>
               <p>
-                <a href='#!' className='text-reset'>
-                Modern Slavery Statement
+                <a href="#!" className="text-reset">
+                  Mời bạn bè nhận thưởng ngay
                 </a>
               </p>
             </MDBCol>
           </MDBRow>
         </MDBContainer>
       </section>
-      
-      <section className='d-flex justify-content-center justify-content-lg-between p-4 border-bottom'>
+
+      {/* <section className='d-flex justify-content-center justify-content-lg-between p-4 border-bottom'>
       <MDBContainer className='text-center  mt-5'>
         <div className='me-5 d-none d-lg-block'>
           <h2>THG</h2>
@@ -361,17 +342,13 @@ const Footer2 = () => {
           </a>
         </div>
         </MDBContainer>
-      </section>
+      </section> */}
 
-      <div className='text-center p-4' style={{ backgroundColor: 'rgba(0, 0, 0, 0.05)' }}>
-        © 2022 Copyright:
-        <a className='text-reset fw-bold' href='https://mdbootstrap.com/'>
-          Blossam.com
-        </a>
+      <div className="text-center p-4" style={{ backgroundColor: "#191b1d" }}>
+        © 2023 - Bản quyền của Công Ty Cổ Phần Sachi - www.luxubu.com
       </div>
     </MDBFooter>
   );
-}
-
+};
 
 export default Footer;

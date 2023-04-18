@@ -90,6 +90,11 @@
     height: 30px;
     width: 45px;
 }
+.ft{
+  padding-bottom: 5px;
+  justify-content: space-between;
+  display: flex;
+}
 
 
 
