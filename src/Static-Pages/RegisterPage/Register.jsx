@@ -3,52 +3,61 @@ import styles from "./Register.module.css";
 import facebook from "../LoginPage/logo/Facebook_F_icon.svg.png";
 import google from "../LoginPage/logo/Google__G__Logo.svg.png";
 import { Link, useNavigate } from "react-router-dom";
-import { signup } from "../../redux/signup/signup.actions";
 import { useSelector, useDispatch } from "react-redux";
 import { Button, Input, Space } from "antd";
 import ReCAPTCHA from "react-google-recaptcha";
-function Register() {
-  const [userdetails, setuserdetails] = useState({});
-  const navigate = useNavigate();
-  const { isloading, iserror, isauth } = useSelector((store) => store.signup);
-  const dispatch = useDispatch();
-  function onChange(value) {
-    console.log("Captcha value:", value);
-  }
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setuserdetails({
-      ...userdetails,
-      [name]: value,
-    });
-  };
+import { useGoogleLogin } from "@react-oauth/google";
+import { signup, signupGoogle } from "../../redux/action/auth";
+import { toast } from "react-toastify";
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    if (
-      !userdetails.firstname ||
-      !userdetails.email ||
-      !userdetails.password ||
-      !userdetails.lastname
-    ) {
-      alert("Please fill all you details");
-    } else {
-      {
-        alert("Your account has been Created");
+const InitState = {
+  firstname: "",
+  lastname: "",
+  email: "",
+  password: "",
+  confirmPassword: "",
+};
+
+function Register() {
+  const nagivate = useNavigate();
+  const dispatch = useDispatch();
+  const [sForm, setsForm] = useState(InitState);
+
+  const handleChange = (e) =>
+    setsForm({
+      ...sForm,
+      [e.target.name]: e.target.value,
+    });
+
+  function handleGoogleLoginSuccess(tokenResponse) {
+    const accessToken = tokenResponse.access_token;
+
+    dispatch(signupGoogle(accessToken, nagivate));
+  }
+
+  function handleOnSubmit(e) {
+    e.preventDefault();
+    if (sForm.password === sForm.confirmPassword) {
+      if (
+        sForm.firstname !== "" &&
+        sForm.lastname !== "" &&
+        sForm.password !== "" &&
+        sForm.confirmPassword !== "" &&
+        sForm.email !== ""
+
+      ) {
+       
+        console.log(sForm);
+        dispatch(signup(sForm, nagivate));
       }
-      dispatch(signup(userdetails));
+    } else {
+      toast.success("Nhập lại mật khẩu không chính xác")
+
     }
-  };
-  if (isauth) {
-    navigate("/Login");
+
   }
-  if (isloading) {
-    return (
-      <img src="https://flevix.com/wp-content/uploads/2020/01/Bounce-Bar-Preloader-1.gif"></img>
-    );
-  } else if (iserror) {
-    return alert("Incorrect email or password");
-  }
+  const login = useGoogleLogin({ onSuccess: handleGoogleLoginSuccess });
+
 
   return (
     <div className={styles.main_register}>
@@ -62,10 +71,10 @@ function Register() {
             </div>
             <div className={styles.register_social_links}>
               <span>
-                <img src={facebook} alt="facebook_logo" />
+
                 Facebook
               </span>
-              <Link>
+              <Link onClick={() => login()}>
                 <img src={google} alt="google_logo" />
                 Google
               </Link>
@@ -78,42 +87,42 @@ function Register() {
         </div>
         <div className={styles.new_user}>
           <div className={styles.new_register_content}>
-            <form onSubmit={handleSubmit} className={styles.existing_register}>
-              <Input
-                required
-                placeholder="Họ"
-                name="firstname"
-                onChange={handleChange}
-              />
-              <Input
-                required
-                placeholder="Tên"
-                name="lastname"
-                onChange={handleChange}
-              />
-              <Input
-                required
-                placeholder="Email"
-                name="email"
-                onChange={handleChange}
-              />
-              <Input
-                required
-                type="Number"
-                placeholder="Số điện thoại"
-                name="mobile"
-                onChange={handleChange}
-              />
-              <Input placeholder="Mã giới thiệu" />
-              <Input.Password
-                placeholder="Nhập mật khẩu"
-                name="password"
-                onChange={handleChange}
-              />
-              <Input.Password placeholder="Nhập lại mật khẩu" name="password" />
-              <ReCAPTCHA sitekey="Your client site key" onChange={onChange} />,
-              <button className={styles.sing_register_button}>Đăng ký</button>
-            </form>
+
+            <Input
+              required
+              placeholder="Họ"
+              name="firstname"
+              onChange={handleChange}
+            />
+            <Input
+              required
+              placeholder="Tên"
+              name="lastname"
+              onChange={handleChange}
+            />
+            <Input
+              required
+              placeholder="Email"
+              name="email"
+              onChange={handleChange}
+            />
+            <Input
+              required
+              type="Number"
+              placeholder="Số điện thoại"
+              name="mobile"
+              onChange={handleChange}
+            />
+            <Input placeholder="Mã giới thiệu" />
+            <Input.Password
+              placeholder="Nhập mật khẩu"
+              name="password"
+              onChange={handleChange}
+            />
+            <Input.Password placeholder="Nhập lại mật khẩu" name="confirmPassword" onChange={handleChange} />
+            {/* <ReCAPTCHA sitekey="Your client site key" onChange={onChange} />, */}
+            <button className={styles.sing_register_button} onClick={handleOnSubmit}>Đăng ký</button>
+
           </div>
         </div>
       </div>
