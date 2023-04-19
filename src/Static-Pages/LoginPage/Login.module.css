@@ -99,6 +99,7 @@
   padding: 20px 30px;
   box-sizing: border-box;
   background: white;
+  height: 100%;
 }
 
 .new_user_content h2 {
