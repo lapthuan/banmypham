@@ -10,7 +10,8 @@ import axios from "axios";
 import { signin, signinGoogle } from "../../redux/action/auth";
 import OAuth2Login from "react-simple-oauth2-login";
 import { useGoogleLogin } from "@react-oauth/google";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -22,30 +23,26 @@ const Login = () => {
     const accessToken = tokenResponse.access_token;
 
     dispatch(signinGoogle(accessToken, navigate));
+    toast.success("Đăng nhập thành công");
   }
   const login = useGoogleLogin({ onSuccess: handleGoogleLoginSuccess });
 
-
   const loginFb = async (e) => {
     const accessToken = e.access_token;
-    console.log(accessToken);
     const typeLogin = "facebook";
     const callApi = await axios
-      .post(
-        // "https://ecom-z3we.onrender.com/api/users/register",
-        "https://api-thuongmai.vercel.app/api/users/login",
-        {
-          accessToken,
-          typeLogin,
-        }
-      )
+      .post("https://ecom-z3we.onrender.com/api/users/login", {
+        accessToken,
+        typeLogin,
+      })
       .then((result) => {
+        toast.success("Đăng nhập thành công !");
         console.log(result);
       })
       .catch((err) => {
         console.log(err.response.data);
-        if (err.response.status == 404) {
-          alert("Ú sờ đã tồn tại vui lòng đăng nhập dùm");
+        if (err.response.status == 400) {
+          toast.error("Ú sờ chưa tồn tại vui lòng đăng ký dùm");
         }
       });
   };
@@ -61,10 +58,9 @@ const Login = () => {
     }
   }
 
-
-
   return (
     <div className={styles.main_login}>
+      <ToastContainer />
       <div className={styles.new_existing}>
         <div className={styles.existing_user}>
           <form action="" className={styles.existing_content_login}>
@@ -80,8 +76,7 @@ const Login = () => {
                 Facebook
               </Link>
               <div>
-                {/* Đem đống shit này vô env nhen ní */}
-                {/* <OAuth2Login
+                <OAuth2Login
                   buttonText="Login with Facebook"
                   authorizationUrl="https://www.facebook.com/dialog/oauth"
                   responseType="token"
@@ -90,7 +85,7 @@ const Login = () => {
                   scope="public_profile"
                   onSuccess={loginFb}
                   onFailure={onFailure}
-                /> */}
+                />
               </div>
               <Link onClick={() => login()} className={styles.btn_email}>
                 <img src={google} alt="google_logo" />
@@ -105,10 +100,7 @@ const Login = () => {
         </div>
         <div className={styles.new_user}>
           <div className={styles.new_user_content}>
-            <form
-              action=""
-              className={styles.existing_content}
-            >
+            <form action="" className={styles.existing_content}>
               <Input
                 autoFocus
                 type="email"
@@ -116,7 +108,6 @@ const Login = () => {
                 required
                 placeholder="Nhập email..."
                 onChange={(e) => setEmail(e.target.value)}
-
               />
               <Input.Password
                 required
@@ -127,7 +118,9 @@ const Login = () => {
                 }
               />
 
-              <button className={styles.sing_in_button} onClick={handleSubmit}>Đăng nhập</button>
+              <button className={styles.sing_in_button} onClick={handleSubmit}>
+                Đăng nhập
+              </button>
               <Link to={"/Login"}>Quên mật khẩu?</Link>
             </form>
             {/* <button className={styles.new_continue}>
