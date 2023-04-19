@@ -22,6 +22,10 @@ function Register() {
   const nagivate = useNavigate();
   const dispatch = useDispatch();
   const [sForm, setsForm] = useState(InitState);
+  var checkMail =
+    /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+  var checkPassword =
+    /^(?=.*[a-z])(?=.*[0-9])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
   const handleChange = (e) =>
     setsForm({
@@ -37,17 +41,29 @@ function Register() {
 
   function handleOnSubmit(e) {
     e.preventDefault();
-    if (sForm.password === sForm.confirmPassword) {
-      if (
-        sForm.firstname !== "" &&
-        sForm.lastname !== "" &&
-        sForm.password !== "" &&
-        sForm.confirmPassword !== "" &&
-        sForm.email !== ""
-      ) {
-        console.log(sForm);
-        dispatch(signup(sForm, nagivate));
-      }
+    if (
+      sForm.firstname == "" ||
+      sForm.lastname == "" ||
+      sForm.email == "" ||
+      sForm.password == "" ||
+      sForm.confirmPassword == "" ||
+      sForm.mobile == ""
+    ) {
+
+      toast.warning("Vui lòng nhập đầy đủ thông tin đăng ký!");
+      return;
+    } else if (sForm.password.length < 8) {
+      toast.warning("Độ dài mật khẩu trên 8 kí tự");
+      return;
+    } else if (!checkPassword.test(sForm.password)) {
+      toast.warning("Mật khẩu phải có chữ hoa, chữ thường số và kí tự đặc biệt");
+      return;
+    } else if (!checkMail.test(sForm.email) || sForm.email.length == "") {
+      toast.warning("Email không hợp lệ!");
+      return;
+    } else if (sForm.password === sForm.confirmPassword) {
+      console.log(sForm);
+      dispatch(signup(sForm, nagivate));
     } else {
       toast.success("Nhập lại mật khẩu không chính xác");
     }
