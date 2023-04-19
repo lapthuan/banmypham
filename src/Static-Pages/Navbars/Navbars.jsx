@@ -77,13 +77,12 @@ const Navbars = () => {
         <div className="logo">
           <Link to="/">
             {" "}
-            <img
+            {/* <img
               className="img1"
               src={img}
-              width="100%"
-              height="100%"
-              alt="pcg"
-            />
+              
+            /> */}
+            <p className="mt-4 text-black text-[40px]">LUXUBU</p>
           </Link>
         </div>
 
@@ -101,7 +100,7 @@ const Navbars = () => {
           <input
             type="search"
             className="search-data"
-            placeholder="Search for a product ot brand..."
+            placeholder="Tìm kiếm son, sữa rữa mặt, bình sữa..."
             onChange={handleSearch}
           />
           <Link to="/Sale">
@@ -123,12 +122,12 @@ const Navbars = () => {
               {/* <span style={{ padding: 5 }}></span> */}
               {isauth ? (
                 <div>
-                  <AiOutlineUserAdd className="userfont" />
-                  <button className="btnhai">{userEmail}</button>
-                  <button className="btnhaisec" onClick={handlelogout}>
-                    Logout
+                  {/* <AiOutlineUserAdd className="userfont" /> */}
+                  <button className="">{userEmail}</button>
+                  <button className="mt-3 text-[20px]" onClick={handlelogout}>
+                    Đăng xuất
                   </button>
-                  <select
+                  {/* <select
                     name="Profile"
                     id=""
                     onChange={handleChange}
@@ -137,7 +136,7 @@ const Navbars = () => {
                     <option value="addproduct">Seller Dashboard</option>
                     <option value="userinfo">User Profile</option>
                     <option value="showusers">Admin Dashboard</option>
-                  </select>
+                  </select> */}
                 </div>
               ) : (
                 // <select
@@ -153,7 +152,9 @@ const Navbars = () => {
                 //   <option value="showusers">Admin Dashboard</option>
                 // </select>
                 <div>
-                  <Link to="/Login">Đăng nhập / Đăng ký</Link>
+                  <Link to="/Login" className="mt-3">
+                    Đăng nhập / Đăng ký
+                  </Link>
                 </div>
               )}
 
@@ -163,12 +164,13 @@ const Navbars = () => {
             {/* <span style={{ paddingLeft: 20 }}>
               <BsMinecartLoaded style={{ marginTop: "32px" }} />
             </span> */}
-
-            <li>
-              <Link to={`/Sale/:id/Carts`}>
-                <BsMinecartLoaded /> Cart{" "}
-              </Link>
-            </li>
+            <div className="mt-4">
+              <li>
+                <Link to={`/Sale/:id/Carts`}>
+                  <BsMinecartLoaded />
+                </Link>
+              </li>
+            </div>
           </ul>
         </div>
       </nav>
