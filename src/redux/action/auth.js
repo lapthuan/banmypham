@@ -9,6 +9,7 @@ import {
 import * as api from "../../api/index";
 import { toast } from "react-toastify";
 
+
 export const loadUser = () => async (dispath) => {
     const localUser = JSON.parse(localStorage.getItem("user_info"));
 
@@ -22,9 +23,12 @@ export const signin = (data2, navigate) => async (dispatch) => {
     try {
         const { data } = await api.signIn(data2);
         console.log(data);
-        return dispatch({ type: LOGIN_GET_SUCCESS, payload: data });
+
         toast.success("Đăng nhập thành công")
         navigate("/");
+        return dispatch({ type: LOGIN_GET_SUCCESS, payload: data });
+
+
 
     } catch (err) {
         console.log(err);
@@ -34,12 +38,15 @@ export const signin = (data2, navigate) => async (dispatch) => {
 export const signinGoogle = (accessToken, navigate) => async (dispatch) => {
     dispatch({ type: LOGIN_GET_LOADING });
     try {
-        // login user
+
         const { data } = await api.signInGoogle(accessToken);
         console.log(data);
-        return dispatch({ type: LOGIN_GET_SUCCESS, payload: data });
+
         toast.success("Đăng nhập thành công")
         navigate("/");
+
+        return dispatch({ type: LOGIN_GET_SUCCESS, payload: data });
+
     } catch (err) {
         console.log(err);
     }
@@ -47,17 +54,22 @@ export const signinGoogle = (accessToken, navigate) => async (dispatch) => {
 
 export const signup = (formData, navigate) => async (dispatch) => {
     dispatch({ type: LOGIN_GET_LOADING });
+
     try {
         // signup user
+
         const { data } = await api.signUp(formData);
         console.log(data);
-        return dispatch({ type: LOGIN_GET_SUCCESS, payload: data });
-        toast.success("Đăng nhập ký thành công")
 
+        toast.success("Đăng ký thành công")
         navigate("/");
+        return dispatch({ type: LOGIN_GET_SUCCESS, payload: data });
+
 
     } catch (err) {
-        console.log(err);
+        if (err.response.status == "500") {
+            return toast.error("Email đã tồn tại")
+        }
     }
 };
 
@@ -68,15 +80,16 @@ export const signupGoogle = (accessToken, navigate) => async (dispatch) => {
         const { data } = await api.signUpGoogle(accessToken);
         console.log(data);
 
-        return dispatch({ type: LOGIN_GET_SUCCESS, payload: data });
-        toast.success("Đăng nhập ký thành công")
-
+        toast.success("Đăng ký thành công")
         navigate("/");
+        return dispatch({ type: LOGIN_GET_SUCCESS, payload: data });
+
+
 
     } catch (err) {
         console.log(err);
         if (err.response.status == "500") {
-            toast.success("Email đã tồn tại")
+            return toast.error("Email đã tồn tại")
         }
     }
 };
