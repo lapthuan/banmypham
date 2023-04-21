@@ -23,7 +23,6 @@ const Login = () => {
     const accessToken = tokenResponse.access_token;
 
     dispatch(signinGoogle(accessToken, navigate));
-    toast.success("Đăng nhập thành công");
   }
   const login = useGoogleLogin({ onSuccess: handleGoogleLoginSuccess });
 

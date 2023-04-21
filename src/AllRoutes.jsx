@@ -31,7 +31,7 @@ import SellerPrivate from "./Components/SellerPrivate";
 function AllRoutes() {
   return (
     <Routes>
-      
+
       <Route path="/" element={<HomePage />} />
       <Route path="/Brands" element={<Brands />} />
       <Route path="/Holiday" element={<Holiday />} />
@@ -70,8 +70,6 @@ function AllRoutes() {
       <Route
         path="/Tools"
         element={
-
-
           <Tools />
         }
       />
