@@ -1,97 +1,133 @@
-
 import React, { useState, useEffect } from "react";
-import { useNavigate,link, Link } from "react-router-dom";
+import { useNavigate, link, Link } from "react-router-dom";
 import styles from "./Login.module.css";
 import facebook from "./logo/Facebook_F_icon.svg.png";
 import google from "./logo/Google__G__Logo.svg.png";
 import { useSelector, useDispatch } from "react-redux";
-import { login } from "../../redux/login/login.actions";
-
-
+import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
+import { Button, Input, Space } from "antd";
+import axios from "axios";
+import { signin, signinGoogle } from "../../redux/action/auth";
+import OAuth2Login from "react-simple-oauth2-login";
+import { useGoogleLogin } from "@react-oauth/google";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const Login = () => {
-  const { isauth, iserror, isloading,user } = useSelector((store) => store.login);
-  const [loginDetails, setloginDetails] = useState({});
-  const dispatch = useDispatch();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   const navigate = useNavigate();
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setloginDetails({ 
-      ...loginDetails,
-       [name]: value 
+  const dispatch = useDispatch();
+
+  function handleGoogleLoginSuccess(tokenResponse) {
+    const accessToken = tokenResponse.access_token;
+
+    dispatch(signinGoogle(accessToken, navigate));
+  }
+  const login = useGoogleLogin({ onSuccess: handleGoogleLoginSuccess });
+
+  const loginFb = async (e) => {
+    const accessToken = e.access_token;
+    const typeLogin = "facebook";
+    const callApi = await axios
+      .post("https://ecom-z3we.onrender.com/api/users/login", {
+        accessToken,
+        typeLogin,
+      })
+      .then((result) => {
+        toast.success("Đăng nhập thành công !");
+        console.log(result);
+      })
+      .catch((err) => {
+        console.log(err.response.data);
+        if (err.response.status == 400) {
+          toast.error("Ú sờ chưa tồn tại vui lòng đăng ký dùm");
+        }
       });
   };
 
-  const handleLogin = (event) => {
-    event.preventDefault();
-    if (!loginDetails.email || !loginDetails.password) {
-      alert("Please enter all details");
-    } else {
-      dispatch(login(loginDetails));
-    }
+  const onFailure = (e) => {
+    console.log(e);
   };
- 
-  useEffect(() => {
-    if (iserror) {
-      alert("Incorrect Email or password");
-    } else if (isauth) {
-      if(user.role=='seller'){
-        navigate('/addproduct')
-      }else if (user.role=='admin'){
-       navigate('/showusers')
-      }else{
 
-        navigate("/Sale");
-      }
-      
-      alert("Logged in successfully");
-
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (email !== "" && password !== "") {
+      dispatch(signin({ email, password }, navigate));
     }
-  }, [isauth, iserror]);
-
-  if (isloading) {
-    return (
-      <img src="https://flevix.com/wp-content/uploads/2020/01/Bounce-Bar-Preloader-1.gif" alt="loading" />
-    );
   }
 
   return (
     <div className={styles.main_login}>
+      <ToastContainer />
       <div className={styles.new_existing}>
         <div className={styles.existing_user}>
-          <form
-            action=""
-            className={styles.existing_content}
-            onSubmit={handleLogin}
-          >
-            <h2>Existing Customers</h2>
-            <label htmlFor="">*Email adress</label>
-            <input type="email" name="email" onChange={handleChange} />
-            <label htmlFor="">*Password</label>
-            <input type="password" name="password" onChange={handleChange} />
-            <a href="./" className={styles.forget_password}>
-              Forgotten Your Password?
-            </a>
-            <button className={styles.sing_in_button}>SIGN IN</button>
-            <p>Or, Continue with</p>
+          <form action="" className={styles.existing_content_login}>
+            <div className={styles.img}></div>
+            <h4>Đăng nhập</h4>
+            <div className={styles.ip_label}>
+              Đăng nhập để mua hàng và sử dụng những tiện ích mới nhất từ
+              www.luxubu.com
+            </div>
             <div className={styles.social_links}>
-              <a href="./">
+              <Link to={""} className={styles.btn_fb}>
                 <img src={facebook} alt="facebook_logo" />
                 Facebook
-              </a>
-              <a href="./">
+              </Link>
+              <div>
+                <OAuth2Login
+                  buttonText="Login with Facebook"
+                  authorizationUrl="https://www.facebook.com/dialog/oauth"
+                  responseType="token"
+                  clientId="203369009102213"
+                  redirectUri="http://localhost:3000/"
+                  scope="public_profile"
+                  onSuccess={loginFb}
+                  onFailure={onFailure}
+                />
+              </div>
+              <Link onClick={() => login()} className={styles.btn_email}>
                 <img src={google} alt="google_logo" />
                 Google
-              </a>
+              </Link>
+            </div>
+            <div>
+              <span>Bạn chưa có tài khoản?</span>
+              <Link to={"/Register"}>Đăng ký</Link>
             </div>
           </form>
         </div>
         <div className={styles.new_user}>
           <div className={styles.new_user_content}>
-            <h2>New Customer</h2>
-          
+            <form action="" className={styles.existing_content}>
+              <Input
+                autoFocus
+                type="email"
+                name="email"
+                required
+                placeholder="Nhập email..."
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <Input.Password
+                required
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Nhập mật khẩu ..."
+                iconRender={(visible) =>
+                  visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
+                }
+              />
 
-            <button className={styles.new_continue}> <Link to='/Register' style={{color:'white'}}>Continue</Link></button>
-         
+              <button className={styles.sing_in_button} onClick={handleSubmit}>
+                Đăng nhập
+              </button>
+              <Link to={"/Login"}>Quên mật khẩu?</Link>
+            </form>
+            {/* <button className={styles.new_continue}>
+              {" "}
+              <Link to="/Register" style={{ color: "white" }}>
+                Continue
+              </Link>
+            </button> */}
           </div>
         </div>
       </div>

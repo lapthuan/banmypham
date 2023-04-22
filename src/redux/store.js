@@ -5,7 +5,7 @@ import {
   applyMiddleware,
 } from "redux";
 import thunk from "redux-thunk";
-import { loginReducer } from "./login/login.reducer";
+import { loginReducer } from "./reducers/auth";
 import { signupReducer } from "./signup/signup.reducer";
 
 const rootreducer = combineReducers({

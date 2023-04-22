@@ -23,8 +23,7 @@ nav{
   align-items: center;
   justify-content: space-between;
   height: 70px;
-  padding: 0 140px;
-  margin-top: 30px;
+
 }
 nav .logo{
   font-size: 30px;
@@ -87,9 +86,9 @@ nav form button{
   border-radius: 2px;
   cursor: pointer;
 }
-nav form button:hover{
+/* nav form button:hover{
   background: #e63600;
-}
+} */
 nav .menu-icon,
 nav .cancel-icon,
 nav .search-icon{
@@ -189,16 +188,11 @@ nav .search-icon{
     color:black;
   }
   nav .search-icon,
-  nav .menu-icon span{
-    display: block;
-  }
   nav .menu-icon span.hide,
   nav .search-icon.hide{
     display: none;
   }
-  nav .cancel-icon.show{
-    display: block;
-  }
+ 
 }
 .content{
   position: absolute;
@@ -355,13 +349,10 @@ nav .logo.space{
 
 .line{
   border: 1px solid black;
-  margin-top: 25px;
 }
 
 .form-control {
-  
-  
-  
+
 	box-shadow: none;		
 	font-weight: normal;
 	font-size: 13px;

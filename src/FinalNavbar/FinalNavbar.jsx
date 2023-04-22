@@ -1,25 +1,48 @@
-import React from 'react'
-import MainNavbar from '../Static-Pages/MainNavbar/MainNavbar'
-import Navbars from '../Static-Pages/Navbars/Navbars'
-import Top from '../Static-Pages/Navbardivs/Top'
-import Navbar from '../Static-Pages/Navbardivs/Navbar'
+import React from "react";
+import MainNavbar from "../Static-Pages/MainNavbar/MainNavbar";
+import Navbars from "../Static-Pages/Navbars/Navbars";
+import Top from "../Static-Pages/Navbardivs/Top";
+// import Navbar from "../Static-Pages/Navbardivs/Navbar";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Navbar from "../Static-Pages/Navbars/index";
+import { Nav } from "../data/navigation";
+import useNavigation from "../hook/useNavigation";
+import Tabbar from "../Static-Pages/Tabbar";
+
 
 function FinalNavbar() {
+  const { currentRoute, setCurrentRoute } = useNavigation();
+
   return (
-    <div style={{
-      position:'sticky',
-      zIndex:999,
-      top:0,
-      backgroundColor:'white'
-    }}>
+    <div
+      style={{
+        zIndex: 999,
+        top: 0,
+        backgroundColor: "white",
+      }}
+    >
+      <Top />
+      <Navbars />
+      {/* <MainNavbar /> */}
+      <div className={"bg-gray-200"}>
+        <Navbar
+          navigationData={Nav}
+          currentRoute={currentRoute}
+          setCurrentRoute={setCurrentRoute}
+        />
+        <Tabbar
+          navigationData={Nav}
+          currentRoute={currentRoute}
+          setCurrentRoute={setCurrentRoute}
 
-    <Navbars/>
-    <MainNavbar/>
-    <Top/>
-
-<Navbar/>
+        />
+      </div>
+      <br />
+      <ToastContainer />
+      {/* <Navbar/> */}
     </div>
-  )
+  );
 }
 
-export default FinalNavbar
+export default FinalNavbar;

@@ -1,13 +1,15 @@
 import axios from "axios";
 import { SIGNUP_LOADING, SIGNUP_SUCCESS, SIGNUP_ERROR } from "./signup.types";
+import * as api from "../../api/index";
 let API = process.env.API;
 console.log(API);
 
 export const signup = (creds) => async (dispatch) => {
   dispatch({ type: SIGNUP_LOADING });
   try {
+    // return console.log(creds)
     let res = await axios.post(
-      'https://blossombackend.onrender.com/users/signup',
+      "https://ecom-z3we.onrender.com/api/users/register",
       creds
     );
     const data = await res.data;
@@ -16,5 +18,17 @@ export const signup = (creds) => async (dispatch) => {
     return data;
   } catch (e) {
     dispatch({ type: SIGNUP_ERROR, payload: e.message });
+  }
+};
+
+export const signinGoogle = (accessToken, navigate) => async (dispatch) => {
+  try {
+    // login user
+    const { data } = await api.signInGoogle(accessToken);
+
+    dispatch({ type: SIGNUP_SUCCESS, data });
+    navigate("/");
+  } catch (err) {
+    console.log(err);
   }
 };

@@ -4,7 +4,7 @@ import {
   LOGIN_GET_LOADING,
   LOGOUT_GET,
   UPDATE_GET_SUCCESS,
-} from "./login.types";
+} from "../const/actionsTypes";
 
 let local = localStorage.getItem("userrole");
 console.log(local);
@@ -41,10 +41,11 @@ export const loginReducer = (state = initialstate, { type, payload }) => {
       // return console.log(payload.role);
 
       localStorage.setItem("token", payload.token);
-      // This thing is done for showing user info in userprofilepage
+      localStorage.setItem("userfirstname", payload.firstname);
       localStorage.setItem("userrole", payload.role);
       localStorage.setItem("username", payload.lastname);
       localStorage.setItem("useremail", payload.email);
+      localStorage.setItem("usermobile", payload.mobile      );
       localStorage.setItem("usercreatedAt", payload.createdAt);
       return {
         ...state,
