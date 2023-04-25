@@ -27,7 +27,7 @@ const BgElement = Element.BgElement;
 
 function Slider() {
   return (
-    <BannerAnim prefixCls="banner-user" autoPlay autoPlaySpeed={3000}>
+    <BannerAnim prefixCls="maindivhai" autoPlay autoPlaySpeed={3000}>
       <Element prefixCls="banner-user-elem" key="0">
         <BgElement
           key="bg"

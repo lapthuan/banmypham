@@ -49,14 +49,15 @@ function Register() {
       sForm.confirmPassword == "" ||
       sForm.mobile == ""
     ) {
-
       toast.warning("Vui lòng nhập đầy đủ thông tin đăng ký!");
       return;
     } else if (sForm.password.length < 8) {
       toast.warning("Độ dài mật khẩu trên 8 kí tự");
       return;
     } else if (!checkPassword.test(sForm.password)) {
-      toast.warning("Mật khẩu phải có chữ hoa, chữ thường số và kí tự đặc biệt");
+      toast.warning(
+        "Mật khẩu phải có chữ hoa, chữ thường số và kí tự đặc biệt"
+      );
       return;
     } else if (!checkMail.test(sForm.email) || sForm.email.length == "") {
       toast.warning("Email không hợp lệ!");
@@ -81,7 +82,7 @@ function Register() {
               www.luxubu.com
             </div>
             <div className={styles.register_social_links}>
-              <Link to={""} className={styles.register_btn_fb}>
+              {/* <Link to={""} className={styles.register_btn_fb}>
                 <img src={facebook} alt="facebook_logo" />
                 Facebook
               </Link>
@@ -91,10 +92,10 @@ function Register() {
               >
                 <img src={google} alt="google_logo" />
                 Google
-              </Link>
+              </Link> */}
             </div>
             <div>
-              <span>Bạn đã có tài khoản?</span>
+              <span className="">Bạn đã có tài khoản?</span>
               <Link to={"/Login"}> Đăng nhập</Link>
             </div>
           </div>
