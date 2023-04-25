@@ -58,20 +58,7 @@ export const loginReducer = (state = initialstate, { type, payload }) => {
         SellerIsAuth: payload.role == "seller",
       };
     }
-    // case UPDATE_GET_SUCCESS: {
-    //   if (payload.token) {
-    //     // localStorage.setItem("token", payload.token);
-    //     localStorage.setItem("name", payload.username);
-    //   }
 
-    //   return {
-    //     ...state,
-    //     isloading: false,
-    //     iserror: false,
-    //     token: payload.token,
-    //     name: payload.name
-    //   };
-    // }
 
     case LOGIN_GET_ERROR: {
       return {

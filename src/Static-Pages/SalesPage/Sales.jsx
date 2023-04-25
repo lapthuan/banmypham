@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import axios from "axios";
-
+import imgError from "../../Image/imgError.jpg"
 import styles from "./Sales.module.css";
 import {
   MdOutlineKeyboardArrowUp,
@@ -71,35 +71,23 @@ const Sales = () => {
   useEffect(() => {
     // setloading(true)
     getData()
-      .then((res) =>{
+      .then((res) => {
         setData(res.data)
         // setloading(false)
       }).catch((err) => console.log(err));
-      
-  
-  
-  
+
   }, [currentPage, sort_x]);
-
-// if(loading){
-//   return <h1>loading...</h1>
-// }
-
-
-
-
-
 
 
   return (
     <div className={styles.main__sales}>
       <div className={styles.navigation_tab}>
-        <span className={styles.home_hover}>Home</span> <span>/</span>{" "}
-        <span>All Products</span>
+        <span className={styles.home_hover}>Trang chủ</span> <span>/</span>{" "}
+        <span>Tất cả sản phẩm</span>
       </div>
       <div className={styles.main__products}>
         {/* filter section  */}
-        <div style={{marginTop: "30px"}} className={styles.refine}>
+        {/* <div style={{ marginTop: "30px" }} className={styles.refine}>
           <p className={styles.refine_head}>Refine</p>
           <div>
             <hr />
@@ -157,74 +145,84 @@ const Sales = () => {
               </select>
             </div>
           </div>
-        </div>
+        </div> */}
 
-        {/* product section  */}
         <div className={styles.products_area}>
-          {/* <p className={styles.off_percent}>Up to 50% off!</p> */}
-          <p style={{color: "teal", fontSize: "20px", fontFamily: "cursive", fontWeight: "bolder", marginBottom: "40px"}} className={styles.results}>{data.length} Results</p>
-          {/* <p className={styles.results} style={{ marginTop: "20px" }}> */}
-            {/* Shop up to 50% off best-selling brands like SkinMedica, Decorté & */}
-            {/* more! */}
-          {/* </p> */}
-          {/* <p className={styles.results}>
-            Check out our featured offers page here, or our coupons page for all
-            live offers here.</u>
-          </p> */}
 
-          {/* sorting and paginatin section  */}
+          {/* <p style={{ color: "teal", fontSize: "20px", fontFamily: "cursive", fontWeight: "bolder", marginBottom: "40px" }} className={styles.results}>{data.length} Results</p>
+
           <div className={styles.sort_page}>
-            {/* sorting  */}
             <div className={styles.sorting}>
               <div>Sort :</div>
               <select name="" id="" onChange={sort_func}>
                 <option value="defalt">Sort By Price</option>
                 <option value="lowtohigh">Price: Low to High</option>
                 <option value="hightolow">Price: High to Low</option>
-                {/* <option value="a-z">A-Z</option> */}
+             
               </select>
             </div>
-            {/* pagination  */}
-            {/* <div className={`${styles.pagination} ${styles.hidden}`}>
-              <Pagination setCurrentPage={setCurrentPage} />
-            </div> */}
-            {/* responsive refine  */}
+           
             <div className={styles.responsive_refine}>
               <p>Refine</p>
               <GoSettings />
             </div>
-          </div>
+          </div> */}
 
-          {/* main product  */}
+
           <div className={styles.all__main__products}>
-            {data?.map(({ _id, image, title, rating, price }) => (
-              <Link to={`/Sale/${_id}`}>
-                
-              <div key={_id} className={styles.each_product} >
+            <Link to={`/Sale/123213`}>
+
+              <div className={styles.each_product} >
                 <div>
                   <div className={styles.wishlist}>
                     <AiOutlineHeart />
-                    {/* <AiFillHeart />} */}
+
                   </div>
-                  <img src={image} alt="product_img" />
+                  <img src={imgError} className={"rounded-2xl shadow-2xl"} alt="product_img" />
                 </div>
-                <p className={styles.product__dis}>{title}</p>
-                <Stars stars={rating} />
-                <p className={styles.product__price}>$ {price}</p>
-                <button className={styles.product__buy}>QUICK BUY</button>
+                <p className={styles.product__dis}>Sản phẩm 1</p>
+                <Stars stars={"5"} />
+                <p className={styles.product__price}>$ 12</p>
+                <button
+                  type="button"
+                  class="w-full inline-block rounded bg-neutral-800 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-neutral-50 shadow-[0_4px_9px_-4px_rgba(51,45,45,0.7)] transition duration-150 ease-in-out hover:bg-neutral-800 hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:bg-neutral-800 focus:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:outline-none focus:ring-0 active:bg-neutral-900 active:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] dark:bg-neutral-900 dark:shadow-[0_4px_9px_-4px_#030202] dark:hover:bg-neutral-900 dark:hover:shadow-[0_8px_9px_-4px_rgba(3,2,2,0.3),0_4px_18px_0_rgba(3,2,2,0.2)] dark:focus:bg-neutral-900 dark:focus:shadow-[0_8px_9px_-4px_rgba(3,2,2,0.3),0_4px_18px_0_rgba(3,2,2,0.2)] dark:active:bg-neutral-900 dark:active:shadow-[0_8px_9px_-4px_rgba(3,2,2,0.3),0_4px_18px_0_rgba(3,2,2,0.2)]">
+                  Đặt hàng
+                </button>
               </div>
+            </Link>
+            {data?.map(({ _id, image, title, rating, price }) => (
+              <Link to={`/Sale/${_id}`} >
+
+                <div key={_id} className={styles.each_product} >
+                  <div>
+                    <div className={styles.wishlist}>
+                      <AiOutlineHeart />
+
+                    </div>
+                    <img src={image} className={"rounded-2xl shadow-2xl"} alt="product_img" />
+                  </div>
+                  <p className={styles.product__dis}>{title}</p>
+                  <Stars stars={rating} />
+                  <p className={styles.product__price}>$ {price}</p>
+                  <button
+                    type="button"
+                    class="w-full inline-block rounded bg-neutral-800 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-neutral-50 shadow-[0_4px_9px_-4px_rgba(51,45,45,0.7)] transition duration-150 ease-in-out hover:bg-neutral-800 hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:bg-neutral-800 focus:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:outline-none focus:ring-0 active:bg-neutral-900 active:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] dark:bg-neutral-900 dark:shadow-[0_4px_9px_-4px_#030202] dark:hover:bg-neutral-900 dark:hover:shadow-[0_8px_9px_-4px_rgba(3,2,2,0.3),0_4px_18px_0_rgba(3,2,2,0.2)] dark:focus:bg-neutral-900 dark:focus:shadow-[0_8px_9px_-4px_rgba(3,2,2,0.3),0_4px_18px_0_rgba(3,2,2,0.2)] dark:active:bg-neutral-900 dark:active:shadow-[0_8px_9px_-4px_rgba(3,2,2,0.3),0_4px_18px_0_rgba(3,2,2,0.2)]">
+                    Đặt hàng
+                  </button>
+
+                </div>
               </Link>
             ))}
           </div>
 
-          {/* pagination  */}
+
           <div
             className={`${styles.sort_page} ${styles.responsive__sort_page}`}
             style={{ marginTop: "50px" }}
           >
-            {/* sorting  */}
+
             <div className={`${styles.sorting} ${styles.hide__sorting}`}></div>
-            {/* pagination  */}
+
             <div className={styles.pagination}>
               <Pagination setCurrentPage={setCurrentPage} />
             </div>
@@ -232,7 +230,7 @@ const Sales = () => {
         </div>
       </div>
     </div>
-  
+
   );
 
 };

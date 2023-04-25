@@ -20,8 +20,8 @@ const Stars = (props) => {
   });
 
   return (
-    <div>
-      <div>{ratingStar}</div>
+    <div className="">
+      <div className="flex flex-row justify-center ">{ratingStar}</div>
     </div>
   );
 };
