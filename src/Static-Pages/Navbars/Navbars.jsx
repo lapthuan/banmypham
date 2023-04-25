@@ -3,11 +3,11 @@ import axios from "axios";
 import "./Navbar.css";
 
 import { BsMinecartLoaded } from "react-icons/bs";
-import { Fragment } from 'react'
-import { Menu, Transition } from '@headlessui/react'
+import { Fragment } from "react";
+import { Menu, Transition } from "@headlessui/react";
 
 import { AiOutlineSearch, AiOutlineClose } from "react-icons/ai";
-import user from "../../Image/user.png"
+import user from "../../Image/user.png";
 import "react-dropdown/style.css";
 
 import { Link, useNavigate } from "react-router-dom";
@@ -17,7 +17,7 @@ import { logout } from "../../redux/login/login.actions";
 const Navbars = () => {
   const [isNavExpanded, setIsNavExpanded] = useState(false);
   const userData = localStorage.getItem("token") || "";
-  const userName = localStorage.getItem("username")
+  const userName = localStorage.getItem("username");
   const [data, setdata] = useState([]);
   const [searchdata, setsearchdata] = useState("");
   const [userId, userEmail, userPassword] = userData.split(":");
@@ -33,7 +33,7 @@ const Navbars = () => {
   };
 
   function classNames(...classes) {
-    return classes.filter(Boolean).join(' ')
+    return classes.filter(Boolean).join(" ");
   }
 
   // For search operation in input box
@@ -64,14 +64,12 @@ const Navbars = () => {
   }, []);
 
   const handlelogout = (e) => {
-
     dispatch(logout());
   };
 
   return (
     <div>
       <nav className="my-6 px-[100px]">
-
         <div className="logo">
           <Link to="/">
             {" "}
@@ -141,8 +139,10 @@ const Navbars = () => {
                       <Menu.Item>
                         {({ active }) => (
                           <Link
-
-                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                            className={classNames(
+                              active ? "bg-gray-100" : "",
+                              "block px-4 py-2 text-sm text-gray-700"
+                            )}
                           >
                             Xin chào: {userName}
                           </Link>
@@ -152,7 +152,10 @@ const Navbars = () => {
                         {({ active }) => (
                           <Link
                             to={"/userinfo"}
-                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                            className={classNames(
+                              active ? "bg-gray-100" : "",
+                              "block px-4 py-2 text-sm text-gray-700"
+                            )}
                           >
                             Trang cá nhân
                           </Link>
@@ -163,7 +166,10 @@ const Navbars = () => {
                         {({ active }) => (
                           <a
                             onClick={handlelogout}
-                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                            className={classNames(
+                              active ? "bg-gray-100" : "",
+                              "block px-4 py-2 text-sm text-gray-700"
+                            )}
                           >
                             Đăng xuất
                           </a>
@@ -172,7 +178,6 @@ const Navbars = () => {
                     </Menu.Items>
                   </Transition>
                 </Menu>
-
               ) : (
                 <div>
                   <Link to="/Login" className="mt-3">
@@ -193,7 +198,10 @@ const Navbars = () => {
         </div>
       </nav>
       <br />
-      <form className="co flex flex-row justify-center lg:hidden md:flex" action="#">
+      <form
+        className="co flex flex-row justify-center lg:hidden md:flex"
+        action="#"
+      >
         <input
           type="search"
           className="search-data w-[210px]"
@@ -202,24 +210,25 @@ const Navbars = () => {
         />
         <Link to="/Sale">
           <button type="submit">
-            <AiOutlineSearch size={26} style={{ margin: "5px", color: "black" }} />
+            <AiOutlineSearch
+              size={26}
+              style={{ margin: "5px", color: "black" }}
+            />
           </button>
         </Link>
       </form>
-      <div
-        className="nav-items flex flex-row justify-end lg:hidden md:flex pb-6 pr-10"
-      >
-
+      <div className="nav-items flex flex-row justify-around lg:hidden md:flex py-3">
+        <div className="">
+          <Link style={{ color: "black" }} to={`/Sale/:id/Carts`}>
+            <BsMinecartLoaded size={32} />
+          </Link>
+        </div>
         {isauth ? (
-          <Menu as="div" className="relative pt-3">
+          <Menu as="div" className="relative ">
             <div>
               <Menu.Button className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 ">
                 <span className="sr-only">Open user menu</span>
-                <img
-                  className="h-10 w-10 rounded-full"
-                  src={user}
-                  alt="user"
-                />
+                <img className="h-10 w-10 rounded-full" src={user} alt="user" />
               </Menu.Button>
             </div>
             <Transition
@@ -235,8 +244,10 @@ const Navbars = () => {
                 <Menu.Item>
                   {({ active }) => (
                     <Link
-
-                      className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                      className={classNames(
+                        active ? "bg-gray-100" : "",
+                        "block px-4 py-2 text-sm text-gray-700"
+                      )}
                     >
                       Xin chào: {userName}
                     </Link>
@@ -246,7 +257,10 @@ const Navbars = () => {
                   {({ active }) => (
                     <Link
                       to={"/userinfo"}
-                      className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                      className={classNames(
+                        active ? "bg-gray-100" : "",
+                        "block px-4 py-2 text-sm text-gray-700"
+                      )}
                     >
                       Trang cá nhân
                     </Link>
@@ -256,7 +270,10 @@ const Navbars = () => {
                   {({ active }) => (
                     <Link
                       to={"/Sale/:id/Carts"}
-                      className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                      className={classNames(
+                        active ? "bg-gray-100" : "",
+                        "block px-4 py-2 text-sm text-gray-700"
+                      )}
                     >
                       Giỏ hàng
                     </Link>
@@ -265,36 +282,35 @@ const Navbars = () => {
                 <hr />
                 <Menu.Item>
                   {({ active }) => (
-                    <a
+                    <Link
                       onClick={handlelogout}
-                      className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                      className={classNames(
+                        active ? "bg-gray-100" : "",
+                        "block px-4 py-2 text-sm text-gray-700"
+                      )}
                     >
                       Đăng xuất
-                    </a>
+                    </Link>
                   )}
                 </Menu.Item>
               </Menu.Items>
             </Transition>
           </Menu>
-
         ) : (
           <div>
-            <Link to="/Login" style={{ color: "black" }} className="mt-3 text-lg">
+            <Link
+              to="/Login"
+              style={{ color: "black" }}
+              className="text-lg flex flex-row justify-center"
+            >
               Đăng nhập / Đăng ký
             </Link>
           </div>
         )}
-        <div className="mt-3.5 pl-3 ">
-          <Link style={{color: "black"}} to={`/Sale/:id/Carts`}>
-            <BsMinecartLoaded size={32}/>
-          </Link>
-        </div>
-
       </div>
       <br className="flex flex-row justify-center lg:hidden md:flex" />
 
       <div className="line"></div>
-
 
       {setdata.length != 0 && isNav ? (
         <div className="suggestionwala">
@@ -313,6 +329,5 @@ const Navbars = () => {
     </div>
   );
 };
-
 
 export default Navbars;

@@ -13,6 +13,7 @@ import Tools from "./Static-Pages/Tools/Tools";
 import Sales from "./Static-Pages/SalesPage/Sales";
 import Login from "./Static-Pages/LoginPage/Login";
 import Register from "./Static-Pages/RegisterPage/Register";
+import Forgotpass from "./Static-Pages/Forgotpassword/Forgotpass";
 import Carts from "./Static-Pages/Cart/Carts";
 import Payment from "./Payment-Page/Payment";
 import ProductDetails from "./Static-Pages/ProductsSpecifications/ProductDetails";
@@ -31,12 +32,12 @@ import SellerPrivate from "./Components/SellerPrivate";
 function AllRoutes() {
   return (
     <Routes>
-
       <Route path="/" element={<HomePage />} />
       <Route path="/Brands" element={<Brands />} />
       <Route path="/Holiday" element={<Holiday />} />
       <Route path="/Sale" element={<Sales />} />
       <Route path="/Register" element={<Register />} />
+      <Route path="/Forgotpass" element={<Forgotpass />} />
       {/* add proucts page link here  */}
       <Route path="/Login" element={<Login />} />
       <Route path="/SkinCare" element={<SkinCare />} />
@@ -67,12 +68,7 @@ function AllRoutes() {
       />
       {/* <Route path='/Carts' element={<Carts/>}/> */}
 
-      <Route
-        path="/Tools"
-        element={
-          <Tools />
-        }
-      />
+      <Route path="/Tools" element={<Tools />} />
       <Route
         path="/Sale/:id/Carts"
         element={
@@ -105,11 +101,9 @@ function AllRoutes() {
         element={
           <Privateroute>
             <AdminPrivate>
-
               <ShowUsers />
             </AdminPrivate>
           </Privateroute>
-
         }
       />
 

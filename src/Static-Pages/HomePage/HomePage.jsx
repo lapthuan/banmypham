@@ -1,19 +1,17 @@
 import React from "react";
 import "./HomePage.css";
-import {HiOutlineShoppingBag} from 'react-icons/hi'
+import { HiOutlineShoppingBag } from "react-icons/hi";
 import Slider from "./Slider";
 import { useNavigate } from "react-router-dom";
-
 function HomePage() {
-  const navigate=useNavigate()
-  const handleredirect=()=>{
-navigate('/Sale')
- }
- 
+  const navigate = useNavigate();
+  const handleredirect = () => {
+    navigate("/Sale");
+  };
+
   return (
     <>
-
-<Slider/>
+      <Slider />
 
       <h1 className="Shophai">Shop by Category</h1>
       {/* Shop by Category images  */}
@@ -186,7 +184,10 @@ navigate('/Sale')
           />
           <p>Epionce Luminous Eye Serum Original Size at 0.53ml</p>
           <p>$67.00</p>
-          <div><HiOutlineShoppingBag/>SHOP NOW</div>
+          <div>
+            <HiOutlineShoppingBag />
+            SHOP NOW
+          </div>
         </div>
         <div>
           <img
@@ -195,16 +196,24 @@ navigate('/Sale')
           />
           <p>Grow Gorgeous Hair Density Serum Original Duo 2 x 60ml</p>
           <p>$49.00</p>
-          <div><HiOutlineShoppingBag/>SHOP NOW</div>
+          <div>
+            <HiOutlineShoppingBag />
+            SHOP NOW
+          </div>
         </div>
         <div className="Riley">
           <img
             src="https://static.thcdn.com/images/small/webp//productimg/480/480/13920999-1114993397470335.jpg"
             alt=""
           />
-          <p>Sunday Riley Morning Buzz Vitamin C Brightening Trio Skincare Set </p>
+          <p>
+            Sunday Riley Morning Buzz Vitamin C Brightening Trio Skincare Set{" "}
+          </p>
           <p>$98.00</p>
-          <div><HiOutlineShoppingBag/>SHOP NOW</div>
+          <div>
+            <HiOutlineShoppingBag />
+            SHOP NOW
+          </div>
         </div>
         <div className="Riley">
           <img
@@ -213,7 +222,10 @@ navigate('/Sale')
           />
           <p>TriPollar STOP X Device - Rose Gold Beautiful Natural Skin</p>
           <p>$199.00</p>
-          <div><HiOutlineShoppingBag/>SHOP NOW</div>
+          <div>
+            <HiOutlineShoppingBag />
+            SHOP NOW
+          </div>
         </div>
       </div>
 
@@ -268,8 +280,8 @@ navigate('/Sale')
           />
           <h4>SkinCeuticals: Vitamin C Beyond the Face</h4>
           <p>
-           
-SkinCeuticals believes in celebrating the skin-protective and rejuvenating powers of vitamin C every day.
+            SkinCeuticals believes in celebrating the skin-protective and
+            rejuvenating powers of vitamin C every day.
           </p>
           <button>SHOP NOW</button>
         </div>
@@ -280,7 +292,8 @@ SkinCeuticals believes in celebrating the skin-protective and rejuvenating power
           />
           <h4>Which TriPollar Device is Right for You?</h4>
           <p>
-          In 2008, TriPollar launched themselves into the home beauty sphere with an aim to innovate the technology.
+            In 2008, TriPollar launched themselves into the home beauty sphere
+            with an aim to innovate the technology.
           </p>
           <button>SHOP NOW</button>
         </div>
@@ -291,8 +304,8 @@ SkinCeuticals believes in celebrating the skin-protective and rejuvenating power
           />
           <h4>Discover Natura Bissé</h4>
           <p>
-           
-With an aim to help their clients’ skin as they age and to turn their daily skin care routines into a moment of real self-care.
+            With an aim to help their clients’ skin as they age and to turn
+            their daily skin care routines into a moment of real self-care.
           </p>
           <button>SHOP NOW</button>
         </div>

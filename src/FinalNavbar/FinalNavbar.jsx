@@ -9,8 +9,8 @@ import Navbar from "../Static-Pages/Navbars/index";
 import { Nav } from "../data/navigation";
 import useNavigation from "../hook/useNavigation";
 import Tabbar from "../Static-Pages/Tabbar";
-
-
+import Itop from "../Components/Itop/Itop";
+import Ileft from "../Components/Itop/Ileft";
 function FinalNavbar() {
   const { currentRoute, setCurrentRoute } = useNavigation();
 
@@ -23,6 +23,8 @@ function FinalNavbar() {
       }}
     >
       <Top />
+      
+      <Itop />
       <Navbars />
       {/* <MainNavbar /> */}
       <div className={"bg-gray-200"}>
@@ -35,7 +37,6 @@ function FinalNavbar() {
           navigationData={Nav}
           currentRoute={currentRoute}
           setCurrentRoute={setCurrentRoute}
-
         />
       </div>
       <br />
