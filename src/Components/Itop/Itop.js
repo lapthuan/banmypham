@@ -1,8 +1,6 @@
 import ScrollToTop from "react-scroll-to-top";
 import React, { useState, useEffect } from "react";
 import "./Itop.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPhone, faComment } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import { FaCaretUp } from "react-icons/fa";
 
