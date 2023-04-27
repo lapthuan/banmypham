@@ -32,7 +32,7 @@ const Navbar = ({ navigationData, currentRoute, setCurrentRoute }) => {
           </li>
         ))}
       </ul>
-      <div
+      {/* <div
         style={{
           color: "black",
           fontWeight: "bold",
@@ -54,7 +54,7 @@ const Navbar = ({ navigationData, currentRoute, setCurrentRoute }) => {
           </svg>
         </div>
         FEED
-      </div>
+      </div> */}
       {/* <button className={"bg-white hover:bg-gray-50 border-2 border-gray-900 text-sm text-gray-900 py-3 px-5 rounded-lg font-medium tracking-wide leading-none"}>Logout</button> */}
     </nav>
   );

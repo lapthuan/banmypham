@@ -217,14 +217,9 @@ const Navbars = () => {
           </button>
         </Link>
       </form>
-      <div className="nav-items flex flex-row justify-around lg:hidden md:flex py-3">
-        <div className="">
-          <Link style={{ color: "black" }} to={`/Sale/:id/Carts`}>
-            <BsMinecartLoaded size={32} />
-          </Link>
-        </div>
+      <div className="nav-items flex flex-row justify-end lg:hidden md:flex pb-6 pr-10">
         {isauth ? (
-          <Menu as="div" className="relative ">
+          <Menu as="div" className="relative pt-3">
             <div>
               <Menu.Button className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 ">
                 <span className="sr-only">Open user menu</span>
@@ -282,7 +277,7 @@ const Navbars = () => {
                 <hr />
                 <Menu.Item>
                   {({ active }) => (
-                    <Link
+                    <a
                       onClick={handlelogout}
                       className={classNames(
                         active ? "bg-gray-100" : "",
@@ -290,7 +285,7 @@ const Navbars = () => {
                       )}
                     >
                       Đăng xuất
-                    </Link>
+                    </a>
                   )}
                 </Menu.Item>
               </Menu.Items>
@@ -301,12 +296,17 @@ const Navbars = () => {
             <Link
               to="/Login"
               style={{ color: "black" }}
-              className="text-lg flex flex-row justify-center"
+              className="mt-3 text-lg"
             >
               Đăng nhập / Đăng ký
             </Link>
           </div>
         )}
+        <div className="mt-3.5 pl-3 ">
+          <Link style={{ color: "black" }} to={`/Sale/:id/Carts`}>
+            <BsMinecartLoaded size={32} />
+          </Link>
+        </div>
       </div>
       <br className="flex flex-row justify-center lg:hidden md:flex" />
 

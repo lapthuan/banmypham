@@ -139,7 +139,7 @@ function Register() {
                 name="confirmPassword"
                 onChange={handleChange}
               />
-              {/* <ReCAPTCHA sitekey="Your client site key" onChange={onChange} />, */}
+              {/* <ReCAPTCHA sitekey="Your client site key" />, */}
               <button
                 className={styles.sing_register_button}
                 onClick={handleOnSubmit}
