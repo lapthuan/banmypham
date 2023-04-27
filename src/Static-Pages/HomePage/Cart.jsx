@@ -72,7 +72,7 @@ const FeaturedCard = () => {
 
         <Slider {...settings} ref={sliderRef} className="h-[300px]">
           <div className="card flex flex-col">
-            <div className="">
+            <div className="image-container">
               <img
                 src={img1}
                 style={{
@@ -141,7 +141,7 @@ const FeaturedCard = () => {
             </div>
           </div>
           <div className="card flex flex-col">
-            <div className="">
+            <div class="image-container2">
               <img
                 src={img3}
                 style={{
@@ -150,6 +150,18 @@ const FeaturedCard = () => {
                   marginLeft: "auto",
                   marginRight: "auto",
                 }}
+                class="image-1"
+              />
+              <img
+                src="	https://upload.lixibox.com/system/pictures/files/000/080/309/large/1672817972.webp?v=2"
+                style={{
+                  height: "150px",
+                  width: "180px",
+                  marginLeft: "auto",
+                  marginRight: "auto",
+                }}
+                alt=""
+                class="image-2"
               />
             </div>
             <div className="card-bottom">
