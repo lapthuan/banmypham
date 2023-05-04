@@ -311,39 +311,6 @@ const Footer2 = () => {
           </MDBRow>
         </MDBContainer>
       </section>
-
-      {/* <section className='d-flex justify-content-center justify-content-lg-between p-4 border-bottom'>
-      <MDBContainer className='text-center  mt-5'>
-        <div className='me-5 d-none d-lg-block'>
-          <h2>THG</h2>
-        </div>
-        <div className='me-5 d-none d-lg-block'>
-          <h5>2022 @ The Hut.com Ltd.</h5>
-        </div>
-
-        <div style={{fontSize:"30px"}}>
-          <a href='' className='me-4 text-reset'>
-          <AiFillFacebook />
-          </a>
-          <a href='' className='me-4 text-reset'>
-            <AiFillTwitterSquare />
-          </a>
-          <a href='' className='me-4 text-reset'>
-            <AiOutlineInstagram />
-          </a>
-          <a href='' className='me-4 text-reset'>
-            <AiFillLinkedin />
-          </a>
-          <a href='' className='me-4 text-reset'>
-            <AiFillGithub />
-          </a>
-          <a href='' className='me-4 text-reset'>
-            <AiFillGoogleCircle />
-          </a>
-        </div>
-        </MDBContainer>
-      </section> */}
-
       <div className="text-center p-4" style={{ backgroundColor: "#191b1d" }}>
         © 2023 - Bản quyền của Công Ty Cổ Phần Sachi - www.luxubu.com
       </div>

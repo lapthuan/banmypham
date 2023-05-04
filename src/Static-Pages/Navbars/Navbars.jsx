@@ -92,7 +92,7 @@ const Navbars = () => {
             <AiOutlineClose />
           </span>
         </div>
-        <form className="co" action="#">
+        <form className="co rounded-[10px]" action="#">
           <input
             type="search"
             className="search-data "

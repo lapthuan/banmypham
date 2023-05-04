@@ -28,7 +28,7 @@ import Payments from "./Static-Pages/Payment/Payment";
 import Delivery from "./Static-Pages/NewAddress/Delivery";
 import AdminPrivate from "./Components/AdminPrivate";
 import SellerPrivate from "./Components/SellerPrivate";
-
+import Blog from "./Static-Pages/Blog/Blog";
 function AllRoutes() {
   return (
     <Routes>
@@ -46,7 +46,7 @@ function AllRoutes() {
       <Route path="/BathBody" element={<Bath />} />
       <Route path="/Fragrance" element={<Fragrance />} />
       <Route path="/SelfCare" element={<Selfcare />} />
-
+      <Route path="/blog" element={<Blog />} />
       <Route
         path="/payments"
         element={

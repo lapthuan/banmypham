@@ -4,7 +4,8 @@ import { HiOutlineShoppingBag } from "react-icons/hi";
 import Slider from "./Slider";
 import { useNavigate } from "react-router-dom";
 import Carts from "./Cart";
-
+import Promotion from "./Promotion";
+import MostSearch from "./mostsearch";
 function HomePage() {
   const navigate = useNavigate();
   const handleredirect = () => {
@@ -23,22 +24,25 @@ function HomePage() {
         <Carts />
       </div>
 
-      {/* <div className="flex justify-between">
-        <div>
-          <img
-            src="https://upload.lixibox.com/system/banners/covers/000/001/594/medium/1682066047.jpg"
-            alt=""
-          />
+      <div className="magazine mt-5">
+        <div className="flex flex-wrap">
+          <div className="w-full sm:w-1/2 my-2">
+            <img
+              src="https://upload.lixibox.com/system/banners/covers/000/001/437/medium/1672814902.jpg"
+              alt="alt"
+            />
+          </div>
+          <div className="w-full sm:w-1/2 my-2">
+            <img
+              src="https://upload.lixibox.com/system/pictures/files/000/080/669/original/1673235292.jpg?v=1"
+              alt="alt"
+            />
+          </div>
+          /
         </div>
-        <div>
-          <img
-            src="https://upload.lixibox.com/system/banners/covers/000/001/594/medium/1682066047.jpg"
-            alt=""
-          />
-        </div>
-      </div> */}
+      </div>
 
-      <div className="diffimages" onClick={handleredirect}>
+      {/* <div className="diffimages" onClick={handleredirect}>
         <div>
           <img
             src="https://static.thcdn.com/images/small/webp/widgets/121-us/26/180x72_4_233548301_CA_SS_Logo_Amend_BAU_THG0030424-041301-124116-063126.png"
@@ -75,13 +79,19 @@ function HomePage() {
             alt=""
           />
         </div>
-      </div>
+      </div> */}
 
       <div className="" onClick={handleredirect}>
         <Carts />
       </div>
-      <div className="mb-[20%]" onClick={handleredirect}>
+      <div className="mt-40 w-[90%] ml-auto mr-auto">
+        <MostSearch />
+      </div>
+      <div className="mb-[10%]" onClick={handleredirect}>
         <Carts />
+      </div>
+      <div className="w-[90%] ml-auto mr-auto mb-5">
+        <Promotion />
       </div>
     </>
   );

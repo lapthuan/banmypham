@@ -205,6 +205,13 @@
 
   font-family: "Lato", sans-serif;
 }
+.magazine img {
+  object-fit: cover;
+  border-radius: 20px;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 /* Medium screen Media Queries  */
 @media screen and (min-width: 500px) and (max-width: 1270px) {
@@ -306,7 +313,6 @@
     margin-top: 100px;
     gap: 2px;
   }
-
   .diffimages div img {
     height: 50%;
     width: 90%;
