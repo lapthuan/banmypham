@@ -29,6 +29,7 @@ import Delivery from "./Static-Pages/NewAddress/Delivery";
 import AdminPrivate from "./Components/AdminPrivate";
 import SellerPrivate from "./Components/SellerPrivate";
 import Blog from "./Static-Pages/Blog/Blog";
+import Tpost from "./Static-Pages/Blog/Tpost";
 function AllRoutes() {
   return (
     <Routes>
@@ -47,6 +48,7 @@ function AllRoutes() {
       <Route path="/Fragrance" element={<Fragrance />} />
       <Route path="/SelfCare" element={<Selfcare />} />
       <Route path="/blog" element={<Blog />} />
+      <Route path="/Tpost" element={<Tpost />} />
       <Route
         path="/payments"
         element={

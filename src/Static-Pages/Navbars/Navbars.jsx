@@ -95,16 +95,14 @@ const Navbars = () => {
         <form className="co rounded-[10px]" action="#">
           <input
             type="search"
-            className="search-data "
+            className="search-data"
             placeholder="Tìm kiếm son, sữa rữa mặt..."
             onChange={handleSearch}
           />
-          <Link to="/Sale">
-            <button type="submit">
-              <AiOutlineSearch size={26} style={{ margin: "5px" }} />
-            </button>
-          </Link>
-        </form>
+          <button type="submit">
+            <AiOutlineSearch size={26} style={{ margin: "5px" }} />
+          </button>{" "}
+          </form>
 
         <div
           class="nav-items"

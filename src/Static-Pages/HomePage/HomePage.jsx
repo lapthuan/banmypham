@@ -20,7 +20,7 @@ function HomePage() {
         <Carts />
       </div>
 
-      <div className="mb-[10%]">
+      <div className="">
         <Carts />
       </div>
 
@@ -42,55 +42,16 @@ function HomePage() {
         </div>
       </div>
 
-      {/* <div className="diffimages" onClick={handleredirect}>
-        <div>
-          <img
-            src="https://static.thcdn.com/images/small/webp/widgets/121-us/26/180x72_4_233548301_CA_SS_Logo_Amend_BAU_THG0030424-041301-124116-063126.png"
-            alt=""
-          />
-        </div>
-        <div>
-          <img
-            src="https://static.thcdn.com/images/small/webp/widgets/121-us/18/original-logo-1024x383-035229-063318.png"
-            alt=""
-          />
-        </div>
-        <div>
-          <img
-            src="https://static.thcdn.com/images/small/webp/widgets/121-us/11/Revision_Skincare_Logo_without_Tag_Line-052511.png"
-            alt=""
-          />
-        </div>
-        <div>
-          <img
-            src="https://static.thcdn.com/images/small/webp/widgets/121-us/46/original-NF_Skinstore_Banner_Logo_Color_320x140-01-011402-010546.png"
-            alt=""
-          />
-        </div>
-        <div>
-          <img
-            src="https://static.thcdn.com/images/small/webp/widgets/121-us/27/220322-ELTAMD-LOGO-RGB-01-065127.png"
-            alt=""
-          />
-        </div>
-        <div>
-          <img
-            src="https://static.thcdn.com/images/small/webp/widgets/121-us/07/original-LOGO-2022_SkinStore_Landing_Page-BLACK-060107.png"
-            alt=""
-          />
-        </div>
-      </div> */}
-
-      <div className="" onClick={handleredirect}>
+      <div className="">
         <Carts />
       </div>
-      <div className="mt-40 w-[90%] ml-auto mr-auto">
+      <div className=" w-[90%] ml-auto mr-auto">
         <MostSearch />
       </div>
-      <div className="mb-[10%]" onClick={handleredirect}>
+      <div className="mb-[5%]">
         <Carts />
       </div>
-      <div className="w-[90%] ml-auto mr-auto mb-5">
+      <div className="w-[90%] ml-auto mr-auto mb-5 pt-5 lg:flex md:hidden hidden">
         <Promotion />
       </div>
     </>
