@@ -1,11 +1,11 @@
-import "./mostsearch.css";
+import "./blogmost.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 
-const MostSearch = () => {
+const blogmost = () => {
   return (
-    <div className="most-search mt-5">
-      <h3 className="text-left">TÌM KIẾM NHIỀU NHẤT</h3>
+    <div className="blog-search mt-5">
+      <h3 className="text-center">Danh mục sản phẩm</h3>
       <ul className="mt-5">
         <Swiper
           className=""
@@ -31,47 +31,47 @@ const MostSearch = () => {
           }}
         >
           <SwiperSlide>
-            <li className="w-[80%] mr-[10px] text-center">
-              <button>Máy triệt lông</button>
+            <li className="w-[50%] mr-[10px] text-center">
+              <button>Tất cả</button>
             </li>
           </SwiperSlide>
           <SwiperSlide>
-            <li className="w-[80%] mr-[10px] text-center">
-              <button>Máy uốn tóc</button>
+            <li className="w-[50%] mr-[10px] text-center">
+              <button>Makeup</button>
             </li>
           </SwiperSlide>
           <SwiperSlide>
-            <li className="w-[80%] mr-[10px] text-center">
-              <button>Bàn chải điện</button>
+            <li className="w-[50%] mr-[10px] text-center">
+              <button>Skincare</button>
             </li>
           </SwiperSlide>
           <SwiperSlide>
-            <li className="w-[80%] mr-[10px] text-center">
-              <button>Mặt nạ</button>
+            <li className="w-[50%] mr-[10px] text-center">
+              <button>Brand</button>
             </li>
           </SwiperSlide>
           <SwiperSlide>
-            <li className="w-[80%] mr-[10px] text-center">
-              <button>Son</button>
+            <li className="w-[50%] mr-[10px] text-center">
+              <button>Mom & baby</button>
             </li>
           </SwiperSlide>
           <SwiperSlide>
-            <li className="w-[80%] mr-[10px] text-center">
-              <button>Tăm nước</button>
+            <li className="w-[50%] mr-[10px] text-center">
+              <button>Inspiration</button>
             </li>
           </SwiperSlide>
           <SwiperSlide>
-            <li className="w-[80%] mr-[10px] text-center">
-              <button>Máy rửa mặt</button>
+            <li className="w-[50%] mr-[10px] text-center">
+              <button>Lingerie</button>
             </li>
           </SwiperSlide>
           <SwiperSlide>
-            <li className="w-[80%] mr-[10px] text-center">
+            <li className="w-[50%] mr-[10px] text-center">
               <button>Halio</button>
             </li>
           </SwiperSlide>
           <SwiperSlide>
-            <li className="w-[80%] mr-[10px] text-center">
+            <li className="w-[50%] mr-[10px] text-center">
               <button>Kem chống nắng</button>
             </li>
           </SwiperSlide>
@@ -81,4 +81,4 @@ const MostSearch = () => {
   );
 };
 
-export default MostSearch;
+export default blogmost;

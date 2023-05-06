@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./Blog.css";
 import RecentCard from "./RecentCard";
+import Blogmost from "./blogmostsearch";
 const Blog = () => {
   const [dataBlog, setDataBlog] = useState();
 
@@ -10,6 +11,9 @@ const Blog = () => {
         <section className="mainContent">
           <RecentCard />
         </section>
+        <div className="w-[90%] ml-auto mr-auto">
+          <Blogmost />
+        </div>
       </div>
     </>
   );

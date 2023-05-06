@@ -15,7 +15,7 @@ export const Nav = [
     icon: "Brand",
   },
   {
-    name: "Giới thiệu bạn bè",
+    name: "Dịch Vụ",
     path: "/Brands",
     icon: "About",
   },
