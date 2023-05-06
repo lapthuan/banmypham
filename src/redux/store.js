@@ -9,7 +9,9 @@ import { loginReducer } from "./reducers/auth";
 import { signupReducer } from "./signup/signup.reducer";
 import { productListReducer } from "./reducers/productReducers";
 import { productDetailsReducer } from "./reducers/productReducers";
+import { cartReducer } from './reducers/cartReducers';
 const rootreducer = combineReducers({
+  cart: cartReducer,
   signup: signupReducer,
   login: loginReducer,
   productList: productListReducer,

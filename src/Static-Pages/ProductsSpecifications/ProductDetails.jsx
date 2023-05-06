@@ -11,16 +11,18 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   listProductDetails,
 } from '../../redux/action/productActions';
+import { addItem } from "../../redux/action/cartActions";
 
-function ProductDetails() {
+function ProductDetails({ history }) {
   const params = useParams();
   let id = params.id;
-
+  const [quantity, setQuantity] = useState(1);
   const [data, setdata] = useState([]);
   const userData = localStorage.getItem("token") || ""
   const [userId, userEmail, userPassword] = userData.split(":")
   const dispatch = useDispatch();
-
+  const cart = useSelector((state) => state.cart);
+	const { cartItems } = cart;
   let cartData = JSON.parse(localStorage.getItem("cartItems")) || []
 
 
@@ -33,33 +35,15 @@ function ProductDetails() {
 
   }, [id, dispatch]);
 
-
-
-  const addToCart = () => {
-    // console.log("data", data)
-    let currData = data[0];
-    let obj = {
-      title: currData.title,
-      image: currData.image,
-      description: currData.description,
-      price: currData.price,
-      quantity: currData.quantity,
-      category: currData.category,
-      rating: currData.rating
+  const handleAddToCart = (e) => {
+    
+    if (quantity && id) {
+    	dispatch(addItem(id, quantity));
     }
-    console.log("this is object", obj)
 
+  };
 
-    axios.post(`https://blossombackend.onrender.com/carts/${userId}`, obj).then((res) => {
-      console.log("res--->", res)
-    }).catch((e) => {
-      console.log("error hai", e);
-    })
-
-    // console.log(data,"checking");
-    cartData.push(data)
-    localStorage.setItem("cartItems", JSON.stringify(cartData))
-  }
+  // 
 
   useEffect(() => {
     axios.get(`https://blossombackend.onrender.com/products/Sale/${id}/spec`).then((res) => {
@@ -77,7 +61,7 @@ function ProductDetails() {
       <div className="mainimagewala">
 
         <div className="imagepara">
-          <img src={product.images[0] == undefined ? imgError : product.images[0].url } alt='' />
+          <img src={product.images[0] == undefined ? imgError : product.images[0].url} alt='' />
           <h3> </h3>
           <p>{product.description}</p>
 
@@ -93,9 +77,21 @@ function ProductDetails() {
             <p className="uparkrdubar">(4)</p>
           </div>
           <p style={{ marginTop: "-5px" }} className="rate"> {product.price} Vnđ </p>
-          <Link to={`/Sale/${id}/Carts`}>
-            <button onClick={addToCart} className='addwalabutton'>Add to cart</button>
-          </Link>
+          <select data-te-select-init value={quantity} onChange={(e) => setQuantity(e.target.value)}>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="8">9</option>
+            <option value="8">10</option>
+          </select>
+
+          <button onClick={handleAddToCart} className='addwalabutton'>Add to cart</button>
+
           <div className="icomns"><ImTruck className="trucjkhai" /> <p>2-3 Business Day Delivery</p></div>
 
 

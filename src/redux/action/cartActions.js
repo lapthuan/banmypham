@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { toast } from 'react-toastify';
 import {
 	CART_ADD_ITEM,
 	CART_REMOVE_ITEM,
@@ -6,27 +7,32 @@ import {
 	CART_SAVE_PAYMENT_METHOD,
 } from '../const/cartConstants';
 
+const api = axios.create({
+	baseURL: "https://api-thuongmai.vercel.app",
+});
+
 // get the product id and the quantity of the item to add to the cart
 export const addItem = (id, qty) => async (dispatch, getState) => {
 	try {
-		const { data } = await axios.get(`http://localhost:5000/api/products/${id}`);
+		const { data } = await api.get(`/api/product/${id}`);
+		console.log(data);
+
+
 		dispatch({
 			type: CART_ADD_ITEM,
 			payload: {
 				product: data._id,
-				name: data.name,
-				image: data.image,
+				title: data.title,
+				image: data.images[0] == undefined ? "" : data.images[0].url,
 				price: data.price,
-				countInStock: data.countInStock,
 				qty,
 			},
 		});
-
-		// update the local storage with the new cart
 		localStorage.setItem(
 			'cartItems',
 			JSON.stringify(getState().cart.cartItems)
 		);
+		toast.success("Sản phẩm đã được đưa vào giỏ hàng")
 	} catch (error) {
 		console.error(error);
 	}

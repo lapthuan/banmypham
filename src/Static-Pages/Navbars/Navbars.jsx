@@ -189,7 +189,7 @@ const Navbars = () => {
 
             <div className="mt-4">
               <li>
-                <Link to={`/Sale/:id/Carts`}>
+                <Link to={`Carts`}>
                   <BsMinecartLoaded />
                 </Link>
               </li>
@@ -264,7 +264,7 @@ const Navbars = () => {
                 <Menu.Item>
                   {({ active }) => (
                     <Link
-                      to={"/Sale/:id/Carts"}
+                      to={"Carts"}
                       className={classNames(
                         active ? "bg-gray-100" : "",
                         "block px-4 py-2 text-sm text-gray-700"

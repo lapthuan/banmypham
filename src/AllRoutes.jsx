@@ -70,7 +70,7 @@ function AllRoutes() {
 
       <Route path="/Tools" element={<Tools />} />
       <Route
-        path="/Sale/:id/Carts"
+        path="/Carts"
         element={
           <Privateroute>
             <Carts />
