@@ -5,6 +5,7 @@ import { Link, useParams } from "react-router-dom";
 import { RiStarSFill } from "react-icons/ri";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import imgError from "../../Image/imgError.jpg";
 import { ImTruck } from 'react-icons/im'
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -76,7 +77,7 @@ function ProductDetails() {
       <div className="mainimagewala">
 
         <div className="imagepara">
-          <img src={product.images[0].url} alt='' />
+          <img src={product.images[0] == undefined ? imgError : product.images[0].url } alt='' />
           <h3> </h3>
           <p>{product.description}</p>
 

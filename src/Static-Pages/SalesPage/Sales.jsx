@@ -28,8 +28,8 @@ const Sales = () => {
     dispatch(listProducts());
   }, []);
 
-  console.log(productList);
-  return (
+  console.log(products.length);
+  return products.length != 0 ? (
     <div className={styles.main__sales}>
       <div className={styles.navigation_tab}>
         <span className={styles.home_hover}>Trang chủ</span> <span>/</span>{" "}
@@ -38,29 +38,7 @@ const Sales = () => {
       <div className={styles.main__products}>
         <div className={styles.products_area}>
           <div className={styles.all__main__products}>
-            <Link to={`/Sale/123213`} className={"rounded-xl shadow-2xl p-1"}>
-              <div className={styles.each_product}>
-                <div>
-                  <div className={styles.wishlist}>
-                    <AiOutlineHeart />
-                  </div>
-                  <img
-                    src={imgError}
-                    className={"rounded-2xl shadow-2xl h-[325px]"}
-                    alt="product_img"
-                  />
-                </div>
-                <p className={styles.product__dis}>Sản phẩm 1</p>
-                <Stars stars={"5"} />
-                <p className={styles.product__price}>$ 12</p>
-                <button
-                  type="button"
-                  class="w-full inline-block rounded-xl bg-neutral-800 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-neutral-50 shadow-[0_4px_9px_-4px_rgba(51,45,45,0.7)] transition duration-150 ease-in-out hover:bg-neutral-800 hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:bg-neutral-800 focus:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:outline-none focus:ring-0 active:bg-neutral-900 active:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] dark:bg-neutral-900 dark:shadow-[0_4px_9px_-4px_#030202] dark:hover:bg-neutral-900 dark:hover:shadow-[0_8px_9px_-4px_rgba(3,2,2,0.3),0_4px_18px_0_rgba(3,2,2,0.2)] dark:focus:bg-neutral-900 dark:focus:shadow-[0_8px_9px_-4px_rgba(3,2,2,0.3),0_4px_18px_0_rgba(3,2,2,0.2)] dark:active:bg-neutral-900 dark:active:shadow-[0_8px_9px_-4px_rgba(3,2,2,0.3),0_4px_18px_0_rgba(3,2,2,0.2)]"
-                >
-                  Đặt hàng
-                </button>
-              </div>
-            </Link>
+
             {products?.map((item) => (
               <Link
                 to={`/Sale/${item._id}`}
@@ -72,8 +50,8 @@ const Sales = () => {
                       <AiOutlineHeart />
                     </div>
                     <img
-                      src={item.images[0].url}
-                      className={"rounded-2xl shadow-2xl "}
+                      src={item.images[0] == undefined ? imgError : item.images[0].url}
+                     
                       alt="product_img"
                     />
                   </div>
@@ -104,7 +82,7 @@ const Sales = () => {
         </div>
       </div>
     </div>
-  );
+  ) : (<div>Loading...</div>);
 };
 
 export default Sales;
