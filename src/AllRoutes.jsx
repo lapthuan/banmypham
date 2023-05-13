@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import HomePage from "./Static-Pages/HomePage/HomePage";
 import Brands from "./Static-Pages/Brands/Brands";
@@ -30,7 +30,18 @@ import AdminPrivate from "./Components/AdminPrivate";
 import SellerPrivate from "./Components/SellerPrivate";
 import Blog from "./Static-Pages/Blog/Blog";
 import Tpost from "./Static-Pages/Blog/Tpost";
+import { useDispatch, useSelector } from "react-redux";
+import { loadUser } from "./redux/action/auth";
+
 function AllRoutes() {
+
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(loadUser());
+    console.log("hello");
+  }, [])
+
+
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />

@@ -32,7 +32,7 @@ export const addItem = (id, qty) => async (dispatch, getState) => {
 			'cartItems',
 			JSON.stringify(getState().cart.cartItems)
 		);
-		toast.success("Sản phẩm đã được đưa vào giỏ hàng")
+		// toast.success("Sản phẩm đã được đưa vào giỏ hàng")
 	} catch (error) {
 		console.error(error);
 	}
