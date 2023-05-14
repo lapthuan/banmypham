@@ -82,7 +82,7 @@ function Register() {
               www.luxubu.com
             </div>
             <div className={styles.register_social_links}>
-              {/* <Link to={""} className={styles.register_btn_fb}>
+              <Link to={""} className={styles.register_btn_fb}>
                 <img src={facebook} alt="facebook_logo" />
                 Facebook
               </Link>
@@ -92,7 +92,7 @@ function Register() {
               >
                 <img src={google} alt="google_logo" />
                 Google
-              </Link> */}
+              </Link>
             </div>
             <div>
               <span className="">Bạn đã có tài khoản?</span>

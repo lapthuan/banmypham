@@ -30,6 +30,11 @@ import AdminPrivate from "./Components/AdminPrivate";
 import SellerPrivate from "./Components/SellerPrivate";
 import Blog from "./Static-Pages/Blog/Blog";
 import Tpost from "./Static-Pages/Blog/Tpost";
+import Invite from "./Static-Pages/Invite/Ivite";
+import Contact from "./Static-Pages/Invite/Contact/Contact";
+import IviteBlog from "./Static-Pages/Invite/IviteBlog";
+import Iviteuser from "./Static-Pages/Invite/IviteUser/IviteUser";
+import Information from "./Static-Pages/Invite/Information/Information";
 function AllRoutes() {
   return (
     <Routes>
@@ -49,6 +54,11 @@ function AllRoutes() {
       <Route path="/SelfCare" element={<Selfcare />} />
       <Route path="/blog" element={<Blog />} />
       <Route path="/Tpost" element={<Tpost />} />
+      <Route path="/Invite" element={<Invite />} />
+      <Route path="/Contact" element={<Contact />} />
+      <Route path="/IviteBlog" element={<IviteBlog />} />
+      <Route path="/Iviteuser" element={<Iviteuser />} />
+      <Route path="/Information" element={<Information />} />
       <Route
         path="/payments"
         element={
