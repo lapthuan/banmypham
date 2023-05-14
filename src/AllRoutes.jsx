@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import HomePage from "./Static-Pages/HomePage/HomePage";
 import Brands from "./Static-Pages/Brands/Brands";
@@ -35,7 +35,18 @@ import Contact from "./Static-Pages/Invite/Contact/Contact";
 import IviteBlog from "./Static-Pages/Invite/IviteBlog";
 import Iviteuser from "./Static-Pages/Invite/IviteUser/IviteUser";
 import Information from "./Static-Pages/Invite/Information/Information";
+import { useDispatch, useSelector } from "react-redux";
+import { loadUser } from "./redux/action/auth";
+
 function AllRoutes() {
+
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(loadUser());
+    console.log("hello");
+  }, [])
+
+
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
