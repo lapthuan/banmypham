@@ -91,7 +91,7 @@ const FeaturedCard = () => {
               <div>
                 <Rate allowHalf defaultValue={3} />
               </div>
-              <p className="text-left text-xl font-bold">1.500.000 ₫</p>
+              <div className="text-left text-xl font-bold">1.500.000 ₫</div>
             </div>
           </div>
           <div className="card flex flex-col">

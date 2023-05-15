@@ -37,15 +37,14 @@ import Iviteuser from "./Static-Pages/Invite/IviteUser/IviteUser";
 import Information from "./Static-Pages/Invite/Information/Information";
 import { useDispatch, useSelector } from "react-redux";
 import { loadUser } from "./redux/action/auth";
+import FContact from "./Static-Pages/Contact/FContact";
 
 function AllRoutes() {
-
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   useEffect(() => {
     dispatch(loadUser());
     console.log("hello");
-  }, [])
-
+  }, []);
 
   return (
     <Routes>
@@ -70,6 +69,8 @@ function AllRoutes() {
       <Route path="/IviteBlog" element={<IviteBlog />} />
       <Route path="/Iviteuser" element={<Iviteuser />} />
       <Route path="/Information" element={<Information />} />
+      <Route path="/FContact" element={<FContact />} />
+
       <Route
         path="/payments"
         element={

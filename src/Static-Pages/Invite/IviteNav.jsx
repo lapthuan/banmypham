@@ -45,12 +45,12 @@ const IviteNav = () => {
           </div>
           <p className="text-black text-[15px] ml-3">Thông tin về LuXuBu</p>
         </Link>
-        <a href="" className="flex">
+        {/* <a href="" className="flex">
           <div>
             <BsJournalBookmarkFill size={20} color="black" />
           </div>
           <p className="text-black text-[15px] ml-3 ">Câu hỏi thường gặp</p>
-        </a>
+        </a> */}
 
         <Link to="/Contact" className="flex">
           <div>

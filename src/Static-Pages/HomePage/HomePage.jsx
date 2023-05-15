@@ -7,11 +7,6 @@ import Carts from "./Cart";
 import Promotion from "./Promotion";
 import MostSearch from "./mostsearch";
 function HomePage() {
-  const navigate = useNavigate();
-  const handleredirect = () => {
-    navigate("/Sale");
-  };
-
   return (
     <>
       <Slider />
