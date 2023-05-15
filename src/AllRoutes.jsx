@@ -38,6 +38,8 @@ import Information from "./Static-Pages/Invite/Information/Information";
 import { useDispatch, useSelector } from "react-redux";
 import { loadUser } from "./redux/action/auth";
 import FContact from "./Static-Pages/Contact/FContact";
+import InforLX from "./Static-Pages/Invite/Information/InforLX";
+import InforBuy from "./Static-Pages/Invite/Information/InforBuy";
 
 function AllRoutes() {
   const dispatch = useDispatch();
@@ -70,6 +72,8 @@ function AllRoutes() {
       <Route path="/Iviteuser" element={<Iviteuser />} />
       <Route path="/Information" element={<Information />} />
       <Route path="/FContact" element={<FContact />} />
+      <Route path="/InforLX" element={<InforLX />} />
+      <Route path="/InforBuy" element={<InforBuy />} />
 
       <Route
         path="/payments"

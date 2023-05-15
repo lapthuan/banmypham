@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Information.css";
 import { BsShop } from "react-icons/bs";
 import { SlHandbag } from "react-icons/sl";
+import { Link } from "react-router-dom";
 const Information = () => {
   return (
     <>
@@ -19,10 +20,12 @@ const Information = () => {
           <div className="text-center justify-center flex ">
             <div className="Infor">
               <div className="info_item w-[50%]">
-                <div className="ml-auto mr-auto">
-                  <BsShop size="40px" />
-                </div>
-                <div className="text-[13px] font-bold">
+                <Link to="/InforLX">
+                  <div className="ml-auto mr-auto">
+                    <BsShop size="40px" color="black" />
+                  </div>
+                </Link>
+                <div className="text-[15px] font-bold mt-2">
                   Thông tin về Lixibox
                 </div>
                 <div className="text-[13px] text-[#4D4E4F]">
@@ -30,11 +33,17 @@ const Information = () => {
                   dụng
                 </div>
               </div>
+
               <div className="info_item w-[50%]">
-                <div className="ml-auto mr-auto">
-                  <SlHandbag size="40px" />
+                <Link to="/InforBuy">
+                  <div className="ml-auto mr-auto">
+                    <SlHandbag size="40px" color="black" />
+                  </div>
+                </Link>
+
+                <div className="text-[15px] font-bold mt-2">
+                  Hướng dẫn mua hàng
                 </div>
-                <div className="text-[13px] font-bold">Hướng dẫn mua hàng</div>
                 <div className="text-[13px] text-[#4D4E4F]">
                   Chương trình tặng Gift Card, mua hàng trên mọi nền tảng
                 </div>

@@ -45,7 +45,7 @@ const Iviteuser = () => {
                         <span>Các mức giảm giá khi giới thiệu bạn bè: </span>
                       </div>
                       <div>
-                        <ul className="list-disc text-[15px] text-left ml-5">
+                        <ul className="c text-left ml-5">
                           <li>Giảm giá 10%</li>
                           <li>Giảm giá 20%</li>
                           <li>Giảm giá 30%</li>

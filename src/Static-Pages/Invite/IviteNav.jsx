@@ -27,12 +27,12 @@ const IviteNav = () => {
         </div>
       </div>
       <div className="Iv_content">
-        <a href="" className="flex">
+        <Link to="/Login" className="flex">
           <div>
             <RiCoupon3Line size={25} color="black" />
           </div>
           <p className="text-black text-[15px] ml-3  ">Mã giảm giá</p>
-        </a>
+        </Link>
         <Link to="/Iviteuser" className="flex">
           <div>
             <BsPersonPlus size={25} color="black" />
