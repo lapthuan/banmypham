@@ -23,7 +23,7 @@ function FinalNavbar() {
       }}
     >
       <Top />
-      
+
       <Itop />
       <Navbars />
       {/* <MainNavbar /> */}
@@ -40,7 +40,8 @@ function FinalNavbar() {
         />
       </div>
       <br />
-      <ToastContainer />
+      <ToastContainer
+      />
       {/* <Navbar/> */}
     </div>
   );

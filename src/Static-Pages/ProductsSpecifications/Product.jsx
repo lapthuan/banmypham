@@ -8,12 +8,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { listProductDetails } from '../../redux/action/productActions';
 import imgError from "../../Image/imgError.jpg";
+import { addItem } from '../../redux/action/cartActions';
+import { toast } from 'react-toastify';
 
 const Product = () => {
     const params = useParams();
     let id = params.id;
     const dispatch = useDispatch();
-    const [productQuantity, setProductQuantity] = useState(0);
+    const [productQuantity, setProductQuantity] = useState(1);
 
     const [currentProductImage, setCurrentProductImage] = useState(0);
     const [lightbox, setLightbox] = useState(false);
@@ -27,13 +29,18 @@ const Product = () => {
 
     }, [id, dispatch]);
 
-    const handleAddToCart = () => {
-        // setCartProductQuantity((prevState) => prevState + productQuantity);
-        setProductQuantity(0);
+
+
+
+    const handleAddToCart = (e) => {
+
+        if (productQuantity && id) {
+            dispatch(addItem(id, productQuantity));
+            toast.success("Sản phẩm đã được thểm vào giỏ hàng")
+        }
+
     };
 
-
-    console.log(product);
 
     return product ? (
         <main className="product">
@@ -41,7 +48,7 @@ const Product = () => {
                 <div className="flex product-image">
                     <img
                         onClick={() => window.innerWidth > 768 && setLightbox(true)}
-                        src={product.images == undefined || product.images.length == 0  ? imgError : product.images[currentProductImage].url}
+                        src={product.images == undefined || product.images.length == 0 ? imgError : product.images[currentProductImage].url}
                         alt=""
                         className="shadow-sm"
                         style={{ height: "445px", with: "445px" }}
@@ -56,7 +63,7 @@ const Product = () => {
                                     alt="thumbnail"
                                 />
                             </div>
-                        )) : <div>Loading...</div> }
+                        )) : <div>Loading...</div>}
 
                     </div>
 
@@ -102,29 +109,29 @@ const Product = () => {
                     )}
                 </div>
                 <div className="product-description flow">
-                    
-                    
+
+
                     <p className="text-uppercase fw-700 fs-100 letter-spacing-1 Orange">
                         Danh mục : {product.category}
                     </p>
-                    <h1 className="fw-700 line-height-300 fs-250 blue ">
+                    <h1 className="fw-700 line-height-300 fs-230 blue text-left">
                         {product.title}
                     </h1>
                     <p className="text-uppercase fw-700 fs-100 letter-spacing-1 Orange">
                         Nhãn hàng : {product.brand}
                     </p>
-                    <p className="fw-400 line-height-500 fs-400 darkGrayishBlue">
+                    {/* <p className="fw-400 line-height-500 fs-400 darkGrayishBlue">
                         {product.description}
-                    </p>
+                    </p> */}
                     <div className="product-price">
                         <div className="discounted-price flex">
-                            <span className="fw-700 blue fs-700">{product.price.toLocaleString("vi-VN", { style: "currency", currency: "VND" })}</span>
+                            <span className="fw-700 blue fs-700">{product.price ? (product.price).toLocaleString("vi-VN", { style: "currency", currency: "VND" }) : ""}</span>
                             <span className="offer fw-700 fs-400 Orange">50%</span>
                             <span className="fw-700 fs-400 line-height-500 text-line-through GrayishBlue">
-                                {() => ( product.price.toLocaleString("vi-VN", { style: "currency", currency: "VND" }) ) }
+                                ...
                             </span>
                         </div>
-                        
+
                     </div>
 
                     <div className="action-wrapper flex">
@@ -138,7 +145,7 @@ const Product = () => {
                                     )
                                 }
                             />
-                            <span className="fw-700 fs-400 blue">{productQuantity}</span>
+                            <span className="fw-700 fs-400 blue">{productQuantity ? productQuantity : 0}</span>
                             <img
                                 src={plusIcon}
                                 alt=""
@@ -149,6 +156,7 @@ const Product = () => {
                             onClick={handleAddToCart}
                             className="btn flex fw-700 fs-400 "
                             style={{ display: "flex" }}
+                        
                         >
                             <svg width="22" height="20" xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -157,7 +165,7 @@ const Product = () => {
                                     fillRule="nonzero"
                                 />
                             </svg>
-                           Thêm vào giỏ hàng
+                            Thêm vào giỏ hàng
                         </button>
                     </div>
                 </div>
