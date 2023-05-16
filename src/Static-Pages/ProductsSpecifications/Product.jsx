@@ -168,7 +168,7 @@ const Product = () => {
                             <img
                                 src={plusIcon}
                                 alt=""
-                                onClick={() => setProductQuantity((prevState) => prevState !== product.quantity ? prevState + 1 : 10)}
+                                onClick={() => setProductQuantity((prevState) => prevState !== product.quantity ? prevState + 1 : product.quantity)}
                             />
                         </div>
                         {product.quantity == 0 ? (
