@@ -6,6 +6,26 @@ export const Nav = [
     submenu: true,
     sublinks: [
       {
+        Head: "Hộp làm đẹp",
+        sublink: [
+          { namelink: "T-shirt", link: "/" },
+          { namelink: "Casual shirts", link: "/" },
+          { namelink: "formal shirts", link: "/" },
+          { namelink: "formal shirts", link: "/" },
+          { namelink: "formal shirts", link: "/" },
+        ],
+      },
+      {
+        Head: "Topwear",
+        sublink: [
+          { namelink: "T-shirt", link: "/" },
+          { namelink: "Casual shirts", link: "/" },
+          { namelink: "formal shirts", link: "/" },
+          { namelink: "formal shirts", link: "/" },
+          { namelink: "formal shirts", link: "/" },
+        ],
+      },
+      {
         Head: "Topwear",
         sublink: [
           { namelink: "T-shirt", link: "/" },
@@ -21,6 +41,19 @@ export const Nav = [
     name: "Sản phẩm",
     path: "/Sale",
     icon: "Store",
+    submenu: true,
+    sublinks: [
+      {
+        Head: "alo",
+        sublink: [
+          { namelink: "T-shirt", link: "/" },
+          { namelink: "Casual shirts", link: "/" },
+          { namelink: "formal shirts", link: "/" },
+          { namelink: "formal shirts", link: "/" },
+          { namelink: "formal shirts", link: "/" },
+        ],
+      },
+    ],
   },
   {
     name: "Nhãn hàng",
