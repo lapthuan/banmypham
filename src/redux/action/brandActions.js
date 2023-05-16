@@ -1,31 +1,31 @@
 import axios from 'axios';
 import {
-    PRODUCT_DETAILS_FAILURE,
-    PRODUCT_DETAILS_REQUEST,
-    PRODUCT_DETAILS_SUCCESS,
-    PRODUCT_LIST_FAILURE,
-    PRODUCT_LIST_REQUEST,
-    PRODUCT_LIST_SUCCESS
-} from '../const/productConstants';
+    BRAND_DETAILS_FAILURE,
+    BRAND_DETAILS_REQUEST,
+    BRAND_DETAILS_SUCCESS,
+    BRAND_LIST_FAILURE,
+    BRAND_LIST_REQUEST,
+    BRAND_LIST_SUCCESS
+} from '../const/brandConstants';
 
 const api = axios.create({
     baseURL: "https://api-thuongmai.vercel.app",
 });
 
-export const listProducts = () =>
+export const listbrand = () =>
     async (dispatch) => {
         try {
-            dispatch({ type: PRODUCT_LIST_REQUEST });
+            dispatch({ type: BRAND_DETAILS_REQUEST });
 
             const { data } = await api.get(
-                `/api/product/`
+                `/api/brand/`
             );
 
-            dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data });
+            dispatch({ type: BRAND_DETAILS_SUCCESS, payload: data });
 
         } catch (error) {
             dispatch({
-                type: PRODUCT_LIST_FAILURE,
+                type: BRAND_DETAILS_FAILURE,
                 payload:
                     error.response && error.response.data.message
                         ? error.response.data.message
@@ -34,16 +34,16 @@ export const listProducts = () =>
         }
     };
 
-export const listProductDetails = (id) => async (dispatch) => {
+export const listbrandDetails = (id) => async (dispatch) => {
     try {
-        dispatch({ type: PRODUCT_DETAILS_REQUEST });
+        dispatch({ type: BRAND_DETAILS_REQUEST });
 
-        const { data } = await api.get(`/api/product/${id}`);
+        const { data } = await api.get(`/api/brand/${id}`);
         console.log(data);
-        dispatch({ type: PRODUCT_DETAILS_SUCCESS, payload: data });
+        dispatch({ type: BRAND_DETAILS_SUCCESS, payload: data });
     } catch (error) {
         dispatch({
-            type: PRODUCT_DETAILS_FAILURE,
+            type: BRAND_DETAILS_FAILURE,
             payload:
                 error.response && error.response.data.message
                     ? error.response.data.message

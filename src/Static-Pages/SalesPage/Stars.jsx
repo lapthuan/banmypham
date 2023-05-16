@@ -9,11 +9,11 @@ const Stars = (props) => {
     return (
       <span key={index}>
         {stars >= index + 1 ? (
-          <FaStar />
+          <FaStar color="#fe2c6d" />
         ) : stars >= number ? (
-          <FaStarHalfAlt />
+          <FaStarHalfAlt color="#fe2c6d"/>
         ) : (
-          <FaRegStar />
+          <FaRegStar color="#fe2c6d" />
         )}
       </span>
     );
@@ -21,7 +21,7 @@ const Stars = (props) => {
 
   return (
     <div className="">
-      <div className="flex flex-row justify-center ">{ratingStar}</div>
+      <div className="flex flex-row justify-center test-[#fe2c6d]">{ratingStar}</div>
     </div>
   );
 };
