@@ -160,11 +160,11 @@ const Product = () => {
                                 alt=""
                                 onClick={() =>
                                     setProductQuantity((prevState) =>
-                                        prevState !== 0 ? prevState - 1 : 0,
+                                        prevState !== 0 ? prevState - 1 : 1,
                                     )
                                 }
                             />
-                            <span className="fw-700 fs-400 blue">{productQuantity ? productQuantity : 0}</span>
+                            <span className="fw-700 fs-400 blue">{productQuantity ? productQuantity : 1}</span>
                             <img
                                 src={plusIcon}
                                 alt=""
