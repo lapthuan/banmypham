@@ -1,7 +1,6 @@
 import React from "react";
 import "./ProductDetails.css";
 import { Link, useParams } from "react-router-dom";
-// import "../HomePage/HomePage.css";
 import { RiStarSFill } from "react-icons/ri";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -36,8 +35,6 @@ function ProductDetails() {
       dispatch(addItem(id, quantity));
       toast.success("Sản phẩm đã được thểm vào giỏ hàng")
     }
-
-
 
   };
 

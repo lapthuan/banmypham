@@ -36,7 +36,7 @@ const Tabbar = ({ navigationData, currentRoute, setCurrentRoute }) => {
     }, []);
 
     return (
-        <nav className={"z-50  flex md:hidden flex-row items-center justify-around px-8 h-18 bg-white visible md:invisible fixed bottom-0 w-full rounded-t-3xl text-2xl shadow-2xl shadow-black"}>
+        <nav className={"z-50  flex md:hidden lg:hidden flex-row items-center justify-around px-8 h-18 bg-white visible md:invisible fixed bottom-0 w-full rounded-t-3xl text-2xl shadow-2xl shadow-black"}>
             {navigationData.map((item, index) => (
                 <span
                     key={index}

@@ -17,6 +17,7 @@ import Forgotpass from "./Static-Pages/Forgotpassword/Forgotpass";
 import Carts from "./Static-Pages/Cart/Carts";
 import Payment from "./Payment-Page/Payment";
 import ProductDetails from "./Static-Pages/ProductsSpecifications/ProductDetails";
+import Product from "./Static-Pages/ProductsSpecifications/Product";
 
 import { UserInfo } from "./Static-Pages/UserInfo/UserInfo";
 
@@ -98,7 +99,7 @@ function AllRoutes() {
           </Privateroute>
         }
       />
-      <Route path="/Sale/:id" element={<ProductDetails />} />
+      <Route path="/Sale/:id" element={<Product />} />
 
       <Route
         path="/userinfo"
