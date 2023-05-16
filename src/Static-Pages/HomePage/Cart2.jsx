@@ -10,7 +10,7 @@ import img3 from "../../Image/1672817926.webp";
 import img4 from "../../Image/1682067960.webp";
 import img5 from "../../Image/1682270821.webp";
 import { Rate } from "antd";
-const FeaturedCard = () => {
+const FeaturedCard2 = () => {
   const settings = {
     dots: true,
     infinite: true,
@@ -64,7 +64,7 @@ const FeaturedCard = () => {
     <>
       <div className="slider">
         <div className="flex justify-between">
-          <h1 className="text-[22px] mt-10 font-bold">HOT DEAL</h1>
+          <h1 className="text-[22px] mt-10 font-bold">BOX Bán Chạy</h1>
           <div className="flex">
             <h1 className="text-[15px] mt-10">Xem Tất Cả</h1>
           </div>
@@ -231,4 +231,4 @@ const FeaturedCard = () => {
   );
 };
 
-export default FeaturedCard;
+export default FeaturedCard2;

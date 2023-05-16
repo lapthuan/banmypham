@@ -9,26 +9,61 @@ const Navbar = ({ navigationData, currentRoute, setCurrentRoute }) => {
   return (
     <nav
       className={
-        "hidden md:flex flex-row items-center justify-center px-8 pb-2  bg-white shadow-md"
+        "hidden md:flex flex-row items-center justify-center px-8 pb-2  bg-white shadow-md "
       }
     >
-      <ul className={"flex flex-row self-end "}>
+      <ul className={"flex flex-row self-end group "}>
         {navigationData.map((item, index) => (
           <li
             className={classNames([
-              "px-7 w-22 text-gray-400 hover:text-gray-700 cursor-pointer font-medium tracking-wide text-sm flex items-start justify-center                            ",
+              "px-7 w-22 text-gray-400 hover:text-gray-700 cursor-pointer font-medium tracking-wide text-sm flex items-start justify-center  ",
               currentRoute === item &&
-                "text-gray-700 border-b-3 border-gray-700 bg-gradient-to-b from-white to-gray-100                            ",
+                "text-gray-700 border-b-3 border-gray-700 bg-gradient-to-b from-white to-gray-100  ",
             ])}
             key={index}
             onClick={() => setCurrentRoute(item.name)}
           >
-            <Link
-              style={{ color: "black", fontWeight: "bold", fontSize: "20px" }}
-              to={item.path}
-            >
-              {item.name}
-            </Link>
+            <div>
+              <Link
+                style={{ color: "black", fontWeight: "bold", fontSize: "20px" }}
+                to={item.path}
+              >
+                <div className="group">{item.name}</div>
+              </Link>
+            </div>
+            {/* <div>
+              {item.submenu && (
+                <div>
+                  <div className="absolute mt-2 z-50 hidden group-hover:md:block hover:md:block ">
+                    <div className="py-3">
+                      <div
+                        className="w-4 h-4 left-3 absolute 
+                    mt-1 bg-white rotate-45"
+                      ></div>
+                    </div>
+                    <div className="bg-white p-5 grid grid-cols-3 gap-10">
+                      {item.sublinks.map((mysublinks) => (
+                        <div>
+                          <h1 className="text-lg font-semibold">
+                            {mysublinks.Head}
+                          </h1>
+                          {mysublinks.sublink.map((slink) => (
+                            <li className="text-sm text-gray-600 my-2.5">
+                              <Link
+                                to={slink.link}
+                                className="hover:text-primary"
+                              >
+                                {slink.namelink}
+                              </Link>
+                            </li>
+                          ))}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div> */}
           </li>
         ))}
       </ul>

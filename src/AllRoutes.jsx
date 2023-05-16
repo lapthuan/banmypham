@@ -31,17 +31,23 @@ import AdminPrivate from "./Components/AdminPrivate";
 import SellerPrivate from "./Components/SellerPrivate";
 import Blog from "./Static-Pages/Blog/Blog";
 import Tpost from "./Static-Pages/Blog/Tpost";
+import Invite from "./Static-Pages/Invite/Ivite";
+import Contact from "./Static-Pages/Invite/Contact/Contact";
+import IviteBlog from "./Static-Pages/Invite/IviteBlog";
+import Iviteuser from "./Static-Pages/Invite/IviteUser/IviteUser";
+import Information from "./Static-Pages/Invite/Information/Information";
 import { useDispatch, useSelector } from "react-redux";
 import { loadUser } from "./redux/action/auth";
+import FContact from "./Static-Pages/Contact/FContact";
+import InforLX from "./Static-Pages/Invite/Information/InforLX";
+import InforBuy from "./Static-Pages/Invite/Information/InforBuy";
 
 function AllRoutes() {
-
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   useEffect(() => {
     dispatch(loadUser());
     console.log("hello");
-  }, [])
-
+  }, []);
 
   return (
     <Routes>
@@ -61,6 +67,15 @@ function AllRoutes() {
       <Route path="/SelfCare" element={<Selfcare />} />
       <Route path="/blog" element={<Blog />} />
       <Route path="/Tpost" element={<Tpost />} />
+      <Route path="/Invite" element={<Invite />} />
+      <Route path="/Contact" element={<Contact />} />
+      <Route path="/IviteBlog" element={<IviteBlog />} />
+      <Route path="/Iviteuser" element={<Iviteuser />} />
+      <Route path="/Information" element={<Information />} />
+      <Route path="/FContact" element={<FContact />} />
+      <Route path="/InforLX" element={<InforLX />} />
+      <Route path="/InforBuy" element={<InforBuy />} />
+
       <Route
         path="/payments"
         element={

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./Tpost.css";
 import { Link } from "react-router-dom";
 import Carts from "../HomePage/Cart";
+import CartBlog from "./CartBlog";
 const Tpost = () => {
   return (
     <>
@@ -37,7 +38,7 @@ const Tpost = () => {
               <div>
                 <img
                   src="https://s3-ap-southeast-1.amazonaws.com/lixibox-production-uploads/blogs/pictures/16997/original_1682565410.jpeg"
-                  className="w-[800px] h-[110px] ml-auto mr-auto"
+                  className="w-[800px] h-[110px] ml-auto mr-auto "
                   alt=""
                 />
               </div>
@@ -75,7 +76,9 @@ const Tpost = () => {
                   </a>
                 </p>
               </div>
-
+              <div>
+                <CartBlog />
+              </div>
               <div>
                 <Carts />
               </div>

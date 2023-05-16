@@ -3,6 +3,19 @@ export const Nav = [
     name: "Trang chủ",
     path: "/",
     icon: "Home",
+    submenu: true,
+    sublinks: [
+      {
+        Head: "Topwear",
+        sublink: [
+          { namelink: "T-shirt", link: "/" },
+          { namelink: "Casual shirts", link: "/" },
+          { namelink: "formal shirts", link: "/" },
+          { namelink: "formal shirts", link: "/" },
+          { namelink: "formal shirts", link: "/" },
+        ],
+      },
+    ],
   },
   {
     name: "Sản phẩm",
@@ -15,18 +28,18 @@ export const Nav = [
     icon: "Brand",
   },
   {
-    name: "Dịch Vụ",
-    path: "/Brands",
+    name: "Dịch vụ",
+    path: "/Invite",
     icon: "About",
-  },
-  {
-    name: "Liên hệ",
-    path: "/Brands",
-    icon: "Contact",
   },
   {
     name: "Blog",
     path: "/blog",
     icon: "Blog",
+  },
+  {
+    name: "Liên hệ",
+    path: "/FContact",
+    icon: "Contact",
   },
 ];
