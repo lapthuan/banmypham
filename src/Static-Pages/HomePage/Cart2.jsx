@@ -64,7 +64,7 @@ const FeaturedCard2 = () => {
     <>
       <div className="slider">
         <div className="flex justify-between">
-          <h1 className="text-[22px] mt-10 font-bold">BOX Bán Chạy</h1>
+          <h1 className="text-[22px] mt-10 font-bold">Sản phẩm liên quan</h1>
           <div className="flex">
             <h1 className="text-[15px] mt-10">Xem Tất Cả</h1>
           </div>
