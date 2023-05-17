@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toast } from "react-toastify";
 import {
   LOGIN_GET_LOADING,
   LOGIN_GET_SUCCESS,
@@ -21,7 +22,7 @@ export const login = (creds) => async (dispatch) => {
 
 export const logout = () => {
   // to remove all userinfo at the time of user logout
-
+  toast.success("Đăng xuất thành công")
   return {
     type: LOGOUT_GET,
   };
