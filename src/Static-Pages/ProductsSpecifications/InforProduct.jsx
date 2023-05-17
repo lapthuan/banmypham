@@ -14,6 +14,7 @@ const InforProduct = () => {
           </div>
           <div>
             <div className="info_Product"></div>
+            
           </div>
         </div>
       </div>
