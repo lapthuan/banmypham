@@ -134,6 +134,7 @@ const Product = () => {
                         </>
                     )}
                 </div>
+                {lightbox && <Lightbox productData={product} setLightbox={setLightbox} />}
                 <div className="product-description flow">
                     <p className="text-uppercase fw-700 fs-100 letter-spacing-1 Orange text-left">
                         Danh mục : {category.title}
@@ -243,9 +244,10 @@ const Product = () => {
                     </div>
                 </div>
             </div>
+
             <div className="w-[90%] ml-auto mr-auto ">
                 <div>
-                    <InforProduct />
+                    <InforProduct description={product.description} />
                 </div>
             </div>
             <div>
@@ -264,7 +266,7 @@ const Product = () => {
                     </Tabs>
                 </div>
             </div>
-            {lightbox && <Lightbox productData={product} setLightbox={setLightbox} />}
+
         </main>
     ) : (
         <div>Loading..</div>

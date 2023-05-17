@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 import "./InforProduct.css";
 import { Link } from "react-router-dom";
-const InforProduct = () => {
+const InforProduct = ({description}) => {
   return (
     <div>
       <div>
         <div className="text-[22px] text-left font-[600] tracking-[.5px] leading-[60px] text-black">
-          THÔNG TIN
+          MÔ TẢ SẢN PHẨM
         </div>
         <div className="pt-3 pb-5">
           <div className="text-left text-[15px]">
-            Sản phẩm tuyệt vời lắm nha nên mua nên mua
+            {description}
           </div>
           <div>
             <div className="info_Product"></div>
