@@ -20,7 +20,7 @@ const AClogin = () => {
     const modalContainer = document.querySelector(".modal-container");
     modalContainer.style.display = "block";
   }, []);
-
+  const { isauth } = useSelector((store) => store.login);
   const [showModal, setShowModal] = useState(false);
 
   const handleShowModal = () => {
@@ -83,7 +83,7 @@ const AClogin = () => {
     }
   }
 
-  return (
+  return !isauth ? (
     <>
       {showModal && (
         <div className="modal-container">
@@ -164,7 +164,7 @@ const AClogin = () => {
         </div>
       )}
     </>
-  );
+  ) : null;
 };
 
 export default AClogin;
