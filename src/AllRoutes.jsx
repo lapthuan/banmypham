@@ -41,7 +41,7 @@ import { loadUser } from "./redux/action/auth";
 import FContact from "./Static-Pages/Contact/FContact";
 import InforLX from "./Static-Pages/Invite/Information/InforLX";
 import InforBuy from "./Static-Pages/Invite/Information/InforBuy";
-
+import EditAC from "./Static-Pages/UserInfo/EditAc";
 function AllRoutes() {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -75,7 +75,7 @@ function AllRoutes() {
       <Route path="/FContact" element={<FContact />} />
       <Route path="/InforLX" element={<InforLX />} />
       <Route path="/InforBuy" element={<InforBuy />} />
-
+      <Route path="/EditAC" element={<EditAC />} />
       <Route
         path="/payments"
         element={

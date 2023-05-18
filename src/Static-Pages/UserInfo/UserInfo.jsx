@@ -1,10 +1,7 @@
-
 import { useState } from "react";
-import moment from 'moment';
-
-
+import "./UserInfor.css";
 import React from "react";
-import 'mdb-react-ui-kit/dist/css/mdb.min.css';
+import "mdb-react-ui-kit/dist/css/mdb.min.css";
 import {
   MDBCol,
   MDBContainer,
@@ -14,88 +11,43 @@ import {
   MDBCardBody,
   MDBCardImage,
 } from "mdb-react-ui-kit";
-
-
+import UsrAcount from "./UserAcount";
+import User from "./User";
+import UserBody from "./UserBody";
+import UserHistory from "./UserHistory";
 export const UserInfo = () => {
-
-  // const userData1 = localStorage.getItem("token") || "";
-  // const [userId1, userEmail1, userPassword1] = userData1.split(":");
-
-
-
-  const userName = localStorage.getItem("username") || "";
-  const userEmail = localStorage.getItem("useremail") || "";
-  const userMobile = localStorage.getItem("usermobile") || "";
-  const userFirstName = localStorage.getItem("userfirstname") || "";
-
-  const userCreate = localStorage.getItem("usercreatedAt") || "";
   return (
     <div>
-      <section style={{ backgroundColor: "#f4f5f7", backgroundImage: "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" }}>
-        <MDBContainer className="py-5">
-          <MDBRow>
-            <MDBCol lg="4">
-              <MDBCard className="mb-4">
-                <MDBCardBody className="text-center">
-                  <MDBCardImage
-                    src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
-                    alt="avatar"
-                    className="rounded-circle mx-auto"
-                    style={{ width: '150px' }}
-                    fluid />
-                  <p className="text-muted mb-1 mt-2">{userName}</p>
-
-                  <div className="d-flex justify-content-center mb-2">
+      <section
+        style={{
+          backgroundColor: "#f4f5f7",
+          backgroundImage:
+            "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp",
+        }}
+      >
+        <div className="Iv-container">
+          <div className="Iv-style">
+            <div className="wrapLayout">
+              <div className="flex flex-wrap justify-between">
+                <div className=" mt-2 w-[30%]">
+                  <div className="UserNav">
+                    <User />
                   </div>
-                </MDBCardBody>
-              </MDBCard>
-            </MDBCol>
-            <MDBCol lg="8">
-              <MDBCard className="mb-4">
-                <MDBCardBody>
-                  <MDBRow>
-                    <MDBCol sm="3">
-                      <MDBCardText>Họ tên</MDBCardText>
-                    </MDBCol>
-                    <MDBCol sm="9">
-                      <MDBCardText className="text-muted">{userFirstName + " " + userName}</MDBCardText>
-                    </MDBCol>
-                  </MDBRow>
-                  <hr />
-                  <MDBRow>
-                    <MDBCol sm="3">
-                      <MDBCardText>Địa chỉ Email</MDBCardText>
-                    </MDBCol>
-                    <MDBCol sm="9">
-                      <MDBCardText className="text-muted">{userEmail}</MDBCardText>
-                    </MDBCol>
-                  </MDBRow>
-                  <hr />
-
-                  <MDBRow>
-                    <MDBCol sm="3">
-                      <MDBCardText>Số điện thoại</MDBCardText>
-                    </MDBCol>
-                    <MDBCol sm="9">
-                      <MDBCardText className="text-muted">{userMobile}</MDBCardText>
-                    </MDBCol>
-                  </MDBRow>
-                  <hr />
-                  <MDBRow>
-                    <MDBCol sm="3">
-                      <MDBCardText>Ngày tạo tài khoản</MDBCardText>
-                    </MDBCol>
-                    <MDBCol sm="9">
-                      <MDBCardText className="text-muted">{moment(userCreate).format('DD/MM/YYYY')}</MDBCardText>
-                    </MDBCol>
-                  </MDBRow>
-                </MDBCardBody>
-              </MDBCard>
-
-            </MDBCol>
-          </MDBRow>
-        </MDBContainer>
+                  <div className="mt-3 UserNavHis">
+                    <UserHistory />
+                  </div>
+                  <div className="mt-3 UserAC pb-3">
+                    <UsrAcount />
+                  </div>
+                </div>
+                <div className="main_styler w-[100%] mb-2">
+                  <UserBody />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
     </div>
   );
-}
+};
