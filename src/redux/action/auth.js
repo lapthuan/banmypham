@@ -26,12 +26,13 @@ export const signin = (data2, navigate) => async (dispatch) => {
   const lockoutTime = parseInt(window.localStorage.getItem("lockoutTime")) || 0;
   const currentTime = new Date().getTime();
 
-  if (lockoutTime && currentTime - lockoutTime < LOCKOUT_DURATION) {
+  if (lockoutTime && currentTime - lockoutTime > LOCKOUT_DURATION) {
+    window.localStorage.setItem("loginAttempts", "0");
+    window.localStorage.setItem("lockoutTime", "0");
+  } else if (lockoutTime && currentTime - lockoutTime < LOCKOUT_DURATION) {
     toast.error("Tài khoản của bạn đã bị khóa. Vui lòng thử lại sau.");
     return;
   }
-  window.localStorage.setItem("loginAttempts", "0");
-  window.localStorage.setItem("lockoutTime", "0");
 
   if (storedAttempts < MAX_LOGIN_ATTEMPTS) {
     try {
@@ -60,7 +61,6 @@ export const signin = (data2, navigate) => async (dispatch) => {
     toast.error("Đăng nhập bị khóa do quá nhiều lần đăng nhập sai.");
   }
 };
-
 export const signinGoogle = (accessToken, navigate) => async (dispatch) => {
   dispatch({ type: LOGIN_GET_LOADING });
   try {
