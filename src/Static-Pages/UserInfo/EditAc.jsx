@@ -58,7 +58,7 @@ const EditAC = () => {
                           <input
                             type="text"
                             placeholder={userFirstName + " " + userName}
-                            className=" ml-2 placeholder:text-black"
+                            className=" ml-2 placeholder:text-black border-b-2 color-[black]"
                           />
                         </div>
                         <div className="text-left mt-3">
@@ -66,26 +66,39 @@ const EditAC = () => {
                           <input
                             type="email"
                             placeholder={userEmail}
-                            className="w-[90%] ml-2 placeholder:text-black"
+                            className="w-[90%] ml-2 placeholder:text-black border-b-2 color-[black]"
                           />
                         </div>
                         <div className="text-left mt-3">
                           <label>Số điện thoại: </label>
                           <input
-                            type="text"
+                            required
+                            type="number"
                             placeholder={userMobile}
-                            className="ml-2 placeholder:text-black"
+                            className="ml-2 placeholder:text-black border-b-2 color-[black]"
                           />
                         </div>
                         <div className="text-left mt-3">
                           <label>Ngày tạo tài khoản: </label>
                           <input
+                            required
                             type="date"
                             value={Userdate}
-                            onChange={handleDateChange}
+                            // onChange={handleDateChange}
                             className="ml-2 placeholder:text-black"
                           />
                         </div>
+                        <div className="text-left mt-3">
+                          <label>Mật khẩu: </label>
+                          <input
+                            required
+                            type="password"
+                            className="ml-2 placeholder:text-black border-b-2 color-[black]"
+                          />
+                        </div>
+                        <button className="btn btn-primary m-4">
+                          Cập nhật
+                        </button>
                       </div>
                     </div>
                   </div>

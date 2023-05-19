@@ -6,14 +6,18 @@ import { BsMinecartLoaded } from "react-icons/bs";
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 
-import { AiOutlineSearch, AiOutlineClose, AiTwotoneDelete } from "react-icons/ai";
+import {
+  AiOutlineSearch,
+  AiOutlineClose,
+  AiTwotoneDelete,
+} from "react-icons/ai";
 import user from "../../Image/user.png";
 import "react-dropdown/style.css";
-import { Cart } from './Cart';
+import { Cart } from "./Cart";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../redux/login/login.actions";
-import deleteIcon from '../../Image/icon-delete.svg';
+import deleteIcon from "../../Image/icon-delete.svg";
 import { removeItem } from "../../redux/action/cartActions";
 
 const Navbars = ({ cartProductQuantity, setCartProductQuantity }) => {
@@ -34,15 +38,14 @@ const Navbars = ({ cartProductQuantity, setCartProductQuantity }) => {
 
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
-
-
+  const [searcheddata, setSearchedata] = useState("");
   function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
   }
 
   // For search operation in input box
   const handleSearch = async (e) => {
-    const searcheddata = e.target.value;
+    // const searcheddata = e.target.value;
 
     try {
       let res = await axios.get(
@@ -95,7 +98,9 @@ const Navbars = ({ cartProductQuantity, setCartProductQuantity }) => {
             type="search"
             className="search-data"
             placeholder="Tìm kiếm son, sữa rữa mặt..."
-            onChange={handleSearch}
+            // onChange={() => handleSearch()}
+            // Fix
+            onChange={(e) => setSearchedata(e.target.value)}
           />
           <button type="submit">
             <AiOutlineSearch size={26} style={{ margin: "5px" }} />
@@ -185,24 +190,33 @@ const Navbars = ({ cartProductQuantity, setCartProductQuantity }) => {
             <li>
               <Menu as="div" className="relative pt-3">
                 <div>
-                  <Menu.Button >
+                  <Menu.Button>
                     <div className="flex icon-container">
                       <div class=" flex justify-center items-center">
                         <div class="relative py-2">
                           <div class="t-0 absolute left-3">
                             {cartItems.length > 0 && (
-                              <p class="flex h-2 w-2 items-center justify-center rounded-full bg-red-500 p-3 text-xs text-white">{cartItems.length}</p>
+                              <p class="flex h-2 w-2 items-center justify-center rounded-full bg-red-500 p-3 text-xs text-white">
+                                {cartItems.length}
+                              </p>
                             )}
-
                           </div>
-                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="file: mt-4 h-7 w-7">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke-width="1.5"
+                            stroke="currentColor"
+                            class="file: mt-4 h-7 w-7"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
+                            />
                           </svg>
                         </div>
                       </div>
-
-
-
                     </div>
                   </Menu.Button>
                 </div>
@@ -217,7 +231,9 @@ const Navbars = ({ cartProductQuantity, setCartProductQuantity }) => {
                 >
                   <Menu.Items className="absolute right-0 z-10 mt-2 w-[450px] origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                     <div className="cart__heading p-3">
-                      <h4 className="fs-600 fw-700 darkGrayishBlue">Giỏ hàng</h4>
+                      <h4 className="fs-600 fw-700 darkGrayishBlue">
+                        Giỏ hàng
+                      </h4>
                     </div>
                     <div className="cart__items grid p-2">
                       {cartItems.length === 0 ? (
@@ -228,34 +244,33 @@ const Navbars = ({ cartProductQuantity, setCartProductQuantity }) => {
                         <div className="cart__item grid-flow-row  h-[250px] overflow-y-scroll">
                           {cartItems.map((item) => (
                             <div className="item flex pb-4">
-                              <img src={item.image} className="w-[100px] h-[100px] rounded-md shadow-sm" alt="" />
+                              <img
+                                src={item.image}
+                                className="w-[100px] h-[100px] rounded-md shadow-sm"
+                                alt=""
+                              />
                               <div className="item__info m-auto p-3">
                                 <div style={{ width: "180px" }}>
                                   <p className="item__name fw-400 fs-400 line-height-500 darkGrayishBlue truncate">
                                     {item.title}
                                   </p>
                                 </div>
-
                                 <span className="d-inline-block fw-400 fs-400 line-height-500 darkGrayishBlue">
                                   {item.price} x {item.qty}
-                                </span>{' '}
-
+                                </span>{" "}
                               </div>
                               <div className="m-auto">
-                                <AiTwotoneDelete size={32} color={"red"} onClick={() => {
-                                  dispatch(
-                                    removeItem(item.product)
-                                  );
-                                }} />
+                                <AiTwotoneDelete
+                                  size={32}
+                                  color={"red"}
+                                  onClick={() => {
+                                    dispatch(removeItem(item.product));
+                                  }}
+                                />
                               </div>
                             </div>
-
                           ))}
-
-
-
                         </div>
-
                       )}
                     </div>
                     {cartItems.length != 0 ? (
@@ -268,28 +283,34 @@ const Navbars = ({ cartProductQuantity, setCartProductQuantity }) => {
                             )}
                             to={"/Carts"}
                           >
-                            <button className="btn flex fw-700 fs-400">Chi tiết giỏ hàng</button>
+                            <button className="btn flex fw-700 fs-400">
+                              Chi tiết giỏ hàng
+                            </button>
                           </Link>
                         )}
                       </Menu.Item>
-                    ) : <Menu.Item>
-                      {({ active }) => (
-                        <Link
-                          className={classNames(
-                            active ? "bg-gray-100" : "",
-                            "block px-4 py-2 text-sm text-black-700"
-                          )}
-                          to={"/Sale"}
-                        >
-                          <button className="btn flex fw-700 fs-400">Đến sản phẩm</button>
-                        </Link>
-                      )}
-                    </Menu.Item>};
+                    ) : (
+                      <Menu.Item>
+                        {({ active }) => (
+                          <Link
+                            className={classNames(
+                              active ? "bg-gray-100" : "",
+                              "block px-4 py-2 text-sm text-black-700"
+                            )}
+                            to={"/Sale"}
+                          >
+                            <button className="btn flex fw-700 fs-400">
+                              Đến sản phẩm
+                            </button>
+                          </Link>
+                        )}
+                      </Menu.Item>
+                    )}
+                    ;
                   </Menu.Items>
                 </Transition>
               </Menu>
             </li>
-
           </ul>
         </div>
       </nav>
@@ -392,26 +413,38 @@ const Navbars = ({ cartProductQuantity, setCartProductQuantity }) => {
             <li>
               <Menu as="div" className="relative pt-3">
                 <div>
-                  <Menu.Button >
+                  <Menu.Button>
                     <div className="flex icon-container">
                       <div class=" flex justify-center items-center">
                         <div class="relative py-2">
                           <div class="t-0 absolute left-3">
                             <Link to={"/Carts"}>
                               {cartItems.length > 0 && (
-                                <p class="flex h-2 w-2 items-center justify-center rounded-full bg-red-500 p-3 text-xs text-white">{cartItems.length}</p>
+                                <p class="flex h-2 w-2 items-center justify-center rounded-full bg-red-500 p-3 text-xs text-white">
+                                  {cartItems.length}
+                                </p>
                               )}
                             </Link>
                           </div>
-                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="file: mt-4 h-7 w-7">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke-width="1.5"
+                            stroke="currentColor"
+                            class="file: mt-4 h-7 w-7"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
+                            />
                           </svg>
                         </div>
                       </div>
                     </div>
                   </Menu.Button>
                 </div>
-
               </Menu>
             </li>
           </ul>
@@ -425,9 +458,7 @@ const Navbars = ({ cartProductQuantity, setCartProductQuantity }) => {
               Đăng nhập / Đăng ký
             </Link>
           </div>
-
         )}
-
       </div>
       <br className="flex flex-row justify-center lg:hidden md:flex" />
 
