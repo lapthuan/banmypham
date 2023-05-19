@@ -25,7 +25,6 @@ export const signin = (data2, navigate) => async (dispatch) => {
     parseInt(window.localStorage.getItem("loginAttempts")) || 0;
   const lockoutTime = parseInt(window.localStorage.getItem("lockoutTime")) || 0;
   const currentTime = new Date().getTime();
-
   if (lockoutTime && currentTime - lockoutTime > LOCKOUT_DURATION) {
     window.localStorage.setItem("loginAttempts", "0");
     window.localStorage.setItem("lockoutTime", "0");
