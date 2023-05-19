@@ -40,13 +40,14 @@ export const loginReducer = (state = initialstate, { type, payload }) => {
     case LOGIN_GET_SUCCESS: {
       // return console.log(payload.role);
 
+      localStorage.setItem("user_infos", JSON.stringify(payload));
       localStorage.setItem("token", payload.token);
       localStorage.setItem("userfirstname", payload.firstname);
-      localStorage.setItem("userrole", payload.role);
       localStorage.setItem("username", payload.lastname);
       localStorage.setItem("useremail", payload.email);
-      localStorage.setItem("usermobile", payload.mobile      );
+      localStorage.setItem("usermobile", payload.mobile);
       localStorage.setItem("usercreatedAt", payload.createdAt);
+
       return {
         ...state,
         isloading: false,
@@ -58,20 +59,7 @@ export const loginReducer = (state = initialstate, { type, payload }) => {
         SellerIsAuth: payload.role == "seller",
       };
     }
-    // case UPDATE_GET_SUCCESS: {
-    //   if (payload.token) {
-    //     // localStorage.setItem("token", payload.token);
-    //     localStorage.setItem("name", payload.username);
-    //   }
 
-    //   return {
-    //     ...state,
-    //     isloading: false,
-    //     iserror: false,
-    //     token: payload.token,
-    //     name: payload.name
-    //   };
-    // }
 
     case LOGIN_GET_ERROR: {
       return {
@@ -82,10 +70,12 @@ export const loginReducer = (state = initialstate, { type, payload }) => {
     }
     case LOGOUT_GET: {
       localStorage.removeItem("token");
-      localStorage.removeItem("userrole");
+      localStorage.removeItem("user_infos");
       localStorage.removeItem("username");
       localStorage.removeItem("useremail");
       localStorage.removeItem("usercreatedAt");
+      localStorage.removeItem("usermobile");
+      localStorage.removeItem("cartItems");
       return {
         ...initialstate,
       };

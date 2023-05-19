@@ -49,14 +49,15 @@ function Register() {
       sForm.confirmPassword == "" ||
       sForm.mobile == ""
     ) {
-
       toast.warning("Vui lòng nhập đầy đủ thông tin đăng ký!");
       return;
     } else if (sForm.password.length < 8) {
       toast.warning("Độ dài mật khẩu trên 8 kí tự");
       return;
     } else if (!checkPassword.test(sForm.password)) {
-      toast.warning("Mật khẩu phải có chữ hoa, chữ thường số và kí tự đặc biệt");
+      toast.warning(
+        "Mật khẩu phải có chữ hoa, chữ thường số và kí tự đặc biệt"
+      );
       return;
     } else if (!checkMail.test(sForm.email) || sForm.email.length == "") {
       toast.warning("Email không hợp lệ!");
@@ -94,7 +95,7 @@ function Register() {
               </Link>
             </div>
             <div>
-              <span>Bạn đã có tài khoản?</span>
+              <span className="">Bạn đã có tài khoản?</span>
               <Link to={"/Login"}> Đăng nhập</Link>
             </div>
           </div>
@@ -138,7 +139,7 @@ function Register() {
                 name="confirmPassword"
                 onChange={handleChange}
               />
-              {/* <ReCAPTCHA sitekey="Your client site key" onChange={onChange} />, */}
+              {/* <ReCAPTCHA sitekey="Your client site key" />, */}
               <button
                 className={styles.sing_register_button}
                 onClick={handleOnSubmit}

@@ -3,37 +3,41 @@ import axios from "axios";
 import "./Navbar.css";
 
 import { BsMinecartLoaded } from "react-icons/bs";
-import { Fragment } from 'react'
-import { Menu, Transition } from '@headlessui/react'
+import { Fragment } from "react";
+import { Menu, Transition } from "@headlessui/react";
 
-import { AiOutlineSearch, AiOutlineClose } from "react-icons/ai";
-import user from "../../Image/user.png"
+import { AiOutlineSearch, AiOutlineClose, AiTwotoneDelete } from "react-icons/ai";
+import user from "../../Image/user.png";
 import "react-dropdown/style.css";
-
+import { Cart } from './Cart';
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../redux/login/login.actions";
+import deleteIcon from '../../Image/icon-delete.svg';
+import { removeItem } from "../../redux/action/cartActions";
 
-const Navbars = () => {
+const Navbars = ({ cartProductQuantity, setCartProductQuantity }) => {
   const [isNavExpanded, setIsNavExpanded] = useState(false);
   const userData = localStorage.getItem("token") || "";
-  const userName = localStorage.getItem("username")
+  const userName = localStorage.getItem("username");
   const [data, setdata] = useState([]);
   const [searchdata, setsearchdata] = useState("");
   const [userId, userEmail, userPassword] = userData.split(":");
   const [isNav, setIsNav] = useState(false);
   const dispatch = useDispatch();
   const { isauth } = useSelector((store) => store.login);
-
-  // for navigating the user to the different pages
+  const [openCart, setOpenCart] = useState(false);
+  const [openMenu, setOpenMenu] = useState(false);
   const navigate = useNavigate();
 
-  const handleChange = (e) => {
-    navigate(`/${e.target.value}`);
-  };
+  // let cartData = JSON.parse(localStorage.getItem("cartItems")) || []
+
+  const cart = useSelector((state) => state.cart);
+  const { cartItems } = cart;
+
 
   function classNames(...classes) {
-    return classes.filter(Boolean).join(' ')
+    return classes.filter(Boolean).join(" ");
   }
 
   // For search operation in input box
@@ -57,29 +61,21 @@ const Navbars = () => {
       console.log(error);
     }
   };
-  // console.log(data)
 
   useEffect(() => {
     handleSearch();
   }, []);
 
   const handlelogout = (e) => {
-
     dispatch(logout());
   };
 
   return (
     <div>
       <nav className="my-6 px-[100px]">
-
         <div className="logo">
           <Link to="/">
             {" "}
-            {/* <img
-              className="img1"
-              src={img}
-              
-            /> */}
             <p className="mt-4 text-black text-[40px]">LUXUBU</p>
           </Link>
         </div>
@@ -94,18 +90,16 @@ const Navbars = () => {
             <AiOutlineClose />
           </span>
         </div>
-        <form className="co" action="#">
+        <form className="co rounded-[10px]" action="#">
           <input
             type="search"
-            className="search-data "
+            className="search-data"
             placeholder="Tìm kiếm son, sữa rữa mặt..."
             onChange={handleSearch}
           />
-          <Link to="/Sale">
-            <button type="submit">
-              <AiOutlineSearch size={26} style={{ margin: "5px" }} />
-            </button>
-          </Link>
+          <button type="submit">
+            <AiOutlineSearch size={26} style={{ margin: "5px" }} />
+          </button>{" "}
         </form>
 
         <div
@@ -117,7 +111,7 @@ const Navbars = () => {
           <ul>
             <li>
               {isauth ? (
-                <Menu as="div" className="relative pt-3">
+                <Menu as="div" className="relative pt-9">
                   <div>
                     <Menu.Button className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 ">
                       <span className="sr-only">Open user menu</span>
@@ -141,8 +135,10 @@ const Navbars = () => {
                       <Menu.Item>
                         {({ active }) => (
                           <Link
-
-                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                            className={classNames(
+                              active ? "bg-gray-100" : "",
+                              "block px-4 py-2 text-sm text-gray-700"
+                            )}
                           >
                             Xin chào: {userName}
                           </Link>
@@ -152,7 +148,10 @@ const Navbars = () => {
                         {({ active }) => (
                           <Link
                             to={"/userinfo"}
-                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                            className={classNames(
+                              active ? "bg-gray-100" : "",
+                              "block px-4 py-2 text-sm text-gray-700"
+                            )}
                           >
                             Trang cá nhân
                           </Link>
@@ -163,7 +162,10 @@ const Navbars = () => {
                         {({ active }) => (
                           <a
                             onClick={handlelogout}
-                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                            className={classNames(
+                              active ? "bg-gray-100" : "",
+                              "block px-4 py-2 text-sm text-gray-700"
+                            )}
                           >
                             Đăng xuất
                           </a>
@@ -172,28 +174,130 @@ const Navbars = () => {
                     </Menu.Items>
                   </Transition>
                 </Menu>
-
               ) : (
                 <div>
-                  <Link to="/Login" className="mt-3">
+                  <Link to="/Login" className="mt-11">
                     Đăng nhập / Đăng ký
                   </Link>
                 </div>
               )}
             </li>
+            <li>
+              <Menu as="div" className="relative pt-3">
+                <div>
+                  <Menu.Button >
+                    <div className="flex icon-container">
+                      <div class=" flex justify-center items-center">
+                        <div class="relative py-2">
+                          <div class="t-0 absolute left-3">
+                            {cartItems.length > 0 && (
+                              <p class="flex h-2 w-2 items-center justify-center rounded-full bg-red-500 p-3 text-xs text-white">{cartItems.length}</p>
+                            )}
 
-            <div className="mt-4">
-              <li>
-                <Link to={`/Sale/:id/Carts`}>
-                  <BsMinecartLoaded />
-                </Link>
-              </li>
-            </div>
+                          </div>
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="file: mt-4 h-7 w-7">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
+                          </svg>
+                        </div>
+                      </div>
+
+
+
+                    </div>
+                  </Menu.Button>
+                </div>
+                <Transition
+                  as={Fragment}
+                  enter="transition ease-out duration-100"
+                  enterFrom="transform opacity-0 scale-95"
+                  enterTo="transform opacity-100 scale-100"
+                  leave="transition ease-in duration-75"
+                  leaveFrom="transform opacity-100 scale-100"
+                  leaveTo="transform opacity-0 scale-95"
+                >
+                  <Menu.Items className="absolute right-0 z-10 mt-2 w-[450px] origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                    <div className="cart__heading p-3">
+                      <h4 className="fs-600 fw-700 darkGrayishBlue">Giỏ hàng</h4>
+                    </div>
+                    <div className="cart__items grid p-2">
+                      {cartItems.length === 0 ? (
+                        <p className="fs-400 fw-700 darkGrayishBlue m-auto">
+                          Giỏ hàng trống
+                        </p>
+                      ) : (
+                        <div className="cart__item grid-flow-row  h-[250px] overflow-y-scroll">
+                          {cartItems.map((item) => (
+                            <div className="item flex pb-4">
+                              <img src={item.image} className="w-[100px] h-[100px] rounded-md shadow-sm" alt="" />
+                              <div className="item__info m-auto p-3">
+                                <div style={{ width: "180px" }}>
+                                  <p className="item__name fw-400 fs-400 line-height-500 darkGrayishBlue truncate">
+                                    {item.title}
+                                  </p>
+                                </div>
+
+                                <span className="d-inline-block fw-400 fs-400 line-height-500 darkGrayishBlue">
+                                  {item.price} x {item.qty}
+                                </span>{' '}
+
+                              </div>
+                              <div className="m-auto">
+                                <AiTwotoneDelete size={32} color={"red"} onClick={() => {
+                                  dispatch(
+                                    removeItem(item.product)
+                                  );
+                                }} />
+                              </div>
+                            </div>
+
+                          ))}
+
+
+
+                        </div>
+
+                      )}
+                    </div>
+                    {cartItems.length != 0 ? (
+                      <Menu.Item>
+                        {({ active }) => (
+                          <Link
+                            className={classNames(
+                              active ? "bg-gray-100" : "",
+                              "block px-4 py-2 text-sm text-black-700"
+                            )}
+                            to={"/Carts"}
+                          >
+                            <button className="btn flex fw-700 fs-400">Chi tiết giỏ hàng</button>
+                          </Link>
+                        )}
+                      </Menu.Item>
+                    ) : <Menu.Item>
+                      {({ active }) => (
+                        <Link
+                          className={classNames(
+                            active ? "bg-gray-100" : "",
+                            "block px-4 py-2 text-sm text-black-700"
+                          )}
+                          to={"/Sale"}
+                        >
+                          <button className="btn flex fw-700 fs-400">Đến sản phẩm</button>
+                        </Link>
+                      )}
+                    </Menu.Item>};
+                  </Menu.Items>
+                </Transition>
+              </Menu>
+            </li>
+
           </ul>
         </div>
       </nav>
       <br />
-      <form className="co flex flex-row justify-center lg:hidden md:flex" action="#">
+      <form
+        className="co flex flex-row justify-center lg:hidden md:flex"
+        action="#"
+      >
         <input
           type="search"
           className="search-data w-[210px]"
@@ -202,99 +306,132 @@ const Navbars = () => {
         />
         <Link to="/Sale">
           <button type="submit">
-            <AiOutlineSearch size={26} style={{ margin: "5px", color: "black" }} />
+            <AiOutlineSearch
+              size={26}
+              style={{ margin: "5px", color: "black" }}
+            />
           </button>
         </Link>
       </form>
-      <div
-        className="nav-items flex flex-row justify-end lg:hidden md:flex pb-6 pr-10"
-      >
-
+      <div className="nav-items flex flex-row justify-center lg:hidden md:flex pb-6 pr-10 m-auto ">
         {isauth ? (
-          <Menu as="div" className="relative pt-3">
-            <div>
-              <Menu.Button className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 ">
-                <span className="sr-only">Open user menu</span>
-                <img
-                  className="h-10 w-10 rounded-full"
-                  src={user}
-                  alt="user"
-                />
-              </Menu.Button>
-            </div>
-            <Transition
-              as={Fragment}
-              enter="transition ease-out duration-100"
-              enterFrom="transform opacity-0 scale-95"
-              enterTo="transform opacity-100 scale-100"
-              leave="transition ease-in duration-75"
-              leaveFrom="transform opacity-100 scale-100"
-              leaveTo="transform opacity-0 scale-95"
-            >
-              <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                <Menu.Item>
-                  {({ active }) => (
-                    <Link
+          <ul>
+            <li>
+              {isauth ? (
+                <Menu as="div" className="relative pt-9">
+                  <div>
+                    <Menu.Button className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 ">
+                      <span className="sr-only">Open user menu</span>
+                      <img
+                        className="h-10 w-10 rounded-full"
+                        src={user}
+                        alt="user"
+                      />
+                    </Menu.Button>
+                  </div>
+                  <Transition
+                    as={Fragment}
+                    enter="transition ease-out duration-100"
+                    enterFrom="transform opacity-0 scale-95"
+                    enterTo="transform opacity-100 scale-100"
+                    leave="transition ease-in duration-75"
+                    leaveFrom="transform opacity-100 scale-100"
+                    leaveTo="transform opacity-0 scale-95"
+                  >
+                    <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                      <Menu.Item>
+                        {({ active }) => (
+                          <Link
+                            className={classNames(
+                              active ? "bg-gray-100" : "",
+                              "block px-4 py-2 text-sm text-gray-700"
+                            )}
+                          >
+                            Xin chào: {userName}
+                          </Link>
+                        )}
+                      </Menu.Item>
+                      <Menu.Item>
+                        {({ active }) => (
+                          <Link
+                            to={"/userinfo"}
+                            className={classNames(
+                              active ? "bg-gray-100" : "",
+                              "block px-4 py-2 text-sm text-gray-700"
+                            )}
+                          >
+                            Trang cá nhân
+                          </Link>
+                        )}
+                      </Menu.Item>
+                      <hr />
+                      <Menu.Item>
+                        {({ active }) => (
+                          <a
+                            onClick={handlelogout}
+                            className={classNames(
+                              active ? "bg-gray-100" : "",
+                              "block px-4 py-2 text-sm text-gray-700"
+                            )}
+                          >
+                            Đăng xuất
+                          </a>
+                        )}
+                      </Menu.Item>
+                    </Menu.Items>
+                  </Transition>
+                </Menu>
+              ) : (
+                <div>
+                  <Link to="/Login" className="mt-10">
+                    Đăng nhập / Đăng ký
+                  </Link>
+                </div>
+              )}
+            </li>
+            <li>
+              <Menu as="div" className="relative pt-3">
+                <div>
+                  <Menu.Button >
+                    <div className="flex icon-container">
+                      <div class=" flex justify-center items-center">
+                        <div class="relative py-2">
+                          <div class="t-0 absolute left-3">
+                            <Link to={"/Carts"}>
+                              {cartItems.length > 0 && (
+                                <p class="flex h-2 w-2 items-center justify-center rounded-full bg-red-500 p-3 text-xs text-white">{cartItems.length}</p>
+                              )}
+                            </Link>
+                          </div>
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="file: mt-4 h-7 w-7">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                  </Menu.Button>
+                </div>
 
-                      className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
-                    >
-                      Xin chào: {userName}
-                    </Link>
-                  )}
-                </Menu.Item>
-                <Menu.Item>
-                  {({ active }) => (
-                    <Link
-                      to={"/userinfo"}
-                      className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
-                    >
-                      Trang cá nhân
-                    </Link>
-                  )}
-                </Menu.Item>
-                <Menu.Item>
-                  {({ active }) => (
-                    <Link
-                      to={"/Sale/:id/Carts"}
-                      className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
-                    >
-                      Giỏ hàng
-                    </Link>
-                  )}
-                </Menu.Item>
-                <hr />
-                <Menu.Item>
-                  {({ active }) => (
-                    <a
-                      onClick={handlelogout}
-                      className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
-                    >
-                      Đăng xuất
-                    </a>
-                  )}
-                </Menu.Item>
-              </Menu.Items>
-            </Transition>
-          </Menu>
-
+              </Menu>
+            </li>
+          </ul>
         ) : (
           <div>
-            <Link to="/Login" style={{ color: "black" }} className="mt-3 text-lg">
+            <Link
+              to="/Login"
+              style={{ color: "black" }}
+              className="mt-3 text-lg"
+            >
               Đăng nhập / Đăng ký
             </Link>
           </div>
+
         )}
-        <div className="mt-3.5 pl-3 ">
-          <Link style={{color: "black"}} to={`/Sale/:id/Carts`}>
-            <BsMinecartLoaded size={32}/>
-          </Link>
-        </div>
 
       </div>
       <br className="flex flex-row justify-center lg:hidden md:flex" />
 
       <div className="line"></div>
-
 
       {setdata.length != 0 && isNav ? (
         <div className="suggestionwala">
@@ -313,6 +450,5 @@ const Navbars = () => {
     </div>
   );
 };
-
 
 export default Navbars;

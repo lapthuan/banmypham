@@ -1,0 +1,54 @@
+import axios from 'axios';
+import {
+    PRODUCT_DETAILS_FAILURE,
+    PRODUCT_DETAILS_REQUEST,
+    PRODUCT_DETAILS_SUCCESS,
+    PRODUCT_LIST_FAILURE,
+    PRODUCT_LIST_REQUEST,
+    PRODUCT_LIST_SUCCESS
+} from '../const/productConstants';
+
+const api = axios.create({
+    baseURL: "https://api-thuongmai.vercel.app",
+});
+
+export const listProducts = () =>
+    async (dispatch) => {
+        try {
+            dispatch({ type: PRODUCT_LIST_REQUEST });
+
+            const { data } = await api.get(
+                `/api/product/`
+            );
+
+            dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data });
+
+        } catch (error) {
+            dispatch({
+                type: PRODUCT_LIST_FAILURE,
+                payload:
+                    error.response && error.response.data.message
+                        ? error.response.data.message
+                        : error.message,
+            });
+        }
+    };
+
+export const listProductDetails = (id) => async (dispatch) => {
+    try {
+        dispatch({ type: PRODUCT_DETAILS_REQUEST });
+
+        const { data } = await api.get(`/api/product/${id}`);
+        console.log(data);
+        dispatch({ type: PRODUCT_DETAILS_SUCCESS, payload: data });
+    } catch (error) {
+        dispatch({
+            type: PRODUCT_DETAILS_FAILURE,
+            payload:
+                error.response && error.response.data.message
+                    ? error.response.data.message
+                    : error.message,
+        });
+    }
+};
+

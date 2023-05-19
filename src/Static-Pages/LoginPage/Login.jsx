@@ -21,7 +21,7 @@ const Login = () => {
 
   function handleGoogleLoginSuccess(tokenResponse) {
     const accessToken = tokenResponse.access_token;
-
+    toast.error("Đang xử lý");
     dispatch(signinGoogle(accessToken, navigate));
   }
   const login = useGoogleLogin({ onSuccess: handleGoogleLoginSuccess });
@@ -72,11 +72,8 @@ const Login = () => {
             <div className={styles.social_links}>
               <Link to={""} className={styles.btn_fb}>
                 <img src={facebook} alt="facebook_logo" />
-                Facebook
-              </Link>
-              <div>
                 <OAuth2Login
-                  buttonText="Login with Facebook"
+                  buttonText="Facebook"
                   authorizationUrl="https://www.facebook.com/dialog/oauth"
                   responseType="token"
                   clientId="203369009102213"
@@ -85,7 +82,8 @@ const Login = () => {
                   onSuccess={loginFb}
                   onFailure={onFailure}
                 />
-              </div>
+              </Link>
+              <div></div>
               <Link onClick={() => login()} className={styles.btn_email}>
                 <img src={google} alt="google_logo" />
                 Google
@@ -120,7 +118,7 @@ const Login = () => {
               <button className={styles.sing_in_button} onClick={handleSubmit}>
                 Đăng nhập
               </button>
-              <Link to={"/Login"}>Quên mật khẩu?</Link>
+              <Link to={"/Forgotpass"}>Quên mật khẩu?</Link>
             </form>
             {/* <button className={styles.new_continue}>
               {" "}
