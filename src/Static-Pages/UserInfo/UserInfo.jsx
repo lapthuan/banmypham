@@ -1,10 +1,8 @@
-
 import { useState } from "react";
-import moment from 'moment';
-
+import moment from "moment";
 
 import React from "react";
-import 'mdb-react-ui-kit/dist/css/mdb.min.css';
+import "mdb-react-ui-kit/dist/css/mdb.min.css";
 import {
   MDBCol,
   MDBContainer,
@@ -15,13 +13,9 @@ import {
   MDBCardImage,
 } from "mdb-react-ui-kit";
 
-
 export const UserInfo = () => {
-
   // const userData1 = localStorage.getItem("token") || "";
   // const [userId1, userEmail1, userPassword1] = userData1.split(":");
-
-
 
   const userName = localStorage.getItem("username") || "";
   const userEmail = localStorage.getItem("useremail") || "";
@@ -31,7 +25,13 @@ export const UserInfo = () => {
   const userCreate = localStorage.getItem("usercreatedAt") || "";
   return (
     <div>
-      <section style={{ backgroundColor: "#f4f5f7", backgroundImage: "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" }}>
+      <section
+        style={{
+          backgroundColor: "#f4f5f7",
+          backgroundImage:
+            "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp",
+        }}
+      >
         <MDBContainer className="py-5">
           <MDBRow>
             <MDBCol lg="4">
@@ -41,12 +41,12 @@ export const UserInfo = () => {
                     src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
                     alt="avatar"
                     className="rounded-circle mx-auto"
-                    style={{ width: '150px' }}
-                    fluid />
+                    style={{ width: "150px" }}
+                    fluid
+                  />
                   <p className="text-muted mb-1 mt-2">{userName}</p>
 
-                  <div className="d-flex justify-content-center mb-2">
-                  </div>
+                  <div className="d-flex justify-content-center mb-2"></div>
                 </MDBCardBody>
               </MDBCard>
             </MDBCol>
@@ -58,7 +58,9 @@ export const UserInfo = () => {
                       <MDBCardText>Họ tên</MDBCardText>
                     </MDBCol>
                     <MDBCol sm="9">
-                      <MDBCardText className="text-muted">{userFirstName + " " + userName}</MDBCardText>
+                      <MDBCardText className="text-muted">
+                        {userFirstName + " " + userName}
+                      </MDBCardText>
                     </MDBCol>
                   </MDBRow>
                   <hr />
@@ -67,7 +69,9 @@ export const UserInfo = () => {
                       <MDBCardText>Địa chỉ Email</MDBCardText>
                     </MDBCol>
                     <MDBCol sm="9">
-                      <MDBCardText className="text-muted">{userEmail}</MDBCardText>
+                      <MDBCardText className="text-muted">
+                        {userEmail}
+                      </MDBCardText>
                     </MDBCol>
                   </MDBRow>
                   <hr />
@@ -77,7 +81,9 @@ export const UserInfo = () => {
                       <MDBCardText>Số điện thoại</MDBCardText>
                     </MDBCol>
                     <MDBCol sm="9">
-                      <MDBCardText className="text-muted">{userMobile}</MDBCardText>
+                      <MDBCardText className="text-muted">
+                        {userMobile}
+                      </MDBCardText>
                     </MDBCol>
                   </MDBRow>
                   <hr />
@@ -86,16 +92,17 @@ export const UserInfo = () => {
                       <MDBCardText>Ngày tạo tài khoản</MDBCardText>
                     </MDBCol>
                     <MDBCol sm="9">
-                      <MDBCardText className="text-muted">{moment(userCreate).format('DD/MM/YYYY')}</MDBCardText>
+                      <MDBCardText className="text-muted">
+                        {moment(userCreate).format("DD/MM/YYYY")}
+                      </MDBCardText>
                     </MDBCol>
                   </MDBRow>
                 </MDBCardBody>
               </MDBCard>
-
             </MDBCol>
           </MDBRow>
         </MDBContainer>
       </section>
     </div>
   );
-}
+};

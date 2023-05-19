@@ -41,6 +41,7 @@ import { loadUser } from "./redux/action/auth";
 import FContact from "./Static-Pages/Contact/FContact";
 import InforLX from "./Static-Pages/Invite/Information/InforLX";
 import InforBuy from "./Static-Pages/Invite/Information/InforBuy";
+import NewPassword from "./Static-Pages/Forgotpassword/NewPassword";
 
 function AllRoutes() {
   const dispatch = useDispatch();
@@ -57,7 +58,9 @@ function AllRoutes() {
       <Route path="/Sale" element={<Sales />} />
       <Route path="/Register" element={<Register />} />
       <Route path="/Forgotpass" element={<Forgotpass />} />
+      <Route path="NewPassword/:token" element={<NewPassword />} />
       {/* add proucts page link here  */}
+
       <Route path="/Login" element={<Login />} />
       <Route path="/SkinCare" element={<SkinCare />} />
       <Route path="/Hair" element={<Hair />} />

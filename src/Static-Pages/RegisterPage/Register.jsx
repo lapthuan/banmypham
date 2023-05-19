@@ -35,7 +35,6 @@ function Register() {
 
   function handleGoogleLoginSuccess(tokenResponse) {
     const accessToken = tokenResponse.access_token;
-
     dispatch(signupGoogle(accessToken, nagivate));
   }
 
@@ -70,7 +69,6 @@ function Register() {
     }
   }
   const login = useGoogleLogin({ onSuccess: handleGoogleLoginSuccess });
-
   return (
     <div className={styles.main_register}>
       <div className={styles.register_existing}>

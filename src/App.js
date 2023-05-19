@@ -11,8 +11,8 @@ function App() {
   return (
     <div className="App">
       <FinalNavbar />
-      <Ad />
-      <AClogin />
+      {/* <Ad /> */}
+      {/* <AClogin /> */}
       <AllRoutes />
       {/* <HomePage/> */}
       <Ileft />

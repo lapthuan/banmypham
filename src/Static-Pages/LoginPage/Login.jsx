@@ -13,8 +13,14 @@ import { useGoogleLogin } from "@react-oauth/google";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const Login = () => {
+  const MAX_LOGIN_ATTEMPTS = 3;
+  const storedAttempts =
+    parseInt(window.localStorage.getItem("loginAttempts")) || 0;
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const [numberLogin, setNumberLogin] = useState(0);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -24,13 +30,14 @@ const Login = () => {
     toast.error("Đang xử lý");
     dispatch(signinGoogle(accessToken, navigate));
   }
+  
   const login = useGoogleLogin({ onSuccess: handleGoogleLoginSuccess });
 
   const loginFb = async (e) => {
     const accessToken = e.access_token;
     const typeLogin = "facebook";
     const callApi = await axios
-      .post("https://ecom-z3we.onrender.com/api/users/login", {
+      .post("http://localhost:5000/api/users/login", {
         accessToken,
         typeLogin,
       })
@@ -39,9 +46,10 @@ const Login = () => {
         console.log(result);
       })
       .catch((err) => {
+        window.localStorage.setItem();
         console.log(err.response.data);
         if (err.response.status == 400) {
-          toast.error("Ú sờ chưa tồn tại vui lòng đăng ký dùm");
+          toast.error("Người dùng không tồn tại vui lòng đăng ký");
         }
       });
   };
