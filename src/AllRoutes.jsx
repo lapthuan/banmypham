@@ -45,6 +45,8 @@ import NewPassword from "./Static-Pages/Forgotpassword/NewPassword";
 import EditAC from "./Static-Pages/UserInfo/EditAc";
 import EditPass from "./Static-Pages/UserInfo/EditPass";
 import EditMap from "./Static-Pages/UserInfo/EditMap";
+import Chat from "./Static-Pages/ProductsSpecifications/Chat";
+import MessengerChat from "./Static-Pages/ProductsSpecifications/Chatmess";
 function AllRoutes() {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -82,6 +84,10 @@ function AllRoutes() {
       <Route path="/EditAC" element={<EditAC />} />
       <Route path="/EditPass" element={<EditPass />} />
       <Route path="/EditMap" element={<EditMap />} />
+      <Route path="/Chat" element={<Chat />} />
+      <Route path="/MessengerChat" element={<MessengerChat />} />
+
+
       <Route
         path="/payments"
         element={

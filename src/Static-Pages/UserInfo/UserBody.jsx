@@ -1,13 +1,8 @@
 import React, { useState } from "react";
 import "./UserInfor.css";
 import { Link } from "react-router-dom";
-import {
-  BsCoin,
-  BsPersonPlus,
-  BsJournalBookmarkFill,
-  BsExclamationTriangle,
-  BsChatText,
-} from "react-icons/bs";
+import { BsCartCheck } from "react-icons/bs";
+
 import img1 from "../../Image/Ivite1.jpg";
 const UserBody = ({ setTab, tab }) => {
   const [selectedItem, setSelectedItem] = useState(null);
@@ -70,19 +65,123 @@ const UserBody = ({ setTab, tab }) => {
           </div>
           <div>
             {tab == 1 ? (
-              <div className="Ivite_loho ">Trang chủ</div>
+              <div className="Ivite_loho ">
+                <div className="flex flex-col">
+                  <div className="ml-auto mr-auto">
+                    <BsCartCheck size="150px" color="gray" />
+                  </div>
+                  <div className="text-[20px] mt-3 text-gray-400 text-center">
+                    Không tìm thấy đơn hàng
+                  </div>
+                  <Link to="/">
+                    <button className="bg-black text-white w-[25%] h-[35px] text-center ml-auto mr-auto rounded-md mt-2">
+                      Tiếp tục mua sắm
+                    </button>
+                  </Link>
+                </div>
+              </div>
             ) : tab == 2 ? (
-              <div className="Ivite_loho ">Chết em</div>
+              <div className="Ivite_loho ">
+                {" "}
+                <div className="flex flex-col">
+                  <div className="ml-auto mr-auto">
+                    <BsCartCheck size="150px" color="gray" />
+                  </div>
+                  <div className="text-[20px] mt-3 text-gray-400 text-center">
+                    Không tìm thấy đơn hàng
+                  </div>
+                  <Link to="/">
+                    <button className="bg-black text-white w-[25%] h-[35px] text-center ml-auto mr-auto rounded-md mt-2">
+                      Tiếp tục mua sắm
+                    </button>
+                  </Link>
+                </div>
+              </div>
             ) : tab == 3 ? (
-              <div className="Ivite_loho ">Chết em 3</div>
+              <div className="Ivite_loho ">
+                {" "}
+                <div className="flex flex-col">
+                  <div className="ml-auto mr-auto">
+                    <BsCartCheck size="150px" color="gray" />
+                  </div>
+                  <div className="text-[20px] mt-3 text-gray-400 text-center">
+                    Không tìm thấy đơn hàng
+                  </div>
+                  <Link to="/">
+                    <button className="bg-black text-white w-[25%] h-[35px] text-center ml-auto mr-auto rounded-md mt-2">
+                      Tiếp tục mua sắm
+                    </button>
+                  </Link>
+                </div>
+              </div>
             ) : tab == 4 ? (
-              <div className="Ivite_loho ">Chết em 4</div>
+              <div className="Ivite_loho ">
+                {" "}
+                <div className="flex flex-col">
+                  <div className="ml-auto mr-auto">
+                    <BsCartCheck size="150px" color="gray" />
+                  </div>
+                  <div className="text-[20px] mt-3 text-gray-400 text-center">
+                    Không tìm thấy đơn hàng
+                  </div>
+                  <Link to="/">
+                    <button className="bg-black text-white w-[25%] h-[35px] text-center ml-auto mr-auto rounded-md mt-2">
+                      Tiếp tục mua sắm
+                    </button>
+                  </Link>
+                </div>
+              </div>
             ) : tab == 5 ? (
-              <div className="Ivite_loho ">Chết em 5</div>
+              <div className="Ivite_loho ">
+                {" "}
+                <div className="flex flex-col">
+                  <div className="ml-auto mr-auto">
+                    <BsCartCheck size="150px" color="gray" />
+                  </div>
+                  <div className="text-[20px] mt-3 text-gray-400 text-center">
+                    Không tìm thấy đơn hàng
+                  </div>
+                  <Link to="/">
+                    <button className="bg-black text-white w-[25%] h-[35px] text-center ml-auto mr-auto rounded-md mt-2">
+                      Tiếp tục mua sắm
+                    </button>
+                  </Link>
+                </div>
+              </div>
             ) : tab == 6 ? (
-              <div className="Ivite_loho ">Chết em 6</div>
+              <div className="Ivite_loho ">
+                {" "}
+                <div className="flex flex-col">
+                  <div className="ml-auto mr-auto">
+                    <BsCartCheck size="150px" color="gray" />
+                  </div>
+                  <div className="text-[20px] mt-3 text-gray-400 text-center">
+                    Không tìm thấy đơn hàng
+                  </div>
+                  <Link to="/">
+                    <button className="bg-black text-white w-[25%] h-[35px] text-center ml-auto mr-auto rounded-md mt-2">
+                      Tiếp tục mua sắm
+                    </button>
+                  </Link>
+                </div>
+              </div>
             ) : (
-              <div className="Ivite_loho ">Chết em 7</div>
+              <div className="Ivite_loho ">
+                {" "}
+                <div className="flex flex-col">
+                  <div className="ml-auto mr-auto">
+                    <BsCartCheck size="150px" color="gray" />
+                  </div>
+                  <div className="text-[20px] mt-3 text-gray-400 text-center">
+                    Không tìm thấy đơn hàng
+                  </div>
+                  <Link to="/">
+                    <button className="bg-black text-white w-[25%] h-[35px] text-center ml-auto mr-auto rounded-md mt-2">
+                      Tiếp tục mua sắm
+                    </button>
+                  </Link>
+                </div>
+              </div>
             )}
           </div>
         </div>
