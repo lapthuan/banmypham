@@ -7,7 +7,7 @@ import { FiShoppingCart } from "react-icons/fi";
 import { RiUserReceived2Line } from "react-icons/ri";
 import { FaStore } from "react-icons/fa";
 import { VscTrash } from "react-icons/vsc";
-const UserHistory = () => {
+const UserHistory = ({ setTab, tab }) => {
   return (
     <>
       <div className="">
@@ -15,7 +15,10 @@ const UserHistory = () => {
           <div>Lịch sử mua hàng</div>
         </div>
         <div className="flex firts_row">
-          <div className="flex items-center flex-col ">
+          <div
+            className="flex items-center flex-col "
+            onClick={() => setTab(2)}
+          >
             <div>
               <SlWallet size="25px" />
             </div>

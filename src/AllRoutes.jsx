@@ -43,7 +43,8 @@ import InforLX from "./Static-Pages/Invite/Information/InforLX";
 import InforBuy from "./Static-Pages/Invite/Information/InforBuy";
 import NewPassword from "./Static-Pages/Forgotpassword/NewPassword";
 import EditAC from "./Static-Pages/UserInfo/EditAc";
-
+import EditPass from "./Static-Pages/UserInfo/EditPass";
+import EditMap from "./Static-Pages/UserInfo/EditMap";
 function AllRoutes() {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -79,6 +80,8 @@ function AllRoutes() {
       <Route path="/InforLX" element={<InforLX />} />
       <Route path="/InforBuy" element={<InforBuy />} />
       <Route path="/EditAC" element={<EditAC />} />
+      <Route path="/EditPass" element={<EditPass />} />
+      <Route path="/EditMap" element={<EditMap />} />
       <Route
         path="/payments"
         element={

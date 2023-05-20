@@ -66,7 +66,7 @@ const EditAC = () => {
                           <input
                             type="email"
                             placeholder={userEmail}
-                            className="w-[90%] ml-2 placeholder:text-black border-b-2 color-[black]"
+                            className="w-[40%] ml-2 placeholder:text-black border-b-2 color-[black]"
                           />
                         </div>
                         <div className="text-left mt-3">
@@ -88,14 +88,14 @@ const EditAC = () => {
                             className="ml-2 placeholder:text-black"
                           />
                         </div>
-                        <div className="text-left mt-3">
+                        {/* <div className="text-left mt-3">
                           <label>Mật khẩu: </label>
                           <input
                             required
                             type="password"
                             className="ml-2 placeholder:text-black border-b-2 color-[black]"
                           />
-                        </div>
+                        </div> */}
                         <button className="btn btn-primary m-4">
                           Cập nhật
                         </button>
