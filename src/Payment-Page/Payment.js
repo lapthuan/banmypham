@@ -4,27 +4,32 @@ import { TiTick } from "react-icons/ti";
 import { GrContactInfo } from "react-icons/gr"
 import { FaShippingFast } from "react-icons/fa"
 import { MdPayment } from "react-icons/md"
-import { AiOutlineFileDone,AiOutlineProfile } from "react-icons/ai"
-
+import { AiOutlineFileDone, AiOutlineProfile } from "react-icons/ai"
+const steps = [
+  {
+    name: "Thông tin người nhận",
+    icon: <AiOutlineProfile />,
+  },
+  {
+    name: "Thông tin giao hàng",
+    icon: <FaShippingFast />,
+  },
+  {
+    name: "Thanh toán",
+    icon: <MdPayment />,
+  },
+  {
+    name: "Hoàn thành",
+    icon: <AiOutlineFileDone />,
+  },
+];
 const Stepper = () => {
-  const steps = [
-    {
-      name: "Thông tin người nhận",
-      icon: <AiOutlineProfile />,
-    },
-    {
-      name: "Thông tin giao hàng",
-      icon: <FaShippingFast />,
-    },
-    {
-      name: "Thanh toán",
-      icon: <MdPayment />,
-    },
-    {
-      name: "Hoàn thành",
-      icon: <AiOutlineFileDone />,
-    },
-  ];
+
+  const [userName , setUserName] = useState(localStorage.getItem("username"))
+  const [userMobile , setUserMobile] = useState(localStorage.getItem("usermobile"))
+  const [userEmail , setUserEmail] = useState(localStorage.getItem("useremail"))
+
+
   const [currentStep, setCurrentStep] = useState(1);
   const [complete, setComplete] = useState(false);
   return (
@@ -47,7 +52,69 @@ const Stepper = () => {
       {currentStep == 1 ?
         (
           <div>
-       
+            <div className="container">
+              <div className="Iv-style">
+                <div className="wrapLayout">
+                  <div className="flex flex-wrap justify-center">
+                    <div className="main_styler w-[100%] mb-2">
+                      <div className="flex flex-col bg-[#f5f6f6] pt-2">
+                        <div className="bg-white rounded-[8px]">
+                          <div className="w-[100%] h-[44px] bg-white text-[25px] text-black mt-2">
+                            <div className="text-center ">
+                              Chỉnh sửa thông tin cá nhân
+                            </div>
+                          </div>
+                          <div>
+                            <div className="Ivite_loho ">
+                              <div className="text-left ">
+                                <label>Tên người nhận: </label>
+                                <input
+                                  type="text"
+                                  value={userName}
+                                  onChange={(e) => setUserName(e.target.value)}
+                                  className=" ml-2 placeholder:text-black border-b-2 color-[black]"
+                                />
+                              </div>
+                              <div className="text-left mt-3">
+                                <label>Email: </label>
+                                <input
+                                  type="email"
+                                  value={userEmail}
+                                  onChange={(e) => setUserEmail(e.target.value)}
+                                  className="w-[40%] ml-2 placeholder:text-black border-b-2 color-[black]"
+                                />
+                              </div>
+                              <div className="text-left mt-3">
+                                <label>Số điện thoại: </label>
+                                <input
+                                  required
+                                  type="text"
+                                  value={userMobile}
+                                  onChange={(e) => setUserMobile(e.target.value)}
+                                  className="ml-2 placeholder:text-black border-b-2 color-[black]"
+                                />
+                              </div>
+                             
+                              {/* <div className="text-left mt-3">
+                          <label>Mật khẩu: </label>
+                          <input
+                            required
+                            type="password"
+                            className="ml-2 placeholder:text-black border-b-2 color-[black]"
+                          />
+                        </div> */}
+                              <button className="btn btn-primary m-4">
+                                Cập nhật
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         ) :
         currentStep == 2 ?
