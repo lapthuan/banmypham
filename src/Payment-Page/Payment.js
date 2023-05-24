@@ -96,7 +96,12 @@ const Stepper = () => {
   const handerClickCheckOut = () => {
     console.log(userId);
   }
+  const handerClicknext = () => {
+    setCurrentStep((prev) => prev + 1);
+    if (currentStep === steps.length - 1)
+      setComplete(true)
 
+  }
 
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
@@ -119,8 +124,7 @@ const Stepper = () => {
       </div>
 
 
-
-      <div className="grid sm:px-10 lg:grid-cols-2 lg:px-20 xl:px-32 pt-1">
+      {!complete ? (<div className="grid sm:px-10 lg:grid-cols-2 lg:px-20 xl:px-32 pt-1">
         <div className="px-4 pt-8">
           <p className="text-xl font-medium">Sản phẩm đã chọn</p>
           <p className="text-gray-400">Kiểm tra các mặt hàng của bạn. Và chọn một phương thức vận chuyển phù hợp.</p>
@@ -279,7 +283,7 @@ const Stepper = () => {
 
                 ) :
                 currentStep == 3 ? (
-                  <div className="pt-64">
+                  <div className="lg:pt-64 sm:pt-2">
                     <p className="text-xl font-medium">Nhận hàng thanh toán</p>
                     <p className="text-gray-400"> phương thức thanh toán truyền thống nhất, trong đó khách hàng trả tiền mặt khi nhận hàng. Bạn có thể chấp nhận thanh toán tiền mặt trực tiếp từ khách hàng hoặc thông qua đại lý vận chuyển.</p>
                   </div>
@@ -323,6 +327,7 @@ const Stepper = () => {
           }
         </div>
       </div>
+      ) : (<div><p>Đã đặt đơn hàng thành công !</p></div>)}
 
 
 
@@ -333,9 +338,7 @@ const Stepper = () => {
               <button
                 className=" w-full rounded-md bg-[#fe2c6d] px-3 py-3 font-medium text-white"
                 onClick={() => {
-                  currentStep === steps.length
-                    ? setComplete(true)
-                    : setCurrentStep((prev) => prev - 1);
+                  setCurrentStep((prev) => prev - 1);
                 }}
               >
                 Trở về
@@ -343,13 +346,9 @@ const Stepper = () => {
 
             <button
               className=" w-full rounded-md bg-[#fe2c6d] px-3 py-3 font-medium text-white"
-              onClick={() => {
-                currentStep === steps.length
-                  ? setComplete(true)
-                  : setCurrentStep((prev) => prev + 1);
-              }}
+              onClick={handerClicknext}
             >
-              {currentStep === steps.length ? "Hoàn thành" : "tiếp tục"}
+              {currentStep === steps.length - 1 ? "Hoàn thành" : "tiếp tục"}
             </button>
           </div>
         )
