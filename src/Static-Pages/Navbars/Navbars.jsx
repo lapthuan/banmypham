@@ -19,7 +19,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../redux/login/login.actions";
 import deleteIcon from "../../Image/icon-delete.svg";
-import { removeItem } from "../../redux/action/cartActions";
+import { loadCart, removeItem } from "../../redux/action/cartActions";
 
 const Navbars = ({ cartProductQuantity, setCartProductQuantity }) => {
   const [isNavExpanded, setIsNavExpanded] = useState(false);
@@ -36,9 +36,13 @@ const Navbars = ({ cartProductQuantity, setCartProductQuantity }) => {
   const navigate = useNavigate();
 
   // let cartData = JSON.parse(localStorage.getItem("cartItems")) || []
+  useEffect(() => {
+    dispatch(loadCart())
+  }, []);
 
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
+
   const [searcheddata, setSearchedata] = useState("");
   function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
