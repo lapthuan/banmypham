@@ -7,14 +7,11 @@ import {
 import thunk from "redux-thunk";
 import { loginReducer } from "./reducers/auth";
 import { signupReducer } from "./signup/signup.reducer";
-import { productListReducer } from "./reducers/productReducers";
-import { productDetailsReducer } from "./reducers/productReducers";
-import { categoryListReducer } from "./reducers/categoryReducers";
-import { categoryDetailsReducer } from "./reducers/categoryReducers";
-import { brandListReducer } from "./reducers/brandReducers";
-import { brandDetailsReducer } from "./reducers/brandReducers";
+import { productListReducer ,productDetailsReducer} from "./reducers/productReducers";
+import { categoryListReducer,categoryDetailsReducer } from "./reducers/categoryReducers";
+import { brandListReducer,brandDetailsReducer } from "./reducers/brandReducers";
 import { cartReducer } from './reducers/cartReducers';
-import { orderReducer } from './reducers/orderReducers';
+import { orderReducer , getOrderReducer} from './reducers/orderReducers';
 
 const rootreducer = combineReducers({
   cart: cartReducer,
@@ -27,6 +24,7 @@ const rootreducer = combineReducers({
   brandList: brandListReducer,
   brandDetails: brandDetailsReducer,
   orderCreate: orderReducer,
+  orderGetAll : getOrderReducer,
 });
 const createcomposer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 

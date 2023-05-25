@@ -2,17 +2,28 @@ import {
     CREATE_ODER_FAILURE,
     CREATE_ODER_REQUEST,
     CREATE_ODER_SUCCESS,
-    CREATE_ODER_RESET
-
+    CREATE_ODER_RESET,
+    GET_ODER_FAILURE,
+    GET_ODER_REQUEST,
+    GET_ODER_SUCCESS,
+    GET_ODER_RESET,
 } from "../const/orderConstants"
 
-let initialstate = {
+let initialState = {
     isloading: false,
     iserror: false,
     issuccess: false,
     order: []
 };
-export const orderReducer = (state = initialstate, action) => {
+
+
+let initialStateGetOrder = {
+    isloadingGetOrder: false,
+    iserrorGetOrder: false,
+    issuccessGetOrder: false,
+    getOrder: []
+};
+export const orderReducer = (state = initialState, action) => {
     switch (action.type) {
         case CREATE_ODER_FAILURE:
             return {
@@ -46,6 +57,45 @@ export const orderReducer = (state = initialstate, action) => {
                 iserror: false,
                 issuccess: false,
                 order: []
+            };
+        default:
+            return { ...state };
+    }
+}
+
+export const getOrderReducer = (state = initialStateGetOrder, action) => {
+    switch (action.type) {
+        case GET_ODER_FAILURE:
+            return {
+                ...state,
+                isloadingGetOrder: true,
+                iserrorGetOrder: false,
+                issuccessGetOrder: false,
+            };
+
+        case GET_ODER_REQUEST:
+            return {
+                ...state,
+                isloadingGetOrder: false,
+                iserrorGetOrder: true,
+                issuccessGetOrder: false,
+                error: action.payload
+            };
+
+        case GET_ODER_SUCCESS:
+            return {
+                ...state,
+                isloadingGetOrder: false,
+                iserrorGetOrder: false,
+                issuccessGetOrder: true,
+                getOrder: action.payload
+            };
+        case GET_ODER_RESET:
+            return {
+                isloadingGetOrder: false,
+                iserrorGetOrder: false,
+                issuccessGetOrder: false,
+                getOrder: []
             };
         default:
             return { ...state };
