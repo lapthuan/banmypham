@@ -21,6 +21,10 @@ const MessengerChat = () => {
   const toggleStatus = () => {
     setIsActive(!isActive);
   };
+
+  const handleSendVoice = () => {
+    // Xử lý gửi ghi âm
+  };
   return (
     <div className="messenger-container">
       <div className="messenger-chat">

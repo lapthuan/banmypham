@@ -6,11 +6,15 @@ import { useNavigate } from "react-router-dom";
 import Carts from "./Cart";
 import Promotion from "./Promotion";
 import MostSearch from "./mostsearch";
+import CartSale from "./CartSale";
 function HomePage() {
   return (
     <>
       <Slider />
 
+      <div>
+        <CartSale />
+      </div>
       <div>
         <Carts />
       </div>

@@ -47,6 +47,7 @@ import EditPass from "./Static-Pages/UserInfo/EditPass";
 import EditMap from "./Static-Pages/UserInfo/EditMap";
 import Chat from "./Static-Pages/ProductsSpecifications/Chat";
 import MessengerChat from "./Static-Pages/ProductsSpecifications/Chatmess";
+import DealsSale from "./Static-Pages/SalesPage/DealsSale";
 function AllRoutes() {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -86,7 +87,7 @@ function AllRoutes() {
       <Route path="/EditMap" element={<EditMap />} />
       <Route path="/Chat" element={<Chat />} />
       <Route path="/MessengerChat" element={<MessengerChat />} />
-
+      <Route path="/DealsSale" element={<DealsSale />} />
 
       <Route
         path="/payments"

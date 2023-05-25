@@ -36,9 +36,9 @@ const EditAC = () => {
                 <div className="UserNav">
                   <User />
                 </div>
-                <div className="mt-3 UserNavHis">
+                {/* <div className="mt-3 UserNavHis">
                   <UserHistory />
-                </div>
+                </div> */}
                 <div className="mt-3 UserAC pb-3">
                   <UsrAcount />
                 </div>
