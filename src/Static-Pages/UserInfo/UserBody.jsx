@@ -1,23 +1,33 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./UserInfor.css";
 import { Link } from "react-router-dom";
 import { BsCartCheck } from "react-icons/bs";
-
 import img1 from "../../Image/Ivite1.jpg";
+import { useDispatch, useSelector } from "react-redux";
+import { getOrderByIdUser } from "../../redux/action/orderActions";
+import TableAntd from "./table"
 const UserBody = ({ setTab, tab }) => {
   const [selectedItem, setSelectedItem] = useState(null);
+  const userId = window.localStorage.getItem("userid")
 
+  const orderByUser = useSelector((state) => state.orderGetAll)
+  const { isloadingGetOrder, iserrorGetOrder, issuccessGetOrder, getOrder } = orderByUser
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(getOrderByIdUser(userId))
+  }, [userId])
+  console.log(getOrder);
   const handleItemClick = (item) => {
     setSelectedItem(item);
   };
-  console.log(tab);
+
   return (
     <>
-      <div className="flex flex-col bg-[#f5f6f6] pt-2">
+      <div className="flex flex-col bg-[#f5f6f6] pt-2 w-full">
         <div className="bg-white rounded-[8px]">
           <div className="br w-[100%] h-[44px] bg-white flex">
             <div className="item_us">
-              <div className="flex">
+              <div className="flex grid-flow-col justify-center">
                 <div
                   className={`User_item ${tab === 1 ? "active" : ""}`}
                   onClick={() => setTab(1)}
@@ -66,19 +76,23 @@ const UserBody = ({ setTab, tab }) => {
           <div>
             {tab == 1 ? (
               <div className="Ivite_loho ">
-                <div className="flex flex-col">
-                  <div className="ml-auto mr-auto">
-                    <BsCartCheck size="150px" color="gray" />
-                  </div>
-                  <div className="text-[20px] mt-3 text-gray-400 text-center">
-                    Không tìm thấy đơn hàng
-                  </div>
-                  <Link to="/">
-                    <button className="bg-black text-white w-[25%] h-[35px] text-center ml-auto mr-auto rounded-md mt-2">
-                      Tiếp tục mua sắm
-                    </button>
-                  </Link>
-                </div>
+                {getOrder.length != 0 ? (
+                  <TableAntd orderData={getOrder}/>
+                ) : (
+                  <div className="flex flex-col">
+                    <div className="ml-auto mr-auto">
+                      <BsCartCheck size="150px" color="gray" />
+                    </div>
+                    <div className="text-[20px] mt-3 text-gray-400 text-center">
+                      Không tìm thấy đơn hàng
+                    </div>
+                    <Link to="/">
+                      <button className="bg-black text-white w-[25%] h-[35px] text-center ml-auto mr-auto rounded-md mt-2">
+                        Tiếp tục mua sắm
+                      </button>
+                    </Link>
+                  </div>)}
+
               </div>
             ) : tab == 2 ? (
               <div className="Ivite_loho ">
