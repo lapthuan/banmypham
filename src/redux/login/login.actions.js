@@ -7,6 +7,7 @@ import {
   UPDATE_GET_SUCCESS,
   LOGOUT_GET,
 } from "./login.types";
+
 export const login = (creds) => async (dispatch) => {
   dispatch({ type: LOGIN_GET_LOADING });
   try {
@@ -22,7 +23,7 @@ export const login = (creds) => async (dispatch) => {
 
 export const logout = () => {
   // to remove all userinfo at the time of user logout
-  toast.success("Đăng xuất thành công")
+  toast.success("Đăng xuất thành công");
   return {
     type: LOGOUT_GET,
   };

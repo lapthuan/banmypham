@@ -35,13 +35,14 @@ import Invite from "./Static-Pages/Invite/Ivite";
 import Contact from "./Static-Pages/Invite/Contact/Contact";
 import IviteBlog from "./Static-Pages/Invite/IviteBlog";
 import Iviteuser from "./Static-Pages/Invite/IviteUser/IviteUser";
+import NewPassword from "./Static-Pages/Forgotpassword/NewPassword";
 import Information from "./Static-Pages/Invite/Information/Information";
+
 import { useDispatch, useSelector } from "react-redux";
 import { loadUser } from "./redux/action/auth";
 import FContact from "./Static-Pages/Contact/FContact";
 import InforLX from "./Static-Pages/Invite/Information/InforLX";
 import InforBuy from "./Static-Pages/Invite/Information/InforBuy";
-import NewPassword from "./Static-Pages/Forgotpassword/NewPassword";
 import EditAC from "./Static-Pages/UserInfo/EditAc";
 
 function AllRoutes() {
@@ -83,8 +84,7 @@ function AllRoutes() {
         path="/payments"
         element={
           <Privateroute>
-            {" "}
-            <Payments />{" "}
+            <Payments />
           </Privateroute>
         }
       />
@@ -93,7 +93,6 @@ function AllRoutes() {
         path="/delivery"
         element={
           <Privateroute>
-            {" "}
             <Delivery />{" "}
           </Privateroute>
         }
