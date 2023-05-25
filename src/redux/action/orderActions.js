@@ -7,7 +7,7 @@ import {
 } from "../const/orderConstants"
 
 const api = axios.create({
-    baseURL: "http://localhost:5000",
+    baseURL: "https://api-thuongmai.vercel.app",
 });
 
 export const createOrder = (cartItems, payment, shipping, userId,totalprice) =>
