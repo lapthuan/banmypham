@@ -61,7 +61,6 @@ export const loginReducer = (state = initialstate, { type, payload }) => {
       };
     }
 
-
     case LOGIN_GET_ERROR: {
       return {
         ...state,

@@ -13,7 +13,6 @@ export const login = (creds) => async (dispatch) => {
   try {
     let res = await axios.post("http://localhost:5000/api/user/login", creds);
     let data = await res.data;
-    // return console.log(res);
     return dispatch({ type: LOGIN_GET_SUCCESS, payload: data });
   } catch (e) {
     console.log(e);

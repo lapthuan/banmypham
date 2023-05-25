@@ -32,7 +32,6 @@ const Login = () => {
   }
 
   const login = useGoogleLogin({ onSuccess: handleGoogleLoginSuccess });
-
   const loginFb = async (e) => {
     const accessToken = e.access_token;
     const typeLogin = "facebook";

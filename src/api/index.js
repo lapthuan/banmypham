@@ -3,8 +3,8 @@ import axios from "axios";
 // const API = axios.create({ baseURL: "https://ecom-z3we.onrender.com" });
 
 const API = axios.create({
-  baseURL: "https://api-thuongmai.vercel.app",
-  // baseURL: "http://localhost:5000",
+  // baseURL: "https://api-thuongmai.vercel.app",
+  baseURL: "http://localhost:5000",
 });
 
 API.interceptors.request.use((req) => {
@@ -17,6 +17,7 @@ API.interceptors.request.use((req) => {
 });
 
 export const signIn = (data) => API.post("/api/users/login", data);
+
 export const signInGoogle = (accessToken) =>
   API.post("/api/users/login", {
     googleAccessToken: accessToken,
