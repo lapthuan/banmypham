@@ -20,7 +20,7 @@ export const createOrder = (cartItems, payment, shipping, userId,totalprice) =>
                     shipping: shipping,
                     payment: payment,
                     totalprice : totalprice,
-                    orderby: userId
+                    iduser: userId
                 }).then((Response) => {
                   
                     dispatch({ type: CREATE_ODER_SUCCESS, payload: Response.data.newOrder })
