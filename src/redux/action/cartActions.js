@@ -1,16 +1,24 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import {
+	CART_RESET,
 	CART_ADD_ITEM,
 	CART_REMOVE_ITEM,
 	CART_SAVE_SHIPPING_ADDRESS,
 	CART_SAVE_PAYMENT_METHOD,
+	CART_RESET_CART
 } from '../const/cartConstants';
 
 const api = axios.create({
 	baseURL: "https://api-thuongmai.vercel.app",
 });
+export const loadCart = () => async (dispath) => {
+	const localcart = localStorage.getItem("cartItems")
 
+	if (localcart) {
+		dispath({ type: CART_RESET, payload: localcart });
+	}
+};
 // get the product id and the quantity of the item to add to the cart
 export const addItem = (id, qty) => async (dispatch, getState) => {
 	try {
@@ -80,3 +88,11 @@ export const savePaymentMethod = (data) => async (dispatch) => {
 		console.log(error);
 	}
 };
+export const resetCart = () => async (dispatch) => {
+	try {
+		localStorage.removeItem("cartItems");
+		dispatch({type : CART_RESET_CART })
+	} catch (error) {
+		console.log(error);
+	}
+}
