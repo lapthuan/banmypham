@@ -13,7 +13,11 @@ import cod from "../Image/cod.jpg"
 import LogoGHTK from "../Image/Logo-GHTK.png"
 import LogoVT from "../Image/Logo-Viettel-Post-Red.png"
 import { useLocation } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import axios from "axios";
+import { createOrder, resetOrder } from "../redux/action/orderActions";
+import { resetCart } from "../redux/action/cartActions";
 const steps = [
   {
     name: "Thông tin người nhận",
@@ -68,6 +72,7 @@ const payments = [
   }
 ]
 const Stepper = () => {
+  const dispatch = new useDispatch()
   let total = JSON.parse(localStorage.getItem("total")) || 0
   const [userId, setUserId] = useState(localStorage.getItem("userid") || "")
   const [userName, setUserName] = useState(localStorage.getItem("username") || "")
@@ -78,13 +83,16 @@ const Stepper = () => {
   const [shipping, setShipping] = useState();
   const [payment, setPayment] = useState(0);
   const [totalprice, setTotalprice] = useState(total);
+  const cart = useSelector((state) => state.cart);
+  const { cartItems } = cart;
 
   const sumPrice = (price, qty) => {
     const total = price * qty
     return total;
   }
-  console.log(payment);
-
+  const orderCreate = useSelector((state) => state.orderCreate)
+  const { isloading, iserror, issuccess, order } = orderCreate;
+  console.log(orderCreate);
   useEffect(() => {
     if (shipping) {
       const price = shipping.price + total
@@ -94,21 +102,41 @@ const Stepper = () => {
 
 
   const handerClickCheckOut = () => {
-    console.log(userId);
+    setComplete(true);
+    setCurrentStep(1);
+    dispatch(createOrder(cartItems, payment, shipping, userId,totalprice))
+
   }
+  useEffect(() => {
+    if (isloading == true) {
+      console.log("loading");
+    }
+    if (issuccess == true) {
+      console.log("success");
+      dispatch(resetCart())
+      dispatch(resetOrder())
+    }
+  }, [isloading, issuccess])
+
   const handerClicknext = () => {
+
+    if (currentStep == 2 && shipping == undefined) {
+      toast.warning("Hãy chọn đơn vị vận chuyển")
+      return
+    }
+    if (currentStep == 3 && payment == 0) {
+      toast.warning("Hãy chọn phương thức thanh toán")
+      return
+    }
     setCurrentStep((prev) => prev + 1);
-    if (currentStep === steps.length - 1)
-      setComplete(true)
+
 
   }
 
-  const cart = useSelector((state) => state.cart);
-  const { cartItems } = cart;
 
   return (
     <>
-      <div className="flex justify-between">
+      <div className="flex justify-between z-10">
         {steps?.map((step, i) => (
           <div
             key={i}
@@ -290,7 +318,7 @@ const Stepper = () => {
                 )
                   :
                   (
-                    <div>hello4</div>
+                    <div></div>
                   )
             }
             {
@@ -307,7 +335,7 @@ const Stepper = () => {
                     </div>
                     {shipping ? (<div className="flex items-center justify-between">
                       <p className="text-sm font-medium text-gray-900">Phí giao hàng</p>
-                      <p className="font-semibold text-gray-900">{shipping.price.toLocaleString("vi-VN", { style: "currency", currency: "VND" })}</p>
+                      <p className="font-semibold text-[#fe2c6d]">+ {shipping.price.toLocaleString("vi-VN", { style: "currency", currency: "VND" })}</p>
                     </div>) : null}
 
                   </div>
@@ -321,7 +349,7 @@ const Stepper = () => {
           </div>
           {
             currentStep == 3 ? (
-              <button className="mt-4 mb-8 w-full rounded-md bg-[#fe2c6d] px-6 py-3 font-medium text-white">{payment.id == 3 ? "Đặt hàng" : "Thanh toán"}</button>) :
+              <button onClick={handerClickCheckOut} className="mt-4 mb-8 w-full rounded-md bg-[#fe2c6d] px-6 py-3 font-medium text-white ">{payment.id == 3 ? "Đặt hàng" : "Thanh toán"}</button>) :
 
               <></>
           }
@@ -343,13 +371,13 @@ const Stepper = () => {
               >
                 Trở về
               </button>) : null}
-
-            <button
+            {currentStep === steps.length - 1 ? null : (<button
               className=" w-full rounded-md bg-[#fe2c6d] px-3 py-3 font-medium text-white"
               onClick={handerClicknext}
             >
-              {currentStep === steps.length - 1 ? "Hoàn thành" : "tiếp tục"}
-            </button>
+              tiếp tục
+            </button>)}
+
           </div>
         )
       }
