@@ -42,6 +42,7 @@ export const loginReducer = (state = initialstate, { type, payload }) => {
 
       localStorage.setItem("user_infos", JSON.stringify(payload));
       localStorage.setItem("token", payload.token);
+      localStorage.setItem("userid", payload._id);
       localStorage.setItem("userfirstname", payload.firstname);
       localStorage.setItem("username", payload.lastname);
       localStorage.setItem("useremail", payload.email);
@@ -70,6 +71,7 @@ export const loginReducer = (state = initialstate, { type, payload }) => {
     }
     case LOGOUT_GET: {
       localStorage.removeItem("token");
+      localStorage.removeItem("userid");
       localStorage.removeItem("user_infos");
       localStorage.removeItem("username");
       localStorage.removeItem("useremail");

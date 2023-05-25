@@ -27,10 +27,10 @@ const Login = () => {
 
   function handleGoogleLoginSuccess(tokenResponse) {
     const accessToken = tokenResponse.access_token;
-    toast.error("Đang xử lý");
+    toast.warning("Đang xử lý");
     dispatch(signinGoogle(accessToken, navigate));
   }
-  
+
   const login = useGoogleLogin({ onSuccess: handleGoogleLoginSuccess });
 
   const loginFb = async (e) => {
