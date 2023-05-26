@@ -3,9 +3,9 @@ import { useNavigate, link, Link } from "react-router-dom";
 import styles from "./Login.module.css";
 import facebook from "./logo/Facebook_F_icon.svg.png";
 import google from "./logo/Google__G__Logo.svg.png";
-import { useSelector, useDispatch } from "react-redux";
-import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
-import { Button, Input, Space } from "antd";
+import { useDispatch } from "react-redux";
+import { AiOutlineEyeInvisible,AiOutlineEye } from "react-icons/ai";
+import {  Input } from "antd";
 import axios from "axios";
 import { signin, signinGoogle } from "../../redux/action/auth";
 import OAuth2Login from "react-simple-oauth2-login";
@@ -118,7 +118,7 @@ const Login = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Nhập mật khẩu ..."
                 iconRender={(visible) =>
-                  visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
+                  visible ? <AiOutlineEye /> : <AiOutlineEyeInvisible />
                 }
               />
 
