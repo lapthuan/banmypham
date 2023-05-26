@@ -17,12 +17,12 @@ const TreeNode = ({ label, children, onSelect }) => {
   };
   return (
     <li>
-      <div className="flex items-center text-[18px] text-black p-2 hover:text-blue-500 cursor-pointer">
+      <div className="flex items-center text-[18px] text-black p-2 hover:text-blue-500 cursor-pointer" onClick={toggleNode}>
         {children && (
           <FontAwesomeIcon
             icon={isOpen ? faChevronDown : faChevronRight}
             className="mr-2"
-            onClick={toggleNode}
+            
           />
         )}
         <div onClick={handleSelect}> {label}</div>

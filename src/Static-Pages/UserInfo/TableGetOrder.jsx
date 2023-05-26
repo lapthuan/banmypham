@@ -1,40 +1,12 @@
 import { AiOutlineSearch } from "react-icons/ai";
 import { GrPowerReset } from "react-icons/gr";
-
-
-import { Button, Input, Space, Table } from "antd";
-
-
+import { Button, Input, Space, Table, Modal } from "antd";
 import Highlighter from 'react-highlight-words';
 import { useState } from "react";
 import { useRef } from "react";
-const data = [
-    {
-        key: '1',
-        name: 'John Brown',
-        age: 32,
-        address: 'New York No. 1 Lake Park',
-    },
-    {
-        key: '2',
-        name: 'Joe Black',
-        age: 42,
-        address: 'London No. 1 Lake Park',
-    },
-    {
-        key: '3',
-        name: 'Jim Green',
-        age: 32,
-        address: 'Sydney No. 1 Lake Park',
-    },
-    {
-        key: '4',
-        name: 'Jim Red',
-        age: 32,
-        address: 'London No. 2 Lake Park',
-    },
-];
+
 const TableAntd = ({ orderData }) => {
+    const [modalProduct, setModalProduct] = useState(false);
     const [searchText, setSearchText] = useState('');
     const [searchedColumn, setSearchedColumn] = useState('');
     const searchInput = useRef(null);
@@ -126,7 +98,7 @@ const TableAntd = ({ orderData }) => {
     orderData.map((item, index) => {
         const data = {
             key: index + 1,
-            products: item.products.length,
+            products: JSON.stringify(item.products),
             payment: item.paymentIntent.name,
             shipping: item.shippingMethor.name,
             status: item.orderStatus,
@@ -177,7 +149,26 @@ const TableAntd = ({ orderData }) => {
             ...getColumnSearchProps('status'),
         },
     ];
-    return <Table columns={columns} dataSource={arr} />;
+
+    return (
+        <>
+            <Table columns={columns} dataSource={arr} />
+            <Button type="primary" onClick={() => setModalProduct(true)}>
+                Vertically centered modal dialog
+            </Button>
+            <Modal
+                title="Vertically centered modal dialog"
+                centered
+                open={modalProduct}
+                onOk={() => setModalProduct(false)}
+            >
+                <p>some contents...</p>
+                <p>some contents...</p>
+                <p>some contents...</p>
+            </Modal>
+        </>
+    )
+        ;
 };
 
 export default TableAntd;
