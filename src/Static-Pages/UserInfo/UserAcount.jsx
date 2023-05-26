@@ -3,6 +3,7 @@ import "./UserAcount.css";
 import { AiOutlineUser } from "react-icons/ai";
 import { HiOutlineKey } from "react-icons/hi";
 import { TfiMapAlt } from "react-icons/tfi";
+import { RiShoppingCartLine } from "react-icons/ri";
 
 import { Link } from "react-router-dom";
 function UsrAcount() {
@@ -13,7 +14,7 @@ function UsrAcount() {
 
   const userCreate = localStorage.getItem("usercreatedAt") || "";
 
-  const [expanded, setExpanded] = useState(false);
+  const [expanded, setExpanded] = useState(true);
 
   const toggleExpand = () => {
     setExpanded(!expanded);
@@ -32,8 +33,18 @@ function UsrAcount() {
         </div>
         {expanded && (
           <div className="additional-content">
-            <Link to="/EditAC">
+            <Link to="/userinfo">
               <div className="flex items-center justify-start ">
+                <div className="ml-4 mr-5">
+                  <RiShoppingCartLine size="26px" color="black" />
+                </div>
+                <div className="text-[15px] text-black">
+                  Đơn hàng của bạn
+                </div>
+              </div>
+            </Link>
+            <Link to="/EditAC">
+              <div className="flex items-center justify-start mt-3">
                 <div className="ml-4 mr-5">
                   <AiOutlineUser size="26px" color="black" />
                 </div>

@@ -5,7 +5,7 @@ import { BsCartCheck } from "react-icons/bs";
 import img1 from "../../Image/Ivite1.jpg";
 import { useDispatch, useSelector } from "react-redux";
 import { getOrderByIdUser } from "../../redux/action/orderActions";
-import TableAntd from "./table"
+import TableAntd from "./TableGetOrder"
 const UserBody = ({ setTab, tab }) => {
   const [selectedItem, setSelectedItem] = useState(null);
   const userId = window.localStorage.getItem("userid")
@@ -20,6 +20,7 @@ const UserBody = ({ setTab, tab }) => {
   const handleItemClick = (item) => {
     setSelectedItem(item);
   };
+  const filteredOrders = getOrder.filter(order => order.orderStatus === 'Đang vận chuyển') || []
 
   return (
     <>
@@ -38,19 +39,19 @@ const UserBody = ({ setTab, tab }) => {
                   className={`User_item ${tab === 2 ? "active" : ""}`}
                   onClick={() => setTab(2)}
                 >
-                  Chưa thanh toán
+                  Đang xử lý
                 </div>
                 <div
                   className={`User_item ${tab === 3 ? "active" : ""}`}
                   onClick={() => setTab(3)}
                 >
-                  Đã xác nhận
+                  Đã tiếp nhận
                 </div>
                 <div
                   className={`User_item ${tab === 4 ? "active" : ""}`}
                   onClick={() => setTab(4)}
                 >
-                  Đang đợi giao hàng
+                  Đang vận chuyển
                 </div>
                 <div
                   className={`User_item ${tab === 5 ? "active" : ""}`}
@@ -77,7 +78,7 @@ const UserBody = ({ setTab, tab }) => {
             {tab == 1 ? (
               <div className="Ivite_loho ">
                 {getOrder.length != 0 ? (
-                  <TableAntd orderData={getOrder}/>
+                  <TableAntd orderData={getOrder} />
                 ) : (
                   <div className="flex flex-col">
                     <div className="ml-auto mr-auto">
@@ -96,105 +97,123 @@ const UserBody = ({ setTab, tab }) => {
               </div>
             ) : tab == 2 ? (
               <div className="Ivite_loho ">
-                {" "}
-                <div className="flex flex-col">
-                  <div className="ml-auto mr-auto">
-                    <BsCartCheck size="150px" color="gray" />
-                  </div>
-                  <div className="text-[20px] mt-3 text-gray-400 text-center">
-                    Không tìm thấy đơn hàng
-                  </div>
-                  <Link to="/">
-                    <button className="bg-black text-white w-[25%] h-[35px] text-center ml-auto mr-auto rounded-md mt-2">
-                      Tiếp tục mua sắm
-                    </button>
-                  </Link>
-                </div>
+                {getOrder.length != 0 ? (
+                  <TableAntd orderData={getOrder} />
+                ) : (
+                  <div className="flex flex-col">
+                    <div className="ml-auto mr-auto">
+                      <BsCartCheck size="150px" color="gray" />
+                    </div>
+                    <div className="text-[20px] mt-3 text-gray-400 text-center">
+                      Không tìm thấy đơn hàng
+                    </div>
+                    <Link to="/">
+                      <button className="bg-black text-white w-[25%] h-[35px] text-center ml-auto mr-auto rounded-md mt-2">
+                        Tiếp tục mua sắm
+                      </button>
+                    </Link>
+                  </div>)}
+
               </div>
             ) : tab == 3 ? (
               <div className="Ivite_loho ">
-                {" "}
-                <div className="flex flex-col">
-                  <div className="ml-auto mr-auto">
-                    <BsCartCheck size="150px" color="gray" />
-                  </div>
-                  <div className="text-[20px] mt-3 text-gray-400 text-center">
-                    Không tìm thấy đơn hàng
-                  </div>
-                  <Link to="/">
-                    <button className="bg-black text-white w-[25%] h-[35px] text-center ml-auto mr-auto rounded-md mt-2">
-                      Tiếp tục mua sắm
-                    </button>
-                  </Link>
-                </div>
+                {getOrder.length != 0 ? (
+                  <TableAntd orderData={getOrder} />
+                ) : (
+                  <div className="flex flex-col">
+                    <div className="ml-auto mr-auto">
+                      <BsCartCheck size="150px" color="gray" />
+                    </div>
+                    <div className="text-[20px] mt-3 text-gray-400 text-center">
+                      Không tìm thấy đơn hàng
+                    </div>
+                    <Link to="/">
+                      <button className="bg-black text-white w-[25%] h-[35px] text-center ml-auto mr-auto rounded-md mt-2">
+                        Tiếp tục mua sắm
+                      </button>
+                    </Link>
+                  </div>)}
+
               </div>
             ) : tab == 4 ? (
               <div className="Ivite_loho ">
-                {" "}
-                <div className="flex flex-col">
-                  <div className="ml-auto mr-auto">
-                    <BsCartCheck size="150px" color="gray" />
-                  </div>
-                  <div className="text-[20px] mt-3 text-gray-400 text-center">
-                    Không tìm thấy đơn hàng
-                  </div>
-                  <Link to="/">
-                    <button className="bg-black text-white w-[25%] h-[35px] text-center ml-auto mr-auto rounded-md mt-2">
-                      Tiếp tục mua sắm
-                    </button>
-                  </Link>
-                </div>
+                {filteredOrders.length != 0 ? (
+                  <TableAntd orderData={filteredOrders} />
+                ) : (
+                  <div className="flex flex-col">
+                    <div className="ml-auto mr-auto">
+                      <BsCartCheck size="150px" color="gray" />
+                    </div>
+                    <div className="text-[20px] mt-3 text-gray-400 text-center">
+                      Không tìm thấy đơn hàng
+                    </div>
+                    <Link to="/">
+                      <button className="bg-black text-white w-[25%] h-[35px] text-center ml-auto mr-auto rounded-md mt-2">
+                        Tiếp tục mua sắm
+                      </button>
+                    </Link>
+                  </div>)}
+
               </div>
             ) : tab == 5 ? (
               <div className="Ivite_loho ">
-                {" "}
-                <div className="flex flex-col">
-                  <div className="ml-auto mr-auto">
-                    <BsCartCheck size="150px" color="gray" />
-                  </div>
-                  <div className="text-[20px] mt-3 text-gray-400 text-center">
-                    Không tìm thấy đơn hàng
-                  </div>
-                  <Link to="/">
-                    <button className="bg-black text-white w-[25%] h-[35px] text-center ml-auto mr-auto rounded-md mt-2">
-                      Tiếp tục mua sắm
-                    </button>
-                  </Link>
-                </div>
+                {getOrder.length != 0 ? (
+                  <TableAntd orderData={getOrder} />
+                ) : (
+                  <div className="flex flex-col">
+                    <div className="ml-auto mr-auto">
+                      <BsCartCheck size="150px" color="gray" />
+                    </div>
+                    <div className="text-[20px] mt-3 text-gray-400 text-center">
+                      Không tìm thấy đơn hàng
+                    </div>
+                    <Link to="/">
+                      <button className="bg-black text-white w-[25%] h-[35px] text-center ml-auto mr-auto rounded-md mt-2">
+                        Tiếp tục mua sắm
+                      </button>
+                    </Link>
+                  </div>)}
+
               </div>
             ) : tab == 6 ? (
               <div className="Ivite_loho ">
-                {" "}
-                <div className="flex flex-col">
-                  <div className="ml-auto mr-auto">
-                    <BsCartCheck size="150px" color="gray" />
-                  </div>
-                  <div className="text-[20px] mt-3 text-gray-400 text-center">
-                    Không tìm thấy đơn hàng
-                  </div>
-                  <Link to="/">
-                    <button className="bg-black text-white w-[25%] h-[35px] text-center ml-auto mr-auto rounded-md mt-2">
-                      Tiếp tục mua sắm
-                    </button>
-                  </Link>
-                </div>
+                {getOrder.length != 0 ? (
+                  <TableAntd orderData={getOrder} />
+                ) : (
+                  <div className="flex flex-col">
+                    <div className="ml-auto mr-auto">
+                      <BsCartCheck size="150px" color="gray" />
+                    </div>
+                    <div className="text-[20px] mt-3 text-gray-400 text-center">
+                      Không tìm thấy đơn hàng
+                    </div>
+                    <Link to="/">
+                      <button className="bg-black text-white w-[25%] h-[35px] text-center ml-auto mr-auto rounded-md mt-2">
+                        Tiếp tục mua sắm
+                      </button>
+                    </Link>
+                  </div>)}
+
               </div>
             ) : (
               <div className="Ivite_loho ">
-                {" "}
-                <div className="flex flex-col">
-                  <div className="ml-auto mr-auto">
-                    <BsCartCheck size="150px" color="gray" />
-                  </div>
-                  <div className="text-[20px] mt-3 text-gray-400 text-center">
-                    Không tìm thấy đơn hàng
-                  </div>
-                  <Link to="/">
-                    <button className="bg-black text-white w-[25%] h-[35px] text-center ml-auto mr-auto rounded-md mt-2">
-                      Tiếp tục mua sắm
-                    </button>
-                  </Link>
-                </div>
+                {getOrder.length != 0 ? (
+                  <TableAntd orderData={getOrder} />
+                ) : (
+                  <div className="flex flex-col">
+                    <div className="ml-auto mr-auto">
+                      <BsCartCheck size="150px" color="gray" />
+                    </div>
+                    <div className="text-[20px] mt-3 text-gray-400 text-center">
+                      Không tìm thấy đơn hàng
+                    </div>
+                    <Link to="/">
+                      <button className="bg-black text-white w-[25%] h-[35px] text-center ml-auto mr-auto rounded-md mt-2">
+                        Tiếp tục mua sắm
+                      </button>
+                    </Link>
+                  </div>)}
+
               </div>
             )}
           </div>
