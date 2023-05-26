@@ -1,8 +1,6 @@
 import { AiOutlineSearch } from "react-icons/ai";
 import { GrPowerReset } from "react-icons/gr";
 import { Button, Input, Space, Table, Modal } from "antd";
-
-
 import Highlighter from 'react-highlight-words';
 import { useState } from "react";
 import { useRef } from "react";
@@ -118,7 +116,7 @@ const TableAntd = ({ orderData }) => {
             ...getColumnSearchProps('key'),
             sorter: (a, b) => a.key - b.key,
             sortDirections: ['descend', 'ascend'],
-            
+
         },
         {
             title: 'Sản phẩm',

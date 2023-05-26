@@ -12,6 +12,10 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 const test = "test";
+const apis = axios.create({
+  baseURL: "https://api-thuongmai.vercel.app",
+});
+
 
 export const loadUser = () => async (dispath) => {
   const localUser = JSON.parse(localStorage.getItem("user_infos"));
@@ -32,8 +36,8 @@ export const signin = (data2, navigate) => async (dispatch) => {
     toast.error("Tài khoản của bạn đã bị khóa. Vui lòng thử lại sau.");
     return;
   }
-  axios
-    .get(`http://localhost:5000/api/users/find/${data2.email}`)
+  apis
+    .get(`/api/users/find/${data2.email}`)
     .then((result) => {
       console.log(result.data.isBlocked);
       if (result.data.isBlocked == true) {
@@ -71,8 +75,8 @@ export const signin = (data2, navigate) => async (dispatch) => {
             "lockoutTime",
             currentTime.toString()
           );
-          await axios
-            .post(`http://localhost:5000/api/users/block-user/${data2.email}`)
+          await apis
+            .post(`/api/users/block-user/${data2.email}`)
             .then((result) => {
               console.log(result);
               toast.error("Tài khoản đã bị khóa");
@@ -109,8 +113,8 @@ export const signin = (data2, navigate) => async (dispatch) => {
             "lockoutTime",
             currentTime.toString()
           );
-          await axios
-            .post(`http://localhost:5000/api/users/block-user/${data2.email}`)
+          await apis
+            .post(`/api/users/block-user/${data2.email}`)
             .then((result) => {
               console.log(result);
               toast.error("Tài khoản đã bị khóa");
