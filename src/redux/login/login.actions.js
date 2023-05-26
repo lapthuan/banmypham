@@ -7,12 +7,12 @@ import {
   UPDATE_GET_SUCCESS,
   LOGOUT_GET,
 } from "./login.types";
+
 export const login = (creds) => async (dispatch) => {
   dispatch({ type: LOGIN_GET_LOADING });
   try {
     let res = await axios.post("http://localhost:5000/api/user/login", creds);
     let data = await res.data;
-    // return console.log(res);
     return dispatch({ type: LOGIN_GET_SUCCESS, payload: data });
   } catch (e) {
     console.log(e);
@@ -22,7 +22,7 @@ export const login = (creds) => async (dispatch) => {
 
 export const logout = () => {
   // to remove all userinfo at the time of user logout
-  toast.success("Đăng xuất thành công")
+  toast.success("Đăng xuất thành công");
   return {
     type: LOGOUT_GET,
   };

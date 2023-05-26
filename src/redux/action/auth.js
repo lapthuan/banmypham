@@ -8,7 +8,10 @@ import {
 } from "../const/actionsTypes";
 import * as api from "../../api/index";
 import { toast } from "react-toastify";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
+
+const test = "test";
 
 export const loadUser = () => async (dispath) => {
   const localUser = JSON.parse(localStorage.getItem("user_infos"));
@@ -19,40 +22,105 @@ export const loadUser = () => async (dispath) => {
 
 export const signin = (data2, navigate) => async (dispatch) => {
   dispatch({ type: LOGIN_GET_LOADING });
-  const MAX_LOGIN_ATTEMPTS = 4;
-  const LOCKOUT_DURATION = 30 * 1000;
+  const MAX_LOGIN_ATTEMPTS = 3;
+  const LOCKOUT_DURATION = 3 * 1000;
   const storedAttempts =
     parseInt(window.localStorage.getItem("loginAttempts")) || 0;
   const lockoutTime = parseInt(window.localStorage.getItem("lockoutTime")) || 0;
   const currentTime = new Date().getTime();
-  if (lockoutTime && currentTime - lockoutTime > LOCKOUT_DURATION) {
-    window.localStorage.setItem("loginAttempts", "0");
-    window.localStorage.setItem("lockoutTime", "0");
-  } else if (lockoutTime && currentTime - lockoutTime < LOCKOUT_DURATION) {
+  if (lockoutTime && currentTime - lockoutTime < LOCKOUT_DURATION) {
     toast.error("Tài khoản của bạn đã bị khóa. Vui lòng thử lại sau.");
     return;
   }
-
+  axios
+    .get(`http://localhost:5000/api/users/find/${data2.email}`)
+    .then((result) => {
+      console.log(result.data.isBlocked);
+      if (result.data.isBlocked == true) {
+        toast.error("Tài khoản đã bị khóa vui lòng liên hệ Admin để mở  lại");
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  window.localStorage.setItem("loginAttempts", "0");
+  window.localStorage.setItem("lockoutTime", "0");
+  console.log(currentTime - lockoutTime);
   if (storedAttempts < MAX_LOGIN_ATTEMPTS) {
     try {
       const { data } = await api.signIn(data2);
+      console.log(data);
+      if (data.isBlocked === true) {
+        toast.error("Tài khoản đã bị khóa vui lòng liên hệ Admin để mở  lại");
+        return;
+      }
       toast.success("Đăng nhập thành công");
-      window.localStorage.setItem("loginAttempts", "0");
-      window.localStorage.setItem("lockoutTime", "0");
+      await window.localStorage.setItem("loginAttempts", "0");
+      await window.localStorage.setItem("lockoutTime", "0");
       navigate("/");
       return dispatch({ type: LOGIN_GET_SUCCESS, payload: data });
     } catch (err) {
       if (err.response.data.message == "Invalid Credentials") {
         toast.error("Sai tài khoản hoặc mật khẩu");
-        window.localStorage.setItem(
+        await window.localStorage.setItem(
           "loginAttempts",
           (storedAttempts + 1).toString()
         );
         if (storedAttempts + 1 === MAX_LOGIN_ATTEMPTS) {
-          window.localStorage.setItem("lockoutTime", currentTime.toString());
-          toast.error(
-            "Bạn đã vượt quá số lần đăng nhập sai cho phép. Tài khoản của bạn sẽ bị khóa trong 5 phút."
+          await window.localStorage.setItem(
+            "lockoutTime",
+            currentTime.toString()
           );
+          await axios
+            .post(`http://localhost:5000/api/users/block-user/${data2.email}`)
+            .then((result) => {
+              console.log(result);
+              toast.error("Tài khoản đã bị khóa");
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+          // toast.error(
+          //   "Bạn đã vượt quá số lần đăng nhập sai cho phép. Tài khoản của bạn sẽ bị khóa trong 5 phút."
+          // );
+        }
+      }
+    }
+  } else if (lockoutTime && currentTime - lockoutTime > LOCKOUT_DURATION) {
+    await window.localStorage.setItem("loginAttempts", "0");
+    await window.localStorage.setItem("lockoutTime", "0");
+    try {
+      const { data } = await api.signIn(data2);
+      console.log(data);
+      await window.localStorage.setItem("loginAttempts", "0");
+      await window.localStorage.setItem("lockoutTime", "0");
+      toast.success("Đăng nhập thành công");
+      navigate("/");
+      return dispatch({ type: LOGIN_GET_SUCCESS, payload: data });
+    } catch (err) {
+      if (err.response.data.message == "Invalid Credentials") {
+        toast.error("Sai tài khoản hoặc mật khẩu");
+        await window.localStorage.setItem(
+          "loginAttempts",
+          (storedAttempts + 1).toString()
+        );
+        if (storedAttempts + 1 === MAX_LOGIN_ATTEMPTS) {
+          await window.localStorage.setItem(
+            "lockoutTime",
+            currentTime.toString()
+          );
+          await axios
+            .post(`http://localhost:5000/api/users/block-user/${data2.email}`)
+            .then((result) => {
+              console.log(result);
+              toast.error("Tài khoản đã bị khóa");
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+          // toast.error(
+          //   "Bạn đã vượt quá số lần đăng nhập sai cho phép. Tài khoản của bạn sẽ bị khóa trong 5 phút."
+          // );
         }
       }
     }
@@ -60,11 +128,15 @@ export const signin = (data2, navigate) => async (dispatch) => {
     toast.error("Đăng nhập bị khóa do quá nhiều lần đăng nhập sai.");
   }
 };
+
 export const signinGoogle = (accessToken, navigate) => async (dispatch) => {
   dispatch({ type: LOGIN_GET_LOADING });
   try {
     const { data } = await api.signInGoogle(accessToken);
-
+    if (data.isBlocked == true) {
+      toast.error("Tài khoản đã bị khóa");
+      return;
+    }
     toast.success("Đăng nhập thành công");
     navigate("/");
 
