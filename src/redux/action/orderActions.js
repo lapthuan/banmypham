@@ -8,9 +8,9 @@ import {
     GET_ODER_FAILURE,
     GET_ODER_SUCCESS,
     GET_ODER_REQUEST,
-    CANCEL_ODER_FAILURE,
-    CANCEL_ODER_REQUEST,
-    CANCEL_ODER_SUCCESS
+    GET_MONEY_FAILURE,
+    GET_MONEY_REQUEST,
+    GET_MONEY_SUCCESS
 
 } from "../const/orderConstants"
 
@@ -57,9 +57,9 @@ export const getOrderByIdUser = (Id) =>
 
     }
 
-export const CancelOrderByIdUser = (Id,Message) =>
+export const CancelOrderByIdUser = (Id, Message) =>
     async (dispatch) => {
-       
+
         try {
             api.post("/api/users/ordercancel", {
                 id: Id,
@@ -74,11 +74,27 @@ export const CancelOrderByIdUser = (Id,Message) =>
 
 
     }
+
+export const getMoney = (Id, Message) =>
+    async (dispatch) => {
+        dispatch({ type: GET_MONEY_REQUEST });
+
+        try {
+            axios.get("https://api.currencyapi.com/v3/latest?apikey=8HeOPsvWT3nKk4P1TFGIpyFK0I3JeocAl5XNwOva&currencies=EUR%2CUSD%2CVND")
+                .then((response) => {
+                    dispatch({ type: GET_MONEY_SUCCESS, payload: response.data.data })
+                })
+        } catch (error) {
+            console.log(error);
+        }
+
+
+    }
 export const resetOrder = () =>
     async (dispatch) => {
         try {
             dispatch({ type: CREATE_ODER_RESET });
-          
+
         } catch (error) {
             console.log(error);
         }

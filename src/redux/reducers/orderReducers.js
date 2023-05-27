@@ -7,9 +7,9 @@ import {
     GET_ODER_REQUEST,
     GET_ODER_SUCCESS,
     GET_ODER_RESET,
-    CANCEL_ODER_FAILURE,
-    CANCEL_ODER_REQUEST,
-    CANCEL_ODER_SUCCESS
+    GET_MONEY_FAILURE,
+    GET_MONEY_REQUEST,
+    GET_MONEY_SUCCESS
 } from "../const/orderConstants"
 
 let initialState = {
@@ -106,3 +106,26 @@ export const getOrderReducer = (state = initialStateGetOrder, action) => {
     }
 }
 
+export const getMoneyReducer = (state = {money: []}, action) => {
+    switch (action.type) {
+        case GET_MONEY_REQUEST:
+            return {
+                ...state,
+                money:[]
+            };
+
+        case GET_MONEY_FAILURE:
+            return {
+                ...state,
+                error: action.payload
+            };
+
+        case GET_MONEY_SUCCESS:
+            return {
+                ...state,
+                money: action.payload
+            };
+        default:
+            return { ...state };
+    }
+}

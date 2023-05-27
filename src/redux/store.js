@@ -11,7 +11,7 @@ import { productListReducer ,productDetailsReducer} from "./reducers/productRedu
 import { categoryListReducer,categoryDetailsReducer } from "./reducers/categoryReducers";
 import { brandListReducer,brandDetailsReducer } from "./reducers/brandReducers";
 import { cartReducer } from './reducers/cartReducers';
-import { orderReducer , getOrderReducer} from './reducers/orderReducers';
+import { orderReducer , getOrderReducer,getMoneyReducer} from './reducers/orderReducers';
 
 const rootreducer = combineReducers({
   cart: cartReducer,
@@ -25,6 +25,7 @@ const rootreducer = combineReducers({
   brandDetails: brandDetailsReducer,
   orderCreate: orderReducer,
   orderGetAll : getOrderReducer,
+  orderGetMoney: getMoneyReducer
 });
 const createcomposer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
