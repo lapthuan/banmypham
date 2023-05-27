@@ -2735,6 +2735,11 @@
   "resolved" "https://registry.npmjs.org/@popperjs/core/-/core-2.11.5.tgz"
   "version" "2.11.5"
 
+"@popperjs/core@2.11.5":
+  version "2.11.5"
+  resolved "https://registry.npmjs.org/@popperjs/core/-/core-2.11.5.tgz"
+  integrity sha512-9X2obfABZuDVLCgPK9aX0a/x4jaOEweTTWE2+9sr0Qqqevj2Uv5XorvusThmc9XGYpS9yI+fhh8RTafBtGposw==
+
 "@rc-component/context@^1.3.0":
   "integrity" "sha512-6QdaCJ7Wn5UZLJs15IEfqy4Ru3OaL5ctqpQYWd5rlfV9wwzrzdt6+kgAQZV/qdB0MUPN4nhyBfRembQCIvBf+w=="
   "resolved" "https://registry.npmjs.org/@rc-component/context/-/context-1.3.0.tgz"
@@ -3141,6 +3146,11 @@
   "integrity" "sha512-EYNwp3bU+98cpU4lAWYYL7Zz+2gryWH1qbdDTidVd6hkiR6weksdbMadyXKXNPEkQFhXM+hVO9ZygomHXp+AIw=="
   "resolved" "https://registry.npmjs.org/@types/estree/-/estree-0.0.39.tgz"
   "version" "0.0.39"
+
+"@types/estree@0.0.39":
+  version "0.0.39"
+  resolved "https://registry.npmjs.org/@types/estree/-/estree-0.0.39.tgz"
+  integrity sha512-EYNwp3bU+98cpU4lAWYYL7Zz+2gryWH1qbdDTidVd6hkiR6weksdbMadyXKXNPEkQFhXM+hVO9ZygomHXp+AIw==
 
 "@types/express-serve-static-core@*", "@types/express-serve-static-core@^4.17.18":
   "integrity" "sha512-DxMhY+NAsTwMMFHBTtJFNp5qiHKJ7TeqOo23zVEM9alT1Ml27Q3xcTH0xwxn7Q0BbMcVEJOs/7aQtUWupUQN3Q=="

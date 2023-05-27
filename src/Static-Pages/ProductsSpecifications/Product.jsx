@@ -268,6 +268,7 @@ const Product = () => {
       <div>
         <CartBlog />
       </div>
+      <div>alo</div>
       <div className="w-[90%] ml-auto mr-auto">
         <div className="px-6 pb-6 mt-6 border-t w-[100%] border-gray-300 ">
           <Tabs value="dashboard">
