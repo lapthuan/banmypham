@@ -9,7 +9,10 @@ import {
   BsChatText,
 } from "react-icons/bs";
 import img1 from "../../Image/Ivite1.jpg";
+import { useSelector } from "react-redux";
 const IviteBody = () => {
+  const { isauth } = useSelector((store) => store.login);
+  const userId = window.localStorage.getItem("userid")
   return (
     <>
       <div className="flex flex-col bg-[#f5f6f6]">
@@ -22,7 +25,8 @@ const IviteBody = () => {
           <Link to={"/Login"} className="w-[80%]">
             <div className="bor flex justify-end items-center h-[40px] ">
               <span className=" text-[14px] text-[#fe2c6d] w-[100%] text-center">
-                Đăng nhập để xem mã giới thiệu
+                {isauth ?(userId): (<Link to={"/login"} className="text-[#fe2c6d]">Đăng nhập để xem mã giới thiệu</Link>) }
+
               </span>
             </div>
           </Link>

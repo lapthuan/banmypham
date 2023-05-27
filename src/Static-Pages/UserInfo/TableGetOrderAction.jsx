@@ -1,6 +1,6 @@
-import { AiOutlineSearch, AiOutlineCloseCircle } from "react-icons/ai";
+import { AiOutlineSearch, AiOutlineCloseCircle, AiOutlineMessage } from "react-icons/ai";
 import { GrPowerReset } from "react-icons/gr";
-import { Input, Space, Table, Modal } from "antd";
+import { Input, Space, Table, Modal, message } from "antd";
 import Highlighter from 'react-highlight-words';
 import { useState } from "react";
 import { useRef } from "react";
@@ -8,13 +8,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { listProducts } from "../../redux/action/productActions";
 import { useEffect } from "react";
 import imgError from "../../Image/imgError.jpg";
+import { toast } from "react-toastify";
+import { CancelOrderByIdUser, getOrderByIdUser } from "../../redux/action/orderActions";
 
-const TableAntd = ({ orderData }) => {
+const TableAntdAction = ({ orderData }) => {
     const dispatch = useDispatch();
     const [modalProduct, setModalProduct] = useState(false);
+    const [modalCancel, setModalCancel] = useState(false);
     const [searchText, setSearchText] = useState('');
     const [searchedColumn, setSearchedColumn] = useState('');
     const [selectedOrder, setSelectedOrder] = useState([]);
+    const [messageCancel, setMessageCancel] = useState('');
+    const [idOrder, setIdOrder] = useState();
     const searchInput = useRef(null);
     const productList = useSelector((state) => state.productList);
     const { products } = productList;
@@ -22,20 +27,20 @@ const TableAntd = ({ orderData }) => {
     useEffect(() => {
         dispatch(listProducts());
     }, []);
+    const userId = window.localStorage.getItem("userid")
+    useEffect(() => {
+
+    }, [userId])
     const getProductNameById = (productId) => {
         const pro = products.find(item => item._id === productId);
-        console.log('pro :>> ', pro);
         return pro ? pro.title : 'Sản phẩm không tồn tại';
     }
-
     const getProductImagesById = (productId) => {
         const pro = products.find(item => item._id === productId);
-        console.log('pro :>> ', pro);
         return pro ? pro.images[0].url : imgError;
     }
     const getProductPriceById = (productId) => {
         const pro = products.find(item => item._id === productId);
-        console.log('pro :>> ', pro);
         return pro ? pro.price : 0;
     }
 
@@ -48,6 +53,26 @@ const TableAntd = ({ orderData }) => {
         setSelectedOrder(JSON.parse(products));
         setModalProduct(true);
     };
+    const showModalCancel = (id) => {
+        setIdOrder(id)
+        setModalCancel(true);
+    };
+    const handleCancelOrder = () => {
+        if (messageCancel == '') {
+            toast.warning("Bạn chưa nhập lí do hủy");
+            return
+        }
+        console.log('idOrder :>> ', idOrder);
+        console.log('Message :>> ', messageCancel);
+
+        dispatch(CancelOrderByIdUser(idOrder, messageCancel))
+        
+        setModalCancel(false);
+        setTimeout(() => {
+            dispatch(getOrderByIdUser(userId))
+        }, 2000);
+
+    }
 
     const handleSearch = (selectedKeys, confirm, dataIndex) => {
         confirm();
@@ -136,6 +161,7 @@ const TableAntd = ({ orderData }) => {
 
     orderData.map((item, index) => {
         const data = {
+            id: item._id,
             key: index + 1,
             products: JSON.stringify(item.products),
             payment: item.paymentIntent.name,
@@ -151,7 +177,7 @@ const TableAntd = ({ orderData }) => {
             title: 'STT',
             dataIndex: 'key',
             key: 'key',
-            width: '10%',
+            width: '5%',
             ...getColumnSearchProps('key'),
             sorter: (a, b) => a.key - b.key,
             sortDirections: ['descend', 'ascend'],
@@ -160,14 +186,14 @@ const TableAntd = ({ orderData }) => {
         {
             title: 'Sản phẩm',
             key: 'products',
-            width: '20%',
+            width: '25%',
             render: (text, record) => (
                 <button className="text-white bg-[#fe2c6d] hover:bg-[#fe2c6d]/90 focus:ring-4 focus:outline-none focus:ring-[#fe2c6d]/50 font-medium rounded-lg text-sm px-3.5 py-2 text-center inline-flex items-center mr-2 mb-2" onClick={() => showModal(record.products)}>Chi tiết ({JSON.parse(record.products).length})</button>
             ),
             // ...getColumnSearchProps('products'),
         },
         {
-            title: 'Phương thức thanh toán',
+            title: 'Thanh toán',
             dataIndex: 'payment',
             key: 'payment',
             width: '30%',
@@ -177,7 +203,7 @@ const TableAntd = ({ orderData }) => {
             title: 'Tổng tiền',
             dataIndex: 'total',
             key: 'total',
-            width: '20%',
+            width: '10%',
             ...getColumnSearchProps('total'),
             sorter: (a, b) => a.total - b.total,
             sortDirections: ['descend', 'ascend'],
@@ -186,8 +212,15 @@ const TableAntd = ({ orderData }) => {
             title: 'Trạng thái',
             dataIndex: 'status',
             key: 'status',
-            width: '20%',
+            width: '15%',
             ...getColumnSearchProps('status'),
+        },
+        {
+            title: 'Hành động',
+            width: '15%',
+            render: (text, record) => (
+                <button className="text-white bg-[#fe2c6d] hover:bg-[#fe2c6d]/90 focus:ring-4 focus:outline-none focus:ring-[#fe2c6d]/50 font-medium rounded-lg text-sm px-3.5 py-2 text-center inline-flex items-center mr-2 mb-2" onClick={() => showModalCancel(record.id)}>Hủy</button>
+            ),
         },
     ];
 
@@ -199,12 +232,31 @@ const TableAntd = ({ orderData }) => {
                 }}
                 columns={columns}
                 dataSource={arr} />
-    
+            <Modal
+                title="Hủy đơn hàng"
+                onCancel={() => setModalCancel(false)}
+                open={modalCancel}
+                footer={[
+                    <button onClick={() => setModalCancel(false)} type="button" className="text-white bg-[#fe2c6d] hover:bg-[#fe2c6d]/90 focus:ring-4 focus:outline-none focus:ring-[#fe2c6d]/50 font-medium rounded-lg text-sm px-3.5 py-2 text-center inline-flex items-center mr-2 mb-2">
+                        <AiOutlineCloseCircle />
+                        <p className="mx-1">Đóng</p>
+
+                    </button>,
+                    <button onClick={() => handleCancelOrder()} type="button" className="text-white bg-[#fe2c6d] hover:bg-[#fe2c6d]/90 focus:ring-4 focus:outline-none focus:ring-[#fe2c6d]/50 font-medium rounded-lg text-sm px-3.5 py-2 text-center inline-flex items-center mr-2 mb-2">
+                        <AiOutlineMessage />
+                        <p className="mx-1">Gửi</p>
+                    </button>
+                ]}>
+
+                <label for="message" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nội dung</label>
+                <textarea onChange={(e) => setMessageCancel(e.target.value)} id="message" rows="4" className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Nhập lí do hủy đơn hàng"></textarea>
+
+            </Modal>
             <Modal
                 title="Tất cả sản phẩm"
                 onCancel={() => setModalProduct(false)}
                 open={modalProduct}
-                
+
                 width="70%  "
                 footer={[
                     <button onClick={() => setModalProduct(false)} type="button" className="text-white bg-[#fe2c6d] hover:bg-[#fe2c6d]/90 focus:ring-4 focus:outline-none focus:ring-[#fe2c6d]/50 font-medium rounded-lg text-sm px-3.5 py-2 text-center inline-flex items-center mr-2 mb-2">
@@ -249,4 +301,4 @@ const TableAntd = ({ orderData }) => {
         ;
 };
 
-export default TableAntd;
+export default TableAntdAction;

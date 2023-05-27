@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./UserAcount.css";
+import "./css/UserAcount.css";
 import { AiOutlineUser } from "react-icons/ai";
 import { HiOutlineKey } from "react-icons/hi";
 import { TfiMapAlt } from "react-icons/tfi";

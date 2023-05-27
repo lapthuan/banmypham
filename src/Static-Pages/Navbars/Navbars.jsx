@@ -20,6 +20,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../redux/login/login.actions";
 import deleteIcon from "../../Image/icon-delete.svg";
 import { loadCart, removeItem } from "../../redux/action/cartActions";
+import { listProducts } from "../../redux/action/productActions";
 
 const Navbars = ({ cartProductQuantity, setCartProductQuantity }) => {
   const [isNavExpanded, setIsNavExpanded] = useState(false);
@@ -39,7 +40,9 @@ const Navbars = ({ cartProductQuantity, setCartProductQuantity }) => {
   useEffect(() => {
     dispatch(loadCart())
   }, []);
-
+  useEffect(() => {
+    dispatch(listProducts());
+  }, []);
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
 
@@ -113,9 +116,8 @@ const Navbars = ({ cartProductQuantity, setCartProductQuantity }) => {
         </form>
 
         <div
-          class="nav-items"
           className={
-            isNavExpanded ? "navigation-menu expanded" : "navigation-menu"
+            isNavExpanded ? " nav-items navigation-menu expanded" : " nav-items navigation-menu"
           }
         >
           <ul>
@@ -141,7 +143,7 @@ const Navbars = ({ cartProductQuantity, setCartProductQuantity }) => {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                   >
-                    <Menu.Items style={{zIndex: 99}} className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                    <Menu.Items style={{ zIndex: 99 }} className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                       <Menu.Item>
                         {({ active }) => (
                           <Link
@@ -197,11 +199,11 @@ const Navbars = ({ cartProductQuantity, setCartProductQuantity }) => {
                 <div>
                   <Menu.Button>
                     <div className="flex icon-container">
-                      <div class=" flex justify-center items-center">
-                        <div class="relative py-2">
-                          <div class="t-0 absolute left-3">
+                      <div className=" flex justify-center items-center">
+                        <div className="relative py-2">
+                          <div className="t-0 absolute left-3">
                             {cartItems.length > 0 && (
-                              <p class="flex h-2 w-2 items-center justify-center rounded-full bg-red-500 p-3 text-xs text-white">
+                              <p className="flex h-2 w-2 items-center justify-center rounded-full bg-red-500 p-3 text-xs text-white">
                                 {cartItems.length}
                               </p>
                             )}
@@ -223,7 +225,7 @@ const Navbars = ({ cartProductQuantity, setCartProductQuantity }) => {
                   leaveFrom="transform opacity-100 scale-100"
                   leaveTo="transform opacity-0 scale-95"
                 >
-                  <Menu.Items style={{zIndex: 99}} className="absolute right-0 z-10 mt-2 w-[350px] origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                  <Menu.Items style={{ zIndex: 99 }} className="absolute right-0 z-10 mt-2 w-[350px] origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                     <div className="cart__heading p-3">
                       <h4 className="fs-600 fw-700 darkGrayishBlue">
                         Thông báo
@@ -281,11 +283,11 @@ const Navbars = ({ cartProductQuantity, setCartProductQuantity }) => {
                 <div>
                   <Menu.Button>
                     <div className="flex icon-container">
-                      <div class=" flex justify-center items-center">
-                        <div class="relative py-2">
-                          <div class="t-0 absolute left-3">
+                      <div className=" flex justify-center items-center">
+                        <div className="relative py-2">
+                          <div className="t-0 absolute left-3">
                             {cartItems.length > 0 && (
-                              <p class="flex h-2 w-2 items-center justify-center rounded-full bg-red-500 p-3 text-xs text-white">
+                              <p className="flex h-2 w-2 items-center justify-center rounded-full bg-red-500 p-3 text-xs text-white">
                                 {cartItems.length}
                               </p>
                             )}
@@ -296,7 +298,7 @@ const Navbars = ({ cartProductQuantity, setCartProductQuantity }) => {
                             viewBox="0 0 24 24"
                             stroke-width="1.5"
                             stroke="currentColor"
-                            class="file: mt-4 h-7 w-7"
+                            className="file: mt-4 h-7 w-7"
                           >
                             <path
                               stroke-linecap="round"
@@ -318,7 +320,7 @@ const Navbars = ({ cartProductQuantity, setCartProductQuantity }) => {
                   leaveFrom="transform opacity-100 scale-100"
                   leaveTo="transform opacity-0 scale-95"
                 >
-                  <Menu.Items style={{zIndex: 99}} className="absolute right-0 z-99 mt-2 w-[450px] origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                  <Menu.Items style={{ zIndex: 99 }} className="absolute right-0 z-99 mt-2 w-[450px] origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                     <div className="cart__heading p-3">
                       <h4 className="fs-600 fw-700 darkGrayishBlue">
                         Giỏ hàng
@@ -507,12 +509,12 @@ const Navbars = ({ cartProductQuantity, setCartProductQuantity }) => {
                 <div>
                   <Menu.Button>
                     <div className="flex icon-container">
-                      <div class=" flex justify-center items-center">
-                        <div class="relative py-2">
-                          <div class="t-0 absolute left-3">
+                      <div className=" flex justify-center items-center">
+                        <div className="relative py-2">
+                          <div className="t-0 absolute left-3">
                             <Link to={"/Carts"}>
                               {cartItems.length > 0 && (
-                                <p class="flex h-2 w-2 items-center justify-center rounded-full bg-red-500 p-3 text-xs text-white">
+                                <p className="flex h-2 w-2 items-center justify-center rounded-full bg-red-500 p-3 text-xs text-white">
                                   {cartItems.length}
                                 </p>
                               )}
@@ -524,7 +526,7 @@ const Navbars = ({ cartProductQuantity, setCartProductQuantity }) => {
                             viewBox="0 0 24 24"
                             stroke-width="1.5"
                             stroke="currentColor"
-                            class="file: mt-4 h-7 w-7"
+                            className="file: mt-4 h-7 w-7"
                           >
                             <path
                               stroke-linecap="round"

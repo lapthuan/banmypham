@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./UserInfor.css";
+import "./css/UserInfor.css";
 import { Link } from "react-router-dom";
 import UsrAcount from "./UserAcount";
 import User from "./User";

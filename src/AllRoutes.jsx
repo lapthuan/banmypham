@@ -53,7 +53,6 @@ function AllRoutes() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(loadUser());
-    console.log("hello");
   }, []);
 
   return (

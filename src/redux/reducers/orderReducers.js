@@ -7,6 +7,9 @@ import {
     GET_ODER_REQUEST,
     GET_ODER_SUCCESS,
     GET_ODER_RESET,
+    CANCEL_ODER_FAILURE,
+    CANCEL_ODER_REQUEST,
+    CANCEL_ODER_SUCCESS
 } from "../const/orderConstants"
 
 let initialState = {
@@ -18,7 +21,7 @@ let initialState = {
 
 
 let initialStateGetOrder = {
-    isloadingGetOrder: false,
+    isloadingGetOrder: true,
     iserrorGetOrder: false,
     issuccessGetOrder: false,
     getOrder: []
@@ -65,15 +68,16 @@ export const orderReducer = (state = initialState, action) => {
 
 export const getOrderReducer = (state = initialStateGetOrder, action) => {
     switch (action.type) {
-        case GET_ODER_FAILURE:
+        case GET_ODER_REQUEST:
             return {
                 ...state,
                 isloadingGetOrder: true,
                 iserrorGetOrder: false,
                 issuccessGetOrder: false,
+                getOrder:[]
             };
 
-        case GET_ODER_REQUEST:
+        case GET_ODER_FAILURE:
             return {
                 ...state,
                 isloadingGetOrder: false,
@@ -101,3 +105,4 @@ export const getOrderReducer = (state = initialStateGetOrder, action) => {
             return { ...state };
     }
 }
+

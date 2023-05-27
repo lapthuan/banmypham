@@ -1,14 +1,17 @@
 import axios from "axios";
+import { toast } from "react-toastify";
 import {
     CREATE_ODER_FAILURE,
     CREATE_ODER_REQUEST,
     CREATE_ODER_SUCCESS,
     CREATE_ODER_RESET,
-    CATEGORY_LIST_FAILURE,
-    CATEGORY_LIST_REQUEST,
-    CATEGORY_LIST_SUCCESS,
     GET_ODER_FAILURE,
-    GET_ODER_SUCCESS
+    GET_ODER_SUCCESS,
+    GET_ODER_REQUEST,
+    CANCEL_ODER_FAILURE,
+    CANCEL_ODER_REQUEST,
+    CANCEL_ODER_SUCCESS
+
 } from "../const/orderConstants"
 
 const api = axios.create({
@@ -17,7 +20,7 @@ const api = axios.create({
 
 export const createOrder = (cartItems, payment, shipping, userId, totalprice) =>
     async (dispatch) => {
-        dispatch({ type: CREATE_ODER_FAILURE });
+        dispatch({ type: CREATE_ODER_REQUEST });
         try {
             api.post("/api/users/createorder",
                 {
@@ -30,7 +33,7 @@ export const createOrder = (cartItems, payment, shipping, userId, totalprice) =>
 
                     dispatch({ type: CREATE_ODER_SUCCESS, payload: Response.data.newOrder })
                 }).catch((error) => {
-                    dispatch({ type: CREATE_ODER_REQUEST, payload: Response })
+                    dispatch({ type: CREATE_ODER_FAILURE, payload: error })
                     console.log('error :>> ', error);
                 })
 
@@ -40,12 +43,30 @@ export const createOrder = (cartItems, payment, shipping, userId, totalprice) =>
     }
 export const getOrderByIdUser = (Id) =>
     async (dispatch) => {
-        dispatch({type : GET_ODER_FAILURE})
+        dispatch({ type: GET_ODER_REQUEST })
         try {
-            api.post("/api/users/findorder",{
+            api.post("/api/users/findorder", {
                 iduser: Id
-            }).then((response)=>{
-                dispatch({type : GET_ODER_SUCCESS , payload: response.data})
+            }).then((response) => {
+                dispatch({ type: GET_ODER_SUCCESS, payload: response.data })
+            })
+        } catch (error) {
+            console.log(error);
+        }
+
+
+    }
+
+export const CancelOrderByIdUser = (Id,Message) =>
+    async (dispatch) => {
+       
+        try {
+            api.post("/api/users/ordercancel", {
+                id: Id,
+                message: Message
+            }).then((response) => {
+                console.log(response);
+                toast.success("Đã gửi yêu cầu hủy đơn")
             })
         } catch (error) {
             console.log(error);
@@ -57,6 +78,7 @@ export const resetOrder = () =>
     async (dispatch) => {
         try {
             dispatch({ type: CREATE_ODER_RESET });
+          
         } catch (error) {
             console.log(error);
         }

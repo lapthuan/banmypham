@@ -1,37 +1,24 @@
 import React from "react";
-import { useState } from "react";
-import axios from "axios";
 import imgError from "../../Image/imgError.jpg";
 import "./Sales.module.css";
 import { AiOutlineHeart } from "react-icons/ai";
-import { useEffect } from "react";
 import TreeSelects from "./Treeselect";
 import image from "../../Image/1683787781.webp";
 import Stars from "./Stars";
-import Pagination from "./Pagination";
-import { Link, Navigate, useSearchParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { listProducts } from "../../redux/action/productActions";
 import FilTer from "./filter";
+import { listProducts } from "../../redux/action/productActions";
+import { useEffect } from "react";
 
 const Sales = () => {
-  const [products, setProducts] = useState([]);
-  const [sort_x, setSort_x] = useState("");
   const dispatch = useDispatch();
   const productList = useSelector((state) => state.productList);
-
-  useEffect(() => {
-    if (productList) {
-      if (productList.products) setProducts([...productList.products]);
-    }
-  }, [productList]);
-
+  const { products, loading } = productList;
   useEffect(() => {
     dispatch(listProducts());
-  }, []);
-
-  console.log(products.length);
-  return products.length != 0 ? (
+}, []);
+  return loading === false ? (
     <div className="main__sales">
       <div className="navigation_tab ">
         <div className="flex flex-wrap list-reset pt-3 pb-3 py-4 px-4 mb-4 bg-gray-200 rounded ">
@@ -93,7 +80,7 @@ const Sales = () => {
                         </div>
                         <img
                           src={
-                            item.images[0] == undefined
+                            item.images[0] === undefined
                               ? imgError
                               : item.images[0].url
                           }
@@ -113,9 +100,9 @@ const Sales = () => {
                           <p className="text-left text-black font-bold mt-2">
                             {item.price
                               ? item.price.toLocaleString("vi-VN", {
-                                  style: "currency",
-                                  currency: "VND",
-                                })
+                                style: "currency",
+                                currency: "VND",
+                              })
                               : ""}
                           </p>
                         </div>
