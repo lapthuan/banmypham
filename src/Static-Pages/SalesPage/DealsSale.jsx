@@ -71,11 +71,13 @@ const DealsSale = () => {
                       alt="product_img"
                     />
                   </div>
-                  <p className={styles.product__sale}>{item.title}</p>
-                  <div className="mt-9">
+                  <p className="text-left text-black font-bold text-lg mt-2">
+                    {item.title.slice(0, 45)}...
+                  </p>
+                  <div className="mt-3">
                     <Stars stars={item.totalrating} />
                   </div>
-                  <p className={styles.product__price}>
+                  <p className="text-left text-black font-bold text-lg mt-2">
                     {" "}
                     {item.price
                       ? item.price.toLocaleString("vi-VN", {
