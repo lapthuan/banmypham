@@ -22,7 +22,11 @@ import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import axios from "axios";
-import { createOrder, getMoney, resetOrder } from "../redux/action/orderActions";
+import {
+  createOrder,
+  getMoney,
+  resetOrder,
+} from "../redux/action/orderActions";
 import { resetCart } from "../redux/action/cartActions";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 const steps = [
@@ -82,9 +86,15 @@ const Stepper = () => {
   const dispatch = new useDispatch();
   let total = JSON.parse(localStorage.getItem("total")) || 0;
   const [userId, setUserId] = useState(localStorage.getItem("userid") || "");
-  const [userName, setUserName] = useState(localStorage.getItem("username") || "");
-  const [userMobile, setUserMobile] = useState(localStorage.getItem("usermobile") || "");
-  const [userEmail, setUserEmail] = useState(localStorage.getItem("useremail") || "");
+  const [userName, setUserName] = useState(
+    localStorage.getItem("username") || ""
+  );
+  const [userMobile, setUserMobile] = useState(
+    localStorage.getItem("usermobile") || ""
+  );
+  const [userEmail, setUserEmail] = useState(
+    localStorage.getItem("useremail") || ""
+  );
   const [currentStep, setCurrentStep] = useState(1);
   const [complete, setComplete] = useState(false);
   const [shipping, setShipping] = useState();
@@ -101,7 +111,7 @@ const Stepper = () => {
   const orderCreate = useSelector((state) => state.orderCreate);
   const { isloading, issuccess, order } = orderCreate;
   const orderMoney = useSelector((state) => state.orderGetMoney);
-  const { money } = orderMoney
+  const { money } = orderMoney;
 
   useEffect(() => {
     dispatch(getMoney());
@@ -112,7 +122,7 @@ const Stepper = () => {
       setTotalprice(price);
       if (money) {
         const usdValue = price / money.VND.value;
-        setUsdAmount(usdValue.toFixed(2))
+        setUsdAmount(usdValue.toFixed(2));
       }
     }
   }, [shipping]);
@@ -145,15 +155,15 @@ const Stepper = () => {
     setCurrentStep((prev) => prev + 1);
   };
 
-
   return (
     <>
       <div className="flex justify-between z-10">
         {steps?.map((step, i) => (
           <div
             key={i}
-            className={`step-item ${currentStep === i + 1 && "active"} ${(i + 1 < currentStep || complete) && "complete"
-              } `}
+            className={`step-item ${currentStep === i + 1 && "active"} ${
+              (i + 1 < currentStep || complete) && "complete"
+            } `}
           >
             <div className="step">
               {i + 1 < currentStep || complete ? (
@@ -210,17 +220,17 @@ const Stepper = () => {
                 <div className="h-[350px] overflow-y-scroll">
                   <form className="mt-5 grid gap-6">
                     {payments.map((item, index) => (
-
                       <div className="relative" key={item.id}>
-                        {item.name == "PayPal" ? (<input
-                          className="peer hidden"
-                          id={`radio_${index}`}
-                          type="radio"
-                          name="radio"
-                          onClick={() => setPayment(item)}
-                          required
-                          checked
-                        />
+                        {item.name == "PayPal" ? (
+                          <input
+                            className="peer hidden"
+                            id={`radio_${index}`}
+                            type="radio"
+                            name="radio"
+                            onClick={() => setPayment(item)}
+                            required
+                            checked
+                          />
                         ) : (
                           <input
                             className="peer hidden"
@@ -265,7 +275,6 @@ const Stepper = () => {
                         type="radio"
                         name="radio"
                         onClick={() => setShipping(item)}
-
                       />
                       <span className="peer-checked:border-gray-700 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
                       <label
@@ -458,10 +467,16 @@ const Stepper = () => {
                   <h3 className="">PayPal</h3>
                   <p className="text-gray-400 font-normal">
                     {" "}
-                    Với PayPal, người dùng có thể tạo tài khoản miễn phí và liên kết nó với tài khoản ngân hàng của mình hoặc thẻ tín dụng để thực hiện các giao dịch trực tuyến. PayPal cung cấp một phương thức an toàn và bảo mật để chuyển tiền và mua sắm trực tuyến mà không cần tiết lộ thông tin tài chính cá nhân cho người nhận.
+                    Với PayPal, người dùng có thể tạo tài khoản miễn phí và liên
+                    kết nó với tài khoản ngân hàng của mình hoặc thẻ tín dụng để
+                    thực hiện các giao dịch trực tuyến. PayPal cung cấp một
+                    phương thức an toàn và bảo mật để chuyển tiền và mua sắm
+                    trực tuyến mà không cần tiết lộ thông tin tài chính cá nhân
+                    cho người nhận.
                   </p>
                 </div>
-              ) : currentStep == 3 && payment?.name == "Nhận hàng thanh toán" ? (
+              ) : currentStep == 3 &&
+                payment?.name == "Nhận hàng thanh toán" ? (
                 <div className="lg:pt-64 sm:pt-2">
                   <p className="text-xl font-medium">Nhận hàng thanh toán</p>
                   <p className="text-gray-400">
@@ -472,7 +487,9 @@ const Stepper = () => {
                     vận chuyển.
                   </p>
                 </div>
-              ) : <></>}
+              ) : (
+                <></>
+              )}
               {currentStep == 4 ? (
                 <div></div>
               ) : (
@@ -526,7 +543,12 @@ const Stepper = () => {
                 Đặt hàng
               </button>
             ) : currentStep == 3 && payment?.name == "PayPal" ? (
-              <PayPalScriptProvider options={{ "client-id": "AWdV3fBfwbxlAQyQO1FpzMo9tzwsNy2dCo1TiGxsZwro_qFF8MD9x6Kruo3Uwj3BH5uyc_-FoW5BzjLW" }}>
+              <PayPalScriptProvider
+                options={{
+                  "client-id":
+                    "AWdV3fBfwbxlAQyQO1FpzMo9tzwsNy2dCo1TiGxsZwro_qFF8MD9x6Kruo3Uwj3BH5uyc_-FoW5BzjLW",
+                }}
+              >
                 <PayPalButtons
                   createOrder={(data, actions) => {
                     return actions.order.create({
@@ -544,18 +566,19 @@ const Stepper = () => {
                     return actions.order.capture().then((details) => {
                       console.log(details);
 
-                      if (details.status == "COMPLETED")
-                        handerClickCheckOut()
-                      toast.success("Thanh toán thành công")
+                      if (details.status == "COMPLETED") handerClickCheckOut();
+                      toast.success("Thanh toán thành công");
                     });
                   }}
                 />
               </PayPalScriptProvider>
-            ) : (<></>)}
+            ) : (
+              <></>
+            )}
           </div>
         </div>
       ) : (
-        <div className="h-[400px]">
+        <div>
           <div class="pyro">
             <div class="before"></div>
             <div class="after"></div>
@@ -570,7 +593,7 @@ const Stepper = () => {
           </div>
 
           <Link to={"/sale"}>
-            <button className="mt-4 mb-8 lg:w-[20%] sm:w-full md:w-1/3 rounded-md bg-[#fe2c6d] px-6 py-3 font-medium text-white  ">
+            <button className="mt-4 mb-8 text-[15px] lg:w-[20%] sm:w-full md:w-1/3 rounded-md bg-[#fe2c6d] px-6 py-3 font-medium text-white  ">
               Tiếp tục mua hàng
             </button>
           </Link>
