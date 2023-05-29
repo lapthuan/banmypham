@@ -6,7 +6,16 @@ import { BsBagCheck } from "react-icons/bs";
 import { FaUserFriends } from "react-icons/fa";
 import { FaStore } from "react-icons/fa";
 import { BsCoin } from "react-icons/bs";
+import { useTranslation } from "react-i18next";
+
 function Top() {
+  const { t } = useTranslation();
+  const { i18n } = useTranslation();
+
+  const handleLanguageChange = (event) => {
+    const selectedLanguage = event.target.value;
+    i18n.changeLanguage(selectedLanguage);
+  };
   return (
     <div>
       <div className="AdBottom_mainCon">
@@ -26,18 +35,28 @@ function Top() {
             </section>
           </div>
           <div className="Ab_div">
+            <div className="mr-5">
+              <select
+                onChange={handleLanguageChange}
+                className="appearance-none bg-no-repeat bg-right pr-8 pl-3 h-8 border rounded text-[15px]"
+              >
+                <option value="en" className="">
+                  English
+                </option>
+                <option value="vi" className="">
+                  Tiếng Việt
+                </option>
+              </select>
+            </div>
             <div className="AdBottom_div">
-              <div size="25px" />
               <FaStore />
-              <p>Cửa hàng</p>
+              <p>{t("navtop1")}</p>
             </div>
             <div className="AdBottom_div">
-              <div size="25px" />
               <FaTruck />
-              <p>Kiểm tra đơn hàng </p>
+              <p>{t("navtop2")} </p>
             </div>
             <div className="AdBottom_div">
-              <div size="25px" />
               <BsCoin /> <p>Luxucoin</p>
             </div>
           </div>

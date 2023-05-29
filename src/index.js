@@ -8,7 +8,7 @@ import { CartStateContext } from "./Static-Pages/Context/CartContext";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
 import { GoogleOAuthProvider } from "@react-oauth/google";
-
+import i18n from "../src/Static-Pages/i18n/i18n";
 const root = ReactDOM.createRoot(document.getElementById("fb-root"));
 root.render(
   // <React.StrictMode>

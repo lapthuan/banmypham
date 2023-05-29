@@ -9,8 +9,10 @@ import img2 from "../../Image/1647316643.webp";
 import img3 from "../../Image/1672817926.webp";
 import img4 from "../../Image/1682067960.webp";
 import img5 from "../../Image/1682270821.webp";
+import { useTranslation } from "react-i18next";
 import { Rate } from "antd";
 const FeaturedCard = () => {
+  const { t } = useTranslation();
   const settings = {
     dots: true,
     infinite: true,
@@ -66,7 +68,7 @@ const FeaturedCard = () => {
         <div className="flex justify-between">
           <h1 className="text-[22px] mt-10 font-bold">HOT DEAL</h1>
           <div className="flex">
-            <h1 className="text-[15px] mt-10">Xem Tất Cả</h1>
+            <h1 className="text-[15px] mt-10">{t("xemtatca")}</h1>
           </div>
         </div>
 

@@ -38,9 +38,9 @@ const Navbars = ({ cartProductQuantity, setCartProductQuantity }) => {
 
   // let cartData = JSON.parse(localStorage.getItem("cartItems")) || []
   useEffect(() => {
-    dispatch(loadCart())
+    dispatch(loadCart());
   }, []);
- 
+
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
 
@@ -85,7 +85,7 @@ const Navbars = ({ cartProductQuantity, setCartProductQuantity }) => {
         <div className="logo">
           <Link to="/">
             {" "}
-            <p className="mt-4 text-black text-[40px]">LUXUBU</p>
+            <p className="mt-4 text-black text-[40px]">LUXUBU </p>
           </Link>
         </div>
 
@@ -115,7 +115,9 @@ const Navbars = ({ cartProductQuantity, setCartProductQuantity }) => {
 
         <div
           className={
-            isNavExpanded ? " nav-items navigation-menu expanded" : " nav-items navigation-menu"
+            isNavExpanded
+              ? " nav-items navigation-menu expanded"
+              : " nav-items navigation-menu"
           }
         >
           <ul>
@@ -141,7 +143,10 @@ const Navbars = ({ cartProductQuantity, setCartProductQuantity }) => {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                   >
-                    <Menu.Items style={{ zIndex: 99 }} className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                    <Menu.Items
+                      style={{ zIndex: 99 }}
+                      className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                    >
                       <Menu.Item>
                         {({ active }) => (
                           <Link
@@ -223,7 +228,10 @@ const Navbars = ({ cartProductQuantity, setCartProductQuantity }) => {
                   leaveFrom="transform opacity-100 scale-100"
                   leaveTo="transform opacity-0 scale-95"
                 >
-                  <Menu.Items style={{ zIndex: 99 }} className="absolute right-0 z-10 mt-2 w-[350px] origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                  <Menu.Items
+                    style={{ zIndex: 99 }}
+                    className="absolute right-0 z-10 mt-2 w-[350px] origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                  >
                     <div className="cart__heading p-3">
                       <h4 className="fs-600 fw-700 darkGrayishBlue">
                         Thông báo
@@ -318,7 +326,10 @@ const Navbars = ({ cartProductQuantity, setCartProductQuantity }) => {
                   leaveFrom="transform opacity-100 scale-100"
                   leaveTo="transform opacity-0 scale-95"
                 >
-                  <Menu.Items style={{ zIndex: 99 }} className="absolute right-0 z-99 mt-2 w-[450px] origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                  <Menu.Items
+                    style={{ zIndex: 99 }}
+                    className="absolute right-0 z-99 mt-2 w-[450px] origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                  >
                     <div className="cart__heading p-3">
                       <h4 className="fs-600 fw-700 darkGrayishBlue">
                         Giỏ hàng

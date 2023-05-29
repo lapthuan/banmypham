@@ -12,8 +12,10 @@ import img5 from "../../Image/1682270821.webp";
 import { FcFlashOn } from "react-icons/fc";
 import FlipClockCountdown from "@leenguyen/react-flip-clock-countdown";
 import "@leenguyen/react-flip-clock-countdown/dist/index.css";
+import { useTranslation } from "react-i18next";
 import { Rate } from "antd";
 const CartSale = () => {
+  const { t } = useTranslation();
   const settings = {
     dots: true,
     infinite: true,
@@ -70,7 +72,7 @@ const CartSale = () => {
           <div className="flex justify-between bg-[#fe2c6d] h-[50px]">
             <div className="text-[15px] sm:text-[15px]  lg:text-[20px]  text-black font-bold flex text-black">
               <FcFlashOn size="40px" className="mt-2" />
-              <div className="mt-3 text-[20px]">DEALS ĐANG DIỄN RA</div>
+              <div className="mt-3 text-[20px]">{t("sale")}</div>
               <div className="flex text-black ml-3">
                 <FlipClockCountdown
                   to={new Date().getTime() + 24 * 3600 * 1000}
@@ -82,7 +84,7 @@ const CartSale = () => {
 
             <div className="flex">
               <div className="text-[18px] rounded-md  text-center justify-center mt-3 text-black mr-3 ">
-                Xem tất cả
+                {t("xemtatca")}
               </div>
             </div>
           </div>
