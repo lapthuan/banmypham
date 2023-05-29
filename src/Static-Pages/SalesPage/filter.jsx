@@ -8,7 +8,88 @@ import {
   faChevronRight,
   faChevronDown,
 } from "@fortawesome/free-solid-svg-icons";
+const modalStyles = {
+  overlay: {
+    zIndex: 50,
+    display: "flex",
+    alignItems: "flex-end",
+    justifyContent: "center",
+    position: "none",
+    backgroundColor: "none",
+  },
+  content: {
+    position: "absolute",
+    inset: "235px 300px 0px 50%",
+    bottom: 0,
+    left: "50%",
+    transform: "translateX(-79%) translateY(100%)",
+    width: "80%",
+    maxWidth: 400,
+    maxHeight: 200,
+    margin: "0 auto",
+    padding: "1rem",
+    borderRadius: "0.5rem",
+    boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)",
+    transition: "transform 0.3s ease-in-out",
+    backgroundColor: "#ffffff",
+    outline: "none",
+  },
+};
 
+const modalPrice = {
+  overlay: {
+    zIndex: 50,
+    display: "flex",
+    alignItems: "flex-end",
+    justifyContent: "center",
+    position: "none",
+    backgroundColor: "none",
+  },
+  content: {
+    position: "absolute",
+    inset: "235px 300px 0px 50%",
+    bottom: 0,
+    left: "50%",
+    transform: "translateX(-79%) translateY(70%)",
+    width: "80%",
+    maxWidth: 400,
+    maxHeight: 283,
+    margin: "0 auto",
+    padding: "1rem",
+    borderRadius: "0.5rem",
+    boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)",
+    transition: "transform 0.3s ease-in-out",
+    backgroundColor: "#ffffff",
+    outline: "none",
+  },
+};
+const modalCategory = {
+  overlay: {
+    zIndex: 50,
+    display: "flex",
+    alignItems: "flex-end",
+    justifyContent: "center",
+    position: "none",
+    backgroundColor: "none",
+  },
+  content: {
+    position: "absolute",
+    inset: "236px 0px 36px 60%",
+    bottom: 0,
+    left: "50%",
+    transform: "translateX(-79%) translateY(70%)",
+    width: "80%",
+    maxWidth: 400,
+    maxHeight: 283,
+    margin: "0 auto",
+    padding: "1rem",
+    borderRadius: "0.5rem",
+    boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)",
+    transition: "transform 0.3s ease-in-out",
+    backgroundColor: "#ffffff",
+    outline: "none",
+  },
+};
 const Filter = () => {
   const dispatch = new useDispatch()
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -98,13 +179,12 @@ const Filter = () => {
     }
 
   };
-
   const handleOutOfStockChange = (e) => {
     setInStock(e.target.value)
   };
   const handleFindButtonClick = () => {
 
-    console.log(minPrice, maxPrice, selectedBrands, inStock, selectedCategorys);
+
     dispatch(findProductsPrice(minPrice, maxPrice, JSON.stringify(selectedBrands) == '[]' ? '' : JSON.stringify(selectedBrands), inStock,
       JSON.stringify(selectedCategorys) == '[]' ? '' : JSON.stringify(selectedCategorys)
     ))
@@ -117,93 +197,17 @@ const Filter = () => {
     setIsModalOpenBranch(false);
     setIsModalOpenPrice(false);
     setIsModalOpen(false);
-
+    setIsModalOpenCategory(false);
+    setMinPrice('')
+    setMaxPrice('')
+    setInStock('')
+    setSelectedBrands('')
+    setSelectedCategorys('')
     dispatch(listProducts());
 
   };
 
-  const modalStyles = {
-    overlay: {
-      zIndex: 50,
-      display: "flex",
-      alignItems: "flex-end",
-      justifyContent: "center",
-      position: "none",
-      backgroundColor: "none",
-    },
-    content: {
-      position: "absolute",
-      inset: "235px 300px 0px 50%",
-      bottom: 0,
-      left: "50%",
-      transform: "translateX(-79%) translateY(100%)",
-      width: "80%",
-      maxWidth: 400,
-      maxHeight: 200,
-      margin: "0 auto",
-      padding: "1rem",
-      borderRadius: "0.5rem",
-      boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)",
-      transition: "transform 0.3s ease-in-out",
-      backgroundColor: "#ffffff",
-      outline: "none",
-    },
-  };
 
-  const modalPrice = {
-    overlay: {
-      zIndex: 50,
-      display: "flex",
-      alignItems: "flex-end",
-      justifyContent: "center",
-      position: "none",
-      backgroundColor: "none",
-    },
-    content: {
-      position: "absolute",
-      inset: "235px 300px 0px 50%",
-      bottom: 0,
-      left: "50%",
-      transform: "translateX(-79%) translateY(70%)",
-      width: "80%",
-      maxWidth: 400,
-      maxHeight: 283,
-      margin: "0 auto",
-      padding: "1rem",
-      borderRadius: "0.5rem",
-      boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)",
-      transition: "transform 0.3s ease-in-out",
-      backgroundColor: "#ffffff",
-      outline: "none",
-    },
-  };
-  const modalCategory = {
-    overlay: {
-      zIndex: 50,
-      display: "flex",
-      alignItems: "flex-end",
-      justifyContent: "center",
-      position: "none",
-      backgroundColor: "none",
-    },
-    content: {
-      position: "absolute",
-      inset: "236px 0px 36px 60%",
-      bottom: 0,
-      left: "50%",
-      transform: "translateX(-79%) translateY(70%)",
-      width: "80%",
-      maxWidth: 400,
-      maxHeight: 283,
-      margin: "0 auto",
-      padding: "1rem",
-      borderRadius: "0.5rem",
-      boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)",
-      transition: "transform 0.3s ease-in-out",
-      backgroundColor: "#ffffff",
-      outline: "none",
-    },
-  };
   return (
     <div className="h-[100px] w-[100%]">
       <div className="bg-[#fff] relative w-[100%] z-99">

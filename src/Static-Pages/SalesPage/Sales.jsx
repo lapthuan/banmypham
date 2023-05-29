@@ -17,13 +17,20 @@ const Sales = () => {
   const dispatch = useDispatch();
   const productList = useSelector((state) => state.productList);
   const { products, loading } = productList;
+  const brandlist = useSelector((state) => state.brandList)
+  const { brands } = brandlist
+  const categorylist = useSelector((state) => state.categoryList)
+  const { categorys } = categorylist
   useEffect(() => {
-    dispatch(listbrand())
-    dispatch(listProducts());
-    dispatch(listCategory());
+    if (!products)
+      dispatch(listProducts());
+    if (!brands)
+      dispatch(listbrand())
+    if (!categorys)
+      dispatch(listCategory());
+
   }, []);
 
-  console.log(products);
   return (
     <div className="main__sales">
       <div className="navigation_tab ">
@@ -52,7 +59,7 @@ const Sales = () => {
 
             <div className="space-y-1">
               <div>
-               
+
                 <div className="hidden md:block">
                   <img src={image} alt="" />
                 </div>

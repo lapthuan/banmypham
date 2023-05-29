@@ -27,7 +27,7 @@ const IviteNav = () => {
         </div>
       </div>
       <div className="Iv_content">
-        <Link to="/Login" className="flex">
+        <Link to="/Invite" className="flex">
           <div>
             <RiCoupon3Line size={25} color="black" />
           </div>
