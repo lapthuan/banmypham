@@ -211,12 +211,12 @@ const Footer2 = () => {
             <MDBCol md="3" lg="4" xl="3" className="mx-auto mb-4">
               <h1 className="text fw-bold mb-4 ">LUXUBU</h1>
               <p>
-                <p className="text-reset">
-                  Lixibox - Bringing affordable luxury to the urban population
+                <p className="text-[15px] text-[#a0a1a2]">
+                  LuXuBu - Đẹp tận gốc rễ
                 </p>
               </p>
               {/* <p>
-                <a href="#!" className="text-reset">
+                <a href="#!" className="text-[15px] text-[#a0a1a2]">
                   Delivery Information
                 </a>
               </p> */}
@@ -225,32 +225,32 @@ const Footer2 = () => {
             <MDBCol md="2" lg="2" xl="2" className="mx-auto mb-4">
               <h6 className="text-uppercase fw-bold mb-4">Danh Mục</h6>
               <p>
-                <a href="#!" className="text-reset">
+                <a className="text-[15px] text-[#a0a1a2] hover:text-[#ff2b70]">
                   Quà tặng
                 </a>
               </p>
-              <p>
-                <a href="#!" className="text-reset">
+              <p className="mt-2">
+                <a className="text-[15px] text-[#a0a1a2] hover:text-[#ff2b70]">
                   Hộp quà làm đẹp
                 </a>
               </p>
-              <p>
-                <a href="#!" className="text-reset">
+              <p className="mt-2">
+                <a className="text-[15px] text-[#a0a1a2] hover:text-[#ff2b70]">
                   Phụ kiện
                 </a>
               </p>
-              <p>
-                <a href="#!" className="text-reset">
+              <p className="mt-2">
+                <a className="text-[15px] text-[#a0a1a2] hover:text-[#ff2b70]">
                   Chăm sóc da
                 </a>
               </p>
-              <p>
-                <a href="#!" className="text-reset">
+              <p className="mt-2">
+                <a className="text-[15px] text-[#a0a1a2] hover:text-[#ff2b70]">
                   Trang điểm
                 </a>
               </p>
-              <p>
-                <a href="#!" className="text-reset">
+              <p className="mt-2">
+                <a className="text-[15px] text-[#a0a1a2] hover:text-[#ff2b70]">
                   Thực phẩm chức năng
                 </a>
               </p>
@@ -258,28 +258,43 @@ const Footer2 = () => {
 
             <MDBCol md="3" lg="2" xl="2" className="mx-auto mb-4">
               <h6 className="text-uppercase fw-bold mb-4">Hướng dẫn</h6>
-              <p>
-                <a href="#!" className="text-reset">
+              <p className="mt-2">
+                <a
+                  href="#!"
+                  className="text-[15px] text-[#a0a1a2] hover:text-[#ff2b70]"
+                >
                   HDSD & Bảo hành
                 </a>
               </p>
-              <p>
-                <a href="#!" className="text-reset">
+              <p className="mt-2">
+                <a
+                  href="#!"
+                  className="text-[15px] text-[#a0a1a2] hover:text-[#ff2b70]"
+                >
                   Hướng dẫn đặt hàng
                 </a>
               </p>
-              <p>
-                <a href="#!" className="text-reset">
+              <p className="mt-2">
+                <a
+                  href="#!"
+                  className="text-[15px] text-[#a0a1a2] hover:text-[#ff2b70]"
+                >
                   Phương thức giao hàng
                 </a>
               </p>
-              <p>
-                <a href="#!" className="text-reset">
+              <p className="mt-2">
+                <a
+                  href="#!"
+                  className="text-[15px] text-[#a0a1a2] hover:text-[#ff2b70]"
+                >
                   Chính sách đổi trả
                 </a>
               </p>
-              <p>
-                <a href="#!" className="text-reset">
+              <p className="mt-2">
+                <a
+                  href="#!"
+                  className="text-[15px] text-[#a0a1a2] hover:text-[#ff2b70]"
+                >
                   Chính sách bảo mật
                 </a>
               </p>
@@ -287,23 +302,35 @@ const Footer2 = () => {
 
             <MDBCol md="4" lg="3" xl="3" className="mx-auto mb-md-0 mb-4">
               <h6 className="text-uppercase fw-bold mb-4">Thông tin</h6>
-              <p>
-                <a href="#!" className="text-reset">
+              <p className="mt-2">
+                <a
+                  href="#!"
+                  className="text-[15px] text-[#a0a1a2] hover:text-[#ff2b70]"
+                >
                   Giới thiệu về Luxubu
                 </a>
               </p>
-              <p>
-                <a href="#!" className="text-reset">
+              <p className="mt-2">
+                <a
+                  href="#!"
+                  className="text-[15px] text-[#a0a1a2] hover:text-[#ff2b70]"
+                >
                   Chương trình Luxubu
                 </a>
               </p>
-              <p>
-                <a href="#!" className="text-reset">
+              <p className="mt-2">
+                <a
+                  href="#!"
+                  className="text-[15px] text-[#a0a1a2] hover:text-[#ff2b70]"
+                >
                   Hỗ trợ đơn hàng
                 </a>
               </p>
-              <p>
-                <a href="#!" className="text-reset">
+              <p className="mt-2">
+                <a
+                  href="#!"
+                  className="text-[15px] text-[#a0a1a2] hover:text-[#ff2b70]"
+                >
                   Mời bạn bè nhận thưởng ngay
                 </a>
               </p>
@@ -311,8 +338,11 @@ const Footer2 = () => {
           </MDBRow>
         </MDBContainer>
       </section>
-      <div className="text-center p-4" style={{ backgroundColor: "#191b1d" }}>
-        © 2023 - Bản quyền của Công Ty Cổ Phần Sachi - www.luxubu.com
+      <div
+        className="text-center text-[15px] p-4"
+        style={{ backgroundColor: "#191b1d" }}
+      >
+        © 2023 - Bản quyền của Công Ty Cổ Phần LUXU - www.luxubu.com
       </div>
     </MDBFooter>
   );
