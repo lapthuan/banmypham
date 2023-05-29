@@ -22,12 +22,12 @@ const Sales = () => {
   const categorylist = useSelector((state) => state.categoryList)
   const { categorys } = categorylist
   useEffect(() => {
-    if (!products)
+    if (!products || products?.length == 0)
       dispatch(listProducts());
-    if (!brands)
+    if (!brands || brands?.length == 0)
       dispatch(listbrand())
-    if (!categorys)
-      dispatch(listCategory());
+    if (!categorys || categorys?.length == 0)
+      dispatch(listCategory()); 
 
   }, []);
 
@@ -46,17 +46,12 @@ const Sales = () => {
             </Link>
           </li>
         </div>
-        {/* <span className={styles.home_hover}>Trang chủ</span> <span>/</span>{" "}
-        <span>Tất cả sản phẩm</span> */}
+      
       </div>
 
       <div className="container max-w-screen-xl mx-auto px-4">
         <div className="flex flex-col md:flex-row -mx-4">
           <aside className="md:w-1/3 lg:w-1/4 px-4 py-4">
-            {/* <div className="md:hidden mb-5  w-full text-center px-4 py-2 inline-block text-lg text-gray-700 bg-white shadow-sm border border-gray-200 rounded-md hover:bg-gray-100 hover:text-blue-600">
-              Lọc sản phẩm
-            </div> */}
-
             <div className="space-y-1">
               <div>
 
