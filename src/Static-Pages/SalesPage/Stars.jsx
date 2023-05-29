@@ -9,11 +9,11 @@ const Stars = (props) => {
     return (
       <span key={index}>
         {stars >= index + 1 ? (
-          <FaStar color="black" />
+          <FaStar size={16} color="#fe2c6d" />
         ) : stars >= number ? (
-          <FaStarHalfAlt color="black" />
+          <FaStarHalfAlt size={16} color="#fe2c6d" />
         ) : (
-          <FaRegStar color="black" />
+          <FaRegStar size={16} color="#fe2c6d" />
         )}
       </span>
     );

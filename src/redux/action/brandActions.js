@@ -14,18 +14,17 @@ const api = axios.create({
 
 export const listbrand = () =>
     async (dispatch) => {
-        try {
-            dispatch({ type: BRAND_DETAILS_REQUEST });
+        dispatch({ type: BRAND_LIST_REQUEST });
 
+        try {
             const { data } = await api.get(
                 `/api/brand/`
             );
-
-            dispatch({ type: BRAND_DETAILS_SUCCESS, payload: data });
+            dispatch({ type: BRAND_LIST_SUCCESS, payload: data });
 
         } catch (error) {
             dispatch({
-                type: BRAND_DETAILS_FAILURE,
+                type: BRAND_LIST_FAILURE,
                 payload:
                     error.response && error.response.data.message
                         ? error.response.data.message

@@ -10,6 +10,7 @@ import {
 
 const api = axios.create({
     baseURL: "https://api-thuongmai.vercel.app",
+    // baseURL: "http://localhost:5000",
 });
 
 export const listProducts = () =>
@@ -20,6 +21,28 @@ export const listProducts = () =>
             const { data } = await api.get(
                 `/api/product/`
             );
+
+            dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data });
+
+        } catch (error) {
+            dispatch({
+                type: PRODUCT_LIST_FAILURE,
+                payload:
+                    error.response && error.response.data.message
+                        ? error.response.data.message
+                        : error.message,
+            });
+        }
+    };
+export const findProductsPrice = (minPrice, maxPrice,idBrand,inStock,idCategory) =>
+    async (dispatch) => {
+        try {
+            dispatch({ type: PRODUCT_LIST_REQUEST });
+
+            const { data } = await api.get(
+                `/api/product/findproduct?minPrice=${minPrice}&maxPrice=${maxPrice}&idBrand=${idBrand}&inStock=${inStock}&idCategory=${idCategory}`
+            );
+            console.log(`/api/product/findproduct?minPrice=${minPrice}&maxPrice=${maxPrice}&idBrand=${idBrand}&inStock=${inStock}&idCategory=${idCategory}`)
 
             dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data });
 

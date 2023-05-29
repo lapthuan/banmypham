@@ -17,15 +17,13 @@ export const categoryListReducer = (state = { categorys: [] }, action) => {
 			return {
 				loading: false,
 				categorys: action.payload,
-				// page: action.payload.page,
-				// pages: action.payload.pages,
 			};
 
 		case CATEGORY_LIST_FAILURE:
 			return { loading: false, error: action.payload };
 
 		default:
-			return { state };
+			return { ...state };
 	}
 };
 

@@ -1,21 +1,40 @@
 import React, { useState, useEffect } from "react";
-import { BiChevronDown } from "react-icons/bi";
 import "./filter.css";
 import Modal from "react-modal";
+import { useDispatch, useSelector } from "react-redux";
+import { findProductsPrice, listProducts } from "../../redux/action/productActions";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faChevronRight,
+  faChevronDown,
+} from "@fortawesome/free-solid-svg-icons";
+
 const Filter = () => {
+  const dispatch = new useDispatch()
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalOpenPrice, setIsModalOpenPrice] = useState(false);
   const [isModalOpenBranch, setIsModalOpenBranch] = useState(false);
+  const [isModalOpenCategory, setIsModalOpenCategory] = useState(false);
+  const [minPrice, setMinPrice] = useState('');
+  const [maxPrice, setMaxPrice] = useState('');
+  const [selectedBrands, setSelectedBrands] = useState([]);
+  const [selectedCategorys, setSelectedCategorys] = useState([]);
+  const [inStock, setInStock] = useState('');
+  const [selectIDPrice, setSelectIDPrice] = useState();
+  const brandlist = useSelector((state) => state.brandList)
+  const { brands } = brandlist
+  const categorylist = useSelector((state) => state.categoryList)
+  const { categorys } = categorylist
 
-  const [isInStock, setIsInStock] = useState(false);
-  const [isOutOfStock, setIsOutOfStock] = useState(false);
+  const isIdSelectedBrand = (id) => selectedBrands.includes(id);
+  const isIdSelectedCategory = (id) => selectedCategorys.includes(id);
 
-  const [isResetButtonDisabled, setIsResetButtonDisabled] = useState(true);
 
   const handleModalToggle = () => {
     if (isModalOpen == false) {
       setIsModalOpenPrice(false);
       setIsModalOpenBranch(false);
+      setIsModalOpenCategory(false);
     }
     setIsModalOpen(!isModalOpen);
   };
@@ -23,6 +42,7 @@ const Filter = () => {
   const handleModalPrice = () => {
     if (isModalOpenPrice == false) {
       setIsModalOpen(false);
+      setIsModalOpenCategory(false);
       setIsModalOpenBranch(false);
     }
     setIsModalOpenPrice(!isModalOpenPrice);
@@ -31,27 +51,76 @@ const Filter = () => {
   const handleModalBranch = () => {
     if (isModalOpenBranch == false) {
       setIsModalOpen(false);
+      setIsModalOpenCategory(false);
       setIsModalOpenPrice(false);
     }
     setIsModalOpenBranch(!isModalOpenBranch);
   };
+  const handleModalCategory = () => {
+    if (isModalOpenCategory == false) {
+      setIsModalOpen(false);
+      setIsModalOpenPrice(false);
+      setIsModalOpenBranch(false);
+    }
+    setIsModalOpenCategory(!isModalOpenCategory);
+  };
 
-  const handleInStockChange = (e) => {
-    setIsInStock(e.target.checked);
+  const handlePriceChange = (minP, maxP, index) => {
+    setMinPrice(minP)
+    setMaxPrice(maxP)
+    setSelectIDPrice(index)
+  };
+  const handleSelectCheckboxChangeCategory = (e) => {
+    const selectedCategory = e.target.value;
+    if (e.target.checked) {
+      setSelectedCategorys((prevSelectedCategorys) => [
+        ...prevSelectedCategorys,
+        selectedCategory,
+      ]);
+    } else {
+      setSelectedCategorys((prevSelectedCategorys) =>
+        prevSelectedCategorys.filter((category) => category !== selectedCategory)
+      );
+    }
+
+  };
+  const handleSelectCheckboxChange = (e) => {
+    const selectedBrand = e.target.value;
+    if (e.target.checked) {
+      setSelectedBrands((prevSelectedBrands) => [
+        ...prevSelectedBrands,
+        selectedBrand,
+      ]);
+    } else {
+      setSelectedBrands((prevSelectedBrands) =>
+        prevSelectedBrands.filter((brand) => brand !== selectedBrand)
+      );
+    }
+
   };
 
   const handleOutOfStockChange = (e) => {
-    setIsOutOfStock(e.target.checked);
+    setInStock(e.target.value)
   };
+  const handleFindButtonClick = () => {
 
+    console.log(minPrice, maxPrice, selectedBrands, inStock, selectedCategorys);
+    dispatch(findProductsPrice(minPrice, maxPrice, JSON.stringify(selectedBrands) == '[]' ? '' : JSON.stringify(selectedBrands), inStock,
+      JSON.stringify(selectedCategorys) == '[]' ? '' : JSON.stringify(selectedCategorys)
+    ))
+    setIsModalOpenBranch(false);
+    setIsModalOpenPrice(false);
+    setIsModalOpen(false);
+
+  };
   const handleResetButtonClick = () => {
-    setIsInStock(false);
-    setIsOutOfStock(false);
-  };
+    setIsModalOpenBranch(false);
+    setIsModalOpenPrice(false);
+    setIsModalOpen(false);
 
-  useEffect(() => {
-    setIsResetButtonDisabled(!(isInStock || isOutOfStock));
-  }, [isInStock, isOutOfStock]);
+    dispatch(listProducts());
+
+  };
 
   const modalStyles = {
     overlay: {
@@ -64,7 +133,7 @@ const Filter = () => {
     },
     content: {
       position: "absolute",
-      inset: "277px 300px 0px 50%",
+      inset: "235px 300px 0px 50%",
       bottom: 0,
       left: "50%",
       transform: "translateX(-79%) translateY(100%)",
@@ -92,7 +161,7 @@ const Filter = () => {
     },
     content: {
       position: "absolute",
-      inset: "277px 300px 0px 50%",
+      inset: "235px 300px 0px 50%",
       bottom: 0,
       left: "50%",
       transform: "translateX(-79%) translateY(70%)",
@@ -108,29 +177,53 @@ const Filter = () => {
       outline: "none",
     },
   };
-
+  const modalCategory = {
+    overlay: {
+      zIndex: 50,
+      display: "flex",
+      alignItems: "flex-end",
+      justifyContent: "center",
+      position: "none",
+      backgroundColor: "none",
+    },
+    content: {
+      position: "absolute",
+      inset: "236px 0px 36px 60%",
+      bottom: 0,
+      left: "50%",
+      transform: "translateX(-79%) translateY(70%)",
+      width: "80%",
+      maxWidth: 400,
+      maxHeight: 283,
+      margin: "0 auto",
+      padding: "1rem",
+      borderRadius: "0.5rem",
+      boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)",
+      transition: "transform 0.3s ease-in-out",
+      backgroundColor: "#ffffff",
+      outline: "none",
+    },
+  };
   return (
     <div className="h-[100px] w-[100%]">
       <div className="bg-[#fff] relative w-[100%] z-99">
         <div className="Filter_container">
           <div className="flex">
-            <div className="flex items-center bg-gray-200 py-2 px-4">
+            <div className="flex items-center py-2 px-4">
               <div className="flex items-center space-x-4">
                 <div className="relative">
                   <button
-                    className="bg-white py-2 px-4 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+                    className="bg-white py-2 px-4 pr-3 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
                     onClick={handleModalPrice}
                   >
                     GIÁ
                   </button>
-                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                    <svg
-                      className="fill-current h-4 w-4"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 20 20"
-                    >
-                      <path d="M10 12l-6-6 1.5-1.5L10 9.5 14.5 4 16 5.5z" />
-                    </svg>
+                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center text-gray-700">
+                    <FontAwesomeIcon
+                      icon={isModalOpenPrice ? faChevronDown : faChevronRight}
+                      className="mr-2"
+
+                    />
                   </div>
                 </div>
                 <div className="relative">
@@ -140,14 +233,12 @@ const Filter = () => {
                   >
                     TRẠNG THÁI
                   </button>
-                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                    <svg
-                      className="fill-current h-4 w-4"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 20 20"
-                    >
-                      <path d="M10 12l-6-6 1.5-1.5L10 9.5 14.5 4 16 5.5z" />
-                    </svg>
+                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center text-gray-700">
+                    <FontAwesomeIcon
+                      icon={isModalOpen ? faChevronDown : faChevronRight}
+                      className="mr-2"
+
+                    />
                   </div>
                 </div>
                 <div className="relative">
@@ -157,14 +248,27 @@ const Filter = () => {
                   >
                     THƯƠNG HIỆU
                   </button>
-                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                    <svg
-                      className="fill-current h-4 w-4"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 20 20"
-                    >
-                      <path d="M10 12l-6-6 1.5-1.5L10 9.5 14.5 4 16 5.5z" />
-                    </svg>
+                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center text-gray-700">
+                    <FontAwesomeIcon
+                      icon={isModalOpenBranch ? faChevronDown : faChevronRight}
+                      className="mr-2"
+
+                    />
+                  </div>
+                </div>
+                <div className="relative">
+                  <button
+                    className="bg-white py-2 px-4 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+                    onClick={handleModalCategory}
+                  >
+                    DANH MỤC
+                  </button>
+                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center text-gray-700">
+                    <FontAwesomeIcon
+                      icon={isModalOpenBranch ? faChevronDown : faChevronRight}
+                      className="mr-2"
+
+                    />
                   </div>
                 </div>
               </div>
@@ -175,85 +279,96 @@ const Filter = () => {
       </div>
       {isModalOpenBranch && (
         <Modal
+          ariaHideApp={false}
           isOpen={isModalOpenBranch}
           onRequestClose={handleModalBranch}
           style={modalPrice}
           contentLabel="Trạng thái"
         >
           <div className="flex flex-col">
-            <div className="flex items-center mb-2">
-              <input
-                type="checkbox"
-                onChange={handleInStockChange}
-                className="w-4 h-4 text-blue-600 mr-3 bg-gray-100 border-2 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-              />
-              <label className="text-[15px] font-medium text-black">
-                Thương hiệu 1
-              </label>
-            </div>
-            <div className="flex items-center mb-2 ">
-              <input
-                type="checkbox"
-                onChange={handleOutOfStockChange}
-                className="w-4 h-4 text-blue-600 mr-3 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-              />
-              <label className="text-[15px] font-medium text-black">
-                Thương hiệu 2
-              </label>
-            </div>
-            <div className="flex items-center mb-2 ">
-              <input
-                type="checkbox"
-                onChange={handleOutOfStockChange}
-                className="w-4 h-4 text-blue-600 mr-3 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-              />
-              <label className="text-[15px] font-medium text-black">
-                Thương hiệu 3
-              </label>
-            </div>
-            <div className="flex items-center mb-2 ">
-              <input
-                type="checkbox"
-                onChange={handleOutOfStockChange}
-                className="w-4 h-4 text-blue-600 mr-3 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-              />
-              <label className="text-[15px] font-medium text-black">
-                Thương hiệu 4
-              </label>
-            </div>
-            <div className="flex items-center mb-2 ">
-              <input
-                type="checkbox"
-                onChange={handleOutOfStockChange}
-                className="w-4 h-4 text-blue-600 mr-3 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-              />
-              <label className="text-[15px] font-medium text-black">
-                Thương hiệu 5
-              </label>
-            </div>
+            {brands?.map((item) => (
+              <div className="flex items-center mb-2">
+                <input
+                  type="checkbox"
+                  value={item._id}
+                  checked={isIdSelectedBrand(item._id)}
+                  onChange={handleSelectCheckboxChange}
+                  className="w-4 h-4 text-blue-600 mr-3 bg-gray-100 border-2 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                />
+                <label className="text-[15px] font-medium text-black">
+                  {item.title}
+                </label>
+              </div>
+            ))}
+
 
             <hr className="my-4" />
             <div className="flex justify-center">
               <button
                 className="bg-black text-white w-[40%] py-2 rounded mr-2"
-                onClick={() => {}}
+                onClick={handleFindButtonClick}
               >
                 Áp dụng
               </button>
               <button
                 className="text-black py-2 px-4 rounded"
                 onClick={handleResetButtonClick}
-                disabled={isResetButtonDisabled}
+
               >
-                Bỏ chọn
+                Bỏ lọc
               </button>
             </div>
           </div>
         </Modal>
       )}
+      {isModalOpenCategory && (
+        <Modal
+          ariaHideApp={false}
+          isOpen={isModalOpenCategory}
+          onRequestClose={handleModalCategory}
+          style={modalCategory}
+          contentLabel="Trạng thái"
+        >
+          <div className="flex flex-col ">
+            <div className="overflow-y-scroll h-[150px]">
+              {categorys?.map((item) => (
+                <div className="flex items-center mb-2 ">
+                  <input
+                    type="checkbox"
+                    value={item._id}
+                    checked={isIdSelectedCategory(item._id)}
+                    onChange={handleSelectCheckboxChangeCategory}
+                    className="w-4 h-4 text-blue-600 mr-3 bg-gray-100 border-2 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                  />
+                  <label className="text-[15px] font-medium text-black">
+                    {item.title}
+                  </label>
+                </div>
+              ))}
+            </div>
 
+            <hr className="my-4" />
+            <div className="flex justify-center">
+              <button
+                className="bg-black text-white w-[40%] py-2 rounded mr-2"
+                onClick={handleFindButtonClick}
+              >
+                Áp dụng
+              </button>
+              <button
+                className="text-black py-2 px-4 rounded"
+                onClick={handleResetButtonClick}
+
+              >
+                Bỏ lọc
+              </button>
+            </div>
+          </div>
+        </Modal>
+      )}
       {isModalOpenPrice && (
         <Modal
+          ariaHideApp={false}
           isOpen={isModalOpenPrice}
           onRequestClose={handleModalPrice}
           style={modalPrice}
@@ -263,75 +378,87 @@ const Filter = () => {
             <div className="flex items-center mb-2">
               <input
                 type="radio"
-                onChange={handleInStockChange}
-                className="w-4 h-4 text-blue-600 mr-3 bg-gray-100 border-2 rounded-xl "
+                name="priceRange"
+                checked={selectIDPrice == 1}
+                onChange={(e) => handlePriceChange(0, 100000, 1)}
+                className="w-4 h-4 text-blue-600 mr-3 bg-gray-100 border-2 rounded-xl"
               />
               <label className="text-[15px] font-medium text-black">
-                0 - 100k
-              </label>
-            </div>
-            <div className="flex items-center mb-2 ">
-              <input
-                type="radio"
-                onChange={handleInStockChange}
-                className="w-4 h-4 text-blue-600 mr-3 bg-gray-100 border-2 rounded-xl "
-              />
-              <label className="text-[15px] font-medium text-black">
-                100 - 500k
+                0đ - 100.000đ
               </label>
             </div>
             <div className="flex items-center mb-2">
               <input
                 type="radio"
-                onChange={handleInStockChange}
-                className="w-4 h-4 text-blue-600 mr-3 bg-gray-100 border-2 rounded-xl "
+                name="priceRange"
+                checked={selectIDPrice == 2}
+                onChange={(e) => handlePriceChange(100000, 500000, 2)}
+                className="w-4 h-4 text-blue-600 mr-3 bg-gray-100 border-2 rounded-xl"
               />
               <label className="text-[15px] font-medium text-black">
-                500 - 1tr
-              </label>
-            </div>
-            <div className="flex items-center mb-2 ">
-              <input
-                type="radio"
-                onChange={handleInStockChange}
-                className="w-4 h-4 text-blue-600 mr-3 bg-gray-100 border-2 rounded-xl "
-              />
-              <label className="text-[15px] font-medium text-black">
-                1tr - 2tr
+                100.000đ - 500.000đ
               </label>
             </div>
             <div className="flex items-center mb-2">
               <input
                 type="radio"
-                onChange={handleInStockChange}
-                className="w-4 h-4 text-blue-600 mr-3 bg-gray-100 border-2 rounded-xl "
+                name="priceRange"
+                checked={selectIDPrice == 3}
+                onChange={(e) => handlePriceChange(500000, 1000000, 3)}
+                className="w-4 h-4 text-blue-600 mr-3 bg-gray-100 border-2 rounded-xl"
               />
               <label className="text-[15px] font-medium text-black">
-                2tr - 5tr
+                500.000đ - 1.000.000đ
+              </label>
+            </div>
+            <div className="flex items-center mb-2">
+              <input
+                type="radio"
+                name="priceRange"
+                checked={selectIDPrice == 4}
+                onChange={(e) => handlePriceChange(1000000, 2000000, 4)}
+                className="w-4 h-4 text-blue-600 mr-3 bg-gray-100 border-2 rounded-xl"
+              />
+              <label className="text-[15px] font-medium text-black">
+                1.000.000đ - 2.000.000đ
+              </label>
+            </div>
+            <div className="flex items-center mb-2">
+              <input
+                type="radio"
+                name="priceRange"
+                checked={selectIDPrice == 5}
+                onChange={(e) => handlePriceChange(2000000, 5000000, 5)}
+                className="w-4 h-4 text-blue-600 mr-3 bg-gray-100 border-2 rounded-xl"
+              />
+              <label className="text-[15px] font-medium text-black">
+                2.000.000đ - 5.000.000đ
               </label>
             </div>
             <hr className="my-4" />
             <div className="flex justify-center">
               <button
                 className="bg-black text-white w-[40%] py-2 rounded mr-2"
-                onClick={() => {}}
+                onClick={handleFindButtonClick}
               >
                 Áp dụng
               </button>
               <button
                 className="text-black py-2 px-4 rounded"
                 onClick={handleResetButtonClick}
-                disabled={isResetButtonDisabled}
+
               >
-                Bỏ chọn
+                Bỏ lọc
               </button>
             </div>
           </div>
+
         </Modal>
       )}
 
       {isModalOpen && (
         <Modal
+          ariaHideApp={false}
           isOpen={isModalOpen}
           onRequestClose={handleModalToggle}
           style={modalStyles}
@@ -340,9 +467,11 @@ const Filter = () => {
           <div className="flex flex-col h-full">
             <div className="flex items-center mb-2">
               <input
-                type="checkbox"
-                checked={isInStock}
-                onChange={handleInStockChange}
+                type="radio"
+                value={"1"}
+                checked={inStock === "1"}
+                name="instock"
+                onChange={handleOutOfStockChange}
                 className="w-4 h-4 text-blue-600 mr-3 bg-gray-100 border-2 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
               />
               <label className="text-[15px] font-medium text-black">
@@ -351,8 +480,10 @@ const Filter = () => {
             </div>
             <div className="flex items-center ">
               <input
-                type="checkbox"
-                checked={isOutOfStock}
+                value={"0"}
+                checked={inStock === "0"}
+                name="instock"
+                type="radio"
                 onChange={handleOutOfStockChange}
                 className="w-4 h-4 text-blue-600 mr-3 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
               />
@@ -365,16 +496,15 @@ const Filter = () => {
             <div className="flex justify-center">
               <button
                 className="bg-black text-white w-[40%] py-2 rounded mr-2"
-                onClick={() => {}}
+                onClick={handleFindButtonClick}
               >
                 Áp dụng
               </button>
               <button
                 className="text-black py-2 px-4 rounded"
                 onClick={handleResetButtonClick}
-                disabled={isResetButtonDisabled}
               >
-                Bỏ chọn
+                Bỏ lọc
               </button>
             </div>
           </div>
