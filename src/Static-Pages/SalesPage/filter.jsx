@@ -183,7 +183,7 @@ const Filter = () => {
     setInStock(e.target.value)
   };
   const handleFindButtonClick = () => {
-
+   
 
     dispatch(findProductsPrice(minPrice, maxPrice, JSON.stringify(selectedBrands) == '[]' ? '' : JSON.stringify(selectedBrands), inStock,
       JSON.stringify(selectedCategorys) == '[]' ? '' : JSON.stringify(selectedCategorys)
@@ -201,8 +201,8 @@ const Filter = () => {
     setMinPrice('')
     setMaxPrice('')
     setInStock('')
-    setSelectedBrands('')
-    setSelectedCategorys('')
+    setSelectedBrands([])
+    setSelectedCategorys([])
     dispatch(listProducts());
 
   };

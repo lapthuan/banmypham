@@ -34,15 +34,15 @@ export const listProducts = () =>
             });
         }
     };
-export const findProductsPrice = (minPrice, maxPrice,idBrand,inStock,idCategory) =>
+export const findProductsPrice = (minPrice, maxPrice, idBrand, inStock, idCategory) =>
     async (dispatch) => {
         try {
             dispatch({ type: PRODUCT_LIST_REQUEST });
-
+            
             const { data } = await api.get(
                 `/api/product/findproduct?minPrice=${minPrice}&maxPrice=${maxPrice}&idBrand=${idBrand}&inStock=${inStock}&idCategory=${idCategory}`
             );
-           
+            console.log(`/api/product/findproduct?minPrice=${minPrice}&maxPrice=${maxPrice}&idBrand=${idBrand}&inStock=${inStock}&idCategory=${idCategory}`);
 
             dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data });
 
