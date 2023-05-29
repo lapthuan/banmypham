@@ -40,9 +40,7 @@ const Navbars = ({ cartProductQuantity, setCartProductQuantity }) => {
   useEffect(() => {
     dispatch(loadCart())
   }, []);
-  useEffect(() => {
-    dispatch(listProducts());
-  }, []);
+ 
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
 

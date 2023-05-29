@@ -2,7 +2,7 @@ import React from "react";
 import imgError from "../../Image/imgError.jpg";
 import "./Sales.module.css";
 import { AiOutlineHeart } from "react-icons/ai";
-import TreeSelects from "./Treeselect";
+
 import image from "../../Image/1683787781.webp";
 import Stars from "./Stars";
 import { Link } from "react-router-dom";
@@ -10,15 +10,28 @@ import { useDispatch, useSelector } from "react-redux";
 import FilTer from "./filter";
 import { listProducts } from "../../redux/action/productActions";
 import { useEffect } from "react";
+import { listbrand } from "../../redux/action/brandActions";
+import { listCategory } from "../../redux/action/categoryActions";
 
 const Sales = () => {
   const dispatch = useDispatch();
   const productList = useSelector((state) => state.productList);
   const { products, loading } = productList;
+  const brandlist = useSelector((state) => state.brandList)
+  const { brands } = brandlist
+  const categorylist = useSelector((state) => state.categoryList)
+  const { categorys } = categorylist
   useEffect(() => {
-    dispatch(listProducts());
-}, []);
-  return loading === false ? (
+    if (!products)
+      dispatch(listProducts());
+    if (!brands)
+      dispatch(listbrand())
+    if (!categorys)
+      dispatch(listCategory());
+
+  }, []);
+
+  return (
     <div className="main__sales">
       <div className="navigation_tab ">
         <div className="flex flex-wrap list-reset pt-3 pb-3 py-4 px-4 mb-4 bg-gray-200 rounded ">
@@ -43,16 +56,10 @@ const Sales = () => {
             {/* <div className="md:hidden mb-5  w-full text-center px-4 py-2 inline-block text-lg text-gray-700 bg-white shadow-sm border border-gray-200 rounded-md hover:bg-gray-100 hover:text-blue-600">
               Lọc sản phẩm
             </div> */}
-            <div className=" md:block px-6  ">
-              <div className="font-semibold mb-2 text-left text-black text-[20px] font-serif">
-                Danh mục
-              </div>
-            </div>
+
             <div className="space-y-1">
               <div>
-                <div className="items-center">
-                  <TreeSelects />
-                </div>
+
                 <div className="hidden md:block">
                   <img src={image} alt="" />
                 </div>
@@ -64,53 +71,67 @@ const Sales = () => {
               <div className="mt-4 hidden md:block">
                 <FilTer />
               </div>
-              <div className="mt-4 grid gap-y-10 gap-x-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-                {products?.map((item) => (
-                  <Link
-                    to={`/Sale/${item._id}`}
-                    className="group relative bg-color-card rounded-md shadow overflow-hidden"
-                  >
-                    <div
-                      key={item._id}
-                      className="min-h-80 aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md bg-color-basic group-hover:opacity-75 lg:aspect-none lg:h-50"
-                    >
-                      <div>
-                        <div className="wishlist">
-                          <AiOutlineHeart />
-                        </div>
-                        <img
-                          src={
-                            item.images[0] === undefined
-                              ? imgError
-                              : item.images[0].url
-                          }
-                          className="rounded-lg"
-                          alt="product_img"
-                        />
-                      </div>
-                      <hr className="w-[100%] mx-auto" />
-                      <div className="mt-2 flex justify-center pl-[10px] py-1 overflow-hidden">
+              {loading === false ? (<div className="mt-4 grid gap-y-10 gap-x-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+                {products?.length != 0 ? (
+                  <>
+                    {products?.map((item) => (
+
+                      <div
+                        key={item._id}
+                        className="shadow-md shadow-red-300 min-h-80 aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md bg-color-basic group-hover:opacity-75 lg:aspect-none lg:h-50"
+                      >
                         <div>
-                          <p className="text-sm text-[#3E4048] text-left">
-                            {item.title.slice(0, 55)}...
-                          </p>
-                          <div className="text-left mt-2">
-                            <Stars stars={item.totalrating} />
+                          <div className="wishlist px-2 py-2">
+                            <AiOutlineHeart className="text-2xl text-[#fe2c6d]" />
                           </div>
-                          <p className="text-left text-black font-bold mt-2">
-                            {item.price
-                              ? item.price.toLocaleString("vi-VN", {
-                                style: "currency",
-                                currency: "VND",
-                              })
-                              : ""}
-                          </p>
+                          <Link
+                            to={`/Sale/${item._id}`}
+                            className="group relative bg-color-card rounded-md shadow overflow-hidden"
+                          >
+                            <img
+                              src={
+                                item.images[0] === undefined
+                                  ? imgError
+                                  : item.images[0].url
+                              }
+                              className="rounded-lg"
+                              alt="product_img"
+                            />
+                          </Link>
                         </div>
+                        <hr className="w-[100%] mx-auto text-[#fe2c6d]" />
+                        <Link
+                          to={`/Sale/${item._id}`}
+                          className="group relative bg-color-card rounded-md shadow overflow-hidden"
+                        >
+                          <div className="mt-2 flex justify-center pl-[10px] py-1 overflow-hidden">
+                            <div>
+                              <p className="text-sm text-[#3E4048] text-left">
+                                {item.title.slice(0, 55)}...
+                              </p>
+                              <div className="text-left mt-2">
+                                <Stars stars={item.totalrating} />
+                              </div>
+                              <p className="text-left text-black font-bold text-lg mt-2">
+                                {item.price
+                                  ? item.price.toLocaleString("vi-VN", {
+                                    style: "currency",
+                                    currency: "VND",
+                                  })
+                                  : ""}
+                              </p>
+                            </div>
+                          </div>
+                        </Link>
                       </div>
-                    </div>
-                  </Link>
-                ))}
-              </div>
+                    ))}
+                  </>)
+                  : (<div className="text-center">Không tìm thấy sản phẩm</div>)}
+
+              </div>) : (
+                <div>Loading...</div>
+              )}
+
 
               {/* <div
             className={`${styles.sort_page} ${styles.responsive__sort_page}`}
@@ -125,11 +146,9 @@ const Sales = () => {
             </div>
           </main>
         </div>
-      </div>
-    </div>
-  ) : (
-    <div>Loading...</div>
-  );
+      </div >
+    </div >
+  )
 };
 
 export default Sales;

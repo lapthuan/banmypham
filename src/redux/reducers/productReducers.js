@@ -25,7 +25,7 @@ export const productListReducer = (state = {loading: false, products: [] }, acti
 			return { loading: false, error: action.payload };
 
 		default:
-			return { state };
+			return { ...state };
 	}
 };
 

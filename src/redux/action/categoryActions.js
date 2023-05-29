@@ -15,17 +15,17 @@ const api = axios.create({
 export const listCategory = () =>
     async (dispatch) => {
         try {
-            dispatch({ type: CATEGORY_DETAILS_REQUEST });
+            dispatch({ type: CATEGORY_LIST_REQUEST });
 
             const { data } = await api.get(
                 `/api/category/`
             );
 
-            dispatch({ type: CATEGORY_DETAILS_SUCCESS, payload: data });
+            dispatch({ type: CATEGORY_LIST_SUCCESS, payload: data });
 
         } catch (error) {
             dispatch({
-                type: CATEGORY_DETAILS_FAILURE,
+                type: CATEGORY_LIST_FAILURE,
                 payload:
                     error.response && error.response.data.message
                         ? error.response.data.message

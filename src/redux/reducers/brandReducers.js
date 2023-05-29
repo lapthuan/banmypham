@@ -1,11 +1,11 @@
 
 import {
-    BRAND_DETAILS_FAILURE,
-    BRAND_DETAILS_REQUEST,
-    BRAND_DETAILS_SUCCESS,
-    BRAND_LIST_FAILURE,
-    BRAND_LIST_REQUEST,
-    BRAND_LIST_SUCCESS
+	BRAND_DETAILS_FAILURE,
+	BRAND_DETAILS_REQUEST,
+	BRAND_DETAILS_SUCCESS,
+	BRAND_LIST_FAILURE,
+	BRAND_LIST_REQUEST,
+	BRAND_LIST_SUCCESS
 } from '../const/brandConstants';
 
 export const brandListReducer = (state = { brands: [] }, action) => {
@@ -17,21 +17,19 @@ export const brandListReducer = (state = { brands: [] }, action) => {
 			return {
 				loading: false,
 				brands: action.payload,
-				// page: action.payload.page,
-				// pages: action.payload.pages,
 			};
 
 		case BRAND_LIST_FAILURE:
 			return { loading: false, error: action.payload };
 
 		default:
-			return { state };
+			return { ...state };
 	}
 };
 
 // details about a particular product
 export const brandDetailsReducer = (
-	state = { brand: { } },
+	state = { brand: {} },
 	action
 ) => {
 	switch (action.type) {
