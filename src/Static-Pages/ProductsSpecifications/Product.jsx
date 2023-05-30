@@ -17,6 +17,8 @@ import FeaturedCard2 from "../HomePage/Cart2";
 import CartBlog from "../Blog/CartBlog";
 import ShowFeedBack from "./showFeedback";
 import FeedBack from "./feedback";
+import { Input } from "antd";
+import "./StarRating.css";
 import {
   Tabs,
   TabsHeader,
@@ -24,8 +26,9 @@ import {
   Tab,
   TabPanel,
 } from "@material-tailwind/react";
-
+import { Rate } from "antd";
 const Product = () => {
+  const { TextArea } = Input;
   const params = useParams();
   let id = params.id;
   const dispatch = useDispatch();
@@ -57,6 +60,11 @@ const Product = () => {
     }
   };
 
+  const [showCommentForm, setShowCommentForm] = useState(false);
+
+  const toggleCommentForm = () => {
+    setShowCommentForm(!showCommentForm);
+  };
   return product ? (
     <main className="product">
       <div className="container-md grid product-container">
@@ -268,15 +276,139 @@ const Product = () => {
       <div>
         <CartBlog />
       </div>
-      <div>alo</div>
-      <div className="w-[90%] ml-auto mr-auto">
-        <div className="px-6 pb-6 mt-6 border-t w-[100%] border-gray-300 ">
-          <Tabs value="dashboard">
-            <TabPanel>
-              <ShowFeedBack />
-              <FeedBack />
-            </TabPanel>
-          </Tabs>
+
+      <div className="w-[90%] ml-auto mr-auto bg-[#f5f6f6]">
+        <div className=" p-4">
+          <div className="text-[25px] font-bold mr-2 text-left">Đánh giá</div>
+          <div className="flex mt-3">
+            <div className="w-[50%]">
+              <div className="mb-2">
+                <div className="text-[15px] text-left mr-2">
+                  Đánh giá trung bình
+                </div>
+              </div>
+              <div className="flex">
+                <div className="text-center flex-col items-center">
+                  <div className="text-[80px] font-bold text-center text-[#fe2c6d]">
+                    4.7
+                  </div>
+                  <div>
+                    <Rate allowHalf defaultValue={5} className="ml-28" />
+                  </div>
+                  <div className="text-[15px]">2 nhận xét</div>
+                </div>
+                <div className="text-center flex-col items-center w-[100%]">
+                  <div class="flex items-center ">
+                    <span class="text-sm font-medium text-black">5 sao</span>
+                    <div class="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-[#e8e8e8]">
+                      <div class="h-5 bg-yellow-400 rounded w-[70%]"></div>
+                    </div>
+                    <span class="text-sm font-medium text-black">70%</span>
+                  </div>
+                  <div class="flex items-center mt-2 ">
+                    <span class="text-sm font-medium text-black">4 sao</span>
+                    <div class="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-[#e8e8e8]">
+                      <div class="h-5 bg-yellow-400 rounded w-[70%]"></div>
+                    </div>
+                    <span class="text-sm font-medium text-black">70%</span>
+                  </div>
+                  <div class="flex items-center mt-2">
+                    <span class="text-sm font-medium text-black">3 sao</span>
+                    <div class="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-[#e8e8e8]">
+                      <div class="h-5 bg-yellow-400 rounded w-[70%]"></div>
+                    </div>
+                    <span class="text-sm font-medium text-black">70%</span>
+                  </div>
+                  <div class="flex items-center mt-2">
+                    <span class="text-sm font-medium text-black">2 sao</span>
+                    <div class="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-[#e8e8e8]">
+                      <div class="h-5 bg-yellow-400 rounded w-[70%]"></div>
+                    </div>
+                    <span class="text-sm font-medium text-black">70%</span>
+                  </div>
+                  <div class="flex items-center mt-2">
+                    <span class="text-sm font-medium text-black">1 sao</span>
+                    <div class="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-[#e8e8e8]">
+                      <div class="h-5 bg-yellow-400 rounded w-[70%]"></div>
+                    </div>
+                    <span class="text-sm font-medium text-black">70%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="w-[50%]">
+              <div className="mt-10 text-center items-center text-[15px]">
+                Chia sẽ nhận xét của bạn về sản phẩm
+              </div>
+              <button
+                className="mt-4 mb-8 w-[30%] text-[15px] rounded-md bg-[#fe2c6d] px-6 py-3 font-medium text-white"
+                onClick={toggleCommentForm}
+              >
+                {showCommentForm ? "Thu gọn" : "Viết bình luận"}
+              </button>
+            </div>
+          </div>
+          {showCommentForm && (
+            <div className=" bg-white w-[100%]">
+              <div className="box_comment">
+                <div className="text-left text-[15px]">
+                  Đánh giá sản phẩm này *
+                </div>
+                <div className="text-left ml-16 mt-3 mb-4">
+                  <Rate allowHalf defaultValue={0} className="start" />
+                </div>
+                <div className="text-left text-[15px]">Mô tả nhận xét *</div>
+                <div className="mt-3 mb-5">
+                  <TextArea
+                    rows={4}
+                    placeholder="Kí tự tối đa 2500"
+                    maxLength={2500}
+                  />
+                </div>
+                <button className="mb-5 w-[30%] text-[15px] rounded-md bg-[#fe2c6d] px-6 py-3 font-medium text-white">
+                  Gưi
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
+        <div className="pb-10 border-t-2">
+          <div className="flex justify-between">
+            <div className="mt-2 w-[50%]">
+              <div className="text-left ml-5 text-[15px] text-[#fe2c6d] flex">
+                Lê Hằng
+                <div className="ml-2 text-[#999]">
+                  Nước Tẩy Trang L'Oreal 3-in-1 Làm Sạch Sâu 400ml
+                </div>
+              </div>
+              <div className="text-left mt-2 ml-20 w-[20%]">
+                <Rate allowHalf defaultValue={4} />
+              </div>
+              <div className="text-left ml-5 text-[15px]">
+                Thông số ghi lại Xuất xứ của pháp nhưng sp mình mua là của Trung
+                Quốc
+              </div>
+            </div>
+            <div className="mt-2 mr-3 text-[13px]">21: 38 | 14/02/2019</div>
+          </div>
+          <div className="flex justify-between mt-3">
+            <div className="mt-2">
+              <div className="text-left ml-5 text-[15px] text-[#fe2c6d] flex">
+                Lê Văn Bê
+                <div className="ml-2 text-[#999]">
+                  Nước Tẩy Trang Tươi Mát L'Oreal 3-in-1 Dành Cho Da Dầu & Da
+                  Hỗn Hợp 400ml
+                </div>
+              </div>
+              <div className="text-left mt-2 ml-20 w-[20%]">
+                <Rate allowHalf defaultValue={1} />
+              </div>
+              <div className="text-left ml-5 text-[15px] ">
+                Xài từ thiên nga xuống vịt trời
+              </div>
+            </div>
+            <div className="mt-2 mr-3 text-[13px]">21: 41 | 26/10/2018</div>
+          </div>
         </div>
       </div>
     </main>
