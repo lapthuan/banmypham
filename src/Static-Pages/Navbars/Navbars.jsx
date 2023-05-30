@@ -85,7 +85,7 @@ const Navbars = ({ cartProductQuantity, setCartProductQuantity }) => {
         <div className="logo">
           <Link to="/">
             {" "}
-            <p className="mt-4 text-black text-[40px]">LUXUBU </p>
+            <p className="mt-[30px] text-black text-[45px]">LUXUBU </p>
           </Link>
         </div>
 
