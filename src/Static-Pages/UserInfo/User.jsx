@@ -1,31 +1,21 @@
 import React, { useState } from "react";
 import "./css/User.css";
-import { Link } from "react-router-dom";
-import { AiOutlineExclamationCircle } from "react-icons/ai";
-import {
-  MDBCol,
-  MDBContainer,
-  MDBRow,
-  MDBCard,
-  MDBCardText,
-  MDBCardBody,
-  MDBCardImage,
-} from "mdb-react-ui-kit";
-import { RiCoupon3Line } from "react-icons/ri";
+import imageUser from "../../Image/user.png"
 import imgUser from "../../Image/level-member.webp";
 const User = () => {
   const userName = localStorage.getItem("username") || "";
   const userEmail = localStorage.getItem("useremail") || "";
   const userMobile = localStorage.getItem("usermobile") || "";
   const userFirstName = localStorage.getItem("userfirstname") || "";
-
+  const userImage = localStorage.getItem("userimage") || "";
   const userCreate = localStorage.getItem("usercreatedAt") || "";
+  console.log(userImage);
   return (
     <>
       <div className="flex-col">
         <div>
           <img
-            src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
+            src={userImage?userImage:imageUser}
             alt="avatar"
             className="rounded-circle mx-auto"
             style={{ width: "100px" }}

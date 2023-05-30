@@ -12,7 +12,8 @@ import {
   AiOutlineClose,
   AiTwotoneDelete,
 } from "react-icons/ai";
-import user from "../../Image/user.png";
+import Imageuser from "../../Image/user.png";
+
 import "react-dropdown/style.css";
 import { Cart } from "./Cart";
 import { Link, useNavigate } from "react-router-dom";
@@ -26,6 +27,7 @@ const Navbars = ({ cartProductQuantity, setCartProductQuantity }) => {
   const [isNavExpanded, setIsNavExpanded] = useState(false);
   const userData = localStorage.getItem("token") || "";
   const userName = localStorage.getItem("username");
+  const userImage = localStorage.getItem("userimage");
   const [data, setdata] = useState([]);
   const [searchdata, setsearchdata] = useState("");
   const [userId, userEmail, userPassword] = userData.split(":");
@@ -129,7 +131,7 @@ const Navbars = ({ cartProductQuantity, setCartProductQuantity }) => {
                       <span className="sr-only">Open user menu</span>
                       <img
                         className="h-10 w-10 rounded-full"
-                        src={user}
+                        src={userImage ? userImage : Imageuser}
                         alt="user"
                       />
                     </Menu.Button>
@@ -448,7 +450,7 @@ const Navbars = ({ cartProductQuantity, setCartProductQuantity }) => {
                       <span className="sr-only">Open user menu</span>
                       <img
                         className="h-10 w-10 rounded-full"
-                        src={user}
+                        src={userImage ? userImage : Imageuser}
                         alt="user"
                       />
                     </Menu.Button>
