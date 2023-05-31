@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { toast } from 'react-toastify';
 import {
     REVIEW_ADD_FAILURE,
     REVIEW_ADD_REQUEST,
@@ -27,11 +28,17 @@ export const addReview = (product, userid, rate, title, review) =>
                     review: review,
                 }
             ).then((response) => {
-                if (response.data.success == true) {
-                    dispatch({ type: REVIEW_ADD_SUCCESS })
-                } else {
-                    reviewInProduct(product)
 
+                if (response.data.success == true) {
+                    api.get(`api/review/inproducs?idproduct=${product}&page=1&limit=5`).then((response) => {
+                        console.log(response);
+                        dispatch({ type: REVIEW_GET_SUCCESS, payload: response.data })
+
+                    })
+
+                    toast.success("Đánh giá của bạn đã được gửi")
+                } else {
+                    toast.warning("Bạn đã đánh giá sản phẩm này")
                 }
             })
 
@@ -51,7 +58,7 @@ export const reviewInProduct = (product) =>
     async (dispatch) => {
         dispatch({ type: REVIEW_GET_REQUEST })
         try {
-            await api.get(`api/review/inproducs?idproduct=${product}&page=1&limit=5`).then((response) => {
+            await api.get(`api/review/inproducs?idproduct=${product}&page=1&limit=20`).then((response) => {
                 console.log(response);
                 dispatch({ type: REVIEW_GET_SUCCESS, payload: response.data })
 

@@ -1,8 +1,7 @@
 import React from "react";
 import imgError from "../../Image/imgError.jpg";
 import "./Sales.module.css";
-import { AiOutlineHeart } from "react-icons/ai";
-
+import { AiOutlineHeart, AiOutlineHome, AiOutlineShoppingCart } from "react-icons/ai";
 import image from "../../Image/1683787781.webp";
 import Stars from "./Stars";
 import { Link } from "react-router-dom";
@@ -27,27 +26,35 @@ const Sales = () => {
     if (!brands || brands?.length == 0)
       dispatch(listbrand())
     if (!categorys || categorys?.length == 0)
-      dispatch(listCategory()); 
+      dispatch(listCategory());
 
   }, []);
 
   return (
     <div className="main__sales">
-      <div className="navigation_tab ">
-        <div className="flex flex-wrap list-reset pt-3 pb-3 py-4 px-4 mb-4 bg-gray-200 rounded ">
-          <li className="inline-block px-1 py-2 ">
-            <Link to="/" className=" text-text-color text-black">
-              Trang chủ
+      <nav class="container flex px-5 py-3 text-gray-700 border border-gray-200 rounded-lg  " aria-label="Breadcrumb">
+        <ol class="inline-flex pt-2 items-center space-x-1 md:space-x-3">
+          <li class="inline-flex items-center">
+            <Link to={"/"} class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-[#fe2c6d] ">
+              <AiOutlineHome />
+              <div class="ml-1 text-sm font-medium text-gray-700 hover:text-[#fe2c6d] md:ml-2 ">Trang chủ  </div>
             </Link>
           </li>
-          <li className="inline-block px-1 py-2 ">
-            <Link to="/allproduct" className=" text-text-color text-black ">
-              / Tất cả sản phẩm
-            </Link>
+          <li>
+            <div class="flex items-center">
+              <svg aria-hidden="true" class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+
+              <Link to={"/Sale"} class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-[#fe2c6d] ">
+                <AiOutlineShoppingCart />
+                <div class="ml-1 text-sm font-medium text-gray-700 hover:text-[#fe2c6d] md:ml-2 ">Tất cả sản phẩm   </div>
+              </Link>
+
+
+            </div>
           </li>
-        </div>
-      
-      </div>
+
+        </ol>
+      </nav>
 
       <div className="container max-w-screen-xl mx-auto px-4">
         <div className="flex flex-col md:flex-row -mx-4">

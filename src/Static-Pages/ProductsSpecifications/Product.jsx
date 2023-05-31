@@ -12,6 +12,8 @@ import { addItem } from "../../redux/action/cartActions";
 import { toast } from "react-toastify";
 import { listCategoryDetails } from "../../redux/action/categoryActions";
 import { listbrandDetails } from "../../redux/action/brandActions";
+import { AiOutlineHeart, AiOutlineHome, AiOutlineShoppingCart } from "react-icons/ai";
+
 import InforProduct from "./InforProduct";
 import FeaturedCard2 from "../HomePage/Cart2";
 import CartBlog from "../Blog/CartBlog";
@@ -65,7 +67,40 @@ const Product = () => {
 
 
   return product ? (
+
     <main className="product">
+      <nav class="container flex px-5 py-3 text-gray-700 border border-gray-200 rounded-lg  " aria-label="Breadcrumb">
+        <ol class="inline-flex pt-2 items-center space-x-1 md:space-x-3">
+          <li class="inline-flex items-center">
+            <Link to={"/"} class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-[#fe2c6d] ">
+              <AiOutlineHome />
+              <div class="ml-1 text-sm font-medium text-gray-700 hover:text-[#fe2c6d] md:ml-2 ">Trang chủ  </div>
+            </Link>
+          </li>
+          <li>
+            <div class="flex items-center">
+              <svg aria-hidden="true" class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+
+              <Link to={"/Sale"} class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-[#fe2c6d] ">
+                <AiOutlineShoppingCart />
+                <div class="ml-1 text-sm font-medium text-gray-700 hover:text-[#fe2c6d] md:ml-2 ">Tất cả sản phẩm   </div>
+              </Link>
+
+
+            </div>
+          </li>
+          <li>
+            <div class="flex items-center">
+              <svg aria-hidden="true" class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+              <Link to={`/${id}`} class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-[#fe2c6d] ">
+             
+                <div class="ml-1 text-sm font-medium text-gray-700 hover:text-[#fe2c6d] md:ml-2 truncate w-56">{product.title}   </div>
+              </Link>
+
+            </div>
+          </li>
+        </ol>
+      </nav>
       <div className="container-md grid product-container">
         <div className="flex product-image">
           <img
@@ -254,13 +289,13 @@ const Product = () => {
             )}
           </div>
 
-          <div>
+          {/* <div>
             <Link to="/Chat">
               <button className="bg-black text-white w-[50%] h-[40px] rounded-[8px] text-[18px]">
                 Liên hệ
               </button>
             </Link>
-          </div>
+          </div> */}
         </div>
       </div>
 
@@ -276,7 +311,7 @@ const Product = () => {
         <CartBlog />
       </div>
 
-      <FeedBack product={id}/>
+      <FeedBack product={id} />
     </main>
   ) : (
     <div>Loading..</div>
