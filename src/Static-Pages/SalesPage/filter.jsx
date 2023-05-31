@@ -183,7 +183,7 @@ const Filter = () => {
     setInStock(e.target.value)
   };
   const handleFindButtonClick = () => {
-   
+
 
     dispatch(findProductsPrice(minPrice, maxPrice, JSON.stringify(selectedBrands) == '[]' ? '' : JSON.stringify(selectedBrands), inStock,
       JSON.stringify(selectedCategorys) == '[]' ? '' : JSON.stringify(selectedCategorys)
@@ -269,8 +269,9 @@ const Filter = () => {
                   </button>
                   <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center text-gray-700">
                     <FontAwesomeIcon
-                      icon={isModalOpenBranch ? faChevronDown : faChevronRight}
-                      className="mr-2"
+
+                      icon={isModalOpenCategory ? faChevronDown : faChevronRight}
+                      className="mr-2 "
 
                     />
                   </div>
