@@ -59,7 +59,7 @@ export const reviewInProduct = (product) =>
         dispatch({ type: REVIEW_GET_REQUEST })
         try {
             await api.get(`api/review/inproducs?idproduct=${product}&page=1&limit=20`).then((response) => {
-                console.log(response);
+
                 dispatch({ type: REVIEW_GET_SUCCESS, payload: response.data })
 
             })

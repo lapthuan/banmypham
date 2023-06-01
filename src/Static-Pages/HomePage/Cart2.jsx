@@ -12,7 +12,7 @@ import img5 from "../../Image/1682270821.webp";
 import { Rate } from "antd";
 import Stars from "../SalesPage/Stars";
 const FeaturedCard2 = ({ products }) => {
-  console.log(products);
+
   const settings = {
     dots: true,
     infinite: true,

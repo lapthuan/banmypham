@@ -9,7 +9,7 @@ import { useEffect } from "react";
 const { TextArea } = Input
 const desc = ['terrible', 'bad', 'normal', 'good', 'wonderful'];
 
-const FeedBack = ({ product }) => {
+const FeedBack = ({ product, setRating }) => {
   const dispatch = new useDispatch()
   const userId = window.localStorage.getItem("userid")
 
@@ -18,15 +18,15 @@ const FeedBack = ({ product }) => {
   const [review, setReview] = useState('');
   const reviewList = useSelector((state) => state.reviewGet)
   const { reviews } = reviewList
-  console.log(reviews);
+
   useEffect(() => {
     dispatch(reviewInProduct(product))
   }, [product])
 
-  
 
+  const approvedReviews = reviews?.filter((item) => item.status === "Approved");
+  console.log(approvedReviews);
   const handlerClickSendReview = () => {
-
     dispatch(addReview(product, userId, rate, title, review))
   }
 
@@ -35,28 +35,30 @@ const FeedBack = ({ product }) => {
     return formattedDatetime
   }
 
-  const calculateRatingPercentage = (reviews, rating) => {
-    if (reviews.length === 0) return 0;
-    const totalReviews = reviews.length;
-    const ratingCount = reviews.filter(review => review.rating === rating).length;
+  const calculateRatingPercentage = (approvedReviews, rating) => {
+    if (approvedReviews.length === 0) return 0;
+    const totalReviews = approvedReviews.length;
+    const ratingCount = approvedReviews.filter(review => review.rating === rating).length;
     const percentage = (ratingCount / totalReviews) * 100;
     return percentage.toFixed(2); // Làm tròn đến 2 chữ số thập phân
   };
 
-  const calculateAverageRating = reviews => {
-    if (reviews.length === 0) return 0;
+  const calculateAverageRating = approvedReviews => {
+    if (approvedReviews.length === 0) return 0;
 
-    const totalRating = reviews.reduce((sum, review) => sum + review.rating, 0);
-    const averageRating = totalRating / reviews.length;
+    const totalRating = approvedReviews.reduce((sum, review) => sum + review.rating, 0);
+    const averageRating = totalRating / approvedReviews.length;
+    setRating(averageRating.toFixed(1))
     return averageRating.toFixed(1); // Làm tròn đến 1 chữ số thập phân
   };
-  const totalReviews = reviews.length;
-  const fiveStarPercentage = calculateRatingPercentage(reviews, 5);
-  const fourStarPercentage = calculateRatingPercentage(reviews, 4);
-  const threeStarPercentage = calculateRatingPercentage(reviews, 3);
-  const twoStarPercentage = calculateRatingPercentage(reviews, 2);
-  const oneStarPercentage = calculateRatingPercentage(reviews, 1);
-  const averageRating = calculateAverageRating(reviews);
+  const totalReviews = approvedReviews.length;
+  const fiveStarPercentage = calculateRatingPercentage(approvedReviews, 5);
+  const fourStarPercentage = calculateRatingPercentage(approvedReviews, 4);
+  const threeStarPercentage = calculateRatingPercentage(approvedReviews, 3);
+  const twoStarPercentage = calculateRatingPercentage(approvedReviews, 2);
+  const oneStarPercentage = calculateRatingPercentage(approvedReviews, 1);
+  const averageRating = calculateAverageRating(approvedReviews);
+  console.log('averageRating :>> ', Math.floor(averageRating));
   return (
     <div className="w-[90%] ml-auto mr-auto ">
       <div className=" p-4 bg-[#f5f6f6]">
@@ -74,9 +76,9 @@ const FeedBack = ({ product }) => {
                   {averageRating}
                 </div>
                 <div>
-                  <Rate allowHalf defaultValue={5} className="ml-28" />
+                  <Rate allowHalf value={averageRating} className="ml-28" style={{ color: "#fe2c6d", fontSize: "16px" }} disabled />
                 </div>
-                <div className="text-[15px]">{totalReviews} nhận xét</div>
+                <div className="pt-2 text-[15px]">{totalReviews} Đánh giá</div>
               </div>
               <div className="text-center items-center w-[40%]">
                 <div class="flex items-center">
@@ -126,44 +128,39 @@ const FeedBack = ({ product }) => {
       <div className="bg-white  w-2/4 mx-auto">
         <div class="antialiased mx-auto max-w-screen-sm">
           <h3 class="mb-4 text-2xl font-bold text-gray-900">Bình luận</h3>
-          {reviews?.length != 0 ? (<div class="space-y-4 pt-3 h-[380px] overflow-y-scroll">
-            {reviews?.map((item) => (
+          {approvedReviews?.length != 0 ?
+            (<div class="space-y-4 pt-3 h-[380px] overflow-y-scroll">
+              {approvedReviews?.map((item) =>
+              (
+                <div class="flex" key={item._id}>
+                  <div class="flex-shrink-0 mr-3">
+                    <img
+                      class="mt-2 rounded-full w-8 h-8 sm:w-10 sm:h-10"
+                      src={item.profilePicture ? item.profilePicture : imageUser}
+                      alt="avatar"
+                    />
+                  </div>
+                  <div class="flex-1 border rounded-lg px-4 py-2 sm:px-6 sm:py-4 leading-relaxed text-left">
+                    <strong>{item.user.firstname} {" "} {item.user.lastname}</strong>
+                    <br />
+                    <Rate tooltips={desc} value={item.rating} style={{ color: "#fe2c6d", position: "static" }} disabled />
+                    <br />
+                    <span class="text-xs text-gray-400">{item.title}</span>
+                    <p class="text-sm">
+                      {item.review}
+                    </p>
 
+                    <div class="mt-4 flex items-center relative">
 
-              <div class="flex" key={item._id}>
-                <div class="flex-shrink-0 mr-3">
-                  <img
-                    class="mt-2 rounded-full w-8 h-8 sm:w-10 sm:h-10"
-                    src={item.profilePicture ? item.profilePicture : imageUser}
-                    alt="avatar"
-                  />
-                </div>
-                <div class="flex-1 border rounded-lg px-4 py-2 sm:px-6 sm:py-4 leading-relaxed text-left">
-                  <strong>{item.user.firstname} {" "} {item.user.lastname}</strong>
-                  <br />
-                  <Rate tooltips={desc} onChange={setRate} value={rate} style={{ color: "#fe2c6d", position: "static" }} disabled />
-                  <br />
-                  <span class="text-xs text-gray-400">{item.title}</span>
-                  <p class="text-sm">
-                    {item.review}
-                  </p>
-
-                  <div class="mt-4 flex items-center relative">
-
-
-
-                    <div class="text-sm text-gray-400 font-medium">
-                      {formatDateTime(item.created)}
+                      <div class="text-sm text-gray-400 font-medium">
+                        {formatDateTime(item.created)}
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-
-
-            ))}
-
-
-          </div>) : (<div className="text-xs text-gray-700">Chưa có đánh giá nào</div>)}
+              )
+              )}
+            </div>) : (<div className="text-xs text-gray-700">Chưa có đánh giá nào</div>)}
 
         </div>
 
@@ -173,7 +170,7 @@ const FeedBack = ({ product }) => {
           <div className="text-left text-[15px]">
             Đánh giá sản phẩm này *
           </div>
-          <div className="text-left block mt-3 mb-4 w-1/2 flex Relative">
+          <div className="text-left mt-3 mb-4 w-1/2 flex Relative">
             <Rate tooltips={desc} onChange={setRate} value={rate} style={{ color: "#fe2c6d", fontSize: "30px", width: "30%", position: "static" }} />
 
           </div>

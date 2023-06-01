@@ -13,7 +13,7 @@ import { toast } from "react-toastify";
 import { listCategoryDetails } from "../../redux/action/categoryActions";
 import { listbrandDetails } from "../../redux/action/brandActions";
 import { AiOutlineHeart, AiOutlineHome, AiOutlineShoppingCart } from "react-icons/ai";
-
+import { Rate } from "antd"
 import InforProduct from "./InforProduct";
 import FeaturedCard2 from "../HomePage/Cart2";
 import CartBlog from "../Blog/CartBlog";
@@ -31,6 +31,7 @@ const Product = () => {
 
   const [currentProductImage, setCurrentProductImage] = useState(0);
   const [lightbox, setLightbox] = useState(false);
+  const [rating, setRating] = useState(0);
   const { isauth } = useSelector((store) => store.login);
 
   const productDetails = useSelector((state) => state.productDetails);
@@ -93,7 +94,7 @@ const Product = () => {
             <div class="flex items-center">
               <svg aria-hidden="true" class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
               <Link to={`/${id}`} class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-[#fe2c6d] ">
-             
+
                 <div class="ml-1 text-sm font-medium text-gray-700 hover:text-[#fe2c6d] md:ml-2 truncate w-56">{product.title}   </div>
               </Link>
 
@@ -183,17 +184,18 @@ const Product = () => {
           <p className="text-uppercase fw-700 fs-100 letter-spacing-1 Orange text-left">
             Danh mục : {category?.title}
           </p>
-          <h1 className="fw-700 line-height-300 fs-230 blue text-left">
+          <h1 className="fw-700 line-height-300 fs-230 blue text-left text-2xl">
             {product.title}
           </h1>
-          <p className="text-left">Nhãn hàng : {brand.title}</p>
-          <p className=" text-left">Số lượng còn : {product.quantity}</p>
-          <p className="text-left">Đã bán : {product.sold}</p>
+          <p className="text-left text-lg">Nhãn hàng : {brand.title}</p>
+          <p className=" text-left text-lg">Số lượng còn : {product.quantity}</p>
+          <p className="text-left text-lg">Đã bán : {product.sold}</p>
           {/* <p className="fw-400 line-height-500 fs-400 darkGrayishBlue">
                         {product.description}
                     </p> */}
+          <Rate allowHalf value={rating} style={{ color: "#fe2c6d", fontSize: "16px", display: "flex", position: "static" }} disabled />
           <div className="product-price">
-            <div className="discounted-price flex">
+            <div className="discounted-price flex text-lg">
               Giá :{" "}
               <span className="fw-700 blue fs-700">
                 {product.price
@@ -311,7 +313,7 @@ const Product = () => {
         <CartBlog />
       </div>
 
-      <FeedBack product={id} />
+      <FeedBack product={id} setRating={setRating} />
     </main>
   ) : (
     <div>Loading..</div>
