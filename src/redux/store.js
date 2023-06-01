@@ -13,7 +13,7 @@ import { brandListReducer, brandDetailsReducer } from "./reducers/brandReducers"
 import { cartReducer } from './reducers/cartReducers';
 import { orderReducer, getOrderReducer, getMoneyReducer } from './reducers/orderReducers';
 import { reviewAddReducer, reviewGetReducer } from './reducers/reviewReducers';
-import { blogListReducer } from './reducers/blogReducers';
+import { blogListReducer, blogDetailReducer, blogCategoryListReducer } from './reducers/blogReducers';
 
 const rootreducer = combineReducers({
   cart: cartReducer,
@@ -32,6 +32,8 @@ const rootreducer = combineReducers({
   reviewadd: reviewAddReducer,
   reviewGet: reviewGetReducer,
   blogList: blogListReducer,
+  blogDetail: blogDetailReducer,
+  bCategoryList: blogCategoryListReducer,
 });
 const createcomposer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 

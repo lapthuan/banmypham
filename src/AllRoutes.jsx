@@ -64,7 +64,6 @@ function AllRoutes() {
       <Route path="/Register" element={<Register />} />
       <Route path="/Forgotpass" element={<Forgotpass />} />
       <Route path="NewPassword/:token" element={<NewPassword />} />
-      {/* add proucts page link here  */}
       <Route path="/Login" element={<Login />} />
       <Route path="/SkinCare" element={<SkinCare />} />
       <Route path="/Hair" element={<Hair />} />
@@ -73,7 +72,7 @@ function AllRoutes() {
       <Route path="/Fragrance" element={<Fragrance />} />
       <Route path="/SelfCare" element={<Selfcare />} />
       <Route path="/blog" element={<Blog />} />
-      <Route path="/Tpost" element={<Tpost />} />
+      <Route path="/Tpost/:id" element={<Tpost />} />
       <Route path="/Invite" element={<Invite />} />
       <Route path="/Contact" element={<Contact />} />
       <Route path="/IviteBlog" element={<IviteBlog />} />
@@ -88,6 +87,8 @@ function AllRoutes() {
       <Route path="/Chat" element={<Chat />} />
       <Route path="/MessengerChat" element={<MessengerChat />} />
       <Route path="/DealsSale" element={<DealsSale />} />
+      <Route path="/Sale/:id" element={<Product />} />
+      <Route path="/Tools" element={<Tools />} />
 
       <Route
         path="/payments"
@@ -106,9 +107,8 @@ function AllRoutes() {
           </Privateroute>
         }
       />
-      {/* <Route path='/Carts' element={<Carts/>}/> */}
 
-      <Route path="/Tools" element={<Tools />} />
+
       <Route
         path="/Carts"
         element={
@@ -125,7 +125,6 @@ function AllRoutes() {
           </Privateroute>
         }
       />
-      <Route path="/Sale/:id" element={<Product />} />
 
       <Route
         path="/userinfo"

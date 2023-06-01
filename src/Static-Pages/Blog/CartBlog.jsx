@@ -10,14 +10,14 @@ import img3 from "../../Image/1672817926.webp";
 import img4 from "../../Image/1682067960.webp";
 import img5 from "../../Image/1682270821.webp";
 import { Rate } from "antd";
-const CartBlog = () => {
+const CartBlog = ({ filteredBlogs }) => {
   const settings = {
     dots: false,
     infinite: true,
     arrows: false,
     fade: false,
     speed: 500,
-    slidesToShow: 5,
+    slidesToShow: filteredBlogs.length > 5 ? 5 : filteredBlogs.length,
     slidesToScroll: 5,
     initialSlide: 0,
     responsive: [
@@ -56,11 +56,6 @@ const CartBlog = () => {
     sliderRef.current.slickPrev();
   };
 
-  const text =
-    "Những thương hiệu mỹ phẩm “affordable luxury” bạn nhất định nên follow trong năm 2023";
-  const text2 =
-    "Máy Uốn Tóc Tự Xoay Ion Âm Halio InstaCurl Premium Automatic Hair Styler Pearl White";
-
   return (
     <>
       <div className="slider">
@@ -69,114 +64,30 @@ const CartBlog = () => {
         </div>
 
         <Slider {...settings} ref={sliderRef} className="h-[300px]">
-          <div className="card flex flex-col">
-            <div className="image-container">
-              <img
-                src="https://upload.lixibox.com/system/blogs/covers/000/000/847/original/1682503238.jpg"
-                style={{
-                  height: "150px",
-                  width: "290px",
-                  marginLeft: "auto",
-                  marginRight: "auto",
-                }}
-              />
-            </div>
-            <div className="">
-              <div className="text-left text-[15px] mb-2 font-bold">
-                {text.slice(0, 50)}...
+          {filteredBlogs?.map((item) => (
+            <div className="card flex flex-col mx-auto pt-4">
+              <div className="image-container">
+                <img
+                  src={item.images[0].url}
+                  className="rounded-lg "
+                  style={{
+                    height: "150px",
+                    width: "290px",
+                    marginLeft: "auto",
+                    marginRight: "auto",
+                  }}
+                />
+              </div>
+              <div className="pt-4 mx-auto w-2/3">
+                <div className="text-center truncate text-[15px] mb-2 font-bold">
+                  {item.title}
+                </div>
               </div>
             </div>
-          </div>
-          <div className="card flex flex-col">
-            <div className="">
-              <img
-                src="https://upload.lixibox.com/system/blogs/covers/000/001/664/original/1682565610.jpg"
-                style={{
-                  height: "150px",
-                  width: "290px",
-                  marginLeft: "auto",
-                  marginRight: "auto",
-                }}
-              />
-            </div>
-            <div className="">
-              <div className="text-left text-[15px] mb-2 font-bold">
-                {text2.slice(0, 50)}...
-              </div>
-            </div>
-          </div>
-          <div className="card flex flex-col">
-            <div className="">
-              <img
-                src="https://upload.lixibox.com/system/blogs/covers/000/001/666/original/1682582233.jpg"
-                style={{
-                  height: "150px",
-                  width: "290px",
-                  marginLeft: "auto",
-                  marginRight: "auto",
-                }}
-              />
-            </div>
-            <div>
-              <div className="text-left text-[15px] mb-2 font-bold">
-                {text2.slice(0, 50)}...
-              </div>
-            </div>
-          </div>
-          <div className="card flex flex-col">
-            <div className="">
-              <img
-                src="https://upload.lixibox.com/system/blogs/covers/000/001/663/original/1682496603.jpg"
-                style={{
-                  height: "150px",
-                  width: "290px",
-                  marginLeft: "auto",
-                  marginRight: "auto",
-                }}
-              />
-            </div>
-            <div>
-              <div className="text-left text-[15px] mb-2 font-bold">
-                {text2.slice(0, 50)}...
-              </div>
-            </div>
-          </div>
-          <div className="card flex flex-col">
-            <div className="">
-              <img
-                src="https://upload.lixibox.com/system/blogs/covers/000/001/638/original/1681812017.jpg"
-                style={{
-                  height: "150px",
-                  width: "290px",
-                  marginLeft: "auto",
-                  marginRight: "auto",
-                }}
-              />
-            </div>
-            <div>
-              <div className="text-left text-[15px] mb-2 font-bold">
-                {text2.slice(0, 50)}...
-              </div>
-            </div>
-          </div>
-          <div className="card flex flex-col">
-            <div className="">
-              <img
-                src="https://upload.lixibox.com/system/blogs/covers/000/001/666/original/1682582233.jpg"
-                style={{
-                  height: "150px",
-                  width: "290px",
-                  marginLeft: "auto",
-                  marginRight: "auto",
-                }}
-              />
-            </div>
-            <div>
-              <div className="text-left text-[15px] mb-2 font-bold">
-                {text2.slice(0, 50)}...
-              </div>
-            </div>
-          </div>
+
+          ))}
+
+
         </Slider>
       </div>
     </>
