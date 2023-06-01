@@ -4,7 +4,20 @@ import axios from "axios";
 import moment from "moment";
 import "../Blog/recent.css";
 import img from "../../Image/1682067960.webp";
+import { useDispatch, useSelector } from "react-redux";
+import { blogGetAll } from "../../redux/action/blogActions";
 const RecentCard = () => {
+  const dispatch = new useDispatch()
+  const blogList = useSelector((state) => state.blogList)
+  const { blogs } = blogList
+  useEffect(() => {
+    dispatch(blogGetAll())
+  }, [])
+  const formatDateTime = (time) => {
+    const formattedDatetime = moment(time).format("HH:mm | DD/MM/YYYY");
+    return formattedDatetime
+  }
+
   const text1 =
     "Thời trang BLACKPINK tại Coachella 2023: Mang loạt hot trend lên sân khấu nhưng vẫn gây tiếc nuối 1 điểm!";
   const text2 =
@@ -59,116 +72,30 @@ const RecentCard = () => {
         </Link>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 sm:grid-cols-1 mtop w-[90%] ml-auto mr-auto">
-        <Link>
-          <div className="recentCard bg-color-card">
-            <div className="RecentC_img">
-              <img
-                src="https://upload.lixibox.com/system/blogs/covers/000/001/666/original/1682582233.jpg"
-                className="rounded-md h-[100%] w-[100%] object-cover"
-                alt=""
-              />
-            </div>
-            <div className="is-divider mt-3"></div>
-            <div className="text pt-1">
-              <h6 className="h5_location text-black text-left">
-                Thời trang BLACKPINK tại Coachella 2023: Mang loạt hot trend lên
-                sân khấu nhưng vẫn gây tiếc nuối 1 điểm!
-              </h6>
-            </div>
-          </div>
-        </Link>
-        <Link>
-          <div className="recentCard bg-color-card">
-            <div className="RecentC_img">
-              <img
-                src="https://upload.lixibox.com/system/blogs/covers/000/001/663/original/1682496603.jpg"
-                className="rounded-md h-[100%] w-[100%] object-cover"
-                alt=""
-              />
-            </div>
-            <div className="is-divider mt-3"></div>
-            <div className="text pt-1">
-              <h6 className="h5_location text-black  text-left">
-                Thời trang BLACKPINK tại Coachella 2023: Mang loạt hot trend lên
-                sân khấu nhưng vẫn gây tiếc nuối 1 điểm!
-              </h6>
-            </div>
-          </div>
-        </Link>
-        <Link>
-          <div className="recentCard bg-color-card">
-            <div className="RecentC_img">
-              <img
-                src="https://upload.lixibox.com/system/blogs/covers/000/001/638/original/1681812017.jpg"
-                className="rounded-md h-[100%] w-[100%] object-cover"
-                alt=""
-              />
-            </div>
-            <div className="is-divider mt-3"></div>
-            <div className="text pt-1">
-              <h6 className="h5_location text-black   text-left">
-                Thời trang BLACKPINK tại Coachella 2023: Mang loạt hot trend lên
-                sân khấu nhưng vẫn gây tiếc nuối 1 điểm!
-              </h6>
-            </div>
-          </div>
-        </Link>
-        <Link>
-          <div className="recentCard bg-color-card">
-            <div className="RecentC_img">
-              <img
-                src="https://upload.lixibox.com/system/blogs/covers/000/001/647/original/1682420666.jpg"
-                className="rounded-md h-[100%] w-[100%] object-cover"
-                alt=""
-              />
-            </div>
-            <div className="is-divider "></div>
-            <div className="text pt-1">
-              <h6 className="h5_location text-black   text-left">
-                Thời trang BLACKPINK tại Coachella 2023: Mang loạt hot trend lên
-                sân khấu nhưng vẫn gây tiếc nuối 1 điểm!
-              </h6>
-            </div>
-          </div>
-        </Link>
+        {blogs?.map((item) => (
 
-        <Link>
-          <div className="recentCard bg-color-card">
-            <div className="RecentC_img">
-              <img
-                src="https://upload.lixibox.com/system/blogs/covers/000/001/633/original/1681721400.jpg"
-                className="rounded-md h-[100%] w-[100%] object-cover"
-                alt=""
-              />
-            </div>
-            <div className="is-divider "></div>
-            <div className="text pt-1">
-              <h6 className="h5_location text-black   text-left">
-                Thời trang BLACKPINK tại Coachella 2023: Mang loạt hot trend lên
-                sân khấu nhưng vẫn gây tiếc nuối 1 điểm!
-              </h6>
-            </div>
-          </div>
-        </Link>
+          <Link to={`/${item._id}`}>
+            <div className="recentCard bg-color-card">
+              <div className="RecentC_img">
+                <img
+                  src={item.images[0]?.url}
+                  className="rounded-md h-[100%] w-[100%] object-cover"
+                  alt=""
+                />
+              </div>
+              <div className="is-divider mt-3"></div>
+              <div className="text-sm font-bold text-left text-[#fe2c6d]">{item.category.title}</div>
+              <div className="text pt-1">
+                <h6 className="h5_location truncate w-4/5 text-black text-left">
+                  {item.title}
+                </h6>
+              </div>
+              <div className="text-sm text-gray-500 text-right">{formatDateTime(item.created)}</div>
 
-        <Link>
-          <div className="recentCard bg-color-card">
-            <div className="RecentC_img">
-              <img
-                src="https://upload.lixibox.com/system/blogs/covers/000/001/642/original/1681988247.jpg"
-                className="rounded-md h-[100%] w-[100%] object-cover"
-                alt=""
-              />
             </div>
-            <div className="is-divider "></div>
-            <div className="text pt-1">
-              <h6 className="h5_location text-black   text-left">
-                Thời trang BLACKPINK tại Coachella 2023: Mang loạt hot trend lên
-                sân khấu nhưng vẫn gây tiếc nuối 1 điểm!
-              </h6>
-            </div>
-          </div>
-        </Link>
+          </Link>
+        ))}
+
       </div>
     </>
   );

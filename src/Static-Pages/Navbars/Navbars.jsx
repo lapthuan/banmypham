@@ -55,22 +55,7 @@ const Navbars = ({ cartProductQuantity, setCartProductQuantity }) => {
   const handleSearch = async (e) => {
     // const searcheddata = e.target.value;
 
-    try {
-      let res = await axios.get(
-        `https://blossombackend.onrender.com/products/Sale/${searchdata}`
-      );
-      if (searcheddata === "") {
-        setdata([]);
-      } else {
-        setdata(res.data);
-        setIsNav(true);
-        setTimeout(() => {
-          setIsNav(false);
-        }, 4000);
-      }
-    } catch (error) {
-      console.log(error);
-    }
+
   };
 
   useEffect(() => {
