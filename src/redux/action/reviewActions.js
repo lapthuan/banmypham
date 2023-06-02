@@ -20,7 +20,7 @@ export const addReview = (product, userid, rate, title, review) =>
         dispatch({ type: REVIEW_ADD_REQUEST })
 
         try {
-            const myPromise = new Promise((resolve) =>
+            const myPromise = new Promise(async (resolve) =>
                 await api.post(`api/review/add`,
                     {
                         product: product,
