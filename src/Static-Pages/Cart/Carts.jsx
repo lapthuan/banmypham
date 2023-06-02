@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import 'mdb-react-ui-kit/dist/css/mdb.min.css';
+
 
 import "./Carts.css";
 import { Link } from 'react-router-dom'
@@ -60,7 +60,7 @@ const Carts = () => {
     setTotalPrices(totalPrice);
     const totals = calculateTotal();
     setTotal(totals);
-    window.localStorage.setItem("total",totals)
+    window.localStorage.setItem("total", totals)
   }, [cartData]);
 
   const vouchers = [

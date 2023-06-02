@@ -7,8 +7,7 @@ import UserHistory from "./UserHistory";
 import "moment-timezone";
 import { Button, Input, Space } from "antd";
 import Modal from "react-modal";
-import { Select, initTE } from "tw-elements";
-initTE({ Select });
+
 const EditMap = () => {
   return (
     <>

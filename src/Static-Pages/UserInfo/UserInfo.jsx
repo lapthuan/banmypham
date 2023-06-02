@@ -1,7 +1,6 @@
 import { useState } from "react";
 import "./css/UserInfor.css";
 import React from "react";
-import "mdb-react-ui-kit/dist/css/mdb.min.css";
 import UsrAcount from "./UserAcount";
 import User from "./User";
 import UserBody from "./UserBody";

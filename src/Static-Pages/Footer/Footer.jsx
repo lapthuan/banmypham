@@ -173,16 +173,10 @@
 // }
 
 // import "@fortawesome/fontawesome-free/css/all.min.css";
-import "mdb-react-ui-kit/dist/css/mdb.min.css";
+
 
 import React from "react";
-import {
-  MDBFooter,
-  MDBContainer,
-  MDBRow,
-  MDBCol,
-  MDBIcon,
-} from "mdb-react-ui-kit";
+
 import {
   AiFillFacebook,
   AiFillGithub,
@@ -202,27 +196,22 @@ export const Footer = () => {
 
 const Footer2 = () => {
   return (
-    <MDBFooter className="text-center text-lg-start text-[#a0a1a2] bg-black">
+    <footer className="text-center text-lg-start text-[#a0a1a2] bg-black">
       <div className="line"></div>
 
       <section className="">
-        <MDBContainer className="text-center text-md-start mt-5">
-          <MDBRow className="mt-3">
-            <MDBCol md="3" lg="4" xl="3" className="mx-auto mb-4">
-              <h1 className="text fw-bold mb-4 ">LUXUBU</h1>
+        <div className="container text-center text-md-start mt-5">
+          <div className="row mt-3">
+            <div className="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+              <h1 className="text fw-bold mb-4">LUXUBU</h1>
               <p>
                 <p className="text-[15px] text-[#a0a1a2]">
                   LuXuBu - Đẹp tận gốc rễ
                 </p>
               </p>
-              {/* <p>
-                <a href="#!" className="text-[15px] text-[#a0a1a2]">
-                  Delivery Information
-                </a>
-              </p> */}
-            </MDBCol>
+            </div>
 
-            <MDBCol md="2" lg="2" xl="2" className="mx-auto mb-4">
+            <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
               <h6 className="text-uppercase fw-bold mb-4">Danh Mục</h6>
               <p>
                 <a className="text-[15px] text-[#a0a1a2] hover:text-[#ff2b70]">
@@ -254,9 +243,9 @@ const Footer2 = () => {
                   Thực phẩm chức năng
                 </a>
               </p>
-            </MDBCol>
+            </div>
 
-            <MDBCol md="3" lg="2" xl="2" className="mx-auto mb-4">
+            <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
               <h6 className="text-uppercase fw-bold mb-4">Hướng dẫn</h6>
               <p className="mt-2">
                 <a
@@ -298,9 +287,9 @@ const Footer2 = () => {
                   Chính sách bảo mật
                 </a>
               </p>
-            </MDBCol>
+            </div>
 
-            <MDBCol md="4" lg="3" xl="3" className="mx-auto mb-md-0 mb-4">
+            <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
               <h6 className="text-uppercase fw-bold mb-4">Thông tin</h6>
               <p className="mt-2">
                 <a
@@ -334,17 +323,14 @@ const Footer2 = () => {
                   Mời bạn bè nhận thưởng ngay
                 </a>
               </p>
-            </MDBCol>
-          </MDBRow>
-        </MDBContainer>
+            </div>
+          </div>
+        </div>
       </section>
-      <div
-        className="text-center text-[15px] p-4"
-        style={{ backgroundColor: "#191b1d" }}
-      >
+      <div className="text-center text-[15px] p-4" style={{ backgroundColor: "#191b1d" }}>
         © 2023 - Bản quyền của Công Ty Cổ Phần LUXU - www.luxubu.com
       </div>
-    </MDBFooter>
+    </footer>
   );
 };
 

@@ -26,7 +26,6 @@
     "draftjs-to-html": "^0.9.1",
     "i18next": "^22.5.0",
     "i18next-http-backend": "^2.2.1",
-    "mdb-react-ui-kit": "^5.1.0",
     "moment": "^2.29.4",
     "moment-timezone": "^0.5.43",
     "rc-banner-anim": "^2.4.5",
