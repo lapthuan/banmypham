@@ -7,9 +7,13 @@ import moment from "moment";
 import UserBody from "./UserBody";
 import UserHistory from "./UserHistory";
 import "moment-timezone";
+import { useDispatch } from "react-redux";
+import { updateUser } from "../../redux/action/auth";
 
 const EditAC = () => {
+  const dispatch = useDispatch()
   const userCreate = localStorage.getItem("usercreatedAt") || "";
+  const userId = localStorage.getItem("userid") || "";
   const [phone, setPhone] = useState(localStorage.getItem("usermobile") == undefined ? localStorage.getItem("usermobile") : "");
   const [email, setEmail] = useState(localStorage.getItem("useremail") || "");
   const [firstName, setFirstName] = useState(localStorage.getItem("userfirstname") || "");
@@ -17,6 +21,7 @@ const EditAC = () => {
 
   const handleEditUser = (e) => {
     e.preventDefault();
+    dispatch(updateUser(userId, firstName, lastName, email, phone));
     console.log("First Name:", firstName);
     console.log("Last Name:", lastName);
     console.log("Email:", email);

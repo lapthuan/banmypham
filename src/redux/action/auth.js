@@ -4,6 +4,8 @@ import {
   LOGIN_GET_SUCCESS,
   LOGIN_GET_ERROR,
   UPDATE_GET_SUCCESS,
+  UPDATE_GET_FAILED,
+  UPDATE_GET_REQUEST,
   LOGOUT_GET,
 } from "../const/actionsTypes";
 import * as api from "../../api/index";
@@ -190,3 +192,26 @@ export const signupGoogle = (accessToken, navigate) => async (dispatch) => {
     }
   }
 };
+
+export const updateUser = (id, firstName, lastName, email, phone) => async (dispatch) => {
+  dispatch({ type: LOGIN_GET_LOADING });
+  try {
+    apis.put(`/api/users/edit-user/${id}`, {
+      firstname: firstName,
+      lastname: lastName,
+      email: email,
+      mobile: phone
+    }).then((response) => {
+      console.log(response);
+      dispatch({ type: LOGIN_GET_SUCCESS, payload: response.data })
+    })
+  } catch (error) {
+    dispatch({
+      type: LOGIN_GET_ERROR,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+}
