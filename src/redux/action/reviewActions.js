@@ -38,17 +38,23 @@ export const addReview = (product, userid, rate, title, review) =>
                             dispatch({ type: REVIEW_GET_SUCCESS, payload: response.data })
 
                         })
-                        toast.update(idToast, { render: "Đánh giá của bạn đã được gửi", type: "success" });
+                        setTimeout(() => resolve("Đánh giá của bạn đã được gửi"), 3000)
 
                     } else {
-                        toast.update(idToast, { render: "Bạn đã đánh giá sản phẩm này", type: "warning" });
 
+                        setTimeout(() => resolve("Bạn đã đánh giá sản phẩm này"), 3000)
                     }
-                }).then((json) => setTimeout(() => resolve(json), 3000))
+                })
             );
             toast.promise(myPromise, {
-                pending: "Promise is pending",
-                success: "Promise  Loaded",
+                pending: "Đang xử lý",
+                success: {
+                    render({ data }) {
+                        return `${data}`
+                    },
+                    // other options
+                    icon: "🟢",
+                },
                 error: "error"
             });
 
