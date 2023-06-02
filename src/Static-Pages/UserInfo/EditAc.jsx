@@ -11,13 +11,13 @@ import { useDispatch } from "react-redux";
 import { updateUser } from "../../redux/action/auth";
 
 const EditAC = () => {
-  const dispatch = useDispatch()
   const userCreate = localStorage.getItem("usercreatedAt") || "";
   const userId = localStorage.getItem("userid") || "";
   const [phone, setPhone] = useState(localStorage.getItem("usermobile") == undefined ? localStorage.getItem("usermobile") : "");
   const [email, setEmail] = useState(localStorage.getItem("useremail") || "");
   const [firstName, setFirstName] = useState(localStorage.getItem("userfirstname") || "");
   const [lastName, setLastName] = useState(localStorage.getItem("username") || "");
+  const dispatch = useDispatch()
 
   const handleEditUser = (e) => {
     e.preventDefault();

@@ -7,18 +7,13 @@ import { MdPayment } from "react-icons/md";
 import {
   AiOutlineFileDone,
   AiOutlineProfile,
-  AiOutlineMail,
-  AiOutlinePhone,
 } from "react-icons/ai";
-import { GrUserExpert } from "react-icons/gr";
-import git from "../Image/save-money.gif";
 import gitcheck from "../Image/verified.gif";
 import paypal from "../Image/paypal.jpg";
 import momo from "../Image/logo-momo.jpg";
 import cod from "../Image/cod.jpg";
 import LogoGHTK from "../Image/Logo-GHTK.png";
 import LogoVT from "../Image/Logo-Viettel-Post-Red.png";
-import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import axios from "axios";
@@ -29,6 +24,8 @@ import {
 } from "../redux/action/orderActions";
 import { resetCart } from "../redux/action/cartActions";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+import { updateUser } from "../redux/action/auth";
+import InfoUser from "./InfoUser";
 const steps = [
   {
     name: "Thông tin người nhận",
@@ -86,15 +83,10 @@ const Stepper = () => {
   const dispatch = new useDispatch();
   let total = JSON.parse(localStorage.getItem("total")) || 0;
   const [userId, setUserId] = useState(localStorage.getItem("userid") || "");
-  const [userName, setUserName] = useState(
-    localStorage.getItem("username") || ""
-  );
-  const [userMobile, setUserMobile] = useState(
-    localStorage.getItem("usermobile") || ""
-  );
-  const [userEmail, setUserEmail] = useState(
-    localStorage.getItem("useremail") || ""
-  );
+  const [userName, setUserName] = useState(localStorage.getItem("username") || "");
+  const [firstName, setFirstName] = useState(localStorage.getItem("userfirstname") || "");
+  const [userMobile, setUserMobile] = useState(localStorage.getItem("usermobile") || "");
+  const [userEmail, setUserEmail] = useState(localStorage.getItem("useremail") || "");
   const [currentStep, setCurrentStep] = useState(1);
   const [complete, setComplete] = useState(false);
   const [shipping, setShipping] = useState();
@@ -108,6 +100,9 @@ const Stepper = () => {
     const total = price * qty;
     return total;
   };
+
+
+
   const orderCreate = useSelector((state) => state.orderCreate);
   const { isloading, issuccess, order } = orderCreate;
   const orderMoney = useSelector((state) => state.orderGetMoney);
@@ -126,7 +121,10 @@ const Stepper = () => {
       }
     }
   }, [shipping]);
-
+  const isValidPhoneNumber = (phoneNumber) => {
+    const pattern = /^\d{10}$/;
+    return pattern.test(phoneNumber);
+  }
   const handerClickCheckOut = () => {
     setComplete(true);
     setCurrentStep(1);
@@ -144,6 +142,15 @@ const Stepper = () => {
   }, [isloading, issuccess]);
 
   const handerClicknext = () => {
+    if (!isValidPhoneNumber(userMobile)) {
+      toast.warning("Sai đinh dạng số điện thoại")
+      return
+    }
+    if (userEmail == "" || userName == "" || userMobile == "" || firstName == "") {
+      toast.warning("Thiếu thông tin người nhận");
+      return;
+    }
+
     if (currentStep == 2 && shipping == undefined) {
       toast.warning("Hãy chọn đơn vị vận chuyển");
       return;
@@ -161,9 +168,8 @@ const Stepper = () => {
         {steps?.map((step, i) => (
           <div
             key={i}
-            className={`step-item ${currentStep === i + 1 && "active"} ${
-              (i + 1 < currentStep || complete) && "complete"
-            } `}
+            className={`step-item ${currentStep === i + 1 && "active"} ${(i + 1 < currentStep || complete) && "complete"
+              } `}
           >
             <div className="step">
               {i + 1 < currentStep || complete ? (
@@ -304,72 +310,7 @@ const Stepper = () => {
           <div className="mt-10 bg-gray-50 px-4 pt-8 lg:mt-0 ">
             <div>
               {currentStep == 1 ? (
-                <div className="">
-                  <p className="text-xl font-medium">Thông tin</p>
-                  <p className="text-gray-400">
-                    Xem lại thông tin trước khi đặt hàng
-                  </p>
-                  <label
-                    for="email"
-                    className="mt-4 mb-2 block text-sm font-medium"
-                  >
-                    Tên người nhận
-                  </label>
-                  <div className="relative">
-                    <input
-                      type="text"
-                      value={userName}
-                      onChange={(e) => setUserName(e.target.value)}
-                      className="w-full rounded-md border py-3 border-gray-200  pl-11 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
-                      required
-                    />
-
-                    <div className="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">
-                      <GrUserExpert />
-                    </div>
-                  </div>
-                  <label
-                    for="card-holder"
-                    className="mt-4 mb-2 block text-sm font-medium"
-                  >
-                    Email
-                  </label>
-                  <div className="relative">
-                    <input
-                      type="email"
-                      value={userEmail}
-                      onChange={(e) => setUserEmail(e.target.value)}
-                      className="w-full rounded-md border py-3 border-gray-200  pl-11 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
-                      required
-                    />
-                    <div className="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">
-                      <AiOutlineMail />
-                    </div>
-                  </div>
-                  <label
-                    for="card-holder"
-                    className="mt-4 mb-2 block text-sm font-medium"
-                  >
-                    Số điện thoại
-                  </label>
-                  <div className="relative">
-                    <input
-                      type="text"
-                      value={userMobile}
-                      onChange={(e) => setUserMobile(e.target.value)}
-                      className="w-full rounded-md border py-3 border-gray-200  pl-11 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
-                      placeholder="Nhập số điện thoại"
-                      required
-                    />
-                    <div className="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">
-                      <AiOutlinePhone />
-                    </div>
-                  </div>
-
-                  <button className="mt-4 mb-8 w-full rounded-md bg-[#fe2c6d] px-6 py-3 font-medium text-white">
-                    Thay đổi thông tin
-                  </button>
-                </div>
+                <InfoUser />
               ) : currentStep == 2 ? (
                 <div className="">
                   <p className="text-xl font-medium">Địa chỉ giao hàng</p>
@@ -496,10 +437,10 @@ const Stepper = () => {
                 <>
                   <div className="mt-6 border-t border-b py-2">
                     <div className="flex items-center justify-between">
-                      <p className="text-sm font-medium text-gray-900">
+                      <p className="text-lg font-medium text-gray-900">
                         Tổng tiền sản phẩm
                       </p>
-                      <p className="font-semibold text-gray-900">
+                      <p className="font-semibold text-lg text-gray-900">
                         {total.toLocaleString("vi-VN", {
                           style: "currency",
                           currency: "VND",
@@ -508,10 +449,10 @@ const Stepper = () => {
                     </div>
                     {shipping ? (
                       <div className="flex items-center justify-between">
-                        <p className="text-sm font-medium text-gray-900">
+                        <p className="text-lg font-medium text-gray-900">
                           Phí giao hàng
                         </p>
-                        <p className="font-semibold text-[#fe2c6d]">
+                        <p className="font-semibold text-lg text-[#fe2c6d]">
                           +{" "}
                           {shipping.price.toLocaleString("vi-VN", {
                             style: "currency",
@@ -522,7 +463,7 @@ const Stepper = () => {
                     ) : null}
                   </div>
                   <div className="mt-6 flex items-center justify-between">
-                    <p className="text-sm font-medium text-gray-900">
+                    <p className="text-lg font-medium text-gray-900">
                       Tổng thanh toán
                     </p>
                     <p className="text-2xl font-semibold text-gray-900">

@@ -18,7 +18,9 @@ const api = axios.create({
 export const addReview = (product, userid, rate, title, review) =>
     async (dispatch) => {
         dispatch({ type: REVIEW_ADD_REQUEST })
+
         try {
+            const idToast = toast.loading("Đang xử lý...")
             await api.post(`api/review/add`,
                 {
                     product: product,
@@ -35,16 +37,11 @@ export const addReview = (product, userid, rate, title, review) =>
                         dispatch({ type: REVIEW_GET_SUCCESS, payload: response.data })
 
                     })
-                    toast.promise(Promise.resolve(response.data), // Sử dụng Promise.resolve để tạo một promise đã được giải quyết
-                        {
-                            pending: 'Đang xử lý',
-                            success: 'Đánh giá của bạn đã được gửi',
-                            error: 'Lỗi'
-                        }
-                    );
-                    toast.success("")
+                    toast.update(idToast, { render: "Đánh giá của bạn đã được gửi", type: "success" });
+
                 } else {
-                    toast.warning("Bạn đã đánh giá sản phẩm này")
+                    toast.update(idToast, { render: "Bạn đã đánh giá sản phẩm này", type: "warning" });
+
                 }
             })
 
