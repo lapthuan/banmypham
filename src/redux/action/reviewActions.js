@@ -35,8 +35,14 @@ export const addReview = (product, userid, rate, title, review) =>
                         dispatch({ type: REVIEW_GET_SUCCESS, payload: response.data })
 
                     })
-
-                    toast.success("Đánh giá của bạn đã được gửi")
+                    toast.promise(Promise.resolve(response.data), // Sử dụng Promise.resolve để tạo một promise đã được giải quyết
+                        {
+                            pending: 'Đang xử lý',
+                            success: 'Đánh giá của bạn đã được gửi',
+                            error: 'Lỗi'
+                        }
+                    );
+                    toast.success("")
                 } else {
                     toast.warning("Bạn đã đánh giá sản phẩm này")
                 }

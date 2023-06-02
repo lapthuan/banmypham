@@ -41,6 +41,7 @@ export const signin = (data2, navigate) => async (dispatch) => {
   apis
     .get(`/api/users/find/${data2.email}`)
     .then((result) => {
+      console.log(result);
       console.log(result.data.isBlocked);
       if (result.data.isBlocked == true) {
         toast.error("Tài khoản đã bị khóa vui lòng liên hệ Admin để mở  lại");
@@ -145,7 +146,7 @@ export const signinGoogle = (accessToken, navigate) => async (dispatch) => {
     }
     toast.success("Đăng nhập thành công");
     navigate("/");
-
+    console.log(data);
     return dispatch({ type: LOGIN_GET_SUCCESS, payload: data });
   } catch (err) {
     console.log(err);
@@ -193,6 +194,16 @@ export const signupGoogle = (accessToken, navigate) => async (dispatch) => {
   }
 };
 
+export const logout = () =>
+
+  async (dispatch) => {
+    // to remove all userinfo at the time of user logout
+    toast.success("Đăng xuất thành công");
+    dispatch({
+      type: LOGOUT_GET,
+    });
+  };
+
 export const updateUser = (id, firstName, lastName, email, phone) => async (dispatch) => {
   dispatch({ type: LOGIN_GET_LOADING });
   try {
@@ -204,6 +215,13 @@ export const updateUser = (id, firstName, lastName, email, phone) => async (disp
     }).then((response) => {
       console.log(response);
       dispatch({ type: LOGIN_GET_SUCCESS, payload: response.data })
+      toast.promise(Promise.resolve(response.data), // Sử dụng Promise.resolve để tạo một promise đã được giải quyết
+        {
+          pending: 'Đang xử lý',
+          success: 'Thành công',
+          error: 'Lỗi'
+        }
+      );
     })
   } catch (error) {
     dispatch({
@@ -212,6 +230,38 @@ export const updateUser = (id, firstName, lastName, email, phone) => async (disp
         error.response && error.response.data.message
           ? error.response.data.message
           : error.message,
+    });
+  }
+}
+
+export const updateUserAddress = (id, city, district, ward, address) => async (dispatch) => {
+  dispatch({ type: LOGIN_GET_LOADING });
+
+  try {
+    apis.put(`/api/users/save-address/${id}`, {
+      city: city,
+      district: district,
+      ward: ward,
+      address: address
+    }).then((response) => {
+      console.log(response);
+      dispatch({ type: LOGIN_GET_SUCCESS, payload: response.data })
+      toast.promise(Promise.resolve(response.data), // Sử dụng Promise.resolve để tạo một promise đã được giải quyết
+        {
+          pending: 'Đang xử lý',
+          success: 'Thành công',
+          error: 'Lỗi'
+        }
+      );
+    })
+  } catch (error) {
+    dispatch({
+      type: LOGIN_GET_ERROR,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+
     });
   }
 }

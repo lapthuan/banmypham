@@ -19,7 +19,7 @@ const RecentCard = () => {
   );
 
   return (
-    <div className="container">
+    <div className="container mx-auto">
       <div className="pt-[50px] w-[100%] flex justify-between md:grid-cols-2 lg:grid-cols-3 sm:grid-cols-1">
         {filteredBlogs?.map((item) => (
           <Link to={`/Tpost/${item._id}`}>

@@ -38,7 +38,7 @@ export const loginReducer = (state = initialstate, { type, payload }) => {
       };
     }
     case LOGIN_GET_SUCCESS: {
-      
+
       localStorage.setItem("user_infos", JSON.stringify(payload));
       localStorage.setItem("token", payload.token);
       localStorage.setItem("userid", payload._id);
@@ -47,6 +47,7 @@ export const loginReducer = (state = initialstate, { type, payload }) => {
       localStorage.setItem("useremail", payload.email);
       localStorage.setItem("usermobile", payload.mobile);
       localStorage.setItem("usercreatedAt", payload.createdAt);
+      localStorage.setItem("userAddress", payload.address ? JSON.stringify(payload.address) : "");
       localStorage.setItem("userimage", payload.picture ? payload.picture : "");
 
       return {
@@ -71,6 +72,7 @@ export const loginReducer = (state = initialstate, { type, payload }) => {
     case LOGOUT_GET: {
       localStorage.removeItem("total");
       localStorage.removeItem("shipping");
+      localStorage.removeItem("userAddress");
       localStorage.removeItem("userfirstname");
       localStorage.removeItem("userimage");
       localStorage.removeItem("token");

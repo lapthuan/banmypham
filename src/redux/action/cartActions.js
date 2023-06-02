@@ -58,6 +58,13 @@ export const removeItem = (id) => async (dispatch, getState) => {
 			'cartItems',
 			JSON.stringify(getState().cart.cartItems)
 		);
+		toast.promise(Promise.resolve(getState().cart.cartItems), // Sử dụng Promise.resolve để tạo một promise đã được giải quyết
+			{
+				pending: 'Đang xử lý',
+				success: 'Thành công',
+				error: 'Lỗi'
+			}
+		);
 	} catch (error) {
 		console.log(error);
 	}
@@ -91,7 +98,7 @@ export const savePaymentMethod = (data) => async (dispatch) => {
 export const resetCart = () => async (dispatch) => {
 	try {
 		localStorage.removeItem("cartItems");
-		dispatch({type : CART_RESET_CART })
+		dispatch({ type: CART_RESET_CART })
 	} catch (error) {
 		console.log(error);
 	}

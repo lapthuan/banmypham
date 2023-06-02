@@ -18,7 +18,7 @@ import "react-dropdown/style.css";
 import { Cart } from "./Cart";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { logout } from "../../redux/login/login.actions";
+import { logout } from "../../redux/action/auth";
 import deleteIcon from "../../Image/icon-delete.svg";
 import { loadCart, removeItem } from "../../redux/action/cartActions";
 import { listProducts } from "../../redux/action/productActions";
