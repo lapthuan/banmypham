@@ -5,7 +5,7 @@ import UsrAcount from "./UserAcount";
 import User from "./User";
 import UserHistory from "./UserHistory";
 import "moment-timezone";
-import { Button, Input, Space } from "antd";
+import { Button, Input, Space, Select } from "antd";
 import Modal from "react-modal";
 
 const EditMap = () => {
@@ -47,16 +47,44 @@ const EditMap = () => {
                           </label>
                         </div>
                         <div className="text-left ">
-                          <label className="ml-2 mb-2">Quận / Huyện: </label>
-                          <select
-                            id="countries"
-                            class="bg-white border  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[50%] p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                          >
-                            <option value="US">United States</option>
-                            <option value="CA">Canada</option>
-                            <option value="FR">France</option>
-                            <option value="DE">Germany</option>
-                          </select>
+                          <Select
+                            showSearch
+                            style={{
+                              width: 200,
+                            }}
+                            placeholder="Search to Select"
+                            optionFilterProp="children"
+                            filterOption={(input, option) => (option?.label ?? '').includes(input)}
+                            filterSort={(optionA, optionB) =>
+                              (optionA?.label ?? '').toLowerCase().localeCompare((optionB?.label ?? '').toLowerCase())
+                            }
+                            options={[
+                              {
+                                value: '1',
+                                label: 'Not Identified',
+                              },
+                              {
+                                value: '2',
+                                label: 'Closed',
+                              },
+                              {
+                                value: '3',
+                                label: 'Communicated',
+                              },
+                              {
+                                value: '4',
+                                label: 'Identified',
+                              },
+                              {
+                                value: '5',
+                                label: 'Resolved',
+                              },
+                              {
+                                value: '6',
+                                label: 'Cancelled',
+                              },
+                            ]}
+                          />
                         </div>
                         <div className="text-left ">
                           <label className="ml-2 mb-2">Phường / Xã: </label>

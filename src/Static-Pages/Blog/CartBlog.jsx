@@ -17,7 +17,7 @@ const CartBlog = ({ filteredBlogs }) => {
     arrows: false,
     fade: false,
     speed: 500,
-    slidesToShow: filteredBlogs.length > 5 ? 5 : filteredBlogs.length,
+    slidesToShow: filteredBlogs?.length > 5 ? 5 : filteredBlogs.length,
     slidesToScroll: 5,
     initialSlide: 0,
     responsive: [

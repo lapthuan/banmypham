@@ -32,7 +32,7 @@ const Sales = () => {
 
   return (
     <div className="main__sales">
-      <nav class="container flex px-5 py-3 text-gray-700 border border-gray-200 rounded-lg  " aria-label="Breadcrumb">
+      <nav class="container flex px-5 py-3 text-gray-700 border border-gray-200 rounded-lg mx-auto" aria-label="Breadcrumb">
         <ol class="inline-flex pt-2 items-center space-x-1 md:space-x-3">
           <li class="inline-flex items-center">
             <Link to={"/"} class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-[#fe2c6d] ">
