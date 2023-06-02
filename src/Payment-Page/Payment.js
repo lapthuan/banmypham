@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Payment.css";
 import { TiTick } from "react-icons/ti";
 import { Link } from "react-router-dom";
-import { FaShippingFast, FaAddressCard } from "react-icons/fa";
+import { FaShippingFast } from "react-icons/fa";
 import { MdPayment } from "react-icons/md";
 import {
   AiOutlineFileDone,
@@ -26,6 +26,7 @@ import { resetCart } from "../redux/action/cartActions";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import { updateUser } from "../redux/action/auth";
 import InfoUser from "./InfoUser";
+import AddressUser from "./AddressUser";
 const steps = [
   {
     name: "Thông tin người nhận",
@@ -312,97 +313,7 @@ const Stepper = () => {
               {currentStep == 1 ? (
                 <InfoUser />
               ) : currentStep == 2 ? (
-                <div className="">
-                  <p className="text-xl font-medium">Địa chỉ giao hàng</p>
-                  <p className="text-gray-400">
-                    Xem lại địa chỉ giao hàng trước khi đặt hàng
-                  </p>
-                  <label
-                    for="email"
-                    className="mt-4 mb-2 block text-sm font-medium"
-                  >
-                    Tỉnh/ Thành phố
-                  </label>
-                  <div className="relative">
-                    <select
-                      id="countries"
-                      className="bg-gray-50 border pl-9 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                    >
-                      <option selected>Choose a country</option>
-                      <option value="US">United States</option>
-                      <option value="CA">Canada</option>
-                      <option value="FR">France</option>
-                      <option value="DE">Germany</option>
-                    </select>
-
-                    <div className="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">
-                      <FaAddressCard />
-                    </div>
-                  </div>
-                  <label
-                    for="card-holder"
-                    className="mt-4 mb-2 block text-sm font-medium"
-                  >
-                    Quận/ Huyện
-                  </label>
-                  <div className="relative">
-                    <select
-                      id="countries"
-                      className="bg-gray-50 border pl-9 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                    >
-                      <option selected>Choose a country</option>
-                      <option value="US">United States</option>
-                      <option value="CA">Canada</option>
-                      <option value="FR">France</option>
-                      <option value="DE">Germany</option>
-                    </select>
-                    <div className="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">
-                      <FaAddressCard />
-                    </div>
-                  </div>
-                  <label
-                    for="card-holder"
-                    className="mt-4 mb-2 block text-sm font-medium"
-                  >
-                    Phương/ xã
-                  </label>
-                  <div className="relative">
-                    <select
-                      id="countries"
-                      className="bg-gray-50 border pl-9 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                    >
-                      <option selected>Choose a country</option>
-                      <option value="US">United States</option>
-                      <option value="CA">Canada</option>
-                      <option value="FR">France</option>
-                      <option value="DE">Germany</option>
-                    </select>
-                    <div className="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">
-                      <FaAddressCard />
-                    </div>
-                  </div>
-                  <label
-                    for="card-no"
-                    className="mt-4 mb-2 block text-sm font-medium"
-                  >
-                    Số nhà
-                  </label>
-                  <div className="relative">
-                    <input
-                      type="text"
-                      id="email"
-                      name="email"
-                      className="w-full rounded-md border py-3 border-gray-200  pl-11 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
-                      placeholder="your.email@gmail.com"
-                    />
-                    <div className="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">
-                      <FaAddressCard />
-                    </div>
-                  </div>
-                  <button className="mt-4 mb-8 w-full rounded-md bg-[#fe2c6d] px-6 py-3 font-medium text-white">
-                    Thay đổi thông tin
-                  </button>
-                </div>
+                <AddressUser />
               ) : currentStep == 3 && payment?.name == "PayPal" ? (
                 <div className="lg:pt-24 sm:pt-2 ">
                   <h3 className="">PayPal</h3>

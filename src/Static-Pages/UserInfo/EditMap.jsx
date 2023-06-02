@@ -1,16 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "./css/UserInfor.css";
-import { Link } from "react-router-dom";
 import UsrAcount from "./UserAcount";
 import User from "./User";
-import UserHistory from "./UserHistory";
 import "moment-timezone";
-import { Button, Input, Space, Select } from "antd";
-import Modal from "react-modal";
+import { Select } from "antd";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { updateUserAddress } from "../../redux/action/auth";
-import { toast } from "react-toastify";
 const { Option } = Select;
 const EditMap = () => {
   const userAddress = JSON.parse(window.localStorage.getItem("userAddress"))

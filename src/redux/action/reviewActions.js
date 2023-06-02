@@ -20,30 +20,37 @@ export const addReview = (product, userid, rate, title, review) =>
         dispatch({ type: REVIEW_ADD_REQUEST })
 
         try {
-            const idToast = toast.loading("Đang xử lý...")
-            await api.post(`api/review/add`,
-                {
-                    product: product,
-                    user: userid,
-                    title: title,
-                    rating: rate,
-                    review: review,
-                }
-            ).then((response) => {
+            const myPromise = new Promise((resolve) =>
+                await api.post(`api/review/add`,
+                    {
+                        product: product,
+                        user: userid,
+                        title: title,
+                        rating: rate,
+                        review: review,
+                    }
+                ).then((response) => {
 
-                if (response.data.success == true) {
-                    api.get(`api/review/inproducs?idproduct=${product}&page=1&limit=5`).then((response) => {
-                        console.log(response);
-                        dispatch({ type: REVIEW_GET_SUCCESS, payload: response.data })
+                    if (response.data.success == true) {
 
-                    })
-                    toast.update(idToast, { render: "Đánh giá của bạn đã được gửi", type: "success" });
+                        api.get(`api/review/inproducs?idproduct=${product}&page=1&limit=5`).then((response) => {
+                            console.log(response);
+                            dispatch({ type: REVIEW_GET_SUCCESS, payload: response.data })
 
-                } else {
-                    toast.update(idToast, { render: "Bạn đã đánh giá sản phẩm này", type: "warning" });
+                        })
+                        toast.update(idToast, { render: "Đánh giá của bạn đã được gửi", type: "success" });
 
-                }
-            })
+                    } else {
+                        toast.update(idToast, { render: "Bạn đã đánh giá sản phẩm này", type: "warning" });
+
+                    }
+                }).then((json) => setTimeout(() => resolve(json), 3000))
+            );
+            toast.promise(myPromise, {
+                pending: "Promise is pending",
+                success: "Promise  Loaded",
+                error: "error"
+            });
 
         } catch (error) {
             dispatch({
