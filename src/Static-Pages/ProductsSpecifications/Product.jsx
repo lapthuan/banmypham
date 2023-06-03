@@ -62,7 +62,7 @@ const Product = () => {
   const handleAddToCart = (e) => {
     if (productQuantity && id) {
       dispatch(addItem(id, productQuantity));
-      toast.success("Sản phẩm đã được thểm vào giỏ hàng");
+
     }
   };
 

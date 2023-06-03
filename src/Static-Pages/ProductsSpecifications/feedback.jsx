@@ -25,7 +25,7 @@ const FeedBack = ({ product, setRating }) => {
 
 
   const approvedReviews = reviews?.filter((item) => item.status === "Approved");
-  console.log(approvedReviews);
+
   const handlerClickSendReview = () => {
     dispatch(addReview(product, userId, rate, title, review))
   }
@@ -58,7 +58,7 @@ const FeedBack = ({ product, setRating }) => {
   const twoStarPercentage = calculateRatingPercentage(approvedReviews, 2);
   const oneStarPercentage = calculateRatingPercentage(approvedReviews, 1);
   const averageRating = calculateAverageRating(approvedReviews);
-  console.log('averageRating :>> ', Math.floor(averageRating));
+
   return (
     <div className="w-[90%] ml-auto mr-auto ">
       <div className=" p-4 bg-[#f5f6f6]">

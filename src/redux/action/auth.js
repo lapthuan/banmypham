@@ -28,6 +28,8 @@ export const loadUser = () => async (dispath) => {
 
 export const signin = (data2, navigate) => async (dispatch) => {
   dispatch({ type: LOGIN_GET_LOADING });
+  let toastId = toast("Đang xử lý...", { autoClose: false });
+
   const MAX_LOGIN_ATTEMPTS = 3;
   const LOCKOUT_DURATION = 3 * 1000;
   const storedAttempts =
@@ -35,16 +37,33 @@ export const signin = (data2, navigate) => async (dispatch) => {
   const lockoutTime = parseInt(window.localStorage.getItem("lockoutTime")) || 0;
   const currentTime = new Date().getTime();
   if (lockoutTime && currentTime - lockoutTime < LOCKOUT_DURATION) {
-    toast.error("Tài khoản của bạn đã bị khóa. Vui lòng thử lại sau.");
+    if (toastId >= 0) {
+
+      toast.update(toastId, {
+        render: "Tài khoản của bạn đã bị khóa. Vui lòng thử lại sau.",
+        type: "warning",
+        autoClose: 3000
+      });// does nothing
+    } else {
+      toast("Tài khoản của bạn đã bị khóa. Vui lòng thử lại sau.", { type: "warning", autoClose: 3000 });
+    }
+
     return;
   }
   apis
     .get(`/api/users/find/${data2.email}`)
     .then((result) => {
-      console.log(result);
-      console.log(result.data.isBlocked);
       if (result.data.isBlocked == true) {
-        toast.error("Tài khoản đã bị khóa vui lòng liên hệ Admin để mở  lại");
+        if (toastId >= 0) {
+
+          toast.update(toastId, {
+            render: "Tài khoản đã bị khóa vui lòng liên hệ Admin để mở lại",
+            type: "warning",
+            autoClose: 3000
+          });// does nothing
+        } else {
+          toast("Tài khoản đã bị khóa vui lòng liên hệ Admin để mở lại", { type: "warning", autoClose: 3000 });
+        }
       }
     })
     .catch((err) => {
@@ -58,10 +77,19 @@ export const signin = (data2, navigate) => async (dispatch) => {
       const { data } = await api.signIn(data2);
       console.log(data);
       if (data.isBlocked === true) {
-        toast.error("Tài khoản đã bị khóa vui lòng liên hệ Admin để mở  lại");
+        if (toastId >= 0) {
+
+          toast.update(toastId, {
+            render: "Tài khoản đã bị khóa vui lòng liên hệ Admin để mở lại",
+            type: "error",
+            autoClose: 3000
+          });// does nothing
+        } else {
+          toast("Tài khoản đã bị khóa vui lòng liên hệ Admin để mở lại", { type: "error", autoClose: 3000 });
+        }
         return;
       }
-      toast.success("Đăng nhập thành công");
+
       await window.localStorage.setItem("loginAttempts", "0");
       await window.localStorage.setItem("lockoutTime", "0");
       navigate("/");
@@ -81,15 +109,21 @@ export const signin = (data2, navigate) => async (dispatch) => {
           await apis
             .post(`/api/users/block-user/${data2.email}`)
             .then((result) => {
-              console.log(result);
-              toast.error("Tài khoản đã bị khóa");
+              if (toastId >= 0) {
+
+                toast.update(toastId, {
+                  render: "Tài khoản đã bị khóa vui lòng liên hệ Admin để mở lại",
+                  type: "error",
+                  autoClose: 3000
+                });// does nothing
+              } else {
+                toast("Tài khoản đã bị khóa vui lòng liên hệ Admin để mở lại", { type: "error", autoClose: 3000 });
+              }
+
             })
             .catch((err) => {
               console.log(err);
             });
-          // toast.error(
-          //   "Bạn đã vượt quá số lần đăng nhập sai cho phép. Tài khoản của bạn sẽ bị khóa trong 5 phút."
-          // );
         }
       }
     }
@@ -98,15 +132,32 @@ export const signin = (data2, navigate) => async (dispatch) => {
     await window.localStorage.setItem("lockoutTime", "0");
     try {
       const { data } = await api.signIn(data2);
-      console.log(data);
+
       await window.localStorage.setItem("loginAttempts", "0");
       await window.localStorage.setItem("lockoutTime", "0");
-      toast.success("Đăng nhập thành công");
+      if (toastId >= 0) {
+        toast.update(toastId, {
+          render: "Đăng nhập thành công",
+          type: "success",
+          autoClose: 3000
+        });// does nothing
+      } else {
+        toast("Đăng nhập thành công", { type: "success", autoClose: 3000 });
+      }
       navigate("/");
       return dispatch({ type: LOGIN_GET_SUCCESS, payload: data });
     } catch (err) {
       if (err.response.data.message == "Invalid Credentials") {
-        toast.error("Sai tài khoản hoặc mật khẩu");
+        if (toastId >= 0) {
+          toast.update(toastId, {
+            render: "Sai tài khoản hoặc mật khẩu",
+            type: "warning",
+            autoClose: 3000
+          });// does nothing
+        } else {
+          toast("Sai tài khoản hoặc mật khẩu", { type: "warning", autoClose: 3000 });
+        }
+
         await window.localStorage.setItem(
           "loginAttempts",
           (storedAttempts + 1).toString()
@@ -119,8 +170,16 @@ export const signin = (data2, navigate) => async (dispatch) => {
           await apis
             .post(`/api/users/block-user/${data2.email}`)
             .then((result) => {
-              console.log(result);
-              toast.error("Tài khoản đã bị khóa");
+              if (toastId >= 0) {
+                toast.update(toastId, {
+                  render: "Tài khoản đã bị khóa",
+                  type: "warning",
+                  autoClose: 3000
+                });// does nothing
+              } else {
+                toast("Tài khoản đã bị khóa", { type: "warning", autoClose: 3000 });
+              }
+
             })
             .catch((err) => {
               console.log(err);
@@ -137,24 +196,53 @@ export const signin = (data2, navigate) => async (dispatch) => {
 };
 
 export const signinGoogle = (accessToken, navigate) => async (dispatch) => {
+  let toastId = toast("Đang xử lý...", { autoClose: false });
+
   dispatch({ type: LOGIN_GET_LOADING });
   try {
     const { data } = await api.signInGoogle(accessToken);
     if (data.isBlocked == true) {
-      toast.error("Tài khoản đã bị khóa");
+      if (toastId >= 0) {
+
+        toast.update(toastId, {
+          render: "Tài khoản đã bị khóa",
+          type: "error",
+          autoClose: 3000
+        });// does nothing
+      } else {
+        toast("Tài khoản đã bị khóa", { type: "error", autoClose: 3000 });
+      }
       return;
     }
-    toast.success("Đăng nhập thành công");
     navigate("/");
-    console.log(data);
+
+    if (toastId >= 0) {
+      toast.update(toastId, {
+        render: "Đăng nhập thành công",
+        type: "success",
+        autoClose: 3000
+      });// does nothing
+    } else {
+      toast("Đăng nhập thành công", { type: "success", autoClose: 3000 });
+    }
+
     return dispatch({ type: LOGIN_GET_SUCCESS, payload: data });
   } catch (err) {
     console.log(err);
     if (err.response.data.message == "User don't exist!") {
       const { data } = await api.signUpGoogle(accessToken);
-      console.log(data.result);
-
       navigate("/");
+
+      if (toastId >= 0) {
+        toast.update(toastId, {
+          render: "Đăng nhập thành công",
+          type: "success",
+          autoClose: 3000
+        });// does nothing
+      } else {
+        toast("Đăng nhập thành công", { type: "success", autoClose: 3000 });
+      }
+
       return dispatch({ type: LOGIN_GET_SUCCESS, payload: data.result });
     }
   }
@@ -162,19 +250,38 @@ export const signinGoogle = (accessToken, navigate) => async (dispatch) => {
 
 export const signup = (formData, navigate) => async (dispatch) => {
   dispatch({ type: LOGIN_GET_LOADING });
+  let toastId = toast("Đang xử lý...", { autoClose: false });
 
   try {
-    // signup user
 
     const { data } = await api.signUp(formData);
     console.log(data);
 
-    toast.success("Đăng ký thành công");
+    if (toastId >= 0) {
+
+      toast.update(toastId, {
+        render: "Đăng ký thành công.",
+        type: "success",
+        autoClose: 3000
+      });// does nothing
+    } else {
+      toast("Đăng ký thành công.", { type: "success", autoClose: 3000 });
+    }
     navigate("/");
     return dispatch({ type: LOGIN_GET_SUCCESS, payload: data });
   } catch (err) {
     if (err.response.status == "500") {
-      return toast.error("Email đã tồn tại");
+      if (toastId >= 0) {
+
+        toast.update(toastId, {
+          render: "Email đã tồn tại.",
+          type: "warning",
+          autoClose: 3000
+        });// does nothing
+      } else {
+        toast("Email đã tồn tại.", { type: "warning", autoClose: 3000 });
+      }
+      return
     }
   }
 };
@@ -183,7 +290,7 @@ export const signupGoogle = (accessToken, navigate) => async (dispatch) => {
   dispatch({ type: LOGIN_GET_LOADING });
   try {
     const { data } = await api.signUpGoogle(accessToken);
-    toast.success("Đăng ký thành công");
+
     navigate("/");
     return dispatch({ type: LOGIN_GET_SUCCESS, payload: data });
   } catch (err) {
@@ -198,14 +305,17 @@ export const logout = () =>
 
   async (dispatch) => {
     // to remove all userinfo at the time of user logout
-    toast.success("Đăng xuất thành công");
     dispatch({
       type: LOGOUT_GET,
     });
+    toast.success("Đăng xuất thành công");
+
   };
 
 export const updateUser = (id, firstName, lastName, email, phone) => async (dispatch) => {
   dispatch({ type: LOGIN_GET_LOADING });
+  let toastId = toast("Đang xử lý...", { autoClose: false });
+
   try {
     apis.put(`/api/users/edit-user/${id}`, {
       firstname: firstName,
@@ -213,15 +323,17 @@ export const updateUser = (id, firstName, lastName, email, phone) => async (disp
       email: email,
       mobile: phone
     }).then((response) => {
-      console.log(response);
       dispatch({ type: LOGIN_GET_SUCCESS, payload: response.data })
-      toast.promise(Promise.resolve(response.data), // Sử dụng Promise.resolve để tạo một promise đã được giải quyết
-        {
-          pending: 'Đang xử lý',
-          success: 'Thành công',
-          error: 'Lỗi'
-        }
-      );
+      if (toastId >= 0) {
+
+        toast.update(toastId, {
+          render: "Thay đổi thông tin thành công.",
+          type: "success",
+          autoClose: 3000
+        });// does nothing
+      } else {
+        toast("Thay đổi thông tin thành công.", { type: "success", autoClose: 3000 });
+      }
     })
   } catch (error) {
     dispatch({
@@ -235,6 +347,8 @@ export const updateUser = (id, firstName, lastName, email, phone) => async (disp
 }
 
 export const updateUserAddress = (id, city, district, ward, address) => async (dispatch) => {
+  let toastId = toast("Đang xử lý...", { autoClose: false });
+
   dispatch({ type: LOGIN_GET_LOADING });
 
   try {
@@ -244,15 +358,17 @@ export const updateUserAddress = (id, city, district, ward, address) => async (d
       ward: ward,
       address: address
     }).then((response) => {
-      console.log(response);
       dispatch({ type: LOGIN_GET_SUCCESS, payload: response.data })
-      toast.promise(Promise.resolve(response.data), // Sử dụng Promise.resolve để tạo một promise đã được giải quyết
-        {
-          pending: 'Đang xử lý',
-          success: 'Thành công',
-          error: 'Lỗi'
-        }
-      );
+      if (toastId >= 0) {
+
+        toast.update(toastId, {
+          render: "Thay đổi địa chỉ thành công.",
+          type: "success",
+          autoClose: 3000
+        });// does nothing
+      } else {
+        toast("Thay đổi địa chỉ thành công.", { type: "success", autoClose: 3000 });
+      }
     })
   } catch (error) {
     dispatch({

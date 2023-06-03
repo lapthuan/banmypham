@@ -33,7 +33,7 @@ function ProductDetails() {
 
     if (quantity && id) {
       dispatch(addItem(id, quantity));
-      toast.success("Sản phẩm đã được thểm vào giỏ hàng")
+
     }
 
   };
@@ -76,7 +76,7 @@ function ProductDetails() {
             <option value="8">9</option>
             <option value="8">10</option>
           </select>
-          {isauth ? (<button onClick={handleAddToCart} className='addwalabutton'>Add to cart</button>) : (<button className='addwalabutton'><Link style={{color : "#fff"}} to={"../login"}>Đăng nhập để mua sản phẩm</Link></button>)}
+          {isauth ? (<button onClick={handleAddToCart} className='addwalabutton'>Add to cart</button>) : (<button className='addwalabutton'><Link style={{ color: "#fff" }} to={"../login"}>Đăng nhập để mua sản phẩm</Link></button>)}
 
 
           <div className="icomns"><ImTruck className="trucjkhai" /> <p>2-3 Business Day Delivery</p></div>

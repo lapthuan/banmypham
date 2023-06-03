@@ -48,13 +48,9 @@ export const findProductsPrice = (minPrice, maxPrice, idBrand, inStock, idCatego
             );
 
             dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data });
-            toast.promise(Promise.resolve(data), // Sử dụng Promise.resolve để tạo một promise đã được giải quyết
-                {
-                    pending: 'Đang xử lý',
-                    success: 'Thành công',
-                    error: 'Lỗi'
-                }
-            );
+
+
+
         } catch (error) {
             dispatch({
                 type: PRODUCT_LIST_FAILURE,
@@ -74,14 +70,11 @@ export const findProducts = (minPrice, maxPrice, idBrand, inStock, idCategory) =
                 `/api/product/findproduct?minPrice=${minPrice}&maxPrice=${maxPrice}&idBrand=${idBrand}&inStock=${inStock}&idCategory=${idCategory}`
             );
 
+
             dispatch({ type: PRODUCT_FIND_SUCCESS, payload: data });
-            toast.promise(Promise.resolve(data), // Sử dụng Promise.resolve để tạo một promise đã được giải quyết
-                {
-                    pending: 'Đang xử lý',
-                    success: 'Thành công',
-                    error: 'Lỗi'
-                }
-            );
+
+
+
         } catch (error) {
             dispatch({
                 type: PRODUCT_FIND_FAILURE,

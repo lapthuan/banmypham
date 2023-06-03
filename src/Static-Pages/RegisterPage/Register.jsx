@@ -65,7 +65,7 @@ function Register() {
       console.log(sForm);
       dispatch(signup(sForm, nagivate));
     } else {
-      toast.success("Nhập lại mật khẩu không chính xác");
+      toast.warning("Nhập lại mật khẩu không chính xác");
     }
   }
   const login = useGoogleLogin({ onSuccess: handleGoogleLoginSuccess });

@@ -21,10 +21,10 @@ export const loadCart = () => async (dispath) => {
 };
 // get the product id and the quantity of the item to add to the cart
 export const addItem = (id, qty) => async (dispatch, getState) => {
+	let toastId = toast("Đang xử lý...", { autoClose: false });
+
 	try {
 		const { data } = await api.get(`/api/product/${id}`);
-		console.log(data);
-
 
 		dispatch({
 			type: CART_ADD_ITEM,
@@ -36,11 +36,21 @@ export const addItem = (id, qty) => async (dispatch, getState) => {
 				qty,
 			},
 		});
+		if (toastId >= 0) {
+
+			toast.update(toastId, {
+				render: "Sản phẩm đã được đưa vào giỏ hàng.",
+				type: "success",
+				autoClose: 3000
+			});// does nothing
+		} else {
+			toast("Sản phẩm đã được đưa vào giỏ hàng.", { type: "success", autoClose: 3000 });
+		}
 		localStorage.setItem(
 			'cartItems',
 			JSON.stringify(getState().cart.cartItems)
 		);
-		// toast.success("Sản phẩm đã được đưa vào giỏ hàng")
+
 	} catch (error) {
 		console.error(error);
 	}
@@ -58,13 +68,8 @@ export const removeItem = (id) => async (dispatch, getState) => {
 			'cartItems',
 			JSON.stringify(getState().cart.cartItems)
 		);
-		toast.promise(Promise.resolve(getState().cart.cartItems), // Sử dụng Promise.resolve để tạo một promise đã được giải quyết
-			{
-				pending: 'Đang xử lý',
-				success: 'Thành công',
-				error: 'Lỗi'
-			}
-		);
+		toast("Sản phẩm đã xóa.", { type: "success", autoClose: 3000 });
+
 	} catch (error) {
 		console.log(error);
 	}

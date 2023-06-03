@@ -145,7 +145,7 @@ const Carts = () => {
                                     Number(item.qty - 1)
                                   )
                                 ) : dispatch(removeItem(item.product));;
-                              toast.success("Đã thay đổi số lượng")
+
                             }} class="px-3 py-1 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-l-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 ">
                               -
                             </button>
@@ -156,7 +156,7 @@ const Carts = () => {
                                   Number(item.qty + 1)
                                 )
                               );
-                              toast.success("Đã thay đổi số lượng")
+
                             }} type="button" class="px-3 py-1 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-r-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 ">
                               +
                             </button>

@@ -38,7 +38,7 @@ export const listbrandDetails = (id) => async (dispatch) => {
         dispatch({ type: BRAND_DETAILS_REQUEST });
 
         const { data } = await api.get(`/api/brand/${id}`);
-        console.log(data);
+
         dispatch({ type: BRAND_DETAILS_SUCCESS, payload: data });
     } catch (error) {
         dispatch({

@@ -20,6 +20,7 @@ const api = axios.create({
 
 export const createOrder = (cartItems, payment, shipping, userId, totalprice) =>
     async (dispatch) => {
+        let toastId = toast("Đang xử lý...", { autoClose: false });
         dispatch({ type: CREATE_ODER_REQUEST });
         try {
             api.post("/api/users/createorder",
@@ -30,11 +31,18 @@ export const createOrder = (cartItems, payment, shipping, userId, totalprice) =>
                     totalprice: totalprice,
                     iduser: userId
                 }).then((Response) => {
-
                     dispatch({ type: CREATE_ODER_SUCCESS, payload: Response.data.newOrder })
-                }).catch((error) => {
-                    dispatch({ type: CREATE_ODER_FAILURE, payload: error })
-                    console.log('error :>> ', error);
+
+                    if (toastId >= 0) {
+
+                        toast.update(toastId, {
+                            render: "Đơn hàng đã đặt thành công.",
+                            type: "success",
+                            autoClose: 3000
+                        });// does nothing
+                    } else {
+                        toast("Đơn hàng đã đặt thành công.", { type: "success", autoClose: 3000 });
+                    }
                 })
 
         } catch (error) {
@@ -43,12 +51,14 @@ export const createOrder = (cartItems, payment, shipping, userId, totalprice) =>
     }
 export const getOrderByIdUser = (Id) =>
     async (dispatch) => {
+
         dispatch({ type: GET_ODER_REQUEST })
         try {
             api.post("/api/users/findorder", {
                 iduser: Id
             }).then((response) => {
                 dispatch({ type: GET_ODER_SUCCESS, payload: response.data })
+
             })
         } catch (error) {
             console.log(error);
@@ -59,6 +69,7 @@ export const getOrderByIdUser = (Id) =>
 
 export const CancelOrderByIdUser = (Id, Message) =>
     async (dispatch) => {
+        let toastId = toast.promise("Đang xử lý...", { autoClose: false });
 
         try {
             api.post("/api/users/ordercancel", {
@@ -66,7 +77,16 @@ export const CancelOrderByIdUser = (Id, Message) =>
                 message: Message
             }).then((response) => {
                 console.log(response);
-                toast.success("Đã gửi yêu cầu hủy đơn")
+                if (toastId >= 0) {
+
+                    toast.update(toastId, {
+                        render: "Đơn hàng đã hủy.",
+                        type: "success",
+                        autoClose: 3000
+                    });// does nothing
+                } else {
+                    toast("Đơn hàng đã hủy.", { type: "success", autoClose: 3000 });
+                }
             })
         } catch (error) {
             console.log(error);

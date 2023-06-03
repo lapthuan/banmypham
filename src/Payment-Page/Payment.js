@@ -419,7 +419,7 @@ const Stepper = () => {
                       console.log(details);
 
                       if (details.status == "COMPLETED") handerClickCheckOut();
-                      toast.success("Thanh toán thành công");
+
                     });
                   }}
                 />

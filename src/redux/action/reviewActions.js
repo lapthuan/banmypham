@@ -17,50 +17,52 @@ const api = axios.create({
 
 export const addReview = (product, userid, rate, title, review) =>
     async (dispatch) => {
+        let toastId = toast("Đang xử lý...", { autoClose: false });
         dispatch({ type: REVIEW_ADD_REQUEST })
-
         try {
-            const myPromise = new Promise(async (resolve) =>
-                await api.post(`api/review/add`,
-                    {
-                        product: product,
-                        user: userid,
-                        title: title,
-                        rating: rate,
-                        review: review,
-                    }
-                ).then((response) => {
+            await api.post(`api/review/add`,
+                {
+                    product: product,
+                    user: userid,
+                    title: title,
+                    rating: rate,
+                    review: review,
+                }
+            ).then((response) => {
 
-                    if (response.data.success == true) {
+                if (response.data.success == true) {
+                    api.get(`api/review/inproducs?idproduct=${product}&page=1&limit=5`).then((response) => {
+                        console.log(response);
+                        dispatch({ type: REVIEW_GET_SUCCESS, payload: response.data })
+                        if (toastId >= 0) {
 
-                        api.get(`api/review/inproducs?idproduct=${product}&page=1&limit=5`).then((response) => {
-                            console.log(response);
-                            dispatch({ type: REVIEW_GET_SUCCESS, payload: response.data })
+                            toast.update(toastId, {
+                                render: "Bình luận đã được gửi.",
+                                type: "success",
+                                autoClose: 3000
+                            });// does nothing
+                        } else {
+                            toast("Bình luận đã được gửi.", { type: "success", autoClose: 3000 });
+                        }
+                    })
+                } else {
+                    if (toastId >= 0) {
 
-                        })
-                        setTimeout(() => resolve("Đánh giá của bạn đã được gửi"), 3000)
-
+                        toast.update(toastId, {
+                            render: "Bạn đã bình luận sản phẩm này.",
+                            type: "warning",
+                            autoClose: 3000
+                        }); // does nothing
                     } else {
-
-                        setTimeout(() => resolve("Bạn đã đánh giá sản phẩm này"), 3000)
+                        toast("Bạn đã bình luận sản phẩm này.", { type: "warning", autoClose: 3000 });
                     }
-                })
-            );
-            toast.promise(myPromise, {
-                pending: "Đang xử lý",
-                success: {
-                    render({ data }) {
-                        return `${data}`
-                    },
-                    // other options
-                    icon: "🟢",
-                },
-                error: "error"
-            });
+
+                }
+            })
 
         } catch (error) {
             dispatch({
-                type: REVIEW_ADD_FAILURE,
+                type: REVIEW_GET_FAILURE,
                 payload:
                     error.response && error.response.data.message
                         ? error.response.data.message
