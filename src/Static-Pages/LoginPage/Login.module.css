@@ -14,18 +14,20 @@
   display: flex;
   box-sizing: border-box;
 }
+
 .new_ac {
   width: 95%;
   margin: auto;
   display: flex;
   box-sizing: border-box;
 }
-.new_ac > div {
+
+.new_ac>div {
   width: 100%;
   height: auto;
 }
 
-.new_existing > div {
+.new_existing>div {
   width: 100%;
   height: auto;
 }
@@ -86,7 +88,7 @@
 }
 
 .existing_content input {
-  padding: 0px 20px;
+
   height: 40px;
   font-family: "Lato", sans-serif;
   font-size: 14px;
@@ -149,7 +151,7 @@
   border-radius: 8px;
 }
 
-.sing_in_button + p {
+.sing_in_button+p {
   color: #333333;
   font-size: 15px;
 }
@@ -186,7 +188,7 @@
   background: white;
 }
 
-.social_links > a > img {
+.social_links>a>img {
   width: 13%;
 }
 
@@ -255,7 +257,7 @@
 }
 
 @media (max-width: 480px) {
-  .social_links > a > img {
+  .social_links>a>img {
     width: 20%;
   }
 

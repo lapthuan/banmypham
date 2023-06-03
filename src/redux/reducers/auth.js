@@ -3,6 +3,9 @@ import {
   LOGIN_GET_SUCCESS,
   LOGIN_GET_LOADING,
   LOGOUT_GET,
+  BLOCK_USER_REQUEST,
+  BLOCK_USER_SUCCESS,
+  BLOCK_USER_FAILURE,
   UPDATE_GET_SUCCESS,
 } from "../const/actionsTypes";
 
@@ -87,6 +90,39 @@ export const loginReducer = (state = initialstate, { type, payload }) => {
         ...initialstate,
       };
     }
+    default:
+      return state;
+  }
+};
+
+const initialState = {
+  isLoading: false, // Trạng thái loading ban đầu
+  isBlocked: false, // Trạng thái block ban đầu
+  error: null // Lỗi ban đầu
+};
+
+const reducer = (state = initialState, action) => {
+  switch (action.type) {
+    case BLOCK_USER_REQUEST:
+      return {
+        ...state,
+        isLoading: true,
+        error: null
+      };
+    case BLOCK_USER_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        isBlocked: true,
+        error: null
+      };
+    case BLOCK_USER_FAILURE:
+      return {
+        ...state,
+        isLoading: false,
+        isBlocked: false,
+        error: action.payload // Cập nhật thông tin lỗi từ action payload
+      };
     default:
       return state;
   }

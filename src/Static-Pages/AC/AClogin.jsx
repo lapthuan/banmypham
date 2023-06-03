@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Ac.css";
-import { AiFillCloseCircle,AiOutlineEyeInvisible,AiOutlineEye } from "react-icons/ai";
+import { AiFillCloseCircle, AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 import imgqc from "../../Image/Ivite1.jpg";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "../LoginPage/Login.module.css";
@@ -13,7 +13,7 @@ import axios from "axios";
 import { signin, signinGoogle } from "../../redux/action/auth";
 import OAuth2Login from "react-simple-oauth2-login";
 import { useGoogleLogin } from "@react-oauth/google";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const AClogin = () => {
   useEffect(() => {

@@ -6,6 +6,9 @@ import {
   UPDATE_GET_SUCCESS,
   UPDATE_GET_FAILED,
   UPDATE_GET_REQUEST,
+  BLOCK_USER_REQUEST,
+  BLOCK_USER_SUCCESS,
+  BLOCK_USER_FAILURE,
   LOGOUT_GET,
 } from "../const/actionsTypes";
 import * as api from "../../api/index";
@@ -26,57 +29,14 @@ export const loadUser = () => async (dispath) => {
   }
 };
 
-export const signin = (data2, navigate) => async (dispatch) => {
+export const signin = (dataForm, navigate) => async (dispatch) => {
   dispatch({ type: LOGIN_GET_LOADING });
   let toastId = toast("Đang xử lý...", { autoClose: false });
-
-  const MAX_LOGIN_ATTEMPTS = 3;
-  const LOCKOUT_DURATION = 3 * 1000;
-  const storedAttempts =
-    parseInt(window.localStorage.getItem("loginAttempts")) || 0;
-  const lockoutTime = parseInt(window.localStorage.getItem("lockoutTime")) || 0;
-  const currentTime = new Date().getTime();
-  if (lockoutTime && currentTime - lockoutTime < LOCKOUT_DURATION) {
-    if (toastId >= 0) {
-
-      toast.update(toastId, {
-        render: "Tài khoản của bạn đã bị khóa. Vui lòng thử lại sau.",
-        type: "warning",
-        autoClose: 3000
-      });// does nothing
-    } else {
-      toast("Tài khoản của bạn đã bị khóa. Vui lòng thử lại sau.", { type: "warning", autoClose: 3000 });
-    }
-
-    return;
-  }
-  apis
-    .get(`/api/users/find/${data2.email}`)
+  const emailUser = dataForm.email
+  await apis
+    .get(`/api/users/find/${dataForm.email}`)
     .then((result) => {
       if (result.data.isBlocked == true) {
-        if (toastId >= 0) {
-
-          toast.update(toastId, {
-            render: "Tài khoản đã bị khóa vui lòng liên hệ Admin để mở lại",
-            type: "warning",
-            autoClose: 3000
-          });// does nothing
-        } else {
-          toast("Tài khoản đã bị khóa vui lòng liên hệ Admin để mở lại", { type: "warning", autoClose: 3000 });
-        }
-      }
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-  window.localStorage.setItem("loginAttempts", "0");
-  window.localStorage.setItem("lockoutTime", "0");
-  console.log(currentTime - lockoutTime);
-  if (storedAttempts < MAX_LOGIN_ATTEMPTS) {
-    try {
-      const { data } = await api.signIn(data2);
-      console.log(data);
-      if (data.isBlocked === true) {
         if (toastId >= 0) {
 
           toast.update(toastId, {
@@ -87,114 +47,90 @@ export const signin = (data2, navigate) => async (dispatch) => {
         } else {
           toast("Tài khoản đã bị khóa vui lòng liên hệ Admin để mở lại", { type: "error", autoClose: 3000 });
         }
-        return;
       }
+      return;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 
-      await window.localStorage.setItem("loginAttempts", "0");
-      await window.localStorage.setItem("lockoutTime", "0");
-      navigate("/");
-      return dispatch({ type: LOGIN_GET_SUCCESS, payload: data });
-    } catch (err) {
-      if (err.response.data.message == "Invalid Credentials") {
-        toast.error("Sai tài khoản hoặc mật khẩu");
-        await window.localStorage.setItem(
-          "loginAttempts",
-          (storedAttempts + 1).toString()
-        );
-        if (storedAttempts + 1 === MAX_LOGIN_ATTEMPTS) {
-          await window.localStorage.setItem(
-            "lockoutTime",
-            currentTime.toString()
-          );
-          await apis
-            .post(`/api/users/block-user/${data2.email}`)
-            .then((result) => {
-              if (toastId >= 0) {
+  try {
+    const { data } = await api.signIn(dataForm);
 
-                toast.update(toastId, {
-                  render: "Tài khoản đã bị khóa vui lòng liên hệ Admin để mở lại",
-                  type: "error",
-                  autoClose: 3000
-                });// does nothing
-              } else {
-                toast("Tài khoản đã bị khóa vui lòng liên hệ Admin để mở lại", { type: "error", autoClose: 3000 });
-              }
+    await window.localStorage.setItem(JSON.stringify(emailUser), "0");
 
-            })
-            .catch((err) => {
-              console.log(err);
-            });
-        }
-      }
+    if (toastId >= 0) {
+      toast.update(toastId, {
+        render: "Đăng nhập thành công",
+        type: "success",
+        autoClose: 3000
+      });// does nothing
+    } else {
+      toast("Đăng nhập thành công", { type: "success", autoClose: 3000 });
     }
-  } else if (lockoutTime && currentTime - lockoutTime > LOCKOUT_DURATION) {
-    await window.localStorage.setItem("loginAttempts", "0");
-    await window.localStorage.setItem("lockoutTime", "0");
-    try {
-      const { data } = await api.signIn(data2);
-
-      await window.localStorage.setItem("loginAttempts", "0");
-      await window.localStorage.setItem("lockoutTime", "0");
+    navigate("/");
+    return dispatch({ type: LOGIN_GET_SUCCESS, payload: data });
+  } catch (err) {
+    if (err.response.data.message == "Invalid Credentials") {
       if (toastId >= 0) {
         toast.update(toastId, {
-          render: "Đăng nhập thành công",
-          type: "success",
+          render: "Sai tài khoản hoặc mật khẩu ",
+          type: "warning",
           autoClose: 3000
         });// does nothing
       } else {
-        toast("Đăng nhập thành công", { type: "success", autoClose: 3000 });
+        toast("Sai tài khoản hoặc mật khẩu", { type: "warning", autoClose: 3000 });
       }
-      navigate("/");
-      return dispatch({ type: LOGIN_GET_SUCCESS, payload: data });
-    } catch (err) {
-      if (err.response.data.message == "Invalid Credentials") {
-        if (toastId >= 0) {
-          toast.update(toastId, {
-            render: "Sai tài khoản hoặc mật khẩu",
-            type: "warning",
-            autoClose: 3000
-          });// does nothing
-        } else {
-          toast("Sai tài khoản hoặc mật khẩu", { type: "warning", autoClose: 3000 });
-        }
+      const storedAttempts = parseInt(window.localStorage.getItem(JSON.stringify(emailUser)));
+      if (isNaN(storedAttempts)) {
+        await window.localStorage.setItem(JSON.stringify(emailUser), "1");
+      } else {
+        await window.localStorage.setItem(JSON.stringify(emailUser), String(storedAttempts + 1));
+      }
 
-        await window.localStorage.setItem(
-          "loginAttempts",
-          (storedAttempts + 1).toString()
-        );
-        if (storedAttempts + 1 === MAX_LOGIN_ATTEMPTS) {
-          await window.localStorage.setItem(
-            "lockoutTime",
-            currentTime.toString()
-          );
-          await apis
-            .post(`/api/users/block-user/${data2.email}`)
-            .then((result) => {
-              if (toastId >= 0) {
-                toast.update(toastId, {
-                  render: "Tài khoản đã bị khóa",
-                  type: "warning",
-                  autoClose: 3000
-                });// does nothing
-              } else {
-                toast("Tài khoản đã bị khóa", { type: "warning", autoClose: 3000 });
-              }
+      const storedAttempt = parseInt(window.localStorage.getItem(JSON.stringify(emailUser)))
+      console.log(storedAttempt);
+      if (storedAttempt === 5) {
+        await window.localStorage.setItem(JSON.stringify(emailUser), "0");
 
-            })
-            .catch((err) => {
-              console.log(err);
-            });
-          // toast.error(
-          //   "Bạn đã vượt quá số lần đăng nhập sai cho phép. Tài khoản của bạn sẽ bị khóa trong 5 phút."
-          // );
-        }
+        await apis
+          .post(`/api/users/block-user/${emailUser}`)
+          .then((result) => {
+            if (toastId >= 0) {
+              toast.update(toastId, {
+                render: "Tài khoản đã bị khóa",
+                type: "warning",
+                autoClose: 3000
+              });// does nothing
+            } else {
+              toast("Tài khoản đã bị khóa", { type: "warning", autoClose: 3000 });
+            }
+
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+
       }
     }
-  } else {
-    toast.error("Đăng nhập bị khóa do quá nhiều lần đăng nhập sai.");
   }
-};
+}
 
+export const blockUser = (email) => {
+  return async (dispatch) => {
+    dispatch({ type: BLOCK_USER_REQUEST });
+
+    try {
+      const result = await apis.post(`/api/users/block-user/${email}`);
+      dispatch({ type: BLOCK_USER_SUCCESS });
+
+    } catch (err) {
+      dispatch({ type: BLOCK_USER_FAILURE });
+
+
+    }
+  };
+};
 export const signinGoogle = (accessToken, navigate) => async (dispatch) => {
   let toastId = toast("Đang xử lý...", { autoClose: false });
 

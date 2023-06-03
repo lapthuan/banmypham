@@ -4,13 +4,13 @@ import styles from "./Login.module.css";
 import facebook from "./logo/Facebook_F_icon.svg.png";
 import google from "./logo/Google__G__Logo.svg.png";
 import { useSelector, useDispatch } from "react-redux";
-import { AiOutlineEyeInvisible,AiOutlineEye } from "react-icons/ai";
+import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 import { Button, Input, Space } from "antd";
 import axios from "axios";
 import { signin, signinGoogle } from "../../redux/action/auth";
 import OAuth2Login from "react-simple-oauth2-login";
 import { useGoogleLogin } from "@react-oauth/google";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const Login = () => {
   const MAX_LOGIN_ATTEMPTS = 3;
@@ -27,7 +27,6 @@ const Login = () => {
 
   function handleGoogleLoginSuccess(tokenResponse) {
     const accessToken = tokenResponse.access_token;
-    toast.warning("Đang xử lý");
     dispatch(signinGoogle(accessToken, navigate));
   }
 
@@ -61,12 +60,13 @@ const Login = () => {
     e.preventDefault();
     if (email !== "" && password !== "") {
       dispatch(signin({ email, password }, navigate));
+    } else {
+      toast.warning("Chưa nhập tài khoản hoặc mật khẩu")
     }
   }
 
   return (
     <div className={styles.main_login}>
-      <ToastContainer />
       <div className={styles.new_existing}>
         <div className={styles.existing_user}>
           <form action="" className={styles.existing_content_login}>
