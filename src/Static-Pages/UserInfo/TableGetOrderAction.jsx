@@ -165,7 +165,7 @@ const TableAntdAction = ({ orderData }) => {
             key: index + 1,
             products: JSON.stringify(item.products),
             payment: item.paymentIntent.name,
-            shipping: item.shippingMethor.name,
+            // shipping: item.shippingMethor.name,
             status: item.orderStatus,
             total: item.totalPrice.toLocaleString("vi-VN", { style: "currency", currency: "VND" })
         }

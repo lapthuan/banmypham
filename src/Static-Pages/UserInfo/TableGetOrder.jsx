@@ -139,7 +139,7 @@ const TableAntd = ({ orderData }) => {
             key: index + 1,
             products: JSON.stringify(item.products),
             payment: item.paymentIntent.name,
-            shipping: item.shippingMethor.name,
+            // shipping: item.shippingMethor.name,
             status: item.orderStatus,
             total: item.totalPrice.toLocaleString("vi-VN", { style: "currency", currency: "VND" })
         }
@@ -199,12 +199,12 @@ const TableAntd = ({ orderData }) => {
                 }}
                 columns={columns}
                 dataSource={arr} />
-    
+
             <Modal
                 title="Tất cả sản phẩm"
                 onCancel={() => setModalProduct(false)}
                 open={modalProduct}
-                
+
                 width="70%  "
                 footer={[
                     <button onClick={() => setModalProduct(false)} type="button" className="text-white bg-[#fe2c6d] hover:bg-[#fe2c6d]/90 focus:ring-4 focus:outline-none focus:ring-[#fe2c6d]/50 font-medium rounded-lg text-sm px-3.5 py-2 text-center inline-flex items-center mr-2 mb-2">
