@@ -14,7 +14,7 @@ const IviteBody = () => {
   const [copied, setCopied] = useState(false);
 
   const { isauth } = useSelector((store) => store.login);
-  const userId = window.localStorage.getItem("userid")
+  const userId = window.localStorage.getItem("userid");
   const copyToClipboard = () => {
     navigator.clipboard.writeText(userId).then(
       () => {
@@ -40,11 +40,16 @@ const IviteBody = () => {
             </span>
           </div>
 
-          <div className={ "w-[80%] transition "} onClick={copyToClipboard}>
+          <div className={"w-[80%] transition "} onClick={copyToClipboard}>
             <div className="bor flex justify-end items-center h-[40px] ">
               <span className=" text-[14px] text-[#fe2c6d] w-[100%] text-center">
-                {isauth ? (<div >  {copied ? "Đã copy" : userId}</div>)
-                  : (<Link to={"/login"} className="text-[#fe2c6d]">Đăng nhập để xem mã giới thiệu</Link>)}
+                {isauth ? (
+                  <div> {copied ? "Đã copy" : userId}</div>
+                ) : (
+                  <Link to={"/login"} className="text-[#fe2c6d]">
+                    Đăng nhập để xem mã giới thiệu
+                  </Link>
+                )}
               </span>
             </div>
           </div>
@@ -56,7 +61,7 @@ const IviteBody = () => {
           <div>
             <div className="Ivite_loho">
               <Link to="/IviteBlog">
-                <div className="flex flex-column">
+                <div className="flex flex-col">
                   <div className="Ivite_header">
                     <img src={img1} alt="" />
                   </div>
@@ -74,7 +79,7 @@ const IviteBody = () => {
                 </div>
               </Link>
               <Link to="/IviteBlog">
-                <div className="flex flex-column mt-5">
+                <div className="flex flex-col mt-5">
                   <div className="Ivite_header">
                     <img src={img1} alt="" />
                   </div>

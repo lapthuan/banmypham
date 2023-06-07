@@ -3,17 +3,11 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 
 const blogmost = ({ bCategorys }) => {
-
   return (
     <div className="blog-search mt-5">
-      <h3 className="text-center">Danh mục Blog</h3>
+      <h3 className="text-center text-[30px]">DANH MỤC TIN TỨC</h3>
       <ul className="mt-5">
-        <Swiper
-          className=""
-          slidesPerView={5}
-          spaceBetween={5}
-
-        >
+        <Swiper className="" slidesPerView={5} spaceBetween={5}>
           <SwiperSlide>
             <li className="w-[50%] mr-[10px] text-center">
               <button>Tất cả</button>
@@ -26,8 +20,6 @@ const blogmost = ({ bCategorys }) => {
               </li>
             </SwiperSlide>
           ))}
-
-
         </Swiper>
       </ul>
     </div>

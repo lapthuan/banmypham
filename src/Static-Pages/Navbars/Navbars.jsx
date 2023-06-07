@@ -54,8 +54,6 @@ const Navbars = ({ cartProductQuantity, setCartProductQuantity }) => {
   // For search operation in input box
   const handleSearch = async (e) => {
     // const searcheddata = e.target.value;
-
-
   };
 
   useEffect(() => {
@@ -72,7 +70,7 @@ const Navbars = ({ cartProductQuantity, setCartProductQuantity }) => {
         <div className="logo">
           <Link to="/">
             {" "}
-            <p className="mt-[30px] text-black text-[45px]">LUXUBU </p>
+            <p className="mt-[35px] text-black text-[45px]">LUXUBU </p>
           </Link>
         </div>
 
@@ -110,7 +108,7 @@ const Navbars = ({ cartProductQuantity, setCartProductQuantity }) => {
           <ul>
             <li>
               {isauth ? (
-                <Menu as="div" className="relative pt-9">
+                <Menu as="div" className="relative pt-3">
                   <div>
                     <Menu.Button className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 ">
                       <span className="sr-only">Open user menu</span>
@@ -178,14 +176,14 @@ const Navbars = ({ cartProductQuantity, setCartProductQuantity }) => {
                 </Menu>
               ) : (
                 <div>
-                  <Link to="/Login" className="mt-11">
+                  <Link to="/Login" className="mt-7">
                     Đăng nhập / Đăng ký
                   </Link>
                 </div>
               )}
             </li>
             <li>
-              <Menu as="div" className="relative pt-3">
+              <Menu as="div" className="relative">
                 <div>
                   <Menu.Button>
                     <div className="flex icon-container">
@@ -272,7 +270,7 @@ const Navbars = ({ cartProductQuantity, setCartProductQuantity }) => {
               </Menu>
             </li>
             <li>
-              <Menu as="div" className="relative pt-3">
+              <Menu as="div" className="relative ">
                 <div>
                   <Menu.Button>
                     <div className="flex icon-container">

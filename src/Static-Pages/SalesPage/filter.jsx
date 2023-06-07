@@ -2,7 +2,10 @@ import React, { useState, useEffect } from "react";
 import "./filter.css";
 import Modal from "react-modal";
 import { useDispatch, useSelector } from "react-redux";
-import { findProductsPrice, listProducts } from "../../redux/action/productActions";
+import {
+  findProductsPrice,
+  listProducts,
+} from "../../redux/action/productActions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronRight,
@@ -74,7 +77,7 @@ const modalCategory = {
   },
   content: {
     position: "absolute",
-    inset: "236px 0px 36px 60%",
+    inset: "236px 300px 0px 50%",
     bottom: 0,
     left: "50%",
     transform: "translateX(-79%) translateY(70%)",
@@ -91,25 +94,24 @@ const modalCategory = {
   },
 };
 const Filter = () => {
-  const dispatch = new useDispatch()
+  const dispatch = new useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalOpenPrice, setIsModalOpenPrice] = useState(false);
   const [isModalOpenBranch, setIsModalOpenBranch] = useState(false);
   const [isModalOpenCategory, setIsModalOpenCategory] = useState(false);
-  const [minPrice, setMinPrice] = useState('');
-  const [maxPrice, setMaxPrice] = useState('');
+  const [minPrice, setMinPrice] = useState("");
+  const [maxPrice, setMaxPrice] = useState("");
   const [selectedBrands, setSelectedBrands] = useState([]);
   const [selectedCategorys, setSelectedCategorys] = useState([]);
-  const [inStock, setInStock] = useState('');
+  const [inStock, setInStock] = useState("");
   const [selectIDPrice, setSelectIDPrice] = useState();
-  const brandlist = useSelector((state) => state.brandList)
-  const { brands } = brandlist
-  const categorylist = useSelector((state) => state.categoryList)
-  const { categorys } = categorylist
+  const brandlist = useSelector((state) => state.brandList);
+  const { brands } = brandlist;
+  const categorylist = useSelector((state) => state.categoryList);
+  const { categorys } = categorylist;
 
   const isIdSelectedBrand = (id) => selectedBrands.includes(id);
   const isIdSelectedCategory = (id) => selectedCategorys.includes(id);
-
 
   const handleModalToggle = () => {
     if (isModalOpen == false) {
@@ -147,9 +149,9 @@ const Filter = () => {
   };
 
   const handlePriceChange = (minP, maxP, index) => {
-    setMinPrice(minP)
-    setMaxPrice(maxP)
-    setSelectIDPrice(index)
+    setMinPrice(minP);
+    setMaxPrice(maxP);
+    setSelectIDPrice(index);
   };
   const handleSelectCheckboxChangeCategory = (e) => {
     const selectedCategory = e.target.value;
@@ -160,10 +162,11 @@ const Filter = () => {
       ]);
     } else {
       setSelectedCategorys((prevSelectedCategorys) =>
-        prevSelectedCategorys.filter((category) => category !== selectedCategory)
+        prevSelectedCategorys.filter(
+          (category) => category !== selectedCategory
+        )
       );
     }
-
   };
   const handleSelectCheckboxChange = (e) => {
     const selectedBrand = e.target.value;
@@ -177,36 +180,40 @@ const Filter = () => {
         prevSelectedBrands.filter((brand) => brand !== selectedBrand)
       );
     }
-
   };
   const handleOutOfStockChange = (e) => {
-    setInStock(e.target.value)
+    setInStock(e.target.value);
   };
   const handleFindButtonClick = () => {
-
-
-    dispatch(findProductsPrice(minPrice, maxPrice, JSON.stringify(selectedBrands) == '[]' ? '' : JSON.stringify(selectedBrands), inStock,
-      JSON.stringify(selectedCategorys) == '[]' ? '' : JSON.stringify(selectedCategorys)
-    ))
+    dispatch(
+      findProductsPrice(
+        minPrice,
+        maxPrice,
+        JSON.stringify(selectedBrands) == "[]"
+          ? ""
+          : JSON.stringify(selectedBrands),
+        inStock,
+        JSON.stringify(selectedCategorys) == "[]"
+          ? ""
+          : JSON.stringify(selectedCategorys)
+      )
+    );
     setIsModalOpenBranch(false);
     setIsModalOpenPrice(false);
     setIsModalOpen(false);
-
   };
   const handleResetButtonClick = () => {
     setIsModalOpenBranch(false);
     setIsModalOpenPrice(false);
     setIsModalOpen(false);
     setIsModalOpenCategory(false);
-    setMinPrice('')
-    setMaxPrice('')
-    setInStock('')
-    setSelectedBrands([])
-    setSelectedCategorys([])
+    setMinPrice("");
+    setMaxPrice("");
+    setInStock("");
+    setSelectedBrands([]);
+    setSelectedCategorys([]);
     dispatch(listProducts());
-
   };
-
 
   return (
     <div className="h-[100px] w-[100%]">
@@ -217,7 +224,7 @@ const Filter = () => {
               <div className="flex items-center space-x-4">
                 <div className="relative">
                   <button
-                    className="bg-white py-2 px-4 pr-3 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+                    className="bg-white py-2 px-4 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
                     onClick={handleModalPrice}
                   >
                     GIÁ
@@ -226,7 +233,6 @@ const Filter = () => {
                     <FontAwesomeIcon
                       icon={isModalOpenPrice ? faChevronDown : faChevronRight}
                       className="mr-2"
-
                     />
                   </div>
                 </div>
@@ -241,7 +247,6 @@ const Filter = () => {
                     <FontAwesomeIcon
                       icon={isModalOpen ? faChevronDown : faChevronRight}
                       className="mr-2"
-
                     />
                   </div>
                 </div>
@@ -256,7 +261,6 @@ const Filter = () => {
                     <FontAwesomeIcon
                       icon={isModalOpenBranch ? faChevronDown : faChevronRight}
                       className="mr-2"
-
                     />
                   </div>
                 </div>
@@ -269,10 +273,10 @@ const Filter = () => {
                   </button>
                   <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center text-gray-700">
                     <FontAwesomeIcon
-
-                      icon={isModalOpenCategory ? faChevronDown : faChevronRight}
+                      icon={
+                        isModalOpenCategory ? faChevronDown : faChevronRight
+                      }
                       className="mr-2 "
-
                     />
                   </div>
                 </div>
@@ -306,7 +310,6 @@ const Filter = () => {
               </div>
             ))}
 
-
             <hr className="my-4" />
             <div className="flex justify-center">
               <button
@@ -318,7 +321,6 @@ const Filter = () => {
               <button
                 className="text-black py-2 px-4 rounded"
                 onClick={handleResetButtonClick}
-
               >
                 Bỏ lọc
               </button>
@@ -363,7 +365,6 @@ const Filter = () => {
               <button
                 className="text-black py-2 px-4 rounded"
                 onClick={handleResetButtonClick}
-
               >
                 Bỏ lọc
               </button>
@@ -451,13 +452,11 @@ const Filter = () => {
               <button
                 className="text-black py-2 px-4 rounded"
                 onClick={handleResetButtonClick}
-
               >
                 Bỏ lọc
               </button>
             </div>
           </div>
-
         </Modal>
       )}
 

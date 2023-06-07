@@ -72,7 +72,7 @@ const CartSale = () => {
           <div className="flex justify-between bg-[#fe2c6d] h-[50px]">
             <div className="text-[15px] sm:text-[15px]  lg:text-[20px]  text-black font-bold flex text-black">
               <FcFlashOn size="40px" className="mt-2" />
-              <div className="mt-3 text-[20px]">{t("sale")}</div>
+              <div className="mt-4 text-[20px]">{t("sale")}</div>
               <div className="flex text-black ml-3">
                 <FlipClockCountdown
                   to={new Date().getTime() + 24 * 3600 * 1000}
@@ -83,7 +83,7 @@ const CartSale = () => {
             </div>
 
             <div className="flex">
-              <div className="text-[18px] rounded-md  text-center justify-center mt-3 text-black mr-3 ">
+              <div className="text-[18px] rounded-md  text-center justify-center mt-4 text-black mr-3 ">
                 {t("xemtatca")}
               </div>
             </div>

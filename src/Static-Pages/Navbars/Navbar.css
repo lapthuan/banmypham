@@ -366,14 +366,14 @@ nav .logo.space {
   border-bottom: 1px solid #dfe3e8;
   border-radius: 0;
 }
-.nav-link img {
+/* .nav-link img {
   border-radius: 50%;
   width: 36px;
   height: 36px;
   margin: -8px 0;
   float: left;
   margin-right: 10px;
-}
+} */
 .navbar .navbar-brand {
   padding-left: 0;
   font-size: 20px;

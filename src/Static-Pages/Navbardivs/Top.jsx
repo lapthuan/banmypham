@@ -23,14 +23,14 @@ function Top() {
           <div className="animator_div">
             <div size="25px" />
             <section className="animation">
-              <div className="first">
-                <div>Free Quà 700.000đ đơn từ 1 Triệu - Nhập APR1000</div>
+              <div className="first mt-7">
+                <div>{t("ani_text1")}</div>
               </div>
-              <div className="second">
-                <div>Free Quà 1.295.000đ đơn từ 2 Triệu - Nhập APR2000</div>
+              <div className="second mt-3">
+                <div>{t("ani_text2")}</div>
               </div>
               <div className="third">
-                <div>Cập nhật ngày sinh nhật để nhận quà hằng năm</div>
+                <div>{t("ani_text3")}</div>
               </div>
             </section>
           </div>
@@ -40,11 +40,11 @@ function Top() {
                 onChange={handleLanguageChange}
                 className="appearance-none bg-no-repeat bg-right pr-8 pl-3 h-8 border rounded text-[15px]"
               >
-                <option value="en" className="">
-                  English
-                </option>
                 <option value="vi" className="">
                   Tiếng Việt
+                </option>
+                <option value="en" className="">
+                  English
                 </option>
               </select>
             </div>

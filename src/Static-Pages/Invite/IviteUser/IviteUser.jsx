@@ -41,20 +41,41 @@ const Iviteuser = () => {
                       <div className="item_kh">Các Mã Giảm Giá</div>
                     </div>
                     <div>
-                      <div className="text-left ml-5">
-                        <span>Các mức giảm giá khi giới thiệu bạn bè: </span>
+                      <div className="text-left ml-5 mt-3">
+                        <span className="text-[15px]">
+                          Các mức giảm giá khi giới thiệu bạn bè:{" "}
+                        </span>
                       </div>
                       <div>
-                        <ul className="c text-left ml-5">
-                          <li>Giảm giá 10%</li>
-                          <li>Giảm giá 20%</li>
-                          <li>Giảm giá 30%</li>
-                          <li>Giảm giá 40%</li>
-                          <li>Giảm giá 50%</li>
+                        <ul className="text-[15px] text-left ml-5">
+                          <li className="mt-3">
+                            <input type="checkbox" />
+                            Giảm giá 10%
+                          </li>
+                          <li className="mt-3">
+                            {" "}
+                            <input type="checkbox" />
+                            Giảm giá 20%
+                          </li>
+                          <li className="mt-3">
+                            {" "}
+                            <input type="checkbox" />
+                            Giảm giá 30%
+                          </li>
+                          <li className="mt-3">
+                            {" "}
+                            <input type="checkbox" />
+                            Giảm giá 40%
+                          </li>
+                          <li className="mt-3">
+                            {" "}
+                            <input type="checkbox" />
+                            Giảm giá 50%
+                          </li>
                         </ul>
                       </div>
                       <div>
-                        <div className=" pb-5 flex justify-center items-center">
+                        <div className=" mt-5 pb-5 flex justify-center items-center">
                           <a
                             className="pr-2"
                             href="https://www.facebook.com/sharer.php?u=https://everev.vn/sac-xe-dien-kia-bang-sac-everev-tai-han-quoc/"

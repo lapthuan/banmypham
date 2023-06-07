@@ -29,6 +29,7 @@ import FeedBack from "./feedback";
 
 import "./StarRating.css";
 import LoadPage from "../../Loadpage/Loadpage";
+import "./Load.css";
 
 const Product = () => {
   const params = useParams();
@@ -50,6 +51,9 @@ const Product = () => {
   const { category } = categoryDetails;
   const brandDetails = useSelector((state) => state.brandDetails);
   const { brand } = brandDetails;
+
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     dispatch(listProductDetails(id));
   }, [id, dispatch]);
@@ -71,10 +75,19 @@ const Product = () => {
     }
   };
 
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+  }, []);
+
   return product ? (
     <main className="product">
+      <div className={`app ${isLoading ? "loading" : ""}`}>
+        {isLoading && <LoadPage />}
+      </div>
       <nav
-        class="container w-[80%] flex px-5 py-3 text-gray-700 border border-gray-200 rounded-lg  mx-auto"
+        class="container flex px-5 py-3 text-gray-700 border border-gray-200 rounded-lg  mx-auto"
         aria-label="Breadcrumb"
       >
         <ol class="inline-flex pt-2 items-center space-x-1 md:space-x-3">
@@ -366,7 +379,9 @@ const Product = () => {
       <FeedBack product={id} setRating={setRating} />
     </main>
   ) : (
-    <LoadPage />
+    <div className={`app ${isLoading ? "loading" : ""}`}>
+      {isLoading && <LoadPage />}
+    </div>
   );
 };
 
