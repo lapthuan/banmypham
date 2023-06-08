@@ -20,13 +20,15 @@ const InforLX = () => {
                       Giới thiệu
                     </div>
                   </div>
-                  <div className="mt-3 text-left ml-5">
-                    <p className="text-[20px] text-left mt-5">VỀ LUXUBU</p>
-                    <p>
+                  <div className="mt-3 text-left ml-5 mr-5">
+                    <p className="text-[18px] text-left mt-5 text-[#000204]">
+                      VỀ LUXUBU
+                    </p>
+                    <p className="leading-relaxed text-[15px] text-[#4D4E4F] mt-3">
                       LUXUBU - Bringing affordable luxury to the urban
                       population
                     </p>
-                    <p>
+                    <p className="leading-relaxed text-justify text-[#4D4E4F] text-[15px]">
                       Đến với LUXUBU.COM, khách hàng sẽ là những người đầu tiên
                       có cơ hội được trải nghiệm và sử dụng các sản phẩm làm đẹp
                       theo một cách riêng và tốt nhất với các thương hiệu mỹ
@@ -34,7 +36,7 @@ const InforLX = () => {
                       được biết đến bởi những người tiên phong trong việc tìm
                       kiếm sản phẩm chất lượng nhất.
                     </p>
-                    <p>
+                    <p className="leading-relaxed text-justify text-[#4D4E4F] text-[15px]">
                       LUXUBU là cách bán các sản phẩm làm đẹp theo từng box
                       (hộp). Các sản phẩm ở trong box này thường là từ 3, 5 đến
                       nhiều sản phẩm trở lên và thường theo cả set không tách
@@ -49,18 +51,20 @@ const InforLX = () => {
                       nhằm đem một box hoàn hảo với mức giá phù hợp.
                     </p>
                   </div>
-                  <div className="mt-3 text-left ml-5 mt-3">
-                    <p className="text-[20px] ">ĐƠN VỊ ĐẠI DIỆN</p>
-                    <p className="text-[16px]">CÔNG TY CỔ PHẦN LUXUBU</p>
-                    <span className="text-[16px]">
+                  <div className="mt-3 text-left ml-5 mt-3 mr-5">
+                    <p className="text-[18px] ">ĐƠN VỊ ĐẠI DIỆN</p>
+                    <p className="text-[15px] text-[#4D4E4F] mt-3">
+                      CÔNG TY CỔ PHẦN LUXUBU
+                    </p>
+                    <p className="text-[15px] mt-3 text-[#4D4E4F]">
                       73 Nguyễn Huệ, Phường 2, TP, Vĩnh Long
-                    </span>
+                    </p>
                   </div>
-                  <div className=" text-left ml-5 mt-3">
+                  <div className=" text-left ml-5 mr-5 mt-3">
                     <p className="text-[20px]">
                       LUXUBU- BRINGING AFFORDABLE LUXURY TO THE URBAN POPULATION
                     </p>
-                    <p>
+                    <p className="mt-3 text-[15px] leading-relaxed text-[#4D4E4F] text-justify">
                       Tại LUXUBU, bạn còn được tư vấn hoàn toàn miễn phí bởi các
                       chuyên gia trong lĩnh vực làm đẹp. Với giao diện dễ nhìn,
                       bắt mắt cùng các sản phẩm chất lượng. LUXUBU là địa chỉ
@@ -68,19 +72,19 @@ const InforLX = () => {
                       muốn mình đẹp hơn lên mỗi ngày.
                     </p>
                   </div>
-                  <div className=" text-left ml-5 mt-3">
+                  <div className=" text-left ml-5 mr-5 mt-3">
                     <p className="text-[20px]">
                       CÁC LOẠI MỸ PHẨM ĐƯỢC CHỌN LỌC TỐT NHẤT ĐẾN TỪ CHÂU Á,
                       CHÂU ÂU…
                     </p>
-                    <p>
+                    <p className="mt-3 text-[15px] leading-relaxed text-[#4D4E4F] text-justify">
                       Bạn sẽ không phải băn khoăn về giá cả cũng như chất lượng
                       khi đã được LUXUBU tuyển chọn.
                     </p>
                   </div>
-                  <div className=" text-left ml-5 mt-3">
+                  <div className=" text-left ml-5 mr-5 mt-3">
                     <p className="text-[20px]">SẢN PHẨM PHONG PHÚ</p>
-                    <p>
+                    <p className="mt-3 text-[15px] leading-relaxed text-[#4D4E4F] text-justify">
                       Tại LUXUBU.COM, khách hàng không chỉ được trải nghiệm các
                       sản phẩm làm đẹp mới và chất lượng nhất trong và ngoài
                       nước. Các blogger còn là những người sẽ liên tục cập nhật
@@ -88,11 +92,11 @@ const InforLX = () => {
                       đến cho khách hàng nhiều sự lựa chọn khác nhau.
                     </p>
                   </div>
-                  <div className=" text-left ml-5 mt-3">
+                  <div className=" text-left ml-5 mr-5 mt-3 pb-5">
                     <p className="text-[20px]">
                       THANH TOÁN KHI NHẬN HÀNG AN TOÀN, TIỆN LỢI VÀ BẢO MẬT
                     </p>
-                    <p>
+                    <p className="mt-3 text-[15px] leading-relaxed text-[#4D4E4F] text-justify">
                       LUXUBU nhận thanh toán sau khi khách hàng đã nhận được
                       hàng, đây cũng là cách để khách hàng luôn tin tưởng khi
                       mua sắm online. Ngoài ra, với phương thức chuyển khoản qua
