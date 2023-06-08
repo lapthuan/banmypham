@@ -5,27 +5,29 @@ import { BsCartCheck } from "react-icons/bs";
 import img1 from "../../Image/Ivite1.jpg";
 import { useDispatch, useSelector } from "react-redux";
 import { getOrderByIdUser } from "../../redux/action/orderActions";
-import TableAntd from "./TableGetOrder"
-import TableAntdAction from "./TableGetOrderAction"
+import TableAntd from "./TableGetOrder";
+import TableAntdAction from "./TableGetOrderAction";
+import cartgif from "../../Image/cartGif.gif";
 const UserBody = ({ setTab, tab }) => {
+  const orderByUser = useSelector((state) => state.orderGetAll);
+  const { isloadingGetOrder, getOrder } = orderByUser;
+  const dispatch = useDispatch();
 
-  const orderByUser = useSelector((state) => state.orderGetAll)
-  const { isloadingGetOrder, getOrder } = orderByUser
-  const dispatch = useDispatch()
-
-
-  const userId = window.localStorage.getItem("userid")
+  const userId = window.localStorage.getItem("userid");
   useEffect(() => {
-    dispatch(getOrderByIdUser(userId))
-  }, [userId])
+    dispatch(getOrderByIdUser(userId));
+  }, [userId]);
 
-  const filteredOrdersTransport = getOrder.filter(order => order.orderStatus === 'Đang vận chuyển') || []
-  const filteredOrdersComplete = getOrder.filter(order => order.orderStatus === 'Đã nhận hàng') || []
-  const filteredOrdersProcessing = getOrder.filter(order => order.orderStatus === 'Đang xử lý') || []
-  const filteredOrdersReceived = getOrder.filter(order => order.orderStatus === 'Đã tiếp nhận') || []
-  const filteredOrdersCancel = getOrder.filter(order => order.orderStatus === 'Đơn hàng đã hủy') || []
-
-
+  const filteredOrdersTransport =
+    getOrder.filter((order) => order.orderStatus === "Đang vận chuyển") || [];
+  const filteredOrdersComplete =
+    getOrder.filter((order) => order.orderStatus === "Đã nhận hàng") || [];
+  const filteredOrdersProcessing =
+    getOrder.filter((order) => order.orderStatus === "Đang xử lý") || [];
+  const filteredOrdersReceived =
+    getOrder.filter((order) => order.orderStatus === "Đã tiếp nhận") || [];
+  const filteredOrdersCancel =
+    getOrder.filter((order) => order.orderStatus === "Đơn hàng đã hủy") || [];
 
   return (
     <>
@@ -70,8 +72,6 @@ const UserBody = ({ setTab, tab }) => {
                 >
                   Đơn hàng đã hủy
                 </div>
-              
-
               </div>
             </div>
           </div>
@@ -80,24 +80,23 @@ const UserBody = ({ setTab, tab }) => {
               <div className="Ivite_loho ">
                 {isloadingGetOrder == true ? (
                   <div>Loading...</div>
+                ) : getOrder.length != 0 ? (
+                  <TableAntd orderData={getOrder} />
                 ) : (
-                  getOrder.length != 0 ? (
-                    <TableAntd orderData={getOrder} />
-                  ) : (
-                    <div className="flex flex-col">
-                      <div className="ml-auto mr-auto">
-                        <BsCartCheck size="150px" color="gray" />
-                      </div>
-                      <div className="text-[20px] mt-3 text-gray-400 text-center">
-                        Không tìm thấy đơn hàng
-                      </div>
-                      <Link to="/">
-                        <button className="bg-black text-white w-[25%] h-[35px] text-center ml-auto mr-auto rounded-md mt-2">
-                          Tiếp tục mua sắm
-                        </button>
-                      </Link>
-                    </div>))}
-
+                  <div className="flex flex-col">
+                    <div className="ml-auto mr-auto">
+                      <img src={cartgif} className="h-[263px]" />
+                    </div>
+                    <div className="text-[20px] mt-3 text-gray-400 text-center">
+                      Không tìm thấy đơn hàng
+                    </div>
+                    <Link to="/">
+                      <button className="bg-black text-white w-[25%] h-[35px] text-center ml-auto mr-auto rounded-md mt-2">
+                        Tiếp tục mua sắm
+                      </button>
+                    </Link>
+                  </div>
+                )}
               </div>
             ) : tab == 2 ? (
               <div className="Ivite_loho ">
@@ -107,7 +106,7 @@ const UserBody = ({ setTab, tab }) => {
                   ) : (
                     <div className="flex flex-col">
                       <div className="ml-auto mr-auto">
-                        <BsCartCheck size="150px" color="gray" />
+                        <img src={cartgif} className="h-[263px]" />
                       </div>
                       <div className="text-[20px] mt-3 text-gray-400 text-center">
                         Không tìm thấy đơn hàng đang xử lý
@@ -117,12 +116,11 @@ const UserBody = ({ setTab, tab }) => {
                           Tiếp tục mua sắm
                         </button>
                       </Link>
-                    </div>)
+                    </div>
+                  )
                 ) : (
                   <div>Loading...</div>
                 )}
-
-
               </div>
             ) : tab == 3 ? (
               <div className="Ivite_loho ">
@@ -131,7 +129,7 @@ const UserBody = ({ setTab, tab }) => {
                 ) : (
                   <div className="flex flex-col">
                     <div className="ml-auto mr-auto">
-                      <BsCartCheck size="150px" color="gray" />
+                      <img src={cartgif} className="h-[263px]" />
                     </div>
                     <div className="text-[20px] mt-3 text-gray-400 text-center">
                       Không tìm thấy đơn hàng đã tiếp nhận
@@ -141,8 +139,8 @@ const UserBody = ({ setTab, tab }) => {
                         Tiếp tục mua sắm
                       </button>
                     </Link>
-                  </div>)}
-
+                  </div>
+                )}
               </div>
             ) : tab == 4 ? (
               <div className="Ivite_loho ">
@@ -151,7 +149,7 @@ const UserBody = ({ setTab, tab }) => {
                 ) : (
                   <div className="flex flex-col">
                     <div className="ml-auto mr-auto">
-                      <BsCartCheck size="150px" color="gray" />
+                      <img src={cartgif} className="h-[263px]" />
                     </div>
                     <div className="text-[20px] mt-3 text-gray-400 text-center">
                       Không tìm thấy đơn hàng đang vận chuyển
@@ -161,8 +159,8 @@ const UserBody = ({ setTab, tab }) => {
                         Tiếp tục mua sắm
                       </button>
                     </Link>
-                  </div>)}
-
+                  </div>
+                )}
               </div>
             ) : tab == 5 ? (
               <div className="Ivite_loho ">
@@ -172,7 +170,8 @@ const UserBody = ({ setTab, tab }) => {
                   ) : (
                     <div className="flex flex-col">
                       <div className="ml-auto mr-auto">
-                        <BsCartCheck size="150px" color="gray" />
+                        {/* <BsCartCheck size="150px" color="gray" /> */}
+                        <img src={cartgif} className="h-[263px]" />
                       </div>
                       <div className="text-[20px] mt-3 text-gray-400 text-center">
                         Không tìm thấy đơn hàng nào đã nhận
@@ -182,7 +181,8 @@ const UserBody = ({ setTab, tab }) => {
                           Tiếp tục mua sắm
                         </button>
                       </Link>
-                    </div>)
+                    </div>
+                  )
                 ) : (
                   <div>Loading...</div>
                 )}
@@ -195,7 +195,7 @@ const UserBody = ({ setTab, tab }) => {
                   ) : (
                     <div className="flex flex-col">
                       <div className="ml-auto mr-auto">
-                        <BsCartCheck size="150px" color="gray" />
+                        <img src={cartgif} className="h-[263px]" />
                       </div>
                       <div className="text-[20px] mt-3 text-gray-400 text-center">
                         Không tìm thấy đơn hàng nào đã hủy
@@ -205,11 +205,11 @@ const UserBody = ({ setTab, tab }) => {
                           Tiếp tục mua sắm
                         </button>
                       </Link>
-                    </div>)
+                    </div>
+                  )
                 ) : (
                   <div>Loading...</div>
                 )}
-
               </div>
             ) : (
               <div className="Ivite_loho ">
@@ -228,8 +228,8 @@ const UserBody = ({ setTab, tab }) => {
                         Tiếp tục mua sắm
                       </button>
                     </Link>
-                  </div>)}
-
+                  </div>
+                )}
               </div>
             )}
           </div>

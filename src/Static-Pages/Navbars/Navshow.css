@@ -43,7 +43,7 @@ li {
   position: absolute;
   z-index: 1;
   top: 2rem;
-  left: -12.5rem;
+  left: -9rem;
   width: 82rem;
   margin-top: 1rem !important;
   height: 30rem;
@@ -66,7 +66,7 @@ li {
   position: absolute;
   z-index: 1;
   top: 2rem;
-  left: -26rem;
+  left: -25rem;
   width: 82rem;
   height: 30rem;
   background-color: white;
@@ -86,7 +86,7 @@ li {
   position: absolute;
   z-index: 1;
   top: 2rem;
-  left: -53rem;
+  left: -56rem;
   width: 82rem;
   height: 30rem;
   background-color: white;

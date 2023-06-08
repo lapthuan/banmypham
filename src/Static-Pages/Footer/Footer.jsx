@@ -11,6 +11,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { listCategory } from "../../redux/action/categoryActions";
 import { Link } from "react-router-dom";
+import { listbrand } from "../../redux/action/brandActions";
 
 export const Footer = () => {
   return (
@@ -24,8 +25,11 @@ const Footer2 = () => {
   const dispatch = useDispatch();
   const categorylist = useSelector((state) => state.categoryList);
   const { categorys } = categorylist;
+  const brandlist = useSelector((state) => state.brandList);
+  const { brands } = brandlist;
   useEffect(() => {
-    dispatch(listCategory());
+    if (!brands || brands?.length == 0) dispatch(listbrand());
+    if (!categorys || categorys?.length == 0) dispatch(listCategory());
   }, []);
 
   return (
@@ -82,27 +86,19 @@ const Footer2 = () => {
             <h2 className="mb-6 text-[22px] mt-3 text-gray-900 text-left  dark:text-[#9a9b9b]">
               Danh mục
             </h2>
-            <ul className="text-gray-500 dark:text-gray-400 font-medium">
+            <ul className="text-gray-500 font-medium">
               {categorys
                 ?.map((item) => (
-                  <li className="mb-4 text-left">
+                  <li className="mb-4 text-left ">
                     <Link
                       key={item._id}
-                      className=" hover:underline text-[#9a9b9b] text-[13px] "
+                      className=" hover:text-[#ff2b70] text-[#9a9b9b] text-[13px] "
                     >
                       {item.title}
                     </Link>
                   </li>
                 ))
-                .slice(0, 4)}
-              <li className="mb-4 text-left">
-                <a
-                  href="#"
-                  className=" hover:underline text-[#9a9b9b] text-[13px] "
-                >
-                  Sữa rửa mặt
-                </a>
-              </li>
+                .slice(0, 5)}
             </ul>
           </div>
           <div className="ml-5">
@@ -154,33 +150,22 @@ const Footer2 = () => {
           </div>
           <div className="ml-5">
             <h2 className="mb-6 text-[22px] mt-3 text-gray-900 text-left  dark:text-[#9a9b9b]">
-              Thông tin
+              Thương hiệu
             </h2>
             <ul className="text-gray-500 dark:text-gray-400 font-medium">
-              <li className="mb-4 text-left">
-                <a
-                  href="#"
-                  className=" hover:underline text-[#9a9b9b] text-[13px] "
-                >
-                  Giới thiệu Luxubu
-                </a>
-              </li>
-              <li className="mb-4 text-left">
-                <a
-                  href="#"
-                  className="hover:underline text-[#9a9b9b] text-[13px] text-left"
-                >
-                  Hỗ trợ đơn hàng
-                </a>
-              </li>
-              <li className="mb-4 text-left">
-                <a
-                  href="#"
-                  className="hover:underline text-[#9a9b9b] text-[13px] text-left"
-                >
-                  Mời bạn bè - nhận thưởng ngay
-                </a>
-              </li>
+              {" "}
+              {brands
+                ?.map((item) => (
+                  <li className="mb-4 text-left ">
+                    <Link
+                      key={item._id}
+                      className=" hover:text-[#ff2b70] text-[#9a9b9b] text-[13px] "
+                    >
+                      {item.title}
+                    </Link>
+                  </li>
+                ))
+                .slice(0, 5)}
             </ul>
           </div>
         </div>

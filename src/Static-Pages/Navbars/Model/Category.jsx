@@ -22,10 +22,16 @@ const Category = () => {
         <div className="text-left font-bold text-black text-[20px]   ">
           Danh mục sản phẩm
         </div>
-        <div className="h-[400px] overflow-y-scroll">
-          {categorys?.map((item) => (
+        <div className="h-[400px] overflow-y-scroll mt-3">
+          {categorys?.map((item, index) => (
             <Link key={item._id} to={``}>
-              <p className="hover:text-[#ff2b70] text-left "> {item.title}</p>
+              <p
+                className={`hover:text-[#ff2b70] text-left ${
+                  index !== 0 ? "mt-5" : ""
+                }`}
+              >
+                {item.title}
+              </p>
             </Link>
           ))}
         </div>

@@ -95,14 +95,11 @@ const Navbar = ({ navigationData, currentRoute, setCurrentRoute }) => {
                 </li>
               </Link>
 
-              {/* <Link to={"/Sale"}>
-                <li
-                  class="dropdown nav-link nav-link-fade-up mx-10 hover:text-[#ff2b70]"
-                  onMouseOver={showHandler2}
-                >
+              <Link to={"/Brands"}>
+                <li class="dropdown nav-link nav-link-fade-up mx-10 hover:text-[#ff2b70]">
                   Thương hiệu
                 </li>
-              </Link> */}
+              </Link>
 
               <Link to={"/Invite"}>
                 <li class="dropdown nav-link nav-link-fade-up mx-10 hover:text-[#ff2b70]">

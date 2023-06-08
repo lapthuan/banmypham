@@ -29,19 +29,19 @@ const ModalBlog = () => {
 
   return (
     <div className="blogSetMainParent">
-      <div className="flex flex-col w-[30%] h-[100vh] gap-2 blogPriceHolder overflow-y-scroll ">
+      <div className="flex flex-col w-[30%]  gap-2 blogPriceHolder  ">
         {bCategorys?.map((item) => (
           <Link>
-            <p className="hover:text-[#ff2b70] text-left text-[#2e3e4e] ">
+            <p className="hover:text-[#ff2b70] text-left text-[#2e3e4e] text-[18px] ">
               {item.title}
             </p>
           </Link>
         ))}
       </div>
-      <div className="w-[70%] grid grid-cols-3 blogHold ">
+      <div className="w-[70%] grid grid-cols-3  blogHold ">
         {blogs
           ?.map((item) => (
-            <div className="flex-col ">
+            <div className="flex-col">
               <div className="blogimg ">
                 <img src={item.images[0]?.url} className="rounded-lg" alt="" />
                 <div className="text-[13px] text-left text-black w-[90%]">
