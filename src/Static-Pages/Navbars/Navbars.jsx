@@ -5,7 +5,7 @@ import "./Navbar.css";
 import { BsMinecartLoaded } from "react-icons/bs";
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
-
+import GoogleFontLoader from "react-google-font-loader";
 import { BsBell } from "react-icons/bs";
 import {
   AiOutlineSearch,
@@ -69,8 +69,15 @@ const Navbars = ({ cartProductQuantity, setCartProductQuantity }) => {
       <nav className="my-6 px-[100px]">
         <div className="logo">
           <Link to="/">
-            {" "}
-            <p className="mt-[35px] text-black text-[45px]">LUXUBU </p>
+            <GoogleFontLoader
+              fonts={[{ font: "Playfair", weights: [500, 900] }]}
+            />
+            <p
+              style={{ fontFamily: "Playfair, serif" }}
+              className="mt-[35px] text-black text-[50px]"
+            >
+              LUXUBU
+            </p>
           </Link>
         </div>
 

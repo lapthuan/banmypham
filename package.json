@@ -33,6 +33,7 @@
     "react-avatar-edit": "^1.2.0",
     "react-dom": "^18.2.0",
     "react-dropdown": "^1.11.0",
+    "react-google-font-loader": "^1.1.0",
     "react-google-recaptcha": "^2.1.0",
     "react-highlight-words": "^0.20.0",
     "react-i18next": "^12.3.1",
