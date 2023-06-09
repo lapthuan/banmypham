@@ -13,8 +13,8 @@ import {
 } from "../const/productConstants";
 
 const api = axios.create({
-  baseURL: "https://api-thuongmai.vercel.app",
-  // baseURL: "http://localhost:5000",
+    baseURL: "https://api-thuongmai.vercel.app",
+    // baseURL: "http://localhost:5000",
 });
 
 export const listProducts = () => async (dispatch) => {
