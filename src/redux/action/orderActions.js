@@ -76,7 +76,7 @@ export const CancelOrderByIdUser = (Id, Message) =>
                 id: Id,
                 message: Message
             }).then((response) => {
-                console.log(response);
+
                 if (toastId >= 0) {
 
                     toast.update(toastId, {

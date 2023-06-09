@@ -7,7 +7,6 @@ import {
 } from "./login.types";
 
 let local = localStorage.getItem("userrole");
-console.log(local);
 
 var checkAdminAuth = false;
 if (local == "admin") {
@@ -38,10 +37,8 @@ export const loginReducer = (state = initialstate, { type, payload }) => {
       };
     }
     case LOGIN_GET_SUCCESS: {
-      // return console.log(payload.role);
 
       localStorage.setItem("token", payload.token);
-      // This thing is done for showing user info in userprofilepage
       localStorage.setItem("userrole", payload.role);
       localStorage.setItem("username", payload.lastname);
       localStorage.setItem("useremail", payload.email);

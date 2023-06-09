@@ -1,35 +1,24 @@
-import axios from "axios";
 import styles from "./Forgotpass.module.css";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import { Link, useNavigate } from "react-router-dom";
-import { Button, Input, Space } from "antd";
+import { Input } from "antd";
+import { useDispatch } from "react-redux";
+import { resetPassword } from "../../redux/action/auth";
+import { toast } from "react-toastify";
+import { useNavigate, Link } from "react-router-dom";
 
 const NewPassword = () => {
+  const navigate = useNavigate();
+  const dispatch = new useDispatch()
   const [pw, setPw] = useState([]);
   const [newPw, setNewPw] = useState([]);
   const { token } = useParams();
 
   const password = async () => {
-    if (pw == newPw) {
-      await axios
-        .put(`http://localhost:5000/api/users/reset-password/${token}`, {
-          password: pw,
-        })
-        .then((result) => {
-          console.log("result", result);
-          alert("Mật khẩu đã đổi thành công");
-        })
-        .catch((err) => {
-          console.log("err", err);
-          if (err.response.status == 500) {
-            alert("Mã đã hết hạn");
-          } else {
-            alert("Mật khẩu đổi không thành công");
-          }
-        });
+    if (pw === newPw) {
+      dispatch(resetPassword(token, pw,navigate))
     } else {
-      alert("Failed to change password");
+      toast.warning("Mật khẩu không trùng khớp");
     }
   };
 

@@ -62,7 +62,6 @@ const AClogin = () => {
       })
       .then((result) => {
         toast.success("Đăng nhập thành công !");
-        console.log(result);
       })
       .catch((err) => {
         console.log(err.response.data);

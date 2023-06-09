@@ -92,12 +92,7 @@ const AddressUser = () => {
     const handleSaveAddress = (e) => {
         e.preventDefault()
         if (selectedCity && selectedDistrict && selectedWard) {
-            // Do something with the selected values
-            console.log("Selected City:", selectedCity);
-            console.log("Selected District:", selectedDistrict);
-            console.log("Selected Ward:", selectedWard);
-            console.log("Selected Addres:", selectedAddress);
-
+           
             dispatch(updateUserAddress(userId, selectedCity, selectedDistrict, selectedWard, selectedAddress))
         } else {
             console.log("Please select all fields");

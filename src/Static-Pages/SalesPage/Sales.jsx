@@ -20,7 +20,7 @@ import LoadPage from "../../Loadpage/Loadpage";
 const Sales = () => {
   const param = useParams();
   const { category } = param;
-  console.log(category);
+
 
   const dispatch = useDispatch();
   const productList = useSelector((state) => state.productList);

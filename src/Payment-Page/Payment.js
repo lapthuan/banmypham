@@ -133,10 +133,8 @@ const Stepper = () => {
   };
   useEffect(() => {
     if (isloading == true) {
-      console.log("loading");
     }
     if (issuccess == true) {
-      console.log("success");
       dispatch(resetCart());
       dispatch(resetOrder());
     }
@@ -416,8 +414,6 @@ const Stepper = () => {
                   }}
                   onApprove={(data, actions) => {
                     return actions.order.capture().then((details) => {
-                      console.log(details);
-
                       if (details.status == "COMPLETED") handerClickCheckOut();
 
                     });

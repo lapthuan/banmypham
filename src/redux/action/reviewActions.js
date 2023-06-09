@@ -32,7 +32,7 @@ export const addReview = (product, userid, rate, title, review) =>
 
                 if (response.data.success == true) {
                     api.get(`api/review/inproducs?idproduct=${product}&page=1&limit=5`).then((response) => {
-                        console.log(response);
+                  
                         dispatch({ type: REVIEW_GET_SUCCESS, payload: response.data })
                         if (toastId >= 0) {
 
