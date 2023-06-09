@@ -90,7 +90,11 @@ const FeedBack = ({ product, setRating }) => {
                     allowHalf
                     value={averageRating}
                     className="ml-28"
-                    style={{ color: "#fe2c6d", fontSize: "16px" }}
+                    style={{
+                      color: "#fe2c6d",
+                      fontSize: "16px",
+                      left: "-60px",
+                    }}
                     disabled
                   />
                 </div>

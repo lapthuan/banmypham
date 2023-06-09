@@ -4,11 +4,7 @@ import "./Cart.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Link } from "react-router-dom";
-import img1 from "../../Image/1.webp";
-import img2 from "../../Image/1647316643.webp";
-import img3 from "../../Image/1672817926.webp";
-import img4 from "../../Image/1682067960.webp";
-import img5 from "../../Image/1682270821.webp";
+
 import { useTranslation } from "react-i18next";
 import { Rate } from "antd";
 const FeaturedCard = ({ title, productfiter }) => {
@@ -99,7 +95,7 @@ const FeaturedCard = ({ title, productfiter }) => {
                     <Rate
                       defaultValue={item.totalrating}
                       disabled
-                      className="ml-[20px]"
+                      className=""
                     />
                   </div>
                   <div className="text-left text-xl font-bold">
