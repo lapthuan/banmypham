@@ -21,7 +21,7 @@ const Tpost = () => {
   const filteredBlogs = blogs?.filter(
     (article) => article.category._id === blog?.category
   );
-  console.log(blogs);
+ 
 
   return loading == false ? (
     <>

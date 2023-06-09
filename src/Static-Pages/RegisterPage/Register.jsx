@@ -62,7 +62,7 @@ function Register() {
       toast.warning("Email không hợp lệ!");
       return;
     } else if (sForm.password === sForm.confirmPassword) {
-      console.log(sForm);
+
       dispatch(signup(sForm, nagivate));
     } else {
       toast.warning("Nhập lại mật khẩu không chính xác");

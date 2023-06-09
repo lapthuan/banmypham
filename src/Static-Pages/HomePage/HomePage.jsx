@@ -23,7 +23,7 @@ function HomePage() {
   const [recentlyViewedProducts, setRecentlyViewedProducts] = useState([]);
 
 
-  
+
   useEffect(() => {
     dispatch(listProducts());
     dispatch(listbrand());
@@ -62,7 +62,7 @@ function HomePage() {
   brandSalesArray.sort((a, b) => b[1] - a[1]);
   const mostSoldBrand =
     brandSalesArray.length > 0 ? brandSalesArray[0][0] : null;
-  console.log(mostSoldBrand);
+
   const filteredProducts = jsonDataCopy3.filter(
     (product) => product.brand === mostSoldBrand
   );

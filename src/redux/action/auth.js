@@ -6,9 +6,6 @@ import {
   UPDATE_GET_SUCCESS,
   UPDATE_GET_FAILED,
   UPDATE_GET_REQUEST,
-  BLOCK_USER_REQUEST,
-  BLOCK_USER_SUCCESS,
-  BLOCK_USER_FAILURE,
   LOGOUT_GET,
 } from "../const/actionsTypes";
 import * as api from "../../api/index";
@@ -89,7 +86,7 @@ export const signin = (dataForm, navigate) => async (dispatch) => {
       }
 
       const storedAttempt = parseInt(window.localStorage.getItem(JSON.stringify(emailUser)))
-      console.log(storedAttempt);
+
       if (storedAttempt === 5) {
         await window.localStorage.setItem(JSON.stringify(emailUser), "0");
 
@@ -116,21 +113,7 @@ export const signin = (dataForm, navigate) => async (dispatch) => {
   }
 }
 
-export const blockUser = (email) => {
-  return async (dispatch) => {
-    dispatch({ type: BLOCK_USER_REQUEST });
 
-    try {
-      const result = await apis.post(`/api/users/block-user/${email}`);
-      dispatch({ type: BLOCK_USER_SUCCESS });
-
-    } catch (err) {
-      dispatch({ type: BLOCK_USER_FAILURE });
-
-
-    }
-  };
-};
 export const signinGoogle = (accessToken, navigate) => async (dispatch) => {
   let toastId = toast("Đang xử lý...", { autoClose: false });
 
@@ -189,10 +172,7 @@ export const signup = (formData, navigate) => async (dispatch) => {
   let toastId = toast("Đang xử lý...", { autoClose: false });
 
   try {
-
     const { data } = await api.signUp(formData);
-    console.log(data);
-
     if (toastId >= 0) {
 
       toast.update(toastId, {
@@ -317,3 +297,101 @@ export const updateUserAddress = (id, city, district, ward, address) => async (d
     });
   }
 }
+
+export const resetPassword = (token, pw, navigate) => {
+  return async (dispatch) => {
+    let toastId = toast("Đang xử lý...", { autoClose: false });
+    try {
+      await apis.put(`/api/users/reset-password/${token}`, {
+        password: pw,
+      })
+        .then((result) => {
+          if (toastId >= 0) {
+
+            toast.update(toastId, {
+              render: "Thay đổi mật khẩu thành công.",
+              type: "success",
+              autoClose: 3000
+            });// does nothing
+          } else {
+            toast("Thay đổi mật khẩu thành công.", { type: "success", autoClose: 3000 });
+          }
+          navigate("/login");
+        })
+        .catch((err) => {
+          console.log("err", err);
+          if (err.response.status == 500) {
+            if (toastId >= 0) {
+
+              toast.update(toastId, {
+                render: "Mã đã hết hạn.",
+                type: "error",
+                autoClose: 3000
+              });
+
+            } else {
+
+              toast("Mã đã hết hạn.", { type: "error", autoClose: 3000 });
+            }
+          } else {
+            if (toastId >= 0) {
+
+              toast.update(toastId, {
+                render: "Mật khẩu đổi không thành công.",
+                type: "error",
+                autoClose: 3000
+              });// does nothing
+            } else {
+              toast("Mật khẩu đổi không thành công.", { type: "error", autoClose: 3000 });
+            }
+
+          }
+        });
+    } catch (err) {
+
+
+    }
+  };
+};
+
+export const generatePassword = (email) => {
+  return async (dispatch) => {
+    let toastId = toast("Đang xử lý...", { autoClose: false });
+    try {
+      await apis.post("/api/users/forgot-password-token", {
+        email: email,
+      })
+        .then((result) => {
+          if (toastId >= 0) {
+
+            toast.update(toastId, {
+              render: "Vui lòng kiểm tra lại email để đặt lại mật khẩu",
+              type: "success",
+              autoClose: 3000
+            });
+          } else {
+            toast("Vui lòng kiểm tra lại email để đặt lại mật khẩu", { type: "success", autoClose: 3000 });
+          }
+        })
+        .catch((err) => {
+          if (err.response.status == 500) {
+            if (toastId >= 0) {
+
+              toast.update(toastId, {
+                render: "Email không tồn tại.",
+                type: "error",
+                autoClose: 3000
+              });
+
+            } else {
+
+              toast("Email không tồn tại.", { type: "error", autoClose: 3000 });
+            }
+          }
+        });
+    } catch (err) {
+      console.log(err);
+
+    }
+  };
+};

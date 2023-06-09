@@ -42,7 +42,7 @@ export const blogGetDetail = (idBlog) =>
         dispatch({ type: BLOG_GET_DETAIL_REQUEST })
         try {
             const { data } = await api.get(`/api/blog/${idBlog}`)
-            console.log(data);
+      
             dispatch({ type: BLOG_GET_DETAIL_SUCCESS, payload: data })
 
         } catch (error) {
@@ -63,7 +63,7 @@ export const blogCategoryGetAll = () =>
         dispatch({ type: BLOG_CATEGORY_GET_ALL_REQUEST })
         try {
             const { data } = await api.get(`/api/blogcategory`)
-            console.log(data);
+       
             dispatch({ type: BLOG_CATEGORY_GET_ALL_SUCCESS, payload: data })
 
         } catch (error) {
