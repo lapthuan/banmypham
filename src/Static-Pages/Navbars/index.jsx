@@ -7,7 +7,7 @@ import styles from "./Navbar.module.css";
 import { Link } from "react-router-dom";
 import ModalBlog from "./Model/ModalBlog";
 import Category from "./Model/Category";
-
+import ModalBrand from "./Model/ModalBrand";
 const Navbar = ({ navigationData, currentRoute, setCurrentRoute }) => {
   const [show, setShow] = useState(false);
   const [show2, setShow2] = useState(false);
@@ -62,19 +62,8 @@ const Navbar = ({ navigationData, currentRoute, setCurrentRoute }) => {
           <nav class="navbar" role="navigation" aria-label="menu">
             <ul class="menuNav">
               <Link to={"/"}>
-                <li
-                  class="dropdown nav-link nav-link-fade-up transition-all duration-700 mx-10 hover:text-[#ff2b70]"
-                  onMouseOver={showHandler}
-                >
+                <li class="dropdown nav-link nav-link-fade-up transition-all duration-700 mx-10 hover:text-[#ff2b70]">
                   Trang chủ
-                  {/* {show && (
-                    <div>
-                      <ul
-                        class="dropdown-nav"
-                        onMouseLeave={dontShowHandler}
-                      ></ul>
-                    </div>
-                  )} */}
                 </li>
               </Link>
 
@@ -96,8 +85,18 @@ const Navbar = ({ navigationData, currentRoute, setCurrentRoute }) => {
               </Link>
 
               <Link to={"/Brands"}>
-                <li class="dropdown nav-link nav-link-fade-up mx-10 hover:text-[#ff2b70]">
+                <li
+                  class="dropdown nav-link nav-link-fade-up mx-10 hover:text-[#ff2b70] "
+                  onMouseOver={showHandler}
+                >
                   Thương hiệu
+                  {show && (
+                    <div>
+                      <ul class="dropdown-nav" onMouseLeave={dontShowHandler}>
+                        <ModalBrand />
+                      </ul>
+                    </div>
+                  )}
                 </li>
               </Link>
 

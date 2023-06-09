@@ -29,26 +29,41 @@ const ModalBlog = () => {
 
   return (
     <div className="blogSetMainParent">
-      <div className="flex flex-col w-[30%]  gap-2 blogPriceHolder  ">
-        {bCategorys?.map((item) => (
-          <Link>
-            <p className="hover:text-[#ff2b70] text-left text-[#2e3e4e] text-[18px] ">
-              {item.title}
-            </p>
-          </Link>
-        ))}
+      <div className="flex flex-col gap-2 blogPriceHolder w-[250px]">
+        <div className="text-left font-bold text-black text-[20px]   ">
+          Danh mục thương hiệu
+        </div>
+        <div className="h-[400px]  mt-3">
+          {bCategorys?.map((item, index) => (
+            <Link to={`/blog/`}>
+              <p
+                className={`hover:text-[#ff2b70] text-left ${
+                  index !== 0 ? "mt-5" : ""
+                }`}
+              >
+                {item.title}
+              </p>
+            </Link>
+          ))}
+        </div>
       </div>
-      <div className="w-[70%] grid grid-cols-3  blogHold ">
+      <div className="w-[70%] grid grid-cols-3 blogHold ">
         {blogs
           ?.map((item) => (
-            <div className="flex-col">
-              <div className="blogimg ">
-                <img src={item.images[0]?.url} className="rounded-lg" alt="" />
-                <div className="text-[13px] text-left text-black w-[90%]">
-                  {item.title.slice(0, 40)}...
+            <Link to={`/Tpost/${item._id}`}>
+              <div className="flex-col">
+                <div className="blogimg ">
+                  <img
+                    src={item.images[0]?.url}
+                    className="rounded-lg"
+                    alt=""
+                  />
+                  <div className="text-[13px] text-left text-black w-[90%]">
+                    {item.title.slice(0, 40)}...
+                  </div>
                 </div>
               </div>
-            </div>
+            </Link>
           ))
           .slice(0, 5)}
       </div>
