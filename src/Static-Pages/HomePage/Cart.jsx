@@ -67,7 +67,7 @@ const FeaturedCard = ({ title, productfiter }) => {
     <>
       <div className="slider">
         <div className="flex justify-between">
-          <h1 className="text-[22px] mt-10 font-bold">{title}</h1>
+          <h1 className="text-[22px] mt-10 mb-5 font-bold">{title}</h1>
           <div className="flex">
             <h1 className="text-[15px] mt-10">{t("xemtatca")}</h1>
           </div>
@@ -81,7 +81,7 @@ const FeaturedCard = ({ title, productfiter }) => {
                   <img
                     src={item.images[0]?.url}
                     style={{
-                      height: "250px",
+                      height: "150px",
                       width: "150px",
                       marginLeft: "auto",
                       marginRight: "auto",
@@ -89,23 +89,29 @@ const FeaturedCard = ({ title, productfiter }) => {
                   />
                 </div>
                 <div className="card-bottom">
-                  <div className="text-left text-xs mb-2">Đã bán :{item.sold}</div>
                   <div className="text-left text-xs mb-2">
+                    Đã bán: {item.sold}
+                  </div>
+                  <div className="text-left text-xs mb-2 ">
                     {item.title.slice(0, 50)}...
                   </div>
-                  <div>
-                    <Rate defaultValue={item.totalrating} disabled />
+                  <div className="text-left">
+                    <Rate
+                      defaultValue={item.totalrating}
+                      disabled
+                      className="ml-[20px]"
+                    />
                   </div>
-                  <div className="text-left text-xl font-bold">{item?.price.toLocaleString("vi-VN", {
-                    style: "currency",
-                    currency: "VND",
-                  })}</div>
+                  <div className="text-left text-xl font-bold">
+                    {item?.price.toLocaleString("vi-VN", {
+                      style: "currency",
+                      currency: "VND",
+                    })}
+                  </div>
                 </div>
               </div>
             </Link>
           ))}
-
-
         </Slider>
         <div>
           <span className="next cursor-pointer" onClick={gotoPrev}></span>

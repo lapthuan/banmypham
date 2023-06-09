@@ -84,10 +84,7 @@ const CartBlog = ({ filteredBlogs }) => {
                 </div>
               </div>
             </div>
-
           ))}
-
-
         </Slider>
       </div>
     </>
