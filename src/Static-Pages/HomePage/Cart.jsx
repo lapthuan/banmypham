@@ -65,7 +65,9 @@ const FeaturedCard = ({ title, productfiter }) => {
         <div className="flex justify-between">
           <h1 className="text-[22px] mt-10 mb-5 font-bold">{title}</h1>
           <div className="flex">
-            <h1 className="text-[15px] mt-10">{t("xemtatca")}</h1>
+            <Link to="/Sale">
+              <h1 className="text-[15px] mt-10">{t("xemtatca")}</h1>
+            </Link>
           </div>
         </div>
 

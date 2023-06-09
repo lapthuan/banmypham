@@ -1,7 +1,7 @@
 const Promotion = () => {
   return (
     <div class="grid grid-cols-1 sm:grid-cols-4 gap-4 sm:gap-4">
-      <h3 class="col-span-4 text-left text-left text-[20px] font-bold">
+      <h3 class="col-span-4 text-left text-left text-[22px] font-bold">
         CHƯƠNG TRÌNH NỔI BẬT
       </h3>
       <div class="col-span-1">

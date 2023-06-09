@@ -5,7 +5,7 @@ import "swiper/css";
 const MostSearch = () => {
   return (
     <div className="most-search mt-5">
-      <div className="text-[20px] mt-10 font-bold text-left">
+      <div className="text-[22px] mt-10 font-bold text-left">
         TÌM KIẾM NHIỀU NHẤT
       </div>
       <ul className="mt-5">

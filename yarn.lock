@@ -4351,6 +4351,15 @@ batch@0.6.1:
   resolved "https://registry.npmjs.org/batch/-/batch-0.6.1.tgz"
   integrity sha512-x+VAiMRL6UPkx+kudNvxTl6hB2XNNCG2r+7wixVfIYwu/2HKRXimwQyaumLjMveWvT2Hkd/cAJw+QBMfJ/EKVw==
 
+better-react-spinkit@2.0.0:
+  version "2.0.0"
+  resolved "https://registry.npmjs.org/better-react-spinkit/-/better-react-spinkit-2.0.0.tgz"
+  integrity sha512-b6E4nZyFrdlZYEAIn7GMF9d9WonAEZ5gXXasxrnLa8dh0SkIdQdm6vI/j38PCpXZ8zEkgWHxWlaPDh36fgGIWg==
+  dependencies:
+    inline-style-prefixer "^3.0.3"
+    minify-css-string "^1.0.0"
+    performance-uuid "^0.1.0"
+
 bfj@^7.0.2:
   version "7.0.2"
   resolved "https://registry.npmjs.org/bfj/-/bfj-7.0.2.tgz"
@@ -4370,6 +4379,27 @@ binary-extensions@^2.0.0:
   version "2.2.0"
   resolved "https://registry.npmjs.org/binary-extensions/-/binary-extensions-2.2.0.tgz"
   integrity sha512-jDctJ/IVQbZoJykoeHbhXpOlNBqGNcwXJKJog42E5HDPUwQTSdjCHdihjj0DlnheQ7blbT6dHOafNAiS8ooQKA==
+
+bisu-react-modal@1.0.12:
+  version "1.0.12"
+  resolved "https://registry.npmjs.org/bisu-react-modal/-/bisu-react-modal-1.0.12.tgz"
+  integrity sha512-2j3Wb88book9R3m/k0HqlCZZ3W4U/mX+ZGAhiteY93Lh4gvzKbH2nv9LzpvOGbbwH33jBCi5Z14hkn/Pib2tUw==
+  dependencies:
+    classnames "2.2.5"
+    react-draggable "2.2.6"
+    react-icons "2.2.5"
+    react-modal "2.2.4"
+
+bisu-react-search-modal@^1.0.8:
+  version "1.0.8"
+  resolved "https://registry.npmjs.org/bisu-react-search-modal/-/bisu-react-search-modal-1.0.8.tgz"
+  integrity sha512-WnBzbd0TfNAtd6forBroli8YktPAWjez5lEsHQxqTavFNI6Cjva/Uk6Xl8ZF8utmzoizhic+8H2w4G1yAPDuOA==
+  dependencies:
+    better-react-spinkit "2.0.0"
+    bisu-react-modal "1.0.12"
+    classnames "2.2.5"
+    react-draggable "2.2.6"
+    react-icons "2.2.5"
 
 bluebird@^3.5.5:
   version "3.7.2"
@@ -4413,6 +4443,11 @@ boolbase@^1.0.0, boolbase@~1.0.0:
   version "1.0.0"
   resolved "https://registry.npmjs.org/boolbase/-/boolbase-1.0.0.tgz"
   integrity sha512-JZOSA7Mo9sNGB8+UjSgzdLtokWAky1zbztM3WRLCbZ70/3cTANmQmOdR7y2g+J0e2WXywy1yS468tY+IruqEww==
+
+bowser@^1.7.3:
+  version "1.9.4"
+  resolved "https://registry.npmjs.org/bowser/-/bowser-1.9.4.tgz"
+  integrity sha512-9IdMmj2KjigRq6oWhmwv1W36pDuA4STQZ8q6YO9um+x07xgYNCD3Oou+WP/3L1HNz7iqythGet3/p4wvc8AAwQ==
 
 brace-expansion@^1.1.7:
   version "1.1.11"
@@ -4704,6 +4739,11 @@ classnames@^2.2.1, classnames@^2.2.3, classnames@^2.2.5, classnames@^2.2.6, clas
   version "2.3.2"
   resolved "https://registry.npmjs.org/classnames/-/classnames-2.3.2.tgz"
   integrity sha512-CSbhY4cFEJRe6/GQzIk5qXZ4Jeg5pcsP7b5peFSDpffpe1cqjASH/n9UTjBwOp6XpMSTwQ8Za2K5V02ueA7Tmw==
+
+classnames@2.2.5:
+  version "2.2.5"
+  resolved "https://registry.npmjs.org/classnames/-/classnames-2.2.5.tgz"
+  integrity sha512-DTt3GhOUDKhh4ONwIJW4lmhyotQmV2LjNlGK/J2hkwUcqcbKkCLAdJPtxQnxnlc7SR3f1CEXCyMmc7WLUsWbNA==
 
 clean-css@^5.2.2:
   version "5.3.1"
@@ -5067,6 +5107,14 @@ css-has-pseudo@^3.0.4:
   integrity sha512-Vse0xpR1K9MNlp2j5w1pgWIJtm1a8qS0JwS9goFYcImjlHEmywP9VUF05aGBXzGpDJF86QXk4L0ypBmwPhGArw==
   dependencies:
     postcss-selector-parser "^6.0.9"
+
+css-in-js-utils@^2.0.0:
+  version "2.0.1"
+  resolved "https://registry.npmjs.org/css-in-js-utils/-/css-in-js-utils-2.0.1.tgz"
+  integrity sha512-PJF0SpJT+WdbVVt0AOYp9C8GnuruRlL/UFW7932nLWmFLQTaWEzTBQEx7/hn4BuV+WON75iAViSUJLiU3PKbpA==
+  dependencies:
+    hyphenate-style-name "^1.0.2"
+    isobject "^3.0.1"
 
 css-loader@^6.5.1:
   version "6.7.1"
@@ -6296,6 +6344,19 @@ fbjs@^0.8.15:
     setimmediate "^1.0.5"
     ua-parser-js "^0.7.30"
 
+fbjs@^0.8.9:
+  version "0.8.18"
+  resolved "https://registry.npmjs.org/fbjs/-/fbjs-0.8.18.tgz"
+  integrity sha512-EQaWFK+fEPSoibjNy8IxUtaFOMXcWsY0JaVrQoZR9zC8N2Ygf9iDITPWjUTVIax95b6I742JFLqASHfsag/vKA==
+  dependencies:
+    core-js "^1.0.0"
+    isomorphic-fetch "^2.1.1"
+    loose-envify "^1.0.0"
+    object-assign "^4.1.0"
+    promise "^7.1.1"
+    setimmediate "^1.0.5"
+    ua-parser-js "^0.7.30"
+
 fbjs@^2.0.0:
   version "2.0.0"
   resolved "https://registry.npmjs.org/fbjs/-/fbjs-2.0.0.tgz"
@@ -7081,6 +7142,11 @@ humanize-ms@^1.2.1:
   dependencies:
     ms "^2.0.0"
 
+hyphenate-style-name@^1.0.2:
+  version "1.0.4"
+  resolved "https://registry.npmjs.org/hyphenate-style-name/-/hyphenate-style-name-1.0.4.tgz"
+  integrity sha512-ygGZLjmXfPHj+ZWh6LwbC37l43MhfztxetbFCoYTM2VjkIUpeHgSNn7QIyVFj7YQ1Wl9Cbw5sholVJPzWvC2MQ==
+
 i18next-http-backend@^2.2.1:
   version "2.2.1"
   resolved "https://registry.npmjs.org/i18next-http-backend/-/i18next-http-backend-2.2.1.tgz"
@@ -7194,6 +7260,14 @@ ini@^1.3.5:
   version "1.3.8"
   resolved "https://registry.npmjs.org/ini/-/ini-1.3.8.tgz"
   integrity sha512-JV/yugV2uzW5iMRSiZAyDtQd+nxtUnjeLt0acNdw98kKLrvuRVyB80tsREOE7yvGVgalhZ6RNXCmEHkUKBKxew==
+
+inline-style-prefixer@^3.0.3:
+  version "3.0.8"
+  resolved "https://registry.npmjs.org/inline-style-prefixer/-/inline-style-prefixer-3.0.8.tgz"
+  integrity sha512-ne8XIyyqkRaNJ1JfL1NYzNdCNxq+MCBQhC8NgOQlzNm2vv3XxlP0VSLQUbSRCF6KPEoveCVEpayHoHzcMyZsMQ==
+  dependencies:
+    bowser "^1.7.3"
+    css-in-js-utils "^2.0.0"
 
 internal-slot@^1.0.3:
   version "1.0.3"
@@ -7485,6 +7559,11 @@ isexe@^2.0.0:
   version "2.0.0"
   resolved "https://registry.npmjs.org/isexe/-/isexe-2.0.0.tgz"
   integrity sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==
+
+isobject@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.npmjs.org/isobject/-/isobject-3.0.1.tgz"
+  integrity sha512-WhB9zCku7EGTj/HQQRz5aUQEUeoQZH2bWcltRErOpymJ4boYE6wL9Tbr23krRPSZ+C5zqNSrSw+Cc7sZZ4b7vg==
 
 isomorphic-fetch@^2.1.1:
   version "2.2.1"
@@ -8601,6 +8680,11 @@ mini-store@^2.0.0:
     react-lifecycles-compat "^3.0.4"
     shallowequal "^1.0.2"
 
+minify-css-string@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.npmjs.org/minify-css-string/-/minify-css-string-1.0.0.tgz"
+  integrity sha512-DJaNU2LAYR/bcDxRkmntPHnWNUZnmvkIkaD8qfuE5aLcM1bQODNAGSRxncv+tPglnYEG9xQVSpGFbcObix7j7Q==
+
 minimalistic-assert@^1.0.0:
   version "1.0.1"
   resolved "https://registry.npmjs.org/minimalistic-assert/-/minimalistic-assert-1.0.1.tgz"
@@ -9252,6 +9336,11 @@ performance-now@^2.1.0:
   version "2.1.0"
   resolved "https://registry.npmjs.org/performance-now/-/performance-now-2.1.0.tgz"
   integrity sha512-7EAHlyLHI56VEIdK57uwHdHKIaAGbnXPiw0yWbarQZOKaKpvUIgW0jWRVLiatnM+XXlSwsanIBH/hzGMJulMow==
+
+performance-uuid@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.npmjs.org/performance-uuid/-/performance-uuid-0.1.0.tgz"
+  integrity sha512-m5RpGhBCWWWn916QckwoGIdGlUOf+ZoAJEb6iTg00ZxAMiiQ38ZMEG4MJtI7RGGjkznyAFP42zXKZrg7ZkSV8w==
 
 picocolors@^0.2.1:
   version "0.2.1"
@@ -9958,6 +10047,13 @@ prop-types@^15.5.0, prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.6,
     loose-envify "^1.4.0"
     object-assign "^4.1.1"
     react-is "^16.13.1"
+
+prop-types@15.5.8:
+  version "15.5.8"
+  resolved "https://registry.npmjs.org/prop-types/-/prop-types-15.5.8.tgz"
+  integrity sha512-QiDx7s0lWoAVxmEmOYnn3rIZGduup2PZgj3rta5O5y0NfPKu3ApWi+GdMfTto7PmO/5+p4yamSLMZkj0jaTL4A==
+  dependencies:
+    fbjs "^0.8.9"
 
 proxy-addr@~2.0.7:
   version "2.0.7"
@@ -10934,6 +11030,11 @@ react-dev-utils@^12.0.1:
     strip-ansi "^6.0.1"
     text-table "^0.2.0"
 
+react-dom-factories@^1.0.0:
+  version "1.0.2"
+  resolved "https://registry.npmjs.org/react-dom-factories/-/react-dom-factories-1.0.2.tgz"
+  integrity sha512-Bmic2N3oKji7vw9qjDr2dmwHvOATbFSnKy7EH0uT/qjvzIUsiXp6Yquk72LJ3WfMtRnq3ujXMMo7GsJeLPfFWw==
+
 react-dom@^18.2.0:
   version "18.2.0"
   resolved "https://registry.npmjs.org/react-dom/-/react-dom-18.2.0.tgz"
@@ -10941,6 +11042,13 @@ react-dom@^18.2.0:
   dependencies:
     loose-envify "^1.1.0"
     scheduler "^0.23.0"
+
+react-draggable@2.2.6:
+  version "2.2.6"
+  resolved "https://registry.npmjs.org/react-draggable/-/react-draggable-2.2.6.tgz"
+  integrity sha512-QWsjxOlKUB+81+f2AKfoleKT6jBm4xloQbA149JDUECCUoDEdTo6ha9C0y84MTiq7m5TmhJ3G2PK2gPTCDxXeQ==
+  dependencies:
+    classnames "^2.2.5"
 
 react-dropdown@^1.11.0:
   version "1.11.0"
@@ -11010,10 +11118,24 @@ react-i18next@^12.3.1:
     "@babel/runtime" "^7.20.6"
     html-parse-stringify "^3.0.1"
 
+react-icon-base@2.0.7:
+  version "2.0.7"
+  resolved "https://registry.npmjs.org/react-icon-base/-/react-icon-base-2.0.7.tgz"
+  integrity sha512-dbzni3fUIsqlC+mt24myDetp4gMQN1B/OoRofOJOWVYGBxQKo9Vr5rIAVyRBtSKKH58RZp7H7I9V/hZ7LcemSw==
+  dependencies:
+    prop-types "15.5.8"
+
 react-icons@^4.6.0:
   version "4.6.0"
   resolved "https://registry.npmjs.org/react-icons/-/react-icons-4.6.0.tgz"
   integrity sha512-rR/L9m9340yO8yv1QT1QurxWQvWpbNHqVX0fzMln2HEb9TEIrQRGsqiNFQfiv9/JEUbyHmHPlNTB2LWm2Ttz0g==
+
+react-icons@2.2.5:
+  version "2.2.5"
+  resolved "https://registry.npmjs.org/react-icons/-/react-icons-2.2.5.tgz"
+  integrity sha512-Ni+MKH5+LVrzRfuFBRuxNmEdD4XHI9XTAUHFFObAV6dn8aXeEOKUadf/z+Ypr2jYK3cKfh2+cJtIG5YmMpNwwQ==
+  dependencies:
+    react-icon-base "2.0.7"
 
 react-is@^16.12.0, react-is@^16.13.1, react-is@^16.7.0:
   version "16.13.1"
@@ -11054,6 +11176,15 @@ react-modal@^3.16.1:
     prop-types "^15.7.2"
     react-lifecycles-compat "^3.0.0"
     warning "^4.0.3"
+
+react-modal@2.2.4:
+  version "2.2.4"
+  resolved "https://registry.npmjs.org/react-modal/-/react-modal-2.2.4.tgz"
+  integrity sha512-JMF2Dn5CXae7uqYWD1594WNDmQY8aCz09OmMaOmC8rNXs4dl1CSJC1a0qZdoFplkpHKVPLFRF0gqr35c46BRZw==
+  dependencies:
+    exenv "^1.2.0"
+    prop-types "^15.5.10"
+    react-dom-factories "^1.0.0"
 
 react-paypal-js@^0.0.1-security:
   version "0.0.1-security"

@@ -37,7 +37,8 @@ const Navbars = ({ cartProductQuantity, setCartProductQuantity }) => {
   const [openCart, setOpenCart] = useState(false);
   const [openMenu, setOpenMenu] = useState(false);
   const navigate = useNavigate();
-
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [searchHistory, setSearchHistory] = useState([]);
   // let cartData = JSON.parse(localStorage.getItem("cartItems")) || []
   useEffect(() => {
     dispatch(loadCart());

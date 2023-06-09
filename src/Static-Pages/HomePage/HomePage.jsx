@@ -22,26 +22,33 @@ function HomePage() {
   const { categorys } = categorylist;
   const [recentlyViewedProducts, setRecentlyViewedProducts] = useState([]);
 
-
-
   useEffect(() => {
     dispatch(listProducts());
     dispatch(listbrand());
     dispatch(listCategory());
   }, []);
+
   const jsonDataCopy1 = [...products];
   const jsonDataCopy2 = [...products];
   const jsonDataCopy3 = [...products];
   const jsonDataCopy4 = [...products];
 
+  //lọc sản phẩm ngẫu nhiên
+  const getRandomProducts = (arr, count) => {
+    const shuffled = arr.sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, count);
+  };
+  const randomProducts = getRandomProducts(jsonDataCopy4, 5);
+
   const addToRecentlyViewed = (product) => {
-    const isProductExist = recentlyViewedProducts.some((prevProduct) => prevProduct.id === product.id);
+    const isProductExist = recentlyViewedProducts.some(
+      (prevProduct) => prevProduct.id === product.id
+    );
     if (!isProductExist) {
       const updatedProducts = [product, ...recentlyViewedProducts.slice(0, 4)]; // Giới hạn danh sách sản phẩm vừa xem tối đa 5 sản phẩm
       setRecentlyViewedProducts(updatedProducts);
     }
   };
-
 
   const filteredProductsHot =
     jsonDataCopy1?.sort((a, b) => b.sold - a.sold) || [];
@@ -50,11 +57,12 @@ function HomePage() {
       (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
     ) || [];
 
+  //lọc sản phẩm bán chạy theo brand
   const brandSales = jsonDataCopy3.reduce((acc, product) => {
-    if (acc[product.brand]) {
-      acc[product.brand] += product.sold;
+    if (acc[product.brand?._id]) {
+      acc[product.brand?._id] += product.sold;
     } else {
-      acc[product.brand] = product.sold;
+      acc[product.brand?._id] = product.sold;
     }
     return acc;
   }, {});
@@ -64,7 +72,7 @@ function HomePage() {
     brandSalesArray.length > 0 ? brandSalesArray[0][0] : null;
 
   const filteredProducts = jsonDataCopy3.filter(
-    (product) => product.brand === mostSoldBrand
+    (product) => product.brand?._id === mostSoldBrand
   );
 
   return (
@@ -113,9 +121,7 @@ function HomePage() {
         <div className=" w-[90%] ml-auto mr-auto">
           <MostSearch />
         </div>
-        {/* <div className="mb-[5%]">
-            <Carts />
-          </div> */}
+        <Carts title={"SẢN PHẨM DÀNH CHO BẠN"} productfiter={randomProducts} />
         <div className="w-[90%] ml-auto mr-auto mb-5 pt-5 lg:flex md:hidden hidden">
           <Promotion />
         </div>
