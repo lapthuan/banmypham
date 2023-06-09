@@ -43,28 +43,21 @@ const Product = () => {
 
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, product, error } = productDetails;
-
   const Findproduct = useSelector((state) => state.productFind);
   const { productFind } = Findproduct;
-  const categoryDetails = useSelector((state) => state.categoryDetails);
-  const { category } = categoryDetails;
-  const brandDetails = useSelector((state) => state.brandDetails);
-  const { brand } = brandDetails;
+
   useEffect(() => {
     dispatch(listProductDetails(id));
   }, [id, dispatch]);
 
   useEffect(() => {
-    if (product.category) {
-      dispatch(listCategoryDetails(product.category));
+    if (product.category?._id) {
       dispatch(
-        findProducts("", "", "", "", JSON.stringify([product?.category]))
+        findProducts("", "", "", "", JSON.stringify([product.category?._id]))
       );
     }
   }, [product.category]);
-  useEffect(() => {
-    if (product.brand) dispatch(listbrandDetails(product.brand));
-  }, [product.brand, dispatch]);
+
   const handleAddToCart = (e) => {
     if (productQuantity && id) {
       dispatch(addItem(id, productQuantity));
@@ -223,12 +216,12 @@ const Product = () => {
         )}
         <div className="product-description flow">
           <p className="text-uppercase fw-700 fs-100 letter-spacing-1 Orange text-left">
-            Danh mục : {category?.title}
+            Danh mục : {product.category?.title}
           </p>
           <h1 className="fw-700 line-height-300 fs-230 blue text-left text-2xl">
             {product.title}
           </h1>
-          <p className="text-left text-lg">Nhãn hàng : {brand.title}</p>
+          <p className="text-left text-lg text-[#fe2c6d]">Nhãn hàng : {product.brand?.title}</p>
           <p className=" text-left text-lg">
             Số lượng còn : {product.quantity}
           </p>
@@ -253,9 +246,9 @@ const Product = () => {
               <span className="fw-700 blue fs-700">
                 {product.price
                   ? product.price.toLocaleString("vi-VN", {
-                      style: "currency",
-                      currency: "VND",
-                    })
+                    style: "currency",
+                    currency: "VND",
+                  })
                   : ""}
               </span>
               {/* <span className="offer fw-700 fs-400 Orange">50%</span>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import imgError from "../../Image/imgError.jpg";
 import "../SalesPage/Sales.module.css";
 import {
@@ -6,35 +6,36 @@ import {
   AiOutlineHome,
   AiOutlineShoppingCart,
 } from "react-icons/ai";
-import image from "../../Image/1683787781.webp";
 import Stars from "../SalesPage/Stars";
 import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import FilTer from "../SalesPage/filter";
-import { listProducts } from "../../redux/action/productActions";
+import FilTer from "./filter";
+import { findProductsPrice } from "../../redux/action/productActions";
 import { useEffect } from "react";
-import { listbrand } from "../../redux/action/brandActions";
-import { listCategory } from "../../redux/action/categoryActions";
+import { listbrandDetails } from "../../redux/action/brandActions";
+
 import LoadPage from "../../Loadpage/Loadpage";
 import logo1 from "../Brands/imageBrand/Nivea_logo.svg.png";
 
 function Holiday() {
-  const param = useParams();
-  const { category } = param;
-  console.log(category);
-
+  const params = useParams();
+  let idBrand = params.id;
   const dispatch = useDispatch();
+
   const productList = useSelector((state) => state.productList);
   const { products, loading } = productList;
-  const brandlist = useSelector((state) => state.brandList);
-  const { brands } = brandlist;
-  const categorylist = useSelector((state) => state.categoryList);
-  const { categorys } = categorylist;
+  const branddetail = useSelector((state) => state.brandDetails);
+  const { brand } = branddetail;
+  console.log(brand);
   useEffect(() => {
-    if (!products || products?.length == 0) dispatch(listProducts());
-    if (!brands || brands?.length == 0) dispatch(listbrand());
-    if (!categorys || categorys?.length == 0) dispatch(listCategory());
-  }, []);
+
+    dispatch(listbrandDetails(idBrand))
+
+    dispatch(
+      findProductsPrice("", "", `["${idBrand}"]`, "", "")
+    );
+
+  }, [idBrand]);
 
   return (
     <div className="main__sales">
@@ -71,12 +72,39 @@ function Holiday() {
               </svg>
 
               <Link
-                to={"/Sale"}
+                to={"/brands"}
                 class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-[#fe2c6d] "
               >
                 <AiOutlineShoppingCart />
                 <div class="ml-1 text-sm font-medium text-gray-700 hover:text-[#fe2c6d] md:ml-2 ">
-                  Tất cả sản phẩm{" "}
+                  Thương hiệu{" "}
+                </div>
+              </Link>
+            </div>
+          </li>
+          <li>
+            <div class="flex items-center">
+              <svg
+                aria-hidden="true"
+                class="w-6 h-6 text-gray-400"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+
+              <Link
+                to={`/brands/${brand?._id}`}
+                class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-[#fe2c6d] "
+              >
+
+                <div class="ml-1 text-sm font-medium text-gray-700 hover:text-[#fe2c6d] md:ml-2 ">
+                  {brand?.title}
                 </div>
               </Link>
             </div>
@@ -92,14 +120,10 @@ function Holiday() {
                 <div className="hidden md:block mt-10">
                   <div className="flex-col">
                     <div>
-                      <img src={logo1} alt="" className="w-[60%] mx-auto" />
+                      <img src={brand.images?.url} alt="" className="w-[60%] mx-auto" />
                     </div>
                     <div className="leading-loose text-[15px] mt-3 text-left text-justify text-[#696969]">
-                      NIVEA là một trong những thương hiệu mỹ phẩm toàn cầu
-                      chuyên về chăm sóc da và dưỡng thể, thuộc công ty
-                      Beiersdorf của Đức, được thành lập vào năm 1882, với hơn
-                      50 cơ sở trên thế giới cùng 130 năm kinh nghiệm, sản phẩm
-                      Nivea luôn đáp ứng mọi nhu cầu của khách hàng.
+                      {brand.description}
                     </div>
                   </div>
                 </div>
@@ -146,6 +170,11 @@ function Holiday() {
                           >
                             <div className="mt-2 flex justify-center pl-[10px] py-1 overflow-hidden">
                               <div>
+                                <div className="flex justify-between ">
+                                  <Link to={`../brands/${item.brand._id}`} className=" text-[#fe2c6d] text-sm border border-[#fe2c6d] p-1 rounded-lg ">{item.brand.title}</Link>
+                                  <div className="text-left text-sm p-1">{item.category.title.slice(0, 15)}...</div>
+                                </div>
+                                <br />
                                 <p className="text-sm text-[#3E4048] text-left">
                                   {item.title.slice(0, 55)}...
                                 </p>
@@ -155,11 +184,12 @@ function Holiday() {
                                 <p className="text-left text-black font-bold text-lg mt-2">
                                   {item.price
                                     ? item.price.toLocaleString("vi-VN", {
-                                        style: "currency",
-                                        currency: "VND",
-                                      })
+                                      style: "currency",
+                                      currency: "VND",
+                                    })
                                     : ""}
                                 </p>
+
                               </div>
                             </div>
                           </Link>

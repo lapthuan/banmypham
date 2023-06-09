@@ -59,7 +59,7 @@ function AllRoutes() {
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/Brands" element={<Brands />} />
-      <Route path="/Holiday" element={<Holiday />} />
+      <Route path="/Brands/:id" element={<Holiday />} />
       <Route path="/Sale" element={<Sales />} />
       <Route path="/Register" element={<Register />} />
       <Route path="/Forgotpass" element={<Forgotpass />} />

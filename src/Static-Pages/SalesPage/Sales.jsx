@@ -132,8 +132,13 @@ const Sales = () => {
                             to={`/Sale/${item._id}`}
                             className="group relative bg-color-card rounded-md shadow overflow-hidden"
                           >
-                            <div className="mt-2 flex justify-center pl-[10px] py-1 overflow-hidden">
+                            <div className="mt-2 flex justify-between pl-[10px] py-1 overflow-hidden">
                               <div>
+                                <div className="flex justify-around ">
+                                  <Link to={`../brands/${item.brand._id}`} className=" text-[#fe2c6d] text-sm border border-[#fe2c6d] p-1 rounded-lg ">{item.brand.title}</Link>
+                                  <div className="text-left text-sm p-1">{item.category.title.slice(0, 15)}...</div>
+                                </div>
+                                <br />
                                 <p className="text-sm text-[#3E4048] text-left">
                                   {item.title.slice(0, 55)}...
                                 </p>
@@ -143,11 +148,12 @@ const Sales = () => {
                                 <p className="text-left text-black font-bold text-lg mt-2">
                                   {item.price
                                     ? item.price.toLocaleString("vi-VN", {
-                                        style: "currency",
-                                        currency: "VND",
-                                      })
+                                      style: "currency",
+                                      currency: "VND",
+                                    })
                                     : ""}
                                 </p>
+
                               </div>
                             </div>
                           </Link>
@@ -159,7 +165,7 @@ const Sales = () => {
                   )}
                 </div>
               ) : (
-                <LoadPage/>
+                <LoadPage />
               )}
 
               {/* <div

@@ -11,6 +11,7 @@ import {
   faChevronRight,
   faChevronDown,
 } from "@fortawesome/free-solid-svg-icons";
+import { useParams } from "react-router-dom";
 const modalStyles = {
   overlay: {
     zIndex: 50,
@@ -94,6 +95,8 @@ const modalCategory = {
   },
 };
 const Filter = () => {
+  const params = useParams();
+  let idBrand = params.id;
   const dispatch = new useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalOpenPrice, setIsModalOpenPrice] = useState(false);
@@ -101,16 +104,13 @@ const Filter = () => {
   const [isModalOpenCategory, setIsModalOpenCategory] = useState(false);
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
-  const [selectedBrands, setSelectedBrands] = useState([]);
   const [selectedCategorys, setSelectedCategorys] = useState([]);
   const [inStock, setInStock] = useState("");
   const [selectIDPrice, setSelectIDPrice] = useState();
-  const brandlist = useSelector((state) => state.brandList);
-  const { brands } = brandlist;
   const categorylist = useSelector((state) => state.categoryList);
   const { categorys } = categorylist;
 
-  const isIdSelectedBrand = (id) => selectedBrands.includes(id);
+
   const isIdSelectedCategory = (id) => selectedCategorys.includes(id);
 
   const handleModalToggle = () => {
@@ -131,14 +131,7 @@ const Filter = () => {
     setIsModalOpenPrice(!isModalOpenPrice);
   };
 
-  const handleModalBranch = () => {
-    if (isModalOpenBranch == false) {
-      setIsModalOpen(false);
-      setIsModalOpenCategory(false);
-      setIsModalOpenPrice(false);
-    }
-    setIsModalOpenBranch(!isModalOpenBranch);
-  };
+
   const handleModalCategory = () => {
     if (isModalOpenCategory == false) {
       setIsModalOpen(false);
@@ -168,31 +161,16 @@ const Filter = () => {
       );
     }
   };
-  const handleSelectCheckboxChange = (e) => {
-    const selectedBrand = e.target.value;
-    if (e.target.checked) {
-      setSelectedBrands((prevSelectedBrands) => [
-        ...prevSelectedBrands,
-        selectedBrand,
-      ]);
-    } else {
-      setSelectedBrands((prevSelectedBrands) =>
-        prevSelectedBrands.filter((brand) => brand !== selectedBrand)
-      );
-    }
-  };
   const handleOutOfStockChange = (e) => {
     setInStock(e.target.value);
   };
   const handleFindButtonClick = () => {
-    console.log(selectedBrands);
+
     dispatch(
       findProductsPrice(
         minPrice,
         maxPrice,
-        JSON.stringify(selectedBrands) == "[]"
-          ? ""
-          : JSON.stringify(selectedBrands),
+        `["${idBrand}"]`,
         inStock,
         JSON.stringify(selectedCategorys) == "[]"
           ? ""
@@ -211,9 +189,10 @@ const Filter = () => {
     setMinPrice("");
     setMaxPrice("");
     setInStock("");
-    setSelectedBrands([]);
     setSelectedCategorys([]);
-    dispatch(listProducts());
+    dispatch(
+      findProductsPrice("", "", `["${idBrand}"]`, "", "")
+    );
   };
 
   return (
@@ -251,20 +230,7 @@ const Filter = () => {
                     />
                   </div>
                 </div>
-                <div className="relative">
-                  <button
-                    className="bg-white py-2 px-4 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
-                    onClick={handleModalBranch}
-                  >
-                    THƯƠNG HIỆU
-                  </button>
-                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center text-gray-700">
-                    <FontAwesomeIcon
-                      icon={isModalOpenBranch ? faChevronDown : faChevronRight}
-                      className="mr-2"
-                    />
-                  </div>
-                </div>
+
                 <div className="relative">
                   <button
                     className="bg-white py-2 px-4 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
@@ -287,48 +253,7 @@ const Filter = () => {
           <div></div>
         </div>
       </div>
-      {isModalOpenBranch && (
-        <Modal
-          ariaHideApp={false}
-          isOpen={isModalOpenBranch}
-          onRequestClose={handleModalBranch}
-          style={modalPrice}
-          contentLabel="Trạng thái"
-        >
-          <div className="flex flex-col">
-            {brands?.map((item) => (
-              <div className="flex items-center mb-2">
-                <input
-                  type="checkbox"
-                  value={item._id}
-                  checked={isIdSelectedBrand(item._id)}
-                  onChange={handleSelectCheckboxChange}
-                  className="w-4 h-4 text-blue-600 mr-3 bg-gray-100 border-2 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                />
-                <label className="text-[15px] font-medium text-black">
-                  {item.title}
-                </label>
-              </div>
-            ))}
 
-            <hr className="my-4" />
-            <div className="flex justify-center">
-              <button
-                className="bg-black text-white w-[40%] py-2 rounded mr-2"
-                onClick={handleFindButtonClick}
-              >
-                Áp dụng
-              </button>
-              <button
-                className="text-black py-2 px-4 rounded"
-                onClick={handleResetButtonClick}
-              >
-                Bỏ lọc
-              </button>
-            </div>
-          </div>
-        </Modal>
-      )}
       {isModalOpenCategory && (
         <Modal
           ariaHideApp={false}
