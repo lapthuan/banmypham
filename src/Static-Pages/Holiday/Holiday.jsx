@@ -72,7 +72,7 @@ function Holiday() {
               </svg>
 
               <Link
-                to={"/brands"}
+                to={"/Brands"}
                 class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-[#fe2c6d] "
               >
                 <AiOutlineShoppingCart />
