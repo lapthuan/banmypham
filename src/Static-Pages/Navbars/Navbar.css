@@ -684,3 +684,46 @@ nav .logo.space {
 .submenu li {
   margin-left: 40px;
 }
+
+.search-results-modal {
+  position: relative;
+  top: -12px;
+  left: 24%;
+  width: 46%;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  z-index: 99999999;
+  border-radius: 10px;
+  border: 1px solid #000000;
+}
+
+.search-results-modal .modal-content1 {
+  margin-top: 10px;
+  text-align: left;
+}
+
+.search-results-modal h3 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  margin-left: 10px;
+}
+
+.search-results-modal ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.search-results-modal li {
+  font-size: 14px;
+  margin-bottom: 5px;
+  margin-left: 10px;
+  color: #454647;
+}
+
+.search-results-modal li:hover {
+  color: #ff2b70;
+}

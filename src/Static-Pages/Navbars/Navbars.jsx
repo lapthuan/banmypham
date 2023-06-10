@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import "./Navbar.css";
 
@@ -13,7 +13,6 @@ import {
   AiTwotoneDelete,
 } from "react-icons/ai";
 import Imageuser from "../../Image/user.png";
-
 import "react-dropdown/style.css";
 import { Cart } from "./Cart";
 import { Link, useNavigate } from "react-router-dom";
@@ -37,8 +36,54 @@ const Navbars = ({ cartProductQuantity, setCartProductQuantity }) => {
   const [openCart, setOpenCart] = useState(false);
   const [openMenu, setOpenMenu] = useState(false);
   const navigate = useNavigate();
-  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const [searchData, setSearchData] = useState("");
+  const [showModal, setShowModal] = useState(false);
+  const [searchResults, setSearchResults] = useState([]);
   const [searchHistory, setSearchHistory] = useState([]);
+  const [relatedPosts, setRelatedPosts] = useState([]);
+
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (event.target.tagName !== "INPUT") {
+        setShowModal(false);
+      }
+    };
+
+    document.addEventListener("click", handleOutsideClick);
+
+    return () => {
+      document.removeEventListener("click", handleOutsideClick);
+    };
+  }, []);
+
+  const handleSearch = (event) => {
+    const value = event.target.value;
+    setSearchData(value);
+    setShowModal(value.trim() !== "");
+
+    // Simulate search results
+    // Replace this with your actual search logic
+    const results = value
+      ? ["Con cu rám nắng ", "Con lạc đà đen thui", "Con kì nhong trắng bóc"]
+      : [];
+    setSearchResults(results);
+
+    const posts = value
+      ? ["Bài viết con lạc đà", "Bài viết kì nhong", "Bài viết con cu"]
+      : [];
+    setRelatedPosts(posts);
+  };
+
+  const handleInputClick = () => {
+    setShowModal(true);
+  };
+
+  const handleSearchHistoryClick = (history) => {
+    setSearchData(history);
+    setShowModal(true);
+  };
+
   // let cartData = JSON.parse(localStorage.getItem("cartItems")) || []
   useEffect(() => {
     dispatch(loadCart());
@@ -53,13 +98,13 @@ const Navbars = ({ cartProductQuantity, setCartProductQuantity }) => {
   }
 
   // For search operation in input box
-  const handleSearch = async (e) => {
-    // const searcheddata = e.target.value;
-  };
+  // const handleSearch = async (e) => {
+  //   // const searcheddata = e.target.value;
+  // };
 
-  useEffect(() => {
-    handleSearch();
-  }, []);
+  // useEffect(() => {
+  //   handleSearch();
+  // }, []);
 
   const handlelogout = (e) => {
     dispatch(logout());
@@ -92,19 +137,21 @@ const Navbars = ({ cartProductQuantity, setCartProductQuantity }) => {
             <AiOutlineClose />
           </span>
         </div>
-        <form className="co rounded-[10px]" action="#">
-          <input
-            type="search"
-            className="search-data"
-            placeholder="Tìm kiếm son, sữa rữa mặt..."
-            // onChange={() => handleSearch()}
-            // Fix
-            onChange={(e) => setSearchedata(e.target.value)}
-          />
-          <button type="submit">
-            <AiOutlineSearch size={26} style={{ margin: "5px" }} />
-          </button>{" "}
-        </form>
+        <div className="w-[46%]">
+          <form className="co rounded-[10px]" action="#">
+            <input
+              type="search"
+              className="search-data"
+              placeholder="Tìm kiếm son, sữa rữa mặt, bông tẩy trang,...."
+              value={searchData}
+              onChange={handleSearch}
+              onClick={handleInputClick}
+            />
+            <button type="submit">
+              <AiOutlineSearch size={26} style={{ margin: "5px" }} />
+            </button>{" "}
+          </form>
+        </div>
 
         <div
           className={
@@ -409,7 +456,59 @@ const Navbars = ({ cartProductQuantity, setCartProductQuantity }) => {
             </li>
           </ul>
         </div>
+
+        {showModal && (
+          <div className="search-results-modal">
+            <div className="modal-content1">
+              {searchData ? (
+                <>
+                  <div className="pb-3">
+                    <h3>Kết quả tìm kiếm:</h3>
+                    <ul className="overflow-y-scroll">
+                      {searchResults.map((result, index) => (
+                        <li key={index}>
+                          <Link>
+                            <p className="mt-4">{result}</p>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="border-t-2">
+                    <h3 className="pt-3">Bài viết liên quan:</h3>
+                    <ul className="overflow-y-scroll">
+                      {relatedPosts.map((post, index) => (
+                        <li key={index}>
+                          <Link>
+                            <p className="mt-4">{post}</p>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <h3>Lịch sử tìm kiếm:</h3>
+                  <ul>
+                    {searchHistory.map((history, index) => (
+                      <li
+                        key={index}
+                        onClick={() => handleSearchHistoryClick(history)}
+                      >
+                        <Link>
+                          <p className="mt-4"> {history}</p>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              )}
+            </div>
+          </div>
+        )}
       </nav>
+
       <br />
       <form
         className="co flex flex-row justify-center lg:hidden md:flex"
