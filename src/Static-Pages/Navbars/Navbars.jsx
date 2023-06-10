@@ -110,6 +110,11 @@ const Navbars = () => {
       localStorage.setItem('searchHistory', JSON.stringify(updatedSearchHistory));
     }
   };
+  const handleClearHistorySearch = () => {
+    localStorage.setItem('searchHistory', "[]")
+    setSearchHistory([]);
+
+  }
   const handlelogout = (e) => {
     dispatch(logout());
   };
@@ -503,26 +508,23 @@ const Navbars = () => {
                 </>
               ) : (
                 <>
-                  <h3>Lịch sử tìm kiếm:</h3>
+                  <div className="flex justify-between">
+                    <h3 className="flex">Lịch sử tìm kiếm:</h3>
+                    <p className="flex hover:text-[#fe2c6d] text-sm" onClick={handleClearHistorySearch}>Xóa lịch sử</p>
+                  </div>
                   <ul>
-                    {/* {searchHistory.map((history, index) => ( */}
-                    <li
-                    // key={index}
-                    // onClick={() => handleSearchHistoryClick(history)}
-                    >
-                      <Link>
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 sm:grid-cols-1 mt-5">
-                          <div className="history_title">mặt nạ</div>
-                          <div className="history_title">Tăm nước</div>
-                          <div className="history_title">quần xì</div>
-                          <div className="history_title">áo thun</div>
-                          <div className="history_title">áo thun</div>
-                          <div className="history_title">áo thun</div>
-                          <div className="history_title">áo thun</div>
-                        </div>
-                      </Link>
-                    </li>
-                    {/* ))} */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 sm:grid-cols-1 mt-5">
+                      {searchHistory.map((history, index) => (
+                        <li
+                          key={index}
+                          onClick={() => handleSearchHistoryClick(history)}
+                        >
+                          <Link>
+                            <div className="history_title">{history}</div>
+                          </Link>
+                        </li>
+                      ))}
+                    </div>
                   </ul>
                 </>
               )}
