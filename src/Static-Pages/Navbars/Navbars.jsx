@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import axios from "axios";
 import "./Navbar.css";
-
 import { BsMinecartLoaded } from "react-icons/bs";
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
@@ -21,25 +19,23 @@ import { logout } from "../../redux/action/auth";
 import deleteIcon from "../../Image/icon-delete.svg";
 import { loadCart, removeItem } from "../../redux/action/cartActions";
 import { listProducts } from "../../redux/action/productActions";
+import Highlighter from 'react-highlight-words';
 
-const Navbars = ({ cartProductQuantity, setCartProductQuantity }) => {
+const Navbars = () => {
   const [isNavExpanded, setIsNavExpanded] = useState(false);
   const userData = localStorage.getItem("token") || "";
   const userName = localStorage.getItem("username");
   const userImage = localStorage.getItem("userimage");
   const [data, setdata] = useState([]);
-  const [searchdata, setsearchdata] = useState("");
-  const [userId, userEmail, userPassword] = userData.split(":");
   const [isNav, setIsNav] = useState(false);
   const dispatch = useDispatch();
   const { isauth } = useSelector((store) => store.login);
-  const [openCart, setOpenCart] = useState(false);
-  const [openMenu, setOpenMenu] = useState(false);
-  const navigate = useNavigate();
+  const { products } = useSelector((store) => store.productList);
+
 
   const [searchData, setSearchData] = useState("");
   const [showModal, setShowModal] = useState(false);
-  const [searchResults, setSearchResults] = useState([]);
+
   const [searchHistory, setSearchHistory] = useState([]);
   const [relatedPosts, setRelatedPosts] = useState([]);
 
@@ -62,19 +58,14 @@ const Navbars = ({ cartProductQuantity, setCartProductQuantity }) => {
     setSearchData(value);
     setShowModal(value.trim() !== "");
 
-    // Simulate search results
-    // Replace this with your actual search logic
-    const results = value
-      ? ["Con cu rám nắng ", "Con lạc đà đen thui", "Con kì nhong trắng bóc"]
-      : [];
-    setSearchResults(results);
-
-    const posts = value
-      ? ["Bài viết con lạc đà", "Bài viết kì nhong", "Bài viết con cu"]
-      : [];
-    setRelatedPosts(posts);
+    // const posts = value
+    //   ? ["Bài viết con lạc đà", "Bài viết kì nhong", "Bài viết con cu"]
+    //   : [];
+    // setRelatedPosts(posts);
   };
-
+  const filteredData = products?.filter((item) =>
+    item.title.toLowerCase().includes(searchData.toLowerCase())
+  );
   const handleInputClick = () => {
     setShowModal(true);
   };
@@ -87,33 +78,46 @@ const Navbars = ({ cartProductQuantity, setCartProductQuantity }) => {
   // let cartData = JSON.parse(localStorage.getItem("cartItems")) || []
   useEffect(() => {
     dispatch(loadCart());
+    dispatch(listProducts());
   }, []);
 
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
 
-  const [searcheddata, setSearchedata] = useState("");
+
   function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
   }
+  useEffect(() => {
 
-  // For search operation in input box
-  // const handleSearch = async (e) => {
-  //   // const searcheddata = e.target.value;
-  // };
+    const storedSearchHistory = localStorage.getItem('searchHistory');
+    if (storedSearchHistory) {
+      const parsedSearchHistory = JSON.parse(storedSearchHistory);
+      setSearchHistory(parsedSearchHistory);
+    }
+  }, []);
 
-  // useEffect(() => {
-  //   handleSearch();
-  // }, []);
+  const handleSaveSearch = (event) => {
 
+    const searchValue = searchData;
+
+    const isDuplicate = searchHistory.includes(searchValue);
+
+    if (!isDuplicate) {
+      const updatedSearchHistory = [...searchHistory, searchValue];
+      setSearchHistory(updatedSearchHistory);
+
+      localStorage.setItem('searchHistory', JSON.stringify(updatedSearchHistory));
+    }
+  };
   const handlelogout = (e) => {
     dispatch(logout());
   };
 
   return (
     <div>
-      <nav className="my-6 px-[100px]">
-        <div className="logo">
+      <nav className="my-6 px-[100px] ">
+        <div className="logo w-[33%]">
           <Link to="/">
             <GoogleFontLoader
               fonts={[{ font: "Playfair", weights: [500, 900] }]}
@@ -137,7 +141,7 @@ const Navbars = ({ cartProductQuantity, setCartProductQuantity }) => {
             <AiOutlineClose />
           </span>
         </div>
-        <div className="w-[46%]">
+        <div className="w-[33%]  ">
           <form className="co rounded-[10px]" action="#">
             <input
               type="search"
@@ -147,7 +151,7 @@ const Navbars = ({ cartProductQuantity, setCartProductQuantity }) => {
               onChange={handleSearch}
               onClick={handleInputClick}
             />
-            <button type="submit">
+            <button >
               <AiOutlineSearch size={26} style={{ margin: "5px" }} />
             </button>{" "}
           </form>
@@ -156,14 +160,14 @@ const Navbars = ({ cartProductQuantity, setCartProductQuantity }) => {
         <div
           className={
             isNavExpanded
-              ? " nav-items navigation-menu expanded"
-              : " nav-items navigation-menu"
+              ? " nav-items navigation-menu expanded w-[33%]"
+              : " nav-items navigation-menu w-[33%]"
           }
         >
-          <ul>
+          <ul className="justify-end">
             <li>
               {isauth ? (
-                <Menu as="div" className="relative pt-3">
+                <Menu as="div" className="relative pt-3 ">
                   <div>
                     <Menu.Button className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 ">
                       <span className="sr-only">Open user menu</span>
@@ -464,17 +468,27 @@ const Navbars = ({ cartProductQuantity, setCartProductQuantity }) => {
                 <>
                   <div className="pb-3">
                     <h3>Kết quả tìm kiếm:</h3>
-                    <ul className="overflow-y-scroll">
-                      {searchResults.map((result, index) => (
-                        <li key={index}>
-                          <Link>
-                            <p className="mt-4">{result}</p>
+                    <ul className="h-[200px] overflow-auto " id="journal-scroll">
+                      {filteredData.map((item, index) => (
+                        <li key={item._id} className={"hover:border hover:rounded-xl"}>
+                          <Link className="flex " to={`sale/${item._id}`} onClick={handleSaveSearch}>
+                            <div className="flex w-[20%] justify-center">
+                              <img src={item.images[0]?.url} className="w-[50px] h-[50px] rounded-lg" />
+                            </div>
+                            <div className="flex  w-[80%] text-justify pt-2 pr-2">
+                              <Highlighter
+                                highlightStyle={{ backgroundColor: '#f09eb8', borderRadius: "9999px" }}
+                                searchWords={[searchData]}
+                                autoEscape={true}
+                                textToHighlight={item.title}
+                              />
+                            </div>
                           </Link>
                         </li>
                       ))}
                     </ul>
                   </div>
-                  <div className="border-t-2">
+                  {/* <div className="border-t-2">
                     <h3 className="pt-3">Bài viết liên quan:</h3>
                     <ul className="overflow-y-scroll">
                       {relatedPosts.map((post, index) => (
@@ -485,7 +499,7 @@ const Navbars = ({ cartProductQuantity, setCartProductQuantity }) => {
                         </li>
                       ))}
                     </ul>
-                  </div>
+                  </div> */}
                 </>
               ) : (
                 <>
@@ -659,20 +673,6 @@ const Navbars = ({ cartProductQuantity, setCartProductQuantity }) => {
 
       <div className="line"></div>
 
-      {setdata.length != 0 && isNav ? (
-        <div className="suggestionwala">
-          {data.map((el) => (
-            <Link to="/Sale">
-              <div key={el.id} className="searchkro">
-                <img src={el.image} alt="Image" className="products_image" />
-                <h3>{el.title}</h3>
-              </div>
-            </Link>
-          ))}
-        </div>
-      ) : (
-        " "
-      )}
     </div>
   );
 };
