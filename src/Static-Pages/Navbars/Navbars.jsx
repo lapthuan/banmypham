@@ -491,16 +491,24 @@ const Navbars = ({ cartProductQuantity, setCartProductQuantity }) => {
                 <>
                   <h3>Lịch sử tìm kiếm:</h3>
                   <ul>
-                    {searchHistory.map((history, index) => (
-                      <li
-                        key={index}
-                        onClick={() => handleSearchHistoryClick(history)}
-                      >
-                        <Link>
-                          <p className="mt-4"> {history}</p>
-                        </Link>
-                      </li>
-                    ))}
+                    {/* {searchHistory.map((history, index) => ( */}
+                    <li
+                    // key={index}
+                    // onClick={() => handleSearchHistoryClick(history)}
+                    >
+                      <Link>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 sm:grid-cols-1 mt-5">
+                          <div className="history_title">mặt nạ</div>
+                          <div className="history_title">Tăm nước</div>
+                          <div className="history_title">quần xì</div>
+                          <div className="history_title">áo thun</div>
+                          <div className="history_title">áo thun</div>
+                          <div className="history_title">áo thun</div>
+                          <div className="history_title">áo thun</div>
+                        </div>
+                      </Link>
+                    </li>
+                    {/* ))} */}
                   </ul>
                 </>
               )}
