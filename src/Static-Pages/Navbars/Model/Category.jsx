@@ -12,9 +12,6 @@ const Category = () => {
   const dispatch = useDispatch();
   const categorylist = useSelector((state) => state.categoryList);
   const { categorys } = categorylist;
-  useEffect(() => {
-    if (categorys?.length == 0) dispatch(listCategory());
-  }, []);
 
   return (
     <div className="giftSetMainParent ">
@@ -24,7 +21,7 @@ const Category = () => {
         </div>
         <div className="h-[400px] overflow-y-scroll mt-3">
           {categorys?.map((item, index) => (
-            <Link key={item._id} to={``}>
+            <Link key={item._id} to="Sale">
               <p
                 className={`hover:text-[#ff2b70] text-left ${
                   index !== 0 ? "mt-5" : ""

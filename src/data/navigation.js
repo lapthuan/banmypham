@@ -26,7 +26,7 @@ export const Nav = [
   },
   {
     name: "Liên hệ",
-    path: "/FContact",
+    path: "/Contact",
     icon: "Contact",
   },
 ];

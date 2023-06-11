@@ -38,10 +38,6 @@ const Carts = () => {
   const coupons = useSelector((state) => state.couponGet)
   const { coupon } = coupons
 
-  useEffect(() => {
-    dispatch(loadUser());
-
-  }, [])
 
 
   const totalPrice = (price, qty) => {

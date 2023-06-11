@@ -1,6 +1,23 @@
 import React, { useState } from "react";
 import "./Contact.css";
+import { useDispatch } from "react-redux";
+import { newContact } from "../../../redux/action/ContactAction";
+import { toast } from "react-toastify";
 const Contact = () => {
+  const dispatch = new useDispatch();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [messager, setMessager] = useState("");
+  var checkMail =
+    /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+
+  const handlerSendMessage = () => {
+    if (!checkMail.test(email) || email.length == "") {
+      toast.warning("Email không hợp lệ!");
+      return;
+    }
+    dispatch(newContact(name, email, messager));
+  };
   return (
     <>
       <div className=" mx-auto">
@@ -8,11 +25,11 @@ const Contact = () => {
           <div className="relative overflow-hidden bg-no-repeat bg-cover CBack"></div>
           <div className="text-gray-800 px-4 md:px-12 ml-auto mr-auto lg:w-[50%] w-full">
             <div className="block rounded-lg shadow-lg py-10 md:py-12 px-4 md:px-6 CBlur">
-              <div className="text-4xl mb-5 font-bold">GỬI PHẢN HỒI</div>
+              <div className="text-4xl mb-5 font-bold ">GỬI PHẢN HỒI</div>
               <div className="grid md:grid-cols-3  lg:grid-cols-3 gap-x-6  ">
                 <div className="mb-3 lg:mb-0 text-center mx-auto">
                   <svg
-                    class="w-8 h-8 text-blue-600 mb-3 mx-auto"
+                    class="w-8 h-8 text-[#fe2c6d] mb-3 mx-auto"
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 496 512"
                   >
@@ -25,7 +42,7 @@ const Contact = () => {
                 </div>
                 <div class="mb-3 lg:mb-0 text-center mx-auto">
                   <svg
-                    class="w-8 h-8 text-blue-600 mb-3 mx-auto"
+                    class="w-8 h-8 text-[#fe2c6d] mb-3 mx-auto"
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 384 512"
                   >
@@ -40,7 +57,7 @@ const Contact = () => {
                 </div>
                 <div class="mb-3 md:mb-0 text-center mx-auto">
                   <svg
-                    class="w-8 h-8 text-blue-600 mb-3 mx-auto"
+                    class="w-8 h-8 text-[#fe2c6d] mb-3 mx-auto"
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 512 512"
                   >
@@ -54,33 +71,64 @@ const Contact = () => {
               </div>
               <div className="max-w-[700px] mx-auto mt-5">
                 <form>
-                  <div className="mb-3">
+                  <div className="text-left">
+                    <label className="text-[15px] ">Nhập Tên: </label>
+                  </div>
+                  <div className="mb-3 mt-3">
                     <input
                       type="text"
                       className="w-full px-3 py-1 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                       placeholder="Nhập tên"
+                      onChange={(e) => setName(e.target.value)}
                     />
                   </div>
-                  <div className="mb-3">
+                  <div className="text-left">
+                    <label className="text-[15px] ">Nhập Email: </label>
+                  </div>
+                  <div className="mb-3 mt-3">
                     <input
                       type="Email"
                       className="w-full px-3 py-1 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                       placeholder="Nhập email"
+                      onChange={(e) => setEmail(e.target.value)}
                     />
+                  </div>
+                  <div className="text-left">
+                    <label className="text-[15px] ">Nhập nội dung: </label>
                   </div>
                   <div className="mb-3">
                     <textarea
                       rows="3"
-                      className="form-control block w-full px-3 py-1 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                      className=" mt-3 form-control block w-full px-3 py-1 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none placeholder:text-[15px]"
+                      onChange={(e) => setMessager(e.target.value)}
+                      placeholder="Nhập nội dung phản hồi"
                     ></textarea>
                   </div>
                   <button
-                    className="w-full px-6 py-2 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md  hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0  active:bg-blue-800 active:shadow-lg  transition duration-150 ease-in-out"
-                    type="submit"
+                    className=" w-full text-[15px] rounded-md bg-[#fe2c6d] px-6 py-3 font-medium text-white"
+                    onClick={handlerSendMessage}
                   >
                     Gửi đi
                   </button>
                 </form>
+              </div>
+            </div>
+          </div>
+          <div className="w-[90%] mx-auto">
+            <div className="shadow mt-10 rounded-md bg-color-card overflow-auto FMap">
+              <h4 className="lg:text-left text-[40px] font-bold text-color-title pl-3 mt-3 ml-5">
+                Vị trí
+              </h4>{" "}
+              <div className="flex flex-wrap p-4 ">
+                <iframe
+                  className="rounded-lg"
+                  title="Map"
+                  src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15704.576624311765!2d105.9618098!3d10.2499554!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x310a82ce95555555%3A0x451cc8d95d6039f8!2zVHLGsOG7nW5nIMSQSCBTxrAgcGjhuqFtIEvhu7kgdGh14bqtdCBWxKluaCBMb25n!5e0!3m2!1svi!2s!4v1684051014906!5m2!1svi!2s"
+                  width="100%"
+                  height="450"
+                  allowFullScreen=""
+                  loading="lazy"
+                ></iframe>
               </div>
             </div>
           </div>

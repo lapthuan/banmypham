@@ -27,7 +27,7 @@ const DealsSale = () => {
   }, [productList]);
 
   useEffect(() => {
-    dispatch(listProducts());
+    if (!products || products?.length == 0) dispatch(listProducts());
   }, []);
 
   console.log(products.length);

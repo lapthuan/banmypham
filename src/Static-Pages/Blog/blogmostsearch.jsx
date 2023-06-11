@@ -13,8 +13,8 @@ const blogmost = ({ bCategorys }) => {
               <button>Tất cả</button>
             </li>
           </SwiperSlide>
-          {bCategorys.map((item) => (
-            <SwiperSlide>
+          {bCategorys.map((item, i) => (
+            <SwiperSlide key={i}>
               <li className="w-[50%] mr-[10px] text-center">
                 <button>{item.title}</button>
               </li>

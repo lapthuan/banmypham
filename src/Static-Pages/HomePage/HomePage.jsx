@@ -22,12 +22,6 @@ function HomePage() {
   const { categorys } = categorylist;
   const [recentlyViewedProducts, setRecentlyViewedProducts] = useState([]);
 
-  useEffect(() => {
-    dispatch(listProducts());
-    dispatch(listbrand());
-    dispatch(listCategory());
-  }, []);
-
   const jsonDataCopy1 = [...products];
   const jsonDataCopy2 = [...products];
   const jsonDataCopy3 = [...products];

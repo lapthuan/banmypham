@@ -1,17 +1,10 @@
 import React, { useEffect } from "react";
 
-import {
-  AiFillFacebook,
-  AiFillGithub,
-  AiFillGoogleCircle,
-  AiFillLinkedin,
-  AiFillTwitterSquare,
-  AiOutlineInstagram,
-} from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { listCategory } from "../../redux/action/categoryActions";
 import { Link } from "react-router-dom";
 import { listbrand } from "../../redux/action/brandActions";
+import { blogCategoryGetAll, blogGetAll } from "../../redux/action/blogActions";
 
 export const Footer = () => {
   return (
@@ -27,11 +20,17 @@ const Footer2 = () => {
   const { categorys } = categorylist;
   const brandlist = useSelector((state) => state.brandList);
   const { brands } = brandlist;
+  const blogList = useSelector((state) => state.blogList);
+  const { blogs } = blogList;
+
+  const categoryList = useSelector((state) => state.bCategoryList);
+  const { bCategorys } = categoryList;
   useEffect(() => {
     if (!brands || brands?.length == 0) dispatch(listbrand());
     if (!categorys || categorys?.length == 0) dispatch(listCategory());
+    if (blogs?.length == 0) dispatch(blogGetAll());
+    if (bCategorys?.length == 0) dispatch(blogCategoryGetAll());
   }, []);
-
   return (
     <footer className="bg-white dark:bg-black">
       <div className=" ">
@@ -88,8 +87,8 @@ const Footer2 = () => {
             </h2>
             <ul className="text-gray-500 font-medium">
               {categorys
-                ?.map((item) => (
-                  <li className="mb-4 text-left ">
+                ?.map((item, i) => (
+                  <li className="mb-4 text-left " key={i}>
                     <Link
                       key={item._id}
                       className=" hover:text-[#ff2b70] text-[#9a9b9b] text-[13px] "
@@ -155,8 +154,8 @@ const Footer2 = () => {
             <ul className="text-gray-500 dark:text-gray-400 font-medium">
               {" "}
               {brands
-                ?.map((item) => (
-                  <li className="mb-4 text-left ">
+                ?.map((item, i) => (
+                  <li className="mb-4 text-left " key={i}>
                     <Link
                       key={item._id}
                       className=" hover:text-[#ff2b70] text-[#9a9b9b] text-[13px] "

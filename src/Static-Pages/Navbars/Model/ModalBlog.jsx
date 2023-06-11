@@ -17,10 +17,7 @@ const ModalBlog = () => {
   const { bCategorys } = categoryList;
   const dispatch = new useDispatch();
 
-  useEffect(() => {
-    if (blogs?.length == 0) dispatch(blogGetAll());
-    if (bCategorys?.length == 0) dispatch(blogCategoryGetAll());
-  }, []);
+  useEffect(() => {}, []);
 
   const formatDateTime = (time) => {
     const formattedDatetime = moment(time).format("HH:mm | DD/MM/YYYY");
@@ -35,7 +32,7 @@ const ModalBlog = () => {
         </div>
         <div className="h-[400px]  mt-3">
           {bCategorys?.map((item, index) => (
-            <Link to={`/blog/`}>
+            <Link to={`/blog/`} key={index}>
               <p
                 className={`hover:text-[#ff2b70] text-left ${
                   index !== 0 ? "mt-5" : ""
@@ -49,8 +46,8 @@ const ModalBlog = () => {
       </div>
       <div className="w-[70%] grid grid-cols-3 blogHold ">
         {blogs
-          ?.map((item) => (
-            <Link to={`/Tpost/${item._id}`}>
+          ?.map((item, i) => (
+            <Link to={`/Tpost/${item._id}`} key={i}>
               <div className="flex-col">
                 <div className="blogimg ">
                   <img

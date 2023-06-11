@@ -4,10 +4,7 @@ import { TiTick } from "react-icons/ti";
 import { Link } from "react-router-dom";
 import { FaShippingFast } from "react-icons/fa";
 import { MdPayment } from "react-icons/md";
-import {
-  AiOutlineFileDone,
-  AiOutlineProfile,
-} from "react-icons/ai";
+import { AiOutlineFileDone, AiOutlineProfile } from "react-icons/ai";
 import gitcheck from "../Image/verified.gif";
 import paypal from "../Image/paypal.jpg";
 import momo from "../Image/logo-momo.jpg";
@@ -86,10 +83,18 @@ const Stepper = () => {
   const [selectedWard, setSelectedWard] = useState(userAddress != null ? userAddress.ward : "");
   const [selectedAddress, setSelectedAddress] = useState(userAddress != null ? userAddress.address : "");
   const [userId, setUserId] = useState(localStorage.getItem("userid") || "");
-  const [userName, setUserName] = useState(localStorage.getItem("username") || "");
-  const [firstName, setFirstName] = useState(localStorage.getItem("userfirstname") || "");
-  const [userMobile, setUserMobile] = useState(localStorage.getItem("usermobile") || "");
-  const [userEmail, setUserEmail] = useState(localStorage.getItem("useremail") || "");
+  const [userName, setUserName] = useState(
+    localStorage.getItem("username") || ""
+  );
+  const [firstName, setFirstName] = useState(
+    localStorage.getItem("userfirstname") || ""
+  );
+  const [userMobile, setUserMobile] = useState(
+    localStorage.getItem("usermobile") || ""
+  );
+  const [userEmail, setUserEmail] = useState(
+    localStorage.getItem("useremail") || ""
+  );
   const [currentStep, setCurrentStep] = useState(1);
   const [complete, setComplete] = useState(false);
   const [shipping, setShipping] = useState();
@@ -103,8 +108,6 @@ const Stepper = () => {
     const total = price * qty;
     return total;
   };
-
-
 
   const orderCreate = useSelector((state) => state.orderCreate);
   const { isloading, issuccess, order } = orderCreate;
@@ -127,7 +130,7 @@ const Stepper = () => {
   const isValidPhoneNumber = (phoneNumber) => {
     const pattern = /^\d{10}$/;
     return pattern.test(phoneNumber);
-  }
+  };
   const handerClickCheckOut = () => {
     setComplete(true);
     setCurrentStep(1);
@@ -148,10 +151,15 @@ const Stepper = () => {
 
   const handerClicknext = () => {
     if (!isValidPhoneNumber(userMobile)) {
-      toast.warning("Sai đinh dạng số điện thoại")
-      return
+      toast.warning("Sai đinh dạng số điện thoại");
+      return;
     }
-    if (userEmail == "" || userName == "" || userMobile == "" || firstName == "") {
+    if (
+      userEmail == "" ||
+      userName == "" ||
+      userMobile == "" ||
+      firstName == ""
+    ) {
       toast.warning("Thiếu thông tin người nhận");
       return;
     }
@@ -177,8 +185,9 @@ const Stepper = () => {
         {steps?.map((step, i) => (
           <div
             key={i}
-            className={`step-item ${currentStep === i + 1 && "active"} ${(i + 1 < currentStep || complete) && "complete"
-              } `}
+            className={`step-item ${currentStep === i + 1 && "active"} ${
+              (i + 1 < currentStep || complete) && "complete"
+            } `}
           >
             <div className="step">
               {i + 1 < currentStep || complete ? (
@@ -201,8 +210,11 @@ const Stepper = () => {
               phù hợp.
             </p>
             <div className="mt-8 space-y-3 rounded-lg border bg-white px-2 py-4 sm:px-6 overflow-y-scroll">
-              {cartItems.map((item) => (
-                <div className="flex flex-col rounded-lg bg-white sm:flex-row">
+              {cartItems.map((item, i) => (
+                <div
+                  className="flex flex-col rounded-lg bg-white sm:flex-row"
+                  key={i}
+                >
                   <img
                     className="m-2 h-24 w-28 rounded-md border object-cover object-center"
                     src={item.image}
@@ -413,7 +425,6 @@ const Stepper = () => {
                   onApprove={(data, actions) => {
                     return actions.order.capture().then((details) => {
                       if (details.status == "COMPLETED") handerClickCheckOut();
-
                     });
                   }}
                 />

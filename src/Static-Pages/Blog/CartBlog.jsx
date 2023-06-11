@@ -64,8 +64,8 @@ const CartBlog = ({ filteredBlogs }) => {
         </div>
 
         <Slider {...settings} ref={sliderRef} className="h-[300px]">
-          {filteredBlogs?.map((item) => (
-            <div className="card flex flex-col mx-auto pt-4">
+          {filteredBlogs?.map((item, i) => (
+            <div className="card flex flex-col mx-auto pt-4" key={i}>
               <div className="image-container">
                 <img
                   src={item.images[0].url}

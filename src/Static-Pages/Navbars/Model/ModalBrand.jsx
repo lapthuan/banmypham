@@ -12,9 +12,6 @@ const ModalBrand = () => {
   const dispatch = useDispatch();
   const brandlist = useSelector((state) => state.brandList);
   const { brands } = brandlist;
-  useEffect(() => {
-    if (!brands || brands?.length == 0) dispatch(listbrand());
-  }, []);
 
   return (
     <div className="BrandSetMainParent ">
