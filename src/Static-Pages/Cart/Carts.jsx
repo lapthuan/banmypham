@@ -26,10 +26,6 @@ const Carts = () => {
   const [userId, userEmail, userPassword] = userData.split(":")
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(loadUser());
-
-  }, [])
 
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;

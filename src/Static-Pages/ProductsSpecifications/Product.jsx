@@ -152,7 +152,7 @@ const Product = () => {
           <div className="thumbnail-wrapper flex">
             {product.images != undefined ? (
               product.images.map((item, index) => (
-                <div className="thumbnail">
+                <div className="thumbnail" key={index}>
                   <img
                     onClick={() => setCurrentProductImage(index)}
                     className={
@@ -221,7 +221,9 @@ const Product = () => {
           <h1 className="fw-700 line-height-300 fs-230 blue text-left text-2xl">
             {product.title}
           </h1>
-          <p className="text-left text-lg text-[#fe2c6d]">Nhãn hàng : {product.brand?.title}</p>
+          <p className="text-left text-lg text-[#fe2c6d]">
+            Nhãn hàng : {product.brand?.title}
+          </p>
           <p className=" text-left text-lg">
             Số lượng còn : {product.quantity}
           </p>
@@ -246,9 +248,9 @@ const Product = () => {
               <span className="fw-700 blue fs-700">
                 {product.price
                   ? product.price.toLocaleString("vi-VN", {
-                    style: "currency",
-                    currency: "VND",
-                  })
+                      style: "currency",
+                      currency: "VND",
+                    })
                   : ""}
               </span>
               {/* <span className="offer fw-700 fs-400 Orange">50%</span>

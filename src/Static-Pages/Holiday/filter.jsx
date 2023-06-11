@@ -110,7 +110,6 @@ const Filter = () => {
   const categorylist = useSelector((state) => state.categoryList);
   const { categorys } = categorylist;
 
-
   const isIdSelectedCategory = (id) => selectedCategorys.includes(id);
 
   const handleModalToggle = () => {
@@ -130,7 +129,6 @@ const Filter = () => {
     }
     setIsModalOpenPrice(!isModalOpenPrice);
   };
-
 
   const handleModalCategory = () => {
     if (isModalOpenCategory == false) {
@@ -165,7 +163,6 @@ const Filter = () => {
     setInStock(e.target.value);
   };
   const handleFindButtonClick = () => {
-
     dispatch(
       findProductsPrice(
         minPrice,
@@ -190,9 +187,7 @@ const Filter = () => {
     setMaxPrice("");
     setInStock("");
     setSelectedCategorys([]);
-    dispatch(
-      findProductsPrice("", "", `["${idBrand}"]`, "", "")
-    );
+    dispatch(findProductsPrice("", "", `["${idBrand}"]`, "", ""));
   };
 
   return (
@@ -264,8 +259,8 @@ const Filter = () => {
         >
           <div className="flex flex-col ">
             <div className="overflow-y-scroll h-[150px]">
-              {categorys?.map((item) => (
-                <div className="flex items-center mb-2 ">
+              {categorys?.map((item, i) => (
+                <div className="flex items-center mb-2 " key={i}>
                   <input
                     type="checkbox"
                     value={item._id}

@@ -19,7 +19,7 @@ import { logout } from "../../redux/action/auth";
 import deleteIcon from "../../Image/icon-delete.svg";
 import { loadCart, removeItem } from "../../redux/action/cartActions";
 import { listProducts } from "../../redux/action/productActions";
-import Highlighter from 'react-highlight-words';
+import Highlighter from "react-highlight-words";
 
 const Navbars = () => {
   const [isNavExpanded, setIsNavExpanded] = useState(false);
@@ -31,7 +31,6 @@ const Navbars = () => {
   const dispatch = useDispatch();
   const { isauth } = useSelector((store) => store.login);
   const { products } = useSelector((store) => store.productList);
-
 
   const [searchData, setSearchData] = useState("");
   const [showModal, setShowModal] = useState(false);
@@ -78,19 +77,18 @@ const Navbars = () => {
   // let cartData = JSON.parse(localStorage.getItem("cartItems")) || []
   useEffect(() => {
     dispatch(loadCart());
-    dispatch(listProducts());
+
+    if (!products || products?.length == 0) dispatch(listProducts());
   }, []);
 
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
 
-
   function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
   }
   useEffect(() => {
-
-    const storedSearchHistory = localStorage.getItem('searchHistory');
+    const storedSearchHistory = localStorage.getItem("searchHistory");
     if (storedSearchHistory) {
       const parsedSearchHistory = JSON.parse(storedSearchHistory);
       setSearchHistory(parsedSearchHistory);
@@ -98,7 +96,6 @@ const Navbars = () => {
   }, []);
 
   const handleSaveSearch = (event) => {
-
     const searchValue = searchData;
 
     const isDuplicate = searchHistory.includes(searchValue);
@@ -107,14 +104,16 @@ const Navbars = () => {
       const updatedSearchHistory = [...searchHistory, searchValue];
       setSearchHistory(updatedSearchHistory);
 
-      localStorage.setItem('searchHistory', JSON.stringify(updatedSearchHistory));
+      localStorage.setItem(
+        "searchHistory",
+        JSON.stringify(updatedSearchHistory)
+      );
     }
   };
   const handleClearHistorySearch = () => {
-    localStorage.setItem('searchHistory', "[]")
+    localStorage.setItem("searchHistory", "[]");
     setSearchHistory([]);
-
-  }
+  };
   const handlelogout = (e) => {
     dispatch(logout());
   };
@@ -156,7 +155,7 @@ const Navbars = () => {
               onChange={handleSearch}
               onClick={handleInputClick}
             />
-            <button >
+            <button>
               <AiOutlineSearch size={26} style={{ margin: "5px" }} />
             </button>{" "}
           </form>
@@ -293,8 +292,8 @@ const Navbars = () => {
                         </p>
                       ) : (
                         <div className="cart__item grid-flow-row  h-[250px] overflow-y-scroll">
-                          {cartItems.map((item) => (
-                            <div className="item flex pb-4">
+                          {cartItems.map((item, i) => (
+                            <div className="item flex pb-4" key={i}>
                               <img
                                 src={item.image}
                                 className="w-[100px] h-[100px] rounded-md shadow-sm"
@@ -391,8 +390,8 @@ const Navbars = () => {
                         </p>
                       ) : (
                         <div className="cart__item grid-flow-row  h-[250px] overflow-y-scroll">
-                          {cartItems.map((item) => (
-                            <div className="item flex pb-4">
+                          {cartItems.map((item, i) => (
+                            <div className="item flex pb-4" key={i}>
                               <img
                                 src={item.image}
                                 className="w-[100px] h-[100px] rounded-md shadow-sm"
@@ -473,16 +472,32 @@ const Navbars = () => {
                 <>
                   <div className="pb-3">
                     <h3>Kết quả tìm kiếm:</h3>
-                    <ul className="h-[200px] overflow-auto " id="journal-scroll">
+                    <ul
+                      className="h-[200px] overflow-auto "
+                      id="journal-scroll"
+                    >
                       {filteredData.map((item, index) => (
-                        <li key={item._id} className={"hover:border hover:rounded-xl"}>
-                          <Link className="flex " to={`sale/${item._id}`} onClick={handleSaveSearch}>
+                        <li
+                          key={item._id}
+                          className={"hover:border hover:rounded-xl"}
+                        >
+                          <Link
+                            className="flex "
+                            to={`sale/${item._id}`}
+                            onClick={handleSaveSearch}
+                          >
                             <div className="flex w-[20%] justify-center">
-                              <img src={item.images[0]?.url} className="w-[50px] h-[50px] rounded-lg" />
+                              <img
+                                src={item.images[0]?.url}
+                                className="w-[50px] h-[50px] rounded-lg"
+                              />
                             </div>
                             <div className="flex  w-[80%] text-justify pt-2 pr-2">
                               <Highlighter
-                                highlightStyle={{ backgroundColor: '#f09eb8', borderRadius: "9999px" }}
+                                highlightStyle={{
+                                  backgroundColor: "#f09eb8",
+                                  borderRadius: "9999px",
+                                }}
                                 searchWords={[searchData]}
                                 autoEscape={true}
                                 textToHighlight={item.title}
@@ -510,7 +525,12 @@ const Navbars = () => {
                 <>
                   <div className="flex justify-between">
                     <h3 className="flex">Lịch sử tìm kiếm:</h3>
-                    <p className="flex hover:text-[#fe2c6d] text-sm" onClick={handleClearHistorySearch}>Xóa lịch sử</p>
+                    <p
+                      className="flex hover:text-[#fe2c6d] text-sm"
+                      onClick={handleClearHistorySearch}
+                    >
+                      Xóa lịch sử
+                    </p>
                   </div>
                   <ul>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 sm:grid-cols-1 mt-5">
@@ -682,7 +702,6 @@ const Navbars = () => {
       <br className="flex flex-row justify-center lg:hidden md:flex" />
 
       <div className="line"></div>
-
     </div>
   );
 };

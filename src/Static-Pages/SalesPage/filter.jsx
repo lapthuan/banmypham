@@ -296,8 +296,8 @@ const Filter = () => {
           contentLabel="Trạng thái"
         >
           <div className="flex flex-col">
-            {brands?.map((item) => (
-              <div className="flex items-center mb-2">
+            {brands?.map((item, i) => (
+              <div className="flex items-center mb-2" key={i}>
                 <input
                   type="checkbox"
                   value={item._id}
@@ -339,8 +339,8 @@ const Filter = () => {
         >
           <div className="flex flex-col ">
             <div className="overflow-y-scroll h-[150px]">
-              {categorys?.map((item) => (
-                <div className="flex items-center mb-2 ">
+              {categorys?.map((item, i) => (
+                <div className="flex items-center mb-2 " key={i}>
                   <input
                     type="checkbox"
                     value={item._id}

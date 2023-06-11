@@ -6,7 +6,7 @@ i18n.use(initReactI18next).init({
     en: {
       translation: {
         navtop1: "Shop",
-        navtop2: "Check your order",
+        navtop2: "Order",
         sale: "DEALS",
         xemtatca: "See all",
         footer: "Gift",
@@ -19,7 +19,7 @@ i18n.use(initReactI18next).init({
     vi: {
       translation: {
         navtop1: "Cửa hàng",
-        navtop2: "Kiểm tra đơn hàng",
+        navtop2: "Đơn hàng",
         sale: "DEALS ĐANG DIỄN RA ",
         xemtatca: "Xem tất cả",
         ani_text1: "Tặng 700.000đ cho đơn hàng từ 1 Triệu - Nhập APR1000",

@@ -61,7 +61,7 @@ const Login = () => {
     if (email !== "" && password !== "") {
       dispatch(signin({ email, password }, navigate));
     } else {
-      toast.warning("Chưa nhập tài khoản hoặc mật khẩu")
+      toast.warning("Chưa nhập tài khoản hoặc mật khẩu");
     }
   }
 
@@ -71,7 +71,7 @@ const Login = () => {
         <div className={styles.existing_user}>
           <form action="" className={styles.existing_content_login}>
             <div className={styles.img}></div>
-            <h4>Đăng nhập</h4>
+            <h4 className="text-[25px]">Đăng nhập</h4>
             <div className={styles.ip_label}>
               Đăng nhập để mua hàng và sử dụng những tiện ích mới nhất từ
               www.luxubu.com
@@ -97,8 +97,10 @@ const Login = () => {
               </Link>
             </div>
             <div>
-              <span>Bạn chưa có tài khoản?</span>
-              <Link to={"/Register"}>Đăng ký</Link>
+              <span className="text-[15px]">Bạn chưa có tài khoản?</span>
+              <Link to={"/Register"} className=" ml-2 underline text-[15px]">
+                Đăng ký
+              </Link>
             </div>
           </form>
         </div>
@@ -125,7 +127,9 @@ const Login = () => {
               <button className={styles.sing_in_button} onClick={handleSubmit}>
                 Đăng nhập
               </button>
-              <Link to={"/Forgotpass"}>Quên mật khẩu?</Link>
+              <Link to={"/Forgotpass"} className="text-[15px] underline">
+                Quên mật khẩu?
+              </Link>
             </form>
             {/* <button className={styles.new_continue}>
               {" "}

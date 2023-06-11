@@ -34,30 +34,25 @@ function Top() {
               </div>
             </section>
           </div>
-          <div className="Ab_div">
-            <div className="mr-5">
+          <div className="Ab_div flex justify-between">
+            <div className="mr-5 w-[100px]">
               <select
                 onChange={handleLanguageChange}
                 className="appearance-none bg-no-repeat bg-right pr-8 pl-3 h-8 border rounded text-[15px]"
               >
-                <option value="vi" className="">
-                  Tiếng Việt
-                </option>
-                <option value="en" className="">
-                  English
-                </option>
+                <option value="vi">Tiếng Việt</option>
+                <option value="en">English</option>
               </select>
             </div>
-            <div className="AdBottom_div">
-              <FaStore />
-              <p>{t("navtop1")}</p>
-            </div>
-            <div className="AdBottom_div">
-              <FaTruck />
-              <p>{t("navtop2")} </p>
-            </div>
-            <div className="AdBottom_div">
-              <BsCoin /> <p>Luxucoin</p>
+            <div className="flex items-center w-[200px]">
+              <div className="AdBottom_div mr-3 flex items-center">
+                <FaStore className="mr-1" />
+                <p>{t("navtop1")}</p>
+              </div>
+              <div className="AdBottom_div flex items-center">
+                <FaTruck className="mr-1" />
+                <p>{t("navtop2")}</p>
+              </div>
             </div>
           </div>
         </div>

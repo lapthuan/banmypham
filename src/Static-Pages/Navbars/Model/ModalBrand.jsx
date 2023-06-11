@@ -12,9 +12,6 @@ const ModalBrand = () => {
   const dispatch = useDispatch();
   const brandlist = useSelector((state) => state.brandList);
   const { brands } = brandlist;
-  useEffect(() => {
-    if (!brands || brands?.length == 0) dispatch(listbrand());
-  }, []);
 
   return (
     <div className="BrandSetMainParent ">
@@ -24,7 +21,7 @@ const ModalBrand = () => {
         </div>
         <div className="h-[400px]  mt-3">
           {brands?.map((item, index) => (
-            <Link key={item._id} to={``}>
+            <Link key={item._id} to={`/brands/${item._id}`}>
               <p
                 className={`hover:text-[#ff2b70] text-left ${
                   index !== 0 ? "mt-5" : ""

@@ -129,7 +129,7 @@ const Navbar = ({ navigationData, currentRoute, setCurrentRoute }) => {
                 </li>
               </Link>
 
-              <Link to={"/FContact"}>
+              <Link to={"/Contact"}>
                 <li class="dropdown nav-link nav-link-fade-up mx-10 hover:text-[#ff2b70]">
                   Liên hệ
                 </li>

@@ -4,7 +4,6 @@
   width: 8px;
   cursor: pointer;
   /*background-color: rgba(229, 231, 235, var(--bg-opacity));*/
-
 }
 
 #journal-scroll::-webkit-scrollbar-track {
@@ -41,7 +40,6 @@
 }
 
 @keyframes animateshake {
-
   10%,
   90% {
     transform: translate3d(0, -1px, 0);
@@ -291,7 +289,6 @@ nav .logo.space {
 }
 
 @media (max-width: 980px) {
-
   nav .menu-icon,
   nav .cancel-icon,
   nav .search-icon {
@@ -311,7 +308,6 @@ nav .logo.space {
 }
 
 @media (max-width: 350px) {
-
   nav .menu-icon,
   nav .cancel-icon,
   nav .search-icon {
@@ -661,17 +657,17 @@ nav .logo.space {
   width: 150px;
 }
 
-.menu>li {
+.menu > li {
   margin: 0;
 
   background-color: white;
 }
 
-.menu>li:hover {
+.menu > li:hover {
   background-color: lightgray;
 }
 
-.menu>li>button {
+.menu > li > button {
   width: 100%;
   height: 100%;
   text-align: left;
@@ -734,7 +730,7 @@ nav .logo.space {
   height: 100px;
 }
 
-.products_image+h3 {
+.products_image + h3 {
   font-weight: 300;
   text-align: center;
   margin-top: 30px;
@@ -804,7 +800,7 @@ nav .logo.space {
 .search-results-modal {
   position: relative;
   top: -12px;
-  left: 24%;
+  left: 27%;
   width: 46%;
   background-color: #ffffff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
