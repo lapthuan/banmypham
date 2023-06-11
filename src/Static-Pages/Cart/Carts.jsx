@@ -10,10 +10,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { CART_ADD_ITEM } from "../../redux/const/cartConstants";
 import { toast } from "react-toastify";
 import { loadUser } from "../../redux/action/auth";
+import { getCoupon } from "../../redux/action/couponAction";
 // import { useNavigate } from "react-router-dom";
 
 // import { useStateContext } from '../Context/CartContext';
-
+const vouchers = [
+  {
+    ma: "123",
+    dis: 10000,
+  },
+  {
+    ma: "Ma1",
+    dis: 15000,
+  },
+]
 const Carts = () => {
 
   const [totalPrices, setTotalPrices] = useState(0)
@@ -21,9 +31,7 @@ const Carts = () => {
   const [voucher, setVoucher] = useState()
   const [voucherPrices, setVoucherPrices] = useState(0)
   const [voucherTitle, setVoucherTitle] = useState("")
-
-  const userData = localStorage.getItem("token") || ""
-  const [userId, userEmail, userPassword] = userData.split(":")
+  const iduser = localStorage.getItem("userid") || "";
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -31,8 +39,6 @@ const Carts = () => {
 
   }, [])
 
-  const cart = useSelector((state) => state.cart);
-  const { cartItems } = cart;
   let cartData = JSON.parse(localStorage.getItem("cartItems")) || []
 
   const totalPrice = (price, qty) => {
@@ -55,6 +61,7 @@ const Carts = () => {
 
     return total;
   }
+
   useEffect(() => {
     const totalPrice = calculateTotalPrice();
     setTotalPrices(totalPrice);
@@ -63,18 +70,12 @@ const Carts = () => {
     window.localStorage.setItem("total", totals)
   }, [cartData]);
 
-  const vouchers = [
-    {
-      ma: "123",
-      dis: 10000,
-    },
-    {
-      ma: "Ma1",
-      dis: 15000,
-    },
-  ]
-
+  const coupons = useSelector((state) => state.couponGet)
+  const { coupon } = coupons
+  console.log(coupon);
   const addVoucher = () => {
+    dispatch(getCoupon(voucher, iduser));
+
     const existingVoucher = vouchers.find((vc) => vc.ma.toLowerCase() === voucher.toLowerCase());
 
     if (existingVoucher) {
