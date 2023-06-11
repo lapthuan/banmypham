@@ -4,20 +4,21 @@ import { Select } from "antd";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { updateUserAddress } from "../redux/action/auth";
+import { toast } from "react-toastify";
 const { Option } = Select;
 
 
 
 const AddressUser = () => {
-    const userAddress = JSON.parse(window.localStorage.getItem("userAddress"))
+    const userAddress = window.localStorage.getItem("userAddress") != "" ? JSON.parse(window.localStorage.getItem("userAddress")) : null
     const userId = window.localStorage.getItem("userid")
     const [cities, setCities] = useState([]);
     const [districts, setDistricts] = useState([]);
     const [wards, setWards] = useState([]);
-    const [selectedCity, setSelectedCity] = useState(userAddress.city ? userAddress.city : "");
-    const [selectedDistrict, setSelectedDistrict] = useState(userAddress.district ? userAddress.district : "");
-    const [selectedWard, setSelectedWard] = useState(userAddress.ward ? userAddress.ward : "");
-    const [selectedAddress, setSelectedAddress] = useState(userAddress.address ? userAddress.address : "");
+    const [selectedCity, setSelectedCity] = useState(userAddress != null ? userAddress.city : "");
+    const [selectedDistrict, setSelectedDistrict] = useState(userAddress != null ? userAddress.district : "");
+    const [selectedWard, setSelectedWard] = useState(userAddress != null ? userAddress.ward : "");
+    const [selectedAddress, setSelectedAddress] = useState(userAddress != null ? userAddress.address : "");
     const [result, setResult] = useState("");
     const dispatch = useDispatch()
     useEffect(() => {
@@ -91,11 +92,11 @@ const AddressUser = () => {
 
     const handleSaveAddress = (e) => {
         e.preventDefault()
-        if (selectedCity && selectedDistrict && selectedWard) {
-           
+        if (selectedCity && selectedDistrict && selectedWard && selectedAddress) {
+
             dispatch(updateUserAddress(userId, selectedCity, selectedDistrict, selectedWard, selectedAddress))
         } else {
-            console.log("Please select all fields");
+            toast.warning("Hãy kiểm tra lại còn dữ liệu chưa chọn")
         }
     };
 

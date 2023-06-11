@@ -27,6 +27,7 @@ import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import { updateUser } from "../redux/action/auth";
 import InfoUser from "./InfoUser";
 import AddressUser from "./AddressUser";
+import { updateCoupon } from "../redux/action/couponAction";
 const steps = [
   {
     name: "Thông tin người nhận",
@@ -70,11 +71,6 @@ const payments = [
     image: paypal,
   },
   {
-    id: 2,
-    name: "MoMo",
-    image: momo,
-  },
-  {
     id: 3,
     name: "Nhận hàng thanh toán",
     image: cod,
@@ -83,6 +79,12 @@ const payments = [
 const Stepper = () => {
   const dispatch = new useDispatch();
   let total = JSON.parse(localStorage.getItem("total")) || 0;
+  const userAddress = window.localStorage.getItem("userAddress") != "" ? JSON.parse(window.localStorage.getItem("userAddress")) : null
+  const coupon = window.localStorage.getItem("coupon") != "" ? JSON.parse(window.localStorage.getItem("coupon")) : null
+  const [selectedCity, setSelectedCity] = useState(userAddress != null ? userAddress.city : "");
+  const [selectedDistrict, setSelectedDistrict] = useState(userAddress != null ? userAddress.district : "");
+  const [selectedWard, setSelectedWard] = useState(userAddress != null ? userAddress.ward : "");
+  const [selectedAddress, setSelectedAddress] = useState(userAddress != null ? userAddress.address : "");
   const [userId, setUserId] = useState(localStorage.getItem("userid") || "");
   const [userName, setUserName] = useState(localStorage.getItem("username") || "");
   const [firstName, setFirstName] = useState(localStorage.getItem("userfirstname") || "");
@@ -130,6 +132,10 @@ const Stepper = () => {
     setComplete(true);
     setCurrentStep(1);
     dispatch(createOrder(cartItems, payment, shipping, userId, totalprice));
+
+
+    if (coupon !== null)
+      dispatch(updateCoupon(coupon._id, userId))
   };
   useEffect(() => {
     if (isloading == true) {
@@ -156,6 +162,10 @@ const Stepper = () => {
     }
     if (currentStep == 3 && payment == 0) {
       toast.warning("Hãy chọn phương thức thanh toán");
+      return;
+    }
+    if (currentStep == 2 && !selectedCity && !selectedDistrict && !selectedWard && !selectedAddress) {
+      toast.warning("Thông tin giao hàng chưa đầy đủ");
       return;
     }
     setCurrentStep((prev) => prev + 1);
@@ -226,27 +236,15 @@ const Stepper = () => {
                   <form className="mt-5 grid gap-6">
                     {payments.map((item, index) => (
                       <div className="relative" key={item.id}>
-                        {item.name == "PayPal" ? (
-                          <input
-                            className="peer hidden"
-                            id={`radio_${index}`}
-                            type="radio"
-                            name="radio"
-                            onClick={() => setPayment(item)}
-                            required
-                            checked
-                          />
-                        ) : (
-                          <input
-                            className="peer hidden"
-                            id={`radio_${index}`}
-                            type="radio"
-                            name="radio"
-                            onClick={() => setPayment(item)}
-                            required
-                          />
-                        )}
 
+                        <input
+                          className="peer hidden"
+                          id={`radio_${index}`}
+                          type="radio"
+                          name="radio"
+                          onClick={() => setPayment(item)}
+                          required
+                        />
                         <span className="peer-checked:border-gray-700 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
                         <label
                           className="peer-checked:border-2 peer-checked:border-gray-700 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-4"
@@ -314,8 +312,8 @@ const Stepper = () => {
                 <AddressUser />
               ) : currentStep == 3 && payment?.name == "PayPal" ? (
                 <div className="lg:pt-24 sm:pt-2 ">
-                  <h3 className="">PayPal</h3>
-                  <p className="text-gray-400 font-normal">
+                  <h3 className="text-xl">PayPal</h3>
+                  <p className="text-gray-400  text-sm">
                     {" "}
                     Với PayPal, người dùng có thể tạo tài khoản miễn phí và liên
                     kết nó với tài khoản ngân hàng của mình hoặc thẻ tín dụng để
@@ -327,9 +325,9 @@ const Stepper = () => {
                 </div>
               ) : currentStep == 3 &&
                 payment?.name == "Nhận hàng thanh toán" ? (
-                <div className="lg:pt-64 sm:pt-2">
+                <div className="lg:pt-24 sm:pt-2">
                   <p className="text-xl font-medium">Nhận hàng thanh toán</p>
-                  <p className="text-gray-400">
+                  <p className="text-gray-400 text-sm">
                     {" "}
                     Phương thức thanh toán truyền thống nhất, trong đó khách
                     hàng trả tiền mặt khi nhận hàng. Bạn có thể chấp nhận thanh

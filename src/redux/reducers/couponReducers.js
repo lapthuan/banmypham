@@ -5,10 +5,10 @@ import {
     COUPON_GET_SUCCESS,
 } from "../const/couponConstants"
 
-export const couponGetReducer = (state = { coupon: [] }, action) => {
+export const couponGetReducer = (state = { coupon: {} }, action) => {
     switch (action.type) {
         case COUPON_GET_REQUEST:
-            return { loading: true, coupon: [] };
+            return { loading: true, coupon: {} };
 
         case COUPON_GET_SUCCESS:
             return {
@@ -17,7 +17,7 @@ export const couponGetReducer = (state = { coupon: [] }, action) => {
             };
 
         case COUPON_GET_FAILURES:
-            return { loading: false, coupon: [] };
+            return { loading: false, coupon: {} };
 
         default:
             return { ...state };

@@ -38,18 +38,35 @@ export const getCoupon = (code, iduser) =>
                 }
             }
             else if (data.status === "ok") {
+                const currentDate = new Date();
+                const expiryDate = new Date(data.coupons.expiry);
+                if (currentDate > expiryDate) {
+                    dispatch({ type: COUPON_GET_FAILURES })
+                    if (toastId >= 0) {
 
-                dispatch({ type: COUPON_GET_SUCCESS, payload: data })
-                if (toastId >= 0) {
-
-                    toast.update(toastId, {
-                        render: "Mã giảm giá đã được nhập.",
-                        type: "success",
-                        autoClose: 3000
-                    });
+                        toast.update(toastId, {
+                            render: "Mã giảm giá đã hết hạn.",
+                            type: "warning",
+                            autoClose: 3000
+                        });
+                    } else {
+                        toast("Mã giảm giá đã hết hạn.", { type: "warning", autoClose: 3000 });
+                    }
                 } else {
-                    toast("Mã giảm giá đã được nhập.", { type: "success", autoClose: 3000 });
+                    if (toastId >= 0) {
+
+                        toast.update(toastId, {
+                            render: "Mã giảm giá đã được nhập.",
+                            type: "success",
+                            autoClose: 3000
+                        });
+                    } else {
+                        toast("Mã giảm giá đã được nhập.", { type: "success", autoClose: 3000 });
+                    }
+                    dispatch({ type: COUPON_GET_SUCCESS, payload: data })
+
                 }
+
             }
             else {
                 dispatch({ type: COUPON_GET_FAILURES })
@@ -72,6 +89,22 @@ export const getCoupon = (code, iduser) =>
                         ? error.response.data.message
                         : error.message,
             });
+        }
+
+    }
+
+export const updateCoupon = (idCoupon, iduser) =>
+    async (dispatch) => {
+
+        try {
+            const { data } = await api.put(`/api/coupon/user/${idCoupon}`,
+                {
+                    iduser: iduser
+                }
+            )
+            console.log(data);
+        } catch (error) {
+            console.log(error);
         }
 
     }

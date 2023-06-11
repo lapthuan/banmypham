@@ -33,6 +33,7 @@ export const addItem = (id, qty) => async (dispatch, getState) => {
 				title: data.title,
 				image: data.images[0] == undefined ? "" : data.images[0].url,
 				price: data.price,
+				quantityProduct: data.quantity,
 				qty,
 			},
 		});
