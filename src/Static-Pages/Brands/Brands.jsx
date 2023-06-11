@@ -72,7 +72,7 @@ function Brands() {
         <div>
           <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 sm:grid-cols-1 mt-10">
             {brands?.map((item) => (
-              <Link to={`/brands/${item._id}`} className="flex justify-center">
+              <Link to={`brands/${item._id}`} className="flex justify-center">
                 <div className="BrandsCard overflow-hidden " key={item._id}>
                   <div className="flex ">
                     <div className="w-[70%] h-[100px] overflow-hidden">

@@ -24,11 +24,10 @@ const ModalBrand = () => {
         </div>
         <div className="h-[400px]  mt-3">
           {brands?.map((item, index) => (
-            <Link key={item._id} to={``}>
+            <Link key={item._id} to={`brands/${item._id}`}>
               <p
-                className={`hover:text-[#ff2b70] text-left ${
-                  index !== 0 ? "mt-5" : ""
-                }`}
+                className={`hover:text-[#ff2b70] text-left ${index !== 0 ? "mt-5" : ""
+                  }`}
               >
                 {item.title}
               </p>
