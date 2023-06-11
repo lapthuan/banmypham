@@ -44,9 +44,7 @@ const Navbars = () => {
         setShowModal(false);
       }
     };
-
     document.addEventListener("click", handleOutsideClick);
-
     return () => {
       document.removeEventListener("click", handleOutsideClick);
     };
@@ -57,10 +55,7 @@ const Navbars = () => {
     setSearchData(value);
     setShowModal(value.trim() !== "");
 
-    // const posts = value
-    //   ? ["Bài viết con lạc đà", "Bài viết kì nhong", "Bài viết con cu"]
-    //   : [];
-    // setRelatedPosts(posts);
+
   };
   const filteredData = products?.filter((item) =>
     item.title.toLowerCase().includes(searchData.toLowerCase())
@@ -116,6 +111,8 @@ const Navbars = () => {
   };
   const handlelogout = (e) => {
     dispatch(logout());
+    dispatch(loadCart());
+
   };
 
   return (
@@ -546,6 +543,25 @@ const Navbars = () => {
                       ))}
                     </div>
                   </ul>
+                  <div className="border-t-2">
+                    <h3 className="pt-3">Gợi ý cho bạn:</h3>
+                    <ul className="overflow-y-scroll">
+                      {products?.map((item, index) => (
+                        <li key={item._id}>
+                          <Link className="flex " to={`sale/${item._id}`} >
+                            <div className="flex w-[20%] justify-center">
+                              <img src={item.images[0]?.url} className="w-[50px] h-[50px] rounded-lg" />
+                            </div>
+                            <div className="flex  w-[80%] text-justify pt-2 pr-2">
+
+                              {item.title}
+
+                            </div>
+                          </Link>
+                        </li>
+                      )).slice(-4)}
+                    </ul>
+                  </div>
                 </>
               )}
             </div>

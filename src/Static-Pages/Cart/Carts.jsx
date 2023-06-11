@@ -10,26 +10,35 @@ import { useDispatch, useSelector } from "react-redux";
 import { CART_ADD_ITEM } from "../../redux/const/cartConstants";
 import { toast } from "react-toastify";
 import { loadUser } from "../../redux/action/auth";
+import { getCoupon } from "../../redux/action/couponAction";
 // import { useNavigate } from "react-router-dom";
 
 // import { useStateContext } from '../Context/CartContext';
-
+const vouchers = [
+  {
+    ma: "123",
+    dis: 10000,
+  },
+  {
+    ma: "Ma1",
+    dis: 15000,
+  },
+]
 const Carts = () => {
-
+  const dispatch = useDispatch();
   const [totalPrices, setTotalPrices] = useState(0)
   const [total, setTotal] = useState(0)
   const [voucher, setVoucher] = useState()
+  const [voucherDiscount, setVoucherDiscount] = useState(0)
   const [voucherPrices, setVoucherPrices] = useState(0)
   const [voucherTitle, setVoucherTitle] = useState("")
-
-  const userData = localStorage.getItem("token") || ""
-  const [userId, userEmail, userPassword] = userData.split(":")
-  const dispatch = useDispatch();
-
-
-  const cart = useSelector((state) => state.cart);
-  const { cartItems } = cart;
+  const iduser = localStorage.getItem("userid") || "";
   let cartData = JSON.parse(localStorage.getItem("cartItems")) || []
+  let couponOld = JSON.parse(localStorage.getItem("coupon")) || []
+  const coupons = useSelector((state) => state.couponGet)
+  const { coupon } = coupons
+
+
 
   const totalPrice = (price, qty) => {
     const total = price * qty
@@ -47,41 +56,60 @@ const Carts = () => {
 
   const calculateTotal = () => {
     let total = 0;
-    total = totalPrices - voucherPrices
+    if (voucherDiscount == 0) {
+      return totalPrices;
+    } else {
+      total = totalPrices - (totalPrices / 100 * voucherDiscount)
+      return total;
+    }
+  }
 
-    return total;
+  const calculateVoucher = () => {
+    let price = 0;
+    if (voucherDiscount == 0) {
+      return 0;
+    } else {
+      price = (totalPrices / 100 * voucherDiscount)
+      return price;
+    }
+
   }
   useEffect(() => {
     const totalPrice = calculateTotalPrice();
     setTotalPrices(totalPrice);
     const totals = calculateTotal();
     setTotal(totals);
+    const priceVoucher = calculateVoucher();
+    setVoucherPrices(priceVoucher);
+
     window.localStorage.setItem("total", totals)
   }, [cartData]);
 
-  const vouchers = [
-    {
-      ma: "123",
-      dis: 10000,
-    },
-    {
-      ma: "Ma1",
-      dis: 15000,
-    },
-  ]
+  useEffect(() => {
+    const oldCoupon = couponOld
+    if (Object.keys(oldCoupon).length === 0) {
+      if (Object.keys(coupon).length !== 0) {
+        setVoucherTitle(coupon.name);
+        setVoucherDiscount(coupon.discount)
+        localStorage.setItem("coupon", JSON.stringify(coupon))
+      }
+    } else {
+
+      setVoucherTitle(oldCoupon.name);
+      setVoucherDiscount(oldCoupon.discount)
+
+    }
+  }, [coupon])
 
   const addVoucher = () => {
-    const existingVoucher = vouchers.find((vc) => vc.ma.toLowerCase() === voucher.toLowerCase());
-
-    if (existingVoucher) {
-      setVoucherTitle(existingVoucher.ma);
-      setVoucherPrices(existingVoucher.dis)
-      toast("Voucher đã nhập thành công")
-    } else {
-      toast("Voucher không tồn tại")
-    }
+    dispatch(getCoupon(voucher, iduser));
   }
+  const handlerClearCoupon = () => {
+    setVoucherDiscount(0)
+    setVoucherTitle("")
+    localStorage.removeItem("coupon")
 
+  }
   return (
     <>
       <h1 className="">Giỏ hàng</h1>
@@ -146,12 +174,13 @@ const Carts = () => {
                               -
                             </button>
                             <button onClick={() => {
-                              dispatch(
-                                addItem(
-                                  item.product,
-                                  Number(item.qty + 1)
-                                )
-                              );
+                              item.quantityProduct != item.qty &&
+                                dispatch(
+                                  addItem(
+                                    item.product,
+                                    Number(item.qty + 1)
+                                  )
+                                );
 
                             }} type="button" class="px-3 py-1 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-r-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 ">
                               +
@@ -215,17 +244,17 @@ const Carts = () => {
                       {totalPrices.toLocaleString("vi-VN", { style: "currency", currency: "VND" })}
                     </div>
                   </div>
-                  {voucherPrices != 0 ? (<div className="flex justify-between pt-4 border-b">
+                  {voucherDiscount != 0 ? (<div className="flex justify-between pt-4 border-b">
                     <div className="flex lg:px-4 lg:py-2 m-2 text-lg lg:text-xl font-bold text-gray-800">
 
-                      <button onClick={() => setVoucherPrices(0)} className="mr-2 mt-1 lg:mt-2">
+                      <button onClick={handlerClearCoupon} className="mr-2 mt-1 lg:mt-2">
                         <svg aria-hidden="true" data-prefix="far" data-icon="trash-alt" className="w-4 text-red-600 hover:text-red-800" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M268 416h24a12 12 0 0012-12V188a12 12 0 00-12-12h-24a12 12 0 00-12 12v216a12 12 0 0012 12zM432 80h-82.41l-34-56.7A48 48 0 00274.41 0H173.59a48 48 0 00-41.16 23.3L98.41 80H16A16 16 0 000 96v16a16 16 0 0016 16h16v336a48 48 0 0048 48h288a48 48 0 0048-48V128h16a16 16 0 0016-16V96a16 16 0 00-16-16zM171.84 50.91A6 6 0 01177 48h94a6 6 0 015.15 2.91L293.61 80H154.39zM368 464H80V128h288zm-212-48h24a12 12 0 0012-12V188a12 12 0 00-12-12h-24a12 12 0 00-12 12v216a12 12 0 0012 12z" /></svg>
                       </button>
 
-                      Mã giảm giá "{voucherTitle}"
+                      Mã giảm giá "{voucherTitle}" <p className="pl-4 text-[#fe2c6d]"> - {voucherDiscount} %</p>
                     </div>
                     <div className="lg:px-4 lg:py-2 m-2 lg:text-lg font-bold text-center text-[#fe2c6d]">
-                      - {voucherPrices.toLocaleString("vi-VN", { style: "currency", currency: "VND" })}
+                      -{voucherPrices.toLocaleString("vi-VN", { style: "currency", currency: "VND" })}
                     </div>
                   </div>) : null}
 

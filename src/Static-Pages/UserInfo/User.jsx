@@ -9,13 +9,13 @@ const User = () => {
   const userFirstName = localStorage.getItem("userfirstname") || "";
   const userImage = localStorage.getItem("userimage") || "";
   const userCreate = localStorage.getItem("usercreatedAt") || "";
-  console.log(userImage);
+
   return (
     <>
       <div className="flex-col">
         <div>
           <img
-            src={userImage?userImage:imageUser}
+            src={userImage ? userImage : imageUser}
             alt="avatar"
             className="rounded-circle mx-auto"
             style={{ width: "100px" }}

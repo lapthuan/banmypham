@@ -70,6 +70,7 @@ export const loginReducer = (state = initialstate, { type, payload }) => {
     }
     case LOGOUT_GET: {
       localStorage.removeItem("total");
+      localStorage.removeItem("searchHistory");
       localStorage.removeItem("shipping");
       localStorage.removeItem("userAddress");
       localStorage.removeItem("userfirstname");

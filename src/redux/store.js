@@ -14,6 +14,7 @@ import { cartReducer } from './reducers/cartReducers';
 import { orderReducer, getOrderReducer, getMoneyReducer } from './reducers/orderReducers';
 import { reviewAddReducer, reviewGetReducer } from './reducers/reviewReducers';
 import { blogListReducer, blogDetailReducer, blogCategoryListReducer } from './reducers/blogReducers';
+import { couponGetReducer } from './reducers/couponReducers';
 
 const rootreducer = combineReducers({
   cart: cartReducer,
@@ -34,6 +35,7 @@ const rootreducer = combineReducers({
   blogList: blogListReducer,
   blogDetail: blogDetailReducer,
   bCategoryList: blogCategoryListReducer,
+  couponGet: couponGetReducer,
 });
 const createcomposer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
