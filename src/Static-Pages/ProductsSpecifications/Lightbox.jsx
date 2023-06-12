@@ -31,7 +31,7 @@ export const Lightbox = ({ productData, setLightbox }) => {
                 />
                 <div className="thumbnail-wrapper flex">
                     {productData.images != undefined ? productData.images.map((item, index) => (
-                        <div className="thumbnail mx-4">
+                        <div className="thumbnail mx-4" key={index}>
                             <img
                                 onClick={() => setCurrentProductImage(index)}
                                 className={currentProductImage === index ? 'active ' : ''}

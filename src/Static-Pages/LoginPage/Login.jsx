@@ -4,33 +4,38 @@ import styles from "./Login.module.css";
 import facebook from "./logo/Facebook_F_icon.svg.png";
 import google from "./logo/Google__G__Logo.svg.png";
 import { useSelector, useDispatch } from "react-redux";
-import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
+import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 import { Button, Input, Space } from "antd";
 import axios from "axios";
 import { signin, signinGoogle } from "../../redux/action/auth";
 import OAuth2Login from "react-simple-oauth2-login";
 import { useGoogleLogin } from "@react-oauth/google";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const Login = () => {
+  const MAX_LOGIN_ATTEMPTS = 3;
+  const storedAttempts =
+    parseInt(window.localStorage.getItem("loginAttempts")) || 0;
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const [numberLogin, setNumberLogin] = useState(0);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   function handleGoogleLoginSuccess(tokenResponse) {
     const accessToken = tokenResponse.access_token;
-    toast.error("Đang xử lý");
     dispatch(signinGoogle(accessToken, navigate));
   }
-  const login = useGoogleLogin({ onSuccess: handleGoogleLoginSuccess });
 
+  const login = useGoogleLogin({ onSuccess: handleGoogleLoginSuccess });
   const loginFb = async (e) => {
     const accessToken = e.access_token;
     const typeLogin = "facebook";
     const callApi = await axios
-      .post("https://ecom-z3we.onrender.com/api/users/login", {
+      .post("http://localhost:5000/api/users/login", {
         accessToken,
         typeLogin,
       })
@@ -39,9 +44,10 @@ const Login = () => {
         console.log(result);
       })
       .catch((err) => {
+        window.localStorage.setItem();
         console.log(err.response.data);
         if (err.response.status == 400) {
-          toast.error("Ú sờ chưa tồn tại vui lòng đăng ký dùm");
+          toast.error("Người dùng không tồn tại vui lòng đăng ký");
         }
       });
   };
@@ -54,17 +60,18 @@ const Login = () => {
     e.preventDefault();
     if (email !== "" && password !== "") {
       dispatch(signin({ email, password }, navigate));
+    } else {
+      toast.warning("Chưa nhập tài khoản hoặc mật khẩu");
     }
   }
 
   return (
     <div className={styles.main_login}>
-      <ToastContainer />
       <div className={styles.new_existing}>
         <div className={styles.existing_user}>
           <form action="" className={styles.existing_content_login}>
             <div className={styles.img}></div>
-            <h4>Đăng nhập</h4>
+            <h4 className="text-[25px]">Đăng nhập</h4>
             <div className={styles.ip_label}>
               Đăng nhập để mua hàng và sử dụng những tiện ích mới nhất từ
               www.luxubu.com
@@ -90,8 +97,10 @@ const Login = () => {
               </Link>
             </div>
             <div>
-              <span>Bạn chưa có tài khoản?</span>
-              <Link to={"/Register"}>Đăng ký</Link>
+              <span className="text-[15px]">Bạn chưa có tài khoản?</span>
+              <Link to={"/Register"} className=" ml-2 underline text-[15px]">
+                Đăng ký
+              </Link>
             </div>
           </form>
         </div>
@@ -111,14 +120,16 @@ const Login = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Nhập mật khẩu ..."
                 iconRender={(visible) =>
-                  visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
+                  visible ? <AiOutlineEye /> : <AiOutlineEyeInvisible />
                 }
               />
 
               <button className={styles.sing_in_button} onClick={handleSubmit}>
                 Đăng nhập
               </button>
-              <Link to={"/Forgotpass"}>Quên mật khẩu?</Link>
+              <Link to={"/Forgotpass"} className="text-[15px] underline">
+                Quên mật khẩu?
+              </Link>
             </form>
             {/* <button className={styles.new_continue}>
               {" "}

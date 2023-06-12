@@ -53,7 +53,7 @@ const Itop = () => {
               />
             </a>
           </li> */}
-          <li>
+          {/* <li>
             <a>
               <img
                 src="https://everev.vn/wp-content/uploads/2023/03/icon-call-EverEV.png"
@@ -61,7 +61,7 @@ const Itop = () => {
                 className="iconPhone"
               />
             </a>
-          </li>
+          </li> */}
         </ul>
       </div>
       {/* <ScrollToTop component={CustomScrollToTopArrow} smooth /> */}

@@ -35,7 +35,6 @@ function Register() {
 
   function handleGoogleLoginSuccess(tokenResponse) {
     const accessToken = tokenResponse.access_token;
-
     dispatch(signupGoogle(accessToken, nagivate));
   }
 
@@ -63,25 +62,23 @@ function Register() {
       toast.warning("Email không hợp lệ!");
       return;
     } else if (sForm.password === sForm.confirmPassword) {
-      console.log(sForm);
       dispatch(signup(sForm, nagivate));
     } else {
-      toast.success("Nhập lại mật khẩu không chính xác");
+      toast.warning("Nhập lại mật khẩu không chính xác");
     }
   }
   const login = useGoogleLogin({ onSuccess: handleGoogleLoginSuccess });
-
   return (
     <div className={styles.main_register}>
       <div className={styles.register_existing}>
         <div className={styles.existing_user}>
           <div className={styles.existing_content_register}>
-            <h4>Đăng ký</h4>
+            <h4 className="text-[25px] mt-5">Đăng ký</h4>
             <div className={styles.ip_register_label}>
               Đăng nhập để mua hàng và sử dụng những tiện ích mới nhất từ
               www.luxubu.com
             </div>
-            <div className={styles.register_social_links}>
+            {/* <div className={styles.register_social_links}>
               <Link to={""} className={styles.register_btn_fb}>
                 <img src={facebook} alt="facebook_logo" />
                 Facebook
@@ -93,10 +90,13 @@ function Register() {
                 <img src={google} alt="google_logo" />
                 Google
               </Link>
-            </div>
-            <div>
-              <span className="">Bạn đã có tài khoản?</span>
-              <Link to={"/Login"}> Đăng nhập</Link>
+            </div> */}
+            <div className="mt-72">
+              <span className="text-[15px]">Bạn đã có tài khoản?</span>
+              <Link to={"/Login"} className="text-[15px] underline ml-2">
+                {" "}
+                Đăng nhập
+              </Link>
             </div>
           </div>
         </div>
@@ -128,12 +128,13 @@ function Register() {
                 name="mobile"
                 onChange={handleChange}
               />
-              <Input placeholder="Mã giới thiệu" />
+
               <Input.Password
                 placeholder="Nhập mật khẩu"
                 name="password"
                 onChange={handleChange}
               />
+
               <Input.Password
                 placeholder="Nhập lại mật khẩu"
                 name="confirmPassword"
@@ -144,7 +145,7 @@ function Register() {
                 className={styles.sing_register_button}
                 onClick={handleOnSubmit}
               >
-                Đăng ký
+                Tạo tài khoản
               </button>
             </form>
           </div>

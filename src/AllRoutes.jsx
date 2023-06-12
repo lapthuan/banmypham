@@ -35,29 +35,30 @@ import Invite from "./Static-Pages/Invite/Ivite";
 import Contact from "./Static-Pages/Invite/Contact/Contact";
 import IviteBlog from "./Static-Pages/Invite/IviteBlog";
 import Iviteuser from "./Static-Pages/Invite/IviteUser/IviteUser";
+import NewPassword from "./Static-Pages/Forgotpassword/NewPassword";
 import Information from "./Static-Pages/Invite/Information/Information";
+
 import { useDispatch, useSelector } from "react-redux";
 import { loadUser } from "./redux/action/auth";
 import FContact from "./Static-Pages/Contact/FContact";
 import InforLX from "./Static-Pages/Invite/Information/InforLX";
 import InforBuy from "./Static-Pages/Invite/Information/InforBuy";
 import EditAC from "./Static-Pages/UserInfo/EditAc";
+import EditPass from "./Static-Pages/UserInfo/EditPass";
+import EditMap from "./Static-Pages/UserInfo/EditMap";
+import Chat from "./Static-Pages/ProductsSpecifications/Chat";
+import MessengerChat from "./Static-Pages/ProductsSpecifications/Chatmess";
+import DealsSale from "./Static-Pages/SalesPage/DealsSale";
 function AllRoutes() {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(loadUser());
-    console.log("hello");
-  }, []);
-
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/Brands" element={<Brands />} />
-      <Route path="/Holiday" element={<Holiday />} />
+      <Route path="/Brands/:id" element={<Holiday />} />
       <Route path="/Sale" element={<Sales />} />
       <Route path="/Register" element={<Register />} />
       <Route path="/Forgotpass" element={<Forgotpass />} />
-      {/* add proucts page link here  */}
+      <Route path="NewPassword/:token" element={<NewPassword />} />
       <Route path="/Login" element={<Login />} />
       <Route path="/SkinCare" element={<SkinCare />} />
       <Route path="/Hair" element={<Hair />} />
@@ -66,7 +67,7 @@ function AllRoutes() {
       <Route path="/Fragrance" element={<Fragrance />} />
       <Route path="/SelfCare" element={<Selfcare />} />
       <Route path="/blog" element={<Blog />} />
-      <Route path="/Tpost" element={<Tpost />} />
+      <Route path="/Tpost/:id" element={<Tpost />} />
       <Route path="/Invite" element={<Invite />} />
       <Route path="/Contact" element={<Contact />} />
       <Route path="/IviteBlog" element={<IviteBlog />} />
@@ -76,12 +77,19 @@ function AllRoutes() {
       <Route path="/InforLX" element={<InforLX />} />
       <Route path="/InforBuy" element={<InforBuy />} />
       <Route path="/EditAC" element={<EditAC />} />
+      <Route path="/EditPass" element={<EditPass />} />
+      <Route path="/EditMap" element={<EditMap />} />
+      <Route path="/Chat" element={<Chat />} />
+      <Route path="/MessengerChat" element={<MessengerChat />} />
+      <Route path="/DealsSale" element={<DealsSale />} />
+      <Route path="/Sale/:id" element={<Product />} />
+      <Route path="/Tools" element={<Tools />} />
+
       <Route
         path="/payments"
         element={
           <Privateroute>
-            {" "}
-            <Payments />{" "}
+            <Payments />
           </Privateroute>
         }
       />
@@ -90,14 +98,11 @@ function AllRoutes() {
         path="/delivery"
         element={
           <Privateroute>
-            {" "}
             <Delivery />{" "}
           </Privateroute>
         }
       />
-      {/* <Route path='/Carts' element={<Carts/>}/> */}
 
-      <Route path="/Tools" element={<Tools />} />
       <Route
         path="/Carts"
         element={
@@ -114,7 +119,6 @@ function AllRoutes() {
           </Privateroute>
         }
       />
-      <Route path="/Sale/:id" element={<Product />} />
 
       <Route
         path="/userinfo"

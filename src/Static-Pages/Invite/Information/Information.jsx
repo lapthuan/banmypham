@@ -28,7 +28,7 @@ const Information = () => {
                 <div className="text-[15px] font-bold mt-2">
                   Thông tin về Lixibox
                 </div>
-                <div className="text-[13px] text-[#4D4E4F]">
+                <div className="text-[13px] text-[#4D4E4F] leading-normal">
                   Giới thiệu, Điều khoản và Quy định, Chính sách Bảo mật, Tuyển
                   dụng
                 </div>
@@ -44,7 +44,7 @@ const Information = () => {
                 <div className="text-[15px] font-bold mt-2">
                   Hướng dẫn mua hàng
                 </div>
-                <div className="text-[13px] text-[#4D4E4F]">
+                <div className="text-[13px] text-[#4D4E4F] leading-normal">
                   Chương trình tặng Gift Card, mua hàng trên mọi nền tảng
                 </div>
               </div>

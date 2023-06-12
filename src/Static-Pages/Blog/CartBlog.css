@@ -115,14 +115,7 @@
     right: 0;
     height: 2px;
   } */
-.ant-rate {
-  font-size: 12px;
-  width: 120px;
-  height: 20px;
-  color: black;
-  position: relative;
-  left: -60px;
-}
+
 .image-container {
   position: relative;
   overflow: hidden;

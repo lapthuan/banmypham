@@ -27,23 +27,25 @@ const IviteNav = () => {
         </div>
       </div>
       <div className="Iv_content">
-        <Link to="/Login" className="flex">
+        <Link to="/Invite" className="flex">
           <div>
             <RiCoupon3Line size={25} color="black" />
           </div>
-          <p className="text-black text-[17px] ml-4">Mã giảm giá</p>
+          <p className="text-black text-[17px] ml-4 mt-1">Mã giảm giá</p>
         </Link>
         <Link to="/Iviteuser" className="flex mt-2 ml-1">
           <div>
             <BsPersonPlus size={25} color="black" />
           </div>
-          <p className="text-black text-[17px] ml-3">Giới thiệu bạn bè</p>
+          <p className="text-black text-[17px] ml-3 mt-1">Giới thiệu bạn bè</p>
         </Link>
         <Link to="/Information" className="flex mt-2 ">
           <div>
             <AiOutlineExclamationCircle size={25} color="black" />
           </div>
-          <p className="text-black text-[17px] ml-3">Thông tin về LuXuBu</p>
+          <p className="text-black text-[17px] ml-3 mt-1">
+            Thông tin về LuXuBu
+          </p>
         </Link>
         {/* <a href="" className="flex">
           <div>
@@ -56,7 +58,9 @@ const IviteNav = () => {
           <div>
             <BsExclamationTriangle size={20} color="black" />
           </div>
-          <p className="text-black text-[17px] ml-3 ">Gửi yêu cầu hỗ trợ</p>
+          <p className="text-black text-[17px] ml-3 mt-1 ">
+            Gửi yêu cầu hỗ trợ
+          </p>
         </Link>
       </div>
     </>

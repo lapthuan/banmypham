@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./UserInfor.css";
+import "./css/UserInfor.css";
 import { Link } from "react-router-dom";
 import UsrAcount from "./UserAcount";
 import User from "./User";
@@ -7,25 +7,26 @@ import moment from "moment";
 import UserBody from "./UserBody";
 import UserHistory from "./UserHistory";
 import "moment-timezone";
+import { useDispatch } from "react-redux";
+import { updateUser } from "../../redux/action/auth";
 
 const EditAC = () => {
-  const userName = localStorage.getItem("username") || "";
-  const userEmail = localStorage.getItem("useremail") || "";
-  const userMobile = localStorage.getItem("usermobile") || "";
-  const userFirstName = localStorage.getItem("userfirstname") || "";
-
   const userCreate = localStorage.getItem("usercreatedAt") || "";
-  const [Userdate, setUserDate] = useState("");
-  useEffect(() => {
-    // Giả sử bạn có giá trị ngày từ API là "2023-05-18"
-    const apiDate = { userCreate };
-    const formattedDate = moment(apiDate).format("YYYY-MM-DD");
-    setUserDate(formattedDate);
-  }, []);
+  const userId = localStorage.getItem("userid") || "";
+  const [phone, setPhone] = useState(localStorage.getItem("usermobile") == undefined ? localStorage.getItem("usermobile") : "");
+  const [email, setEmail] = useState(localStorage.getItem("useremail") || "");
+  const [firstName, setFirstName] = useState(localStorage.getItem("userfirstname") || "");
+  const [lastName, setLastName] = useState(localStorage.getItem("username") || "");
+  const dispatch = useDispatch()
 
-  const handleDateChange = (event) => {
-    setUserDate(event.target.value);
-  };
+  const handleEditUser = (e) => {
+    e.preventDefault();
+    dispatch(updateUser(userId, firstName, lastName, email, phone));
+    console.log("First Name:", firstName);
+    console.log("Last Name:", lastName);
+    console.log("Email:", email);
+    console.log("Phone:", phone);
+  }
   return (
     <>
       <div className="Iv-container">
@@ -36,9 +37,9 @@ const EditAC = () => {
                 <div className="UserNav">
                   <User />
                 </div>
-                <div className="mt-3 UserNavHis">
+                {/* <div className="mt-3 UserNavHis">
                   <UserHistory />
-                </div>
+                </div> */}
                 <div className="mt-3 UserAC pb-3">
                   <UsrAcount />
                 </div>
@@ -52,40 +53,75 @@ const EditAC = () => {
                       </div>
                     </div>
                     <div>
-                      <div className="Ivite_loho ">
-                        <div className="text-left ">
-                          <label>Tên tài khoản: </label>
-                          <input
-                            type="text"
-                            placeholder={userFirstName + " " + userName}
-                            className=" ml-2 placeholder:text-black"
-                          />
-                        </div>
-                        <div className="text-left mt-3">
-                          <label>Email: </label>
-                          <input
-                            type="email"
-                            placeholder={userEmail}
-                            className="w-[90%] ml-2 placeholder:text-black"
-                          />
-                        </div>
-                        <div className="text-left mt-3">
-                          <label>Số điện thoại: </label>
-                          <input
-                            type="text"
-                            placeholder={userMobile}
-                            className="ml-2 placeholder:text-black"
-                          />
-                        </div>
-                        <div className="text-left mt-3">
-                          <label>Ngày tạo tài khoản: </label>
-                          <input
-                            type="date"
-                            value={Userdate}
-                            onChange={handleDateChange}
-                            className="ml-2 placeholder:text-black"
-                          />
-                        </div>
+                      <div className="Ivite_loho text-lg ">
+                        <form onSubmit={handleEditUser}>
+                          <div className="text-left">
+                            <label htmlFor="first-name-input" className="block mb-2 text-base font-medium text-gray-900">
+                              Họ:
+                            </label>
+                            <input
+                              required
+                              type="text"
+                              id="first-name-input"
+                              value={firstName}
+                              className="w-full ml-2 placeholder:text-black border-b-2 color-[black]"
+                              onChange={(e) => setFirstName(e.target.value)}
+                            />
+                          </div>
+                          <div className="text-left mt-2">
+                            <label htmlFor="last-name-input" className="block mb-2 text-base font-medium text-gray-900">
+                              Tên:
+                            </label>
+                            <input
+                              required
+                              type="text"
+                              id="last-name-input"
+                              value={lastName}
+                              className="w-full ml-2 placeholder:text-black border-b-2 color-[black]"
+                              onChange={(e) => setLastName(e.target.value)}
+                            />
+                          </div>
+                          <div className="text-left mt-2">
+                            <label htmlFor="email-input" className="block mb-2 text-base font-medium text-gray-900">
+                              Email:
+                            </label>
+                            <input
+                              disabled
+                              type="email"
+                              id="email-input"
+                              value={email}
+                              className="w-full ml-2 placeholder:text-black border-b-2 color-[black]"
+                              onChange={(e) => setEmail(e.target.value)}
+                            />
+                          </div>
+
+                          <div className="text-left mt-2">
+                            <label htmlFor="phone-input" className="block mb-2 text-base font-medium text-gray-900">
+                              Số điện thoại:
+                            </label>
+                            <input
+                              required
+                              type="text"
+                              id="phone-input"
+                              value={phone}
+                              className="w-full ml-2 placeholder:text-black border-b-2 color-[black]"
+                              onChange={(e) => setPhone(e.target.value)}
+                            />
+                          </div>
+                          <div className="text-left mt-2">
+                            <label>Ngày tạo tài khoản:</label>
+                            <input
+                              disabled
+                              value={moment(userCreate).format("DD-MM-YYYY")}
+                              className="ml-2 placeholder:text-black  color-[#fe2c6d]"
+                            />
+                          </div>
+
+                          <button type="submit" className="btn btn-primary m-4">
+                            Cập nhật
+                          </button>
+                        </form>
+
                       </div>
                     </div>
                   </div>

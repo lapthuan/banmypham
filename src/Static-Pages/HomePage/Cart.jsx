@@ -4,20 +4,19 @@ import "./Cart.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Link } from "react-router-dom";
-import img1 from "../../Image/1.webp";
-import img2 from "../../Image/1647316643.webp";
-import img3 from "../../Image/1672817926.webp";
-import img4 from "../../Image/1682067960.webp";
-import img5 from "../../Image/1682270821.webp";
+
+import { useTranslation } from "react-i18next";
 import { Rate } from "antd";
-const FeaturedCard = () => {
+const FeaturedCard = ({ title, productfiter }) => {
+  const { t } = useTranslation();
+
   const settings = {
     dots: true,
     infinite: true,
     arrows: true,
     fade: false,
     speed: 500,
-    slidesToShow: 5,
+    slidesToShow: productfiter?.length < 5 ? productfiter?.length : 5,
     slidesToScroll: 5,
     initialSlide: 0,
     responsive: [
@@ -64,163 +63,53 @@ const FeaturedCard = () => {
     <>
       <div className="slider">
         <div className="flex justify-between">
-          <h1 className="text-[22px] mt-10 font-bold">HOT DEAL</h1>
+          <h1 className="text-[22px] mt-10 mb-5 font-bold">{title}</h1>
           <div className="flex">
-            <h1 className="text-[15px] mt-10">Xem Tất Cả</h1>
+            <Link to="/Sale">
+              <h1 className="text-[15px] mt-10">{t("xemtatca")}</h1>
+            </Link>
           </div>
         </div>
 
         <Slider {...settings} ref={sliderRef} className="h-[300px]">
-          <div className="card flex flex-col">
-            <div className="image-container">
-              <img
-                src={img1}
-                style={{
-                  height: "150px",
-                  width: "150px",
-                  marginLeft: "auto",
-                  marginRight: "auto",
-                }}
-              />
-            </div>
-            <div className="card-bottom">
-              <div className="text-left text-xs mb-2">Halio</div>
-              <div className="text-left text-xs mb-2">
-                {text.slice(0, 50)}...
+          {productfiter?.map((item) => (
+            <Link to={`Sale/${item._id}`}>
+              <div className="card flex flex-col">
+                <div className="image-container">
+                  <img
+                    src={item.images[0]?.url}
+                    style={{
+                      height: "150px",
+                      width: "150px",
+                      marginLeft: "auto",
+                      marginRight: "auto",
+                    }}
+                  />
+                </div>
+                <div className="card-bottom">
+                  <div className="text-left text-xs mb-2">
+                    Đã bán: {item.sold}
+                  </div>
+                  <div className="text-left text-xs mb-2 ">
+                    {item.title.slice(0, 50)}...
+                  </div>
+                  <div className="text-left">
+                    <Rate
+                      defaultValue={item.totalrating}
+                      disabled
+                      className=""
+                    />
+                  </div>
+                  <div className="text-left text-xl font-bold">
+                    {item?.price.toLocaleString("vi-VN", {
+                      style: "currency",
+                      currency: "VND",
+                    })}
+                  </div>
+                </div>
               </div>
-              <div>
-                <Rate allowHalf defaultValue={3} />
-              </div>
-              <div className="text-left text-xl font-bold">1.500.000 ₫</div>
-            </div>
-          </div>
-          <div className="card flex flex-col">
-            <div className="">
-              <img
-                src={img5}
-                style={{
-                  height: "150px",
-                  width: "150px",
-                  marginLeft: "auto",
-                  marginRight: "auto",
-                }}
-              />
-            </div>
-            <div className="card-bottom">
-              <div className="text-left text-xs mb-2">Halio</div>
-              <div className="text-left text-xs mb-2">
-                {text2.slice(0, 50)}...
-              </div>
-              <div>
-                <Rate allowHalf defaultValue={3} />
-              </div>
-              <p className="text-left text-xl font-bold">1.500.000 ₫</p>
-            </div>
-          </div>
-          <div className="card flex flex-col">
-            <div className="">
-              <img
-                src={img2}
-                style={{
-                  height: "150px",
-                  width: "150px",
-                  marginLeft: "auto",
-                  marginRight: "auto",
-                }}
-              />
-            </div>
-            <div className="card-bottom">
-              <div className="text-left text-xs mb-2">Espoir</div>
-              <div className="text-left text-xs mb-2">
-                {text2.slice(0, 50)}...
-              </div>
-              <div>
-                <Rate allowHalf defaultValue={3} />
-              </div>
-              <p className="text-left text-xl font-bold">1.500.000 ₫</p>
-            </div>
-          </div>
-          <div className="card flex flex-col">
-            <div class="image-container2">
-              <img
-                src={img3}
-                style={{
-                  height: "150px",
-                  width: "150px",
-                  marginLeft: "auto",
-                  marginRight: "auto",
-                }}
-                class="image-1"
-              />
-              <img
-                src="	https://upload.lixibox.com/system/pictures/files/000/080/309/large/1672817972.webp?v=2"
-                style={{
-                  height: "150px",
-                  width: "180px",
-                  marginLeft: "auto",
-                  marginRight: "auto",
-                }}
-                alt=""
-                class="image-2"
-              />
-            </div>
-            <div className="card-bottom">
-              <div className="text-left text-xs">Halio</div>
-              <div className="text-left text-xs mb-2">
-                {text2.slice(0, 50)}...
-              </div>
-              <div>
-                <Rate allowHalf defaultValue={3} />
-              </div>
-              <p className="text-left text-xl font-bold">1.500.000 ₫</p>
-            </div>
-          </div>
-          <div className="card flex flex-col">
-            <div className="">
-              <img
-                src={img4}
-                style={{
-                  height: "150px",
-                  width: "150px",
-                  marginLeft: "auto",
-                  marginRight: "auto",
-                }}
-              />
-            </div>
-            <div className="card-bottom">
-              <div className="text-left text-xs">Halio</div>
-              <div className="text-left text-xs mb-2">
-                {text2.slice(0, 50)}...
-              </div>
-              <div>
-                <Rate allowHalf defaultValue={3} />
-              </div>
-              <p className="text-left text-xl font-bold">1.500.000 ₫</p>
-            </div>
-          </div>
-          <div className="card flex flex-col">
-            <div className="">
-              <img
-                src={img4}
-                style={{
-                  height: "150px",
-                  width: "150px",
-                  marginLeft: "auto",
-                  marginRight: "auto",
-                }}
-              />
-            </div>
-            <div className="card-bottom">
-              <div className="text-left text-xs">Halio</div>
-              <div className="text-left text-xs mb-2">
-                {text2.slice(0, 50)}...
-              </div>
-              <div>
-                <Rate allowHalf defaultValue={3} />
-              </div>
-              <p className="text-left text-xl font-bold">1.500.000 ₫</p>
-            </div>
-          </div>
+            </Link>
+          ))}
         </Slider>
         <div>
           <span className="next cursor-pointer" onClick={gotoPrev}></span>

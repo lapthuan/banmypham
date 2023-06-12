@@ -35,14 +35,14 @@ const InforBuy = () => {
                         />
                       </video>
                     </div>
-                    <div className="text-[18px] mt-5 ml-5 text-left  pt-[19px] pb-2">
+                    <div className="text-[20px] mt-5 ml-5 text-left  pt-[19px] pb-2">
                       LƯU Ý VỀ MÃ KHUYẾN MÃI
-                      <div>
+                      <div className="ml-5 mr-5">
                         <ul className="list-disc text-[15px] mt-2">
-                          <li>
+                          <li className="text-[#4D4E4F]">
                             Mỗi đơn hàng chỉ áp dụng duy nhất 1 mã khuyến mãi.
                           </li>
-                          <li className="mt-2">
+                          <li className="mt-2 text-[#4D4E4F] leading-normal">
                             Bạn vui lòng liên hệ trực tiếp với Luxubu khi cần
                             kiểm tra đơn hàng. Khi có quà đi kèm với box, món
                             quà đó cũng sẽ phải thể hiện trong giỏ của bạn trước
@@ -50,18 +50,18 @@ const InforBuy = () => {
                             bạn là cần thiết để tránh trường hợp thất vọng vì
                             chọn mã sai.
                           </li>
-                          <li className="mt-2">
+                          <li className="mt-2 leading-normal text-[#4D4E4F]">
                             Sau khi mua hàng, Luxubu sẽ gửi riêng các mã khuyến
                             mãi áp dụng cho những lần mua sau của bạn. Những mã
                             khuyến mãi này chỉ áp dụng khi đơn hàng được thực
-                            hiện bởi tài khoản của bạn - Luxubu sẽ KHÔNG hỗ trợ
+                            hiện bởi tài khoản của bạn - Luxubu sẽ không hỗ trợ
                             đổi/trả phần quà nếu như bạn nhập nhầm MÃ KHUYẾN
                             MÃI. Vậy nên, vui lòng kiểm tra thật kỹ phần quà
                             nhận được sau khi áp dụng Mã khuyến mãi trước khi
                             tiến hành đặt mua sản phẩm
                           </li>
                         </ul>
-                        <p className="font-bold text-black">
+                        <p className="font-bold text-black mt-3 mb-5">
                           Luxubu xin chân thành cảm ơn và chúc bạn có một trải
                           nghiệm mua sắm tốt đẹp!
                         </p>

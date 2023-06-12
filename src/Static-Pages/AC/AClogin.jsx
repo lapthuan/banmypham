@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from "react";
 import "./Ac.css";
-import { AiFillCloseCircle } from "react-icons/ai";
+import { AiFillCloseCircle, AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 import imgqc from "../../Image/Ivite1.jpg";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "../LoginPage/Login.module.css";
 import facebook from "../LoginPage/logo/Facebook_F_icon.svg.png";
 import google from "../LoginPage/logo/Google__G__Logo.svg.png";
 import { useSelector, useDispatch } from "react-redux";
-import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
+
 import { Button, Input, Space } from "antd";
 import axios from "axios";
 import { signin, signinGoogle } from "../../redux/action/auth";
 import OAuth2Login from "react-simple-oauth2-login";
 import { useGoogleLogin } from "@react-oauth/google";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const AClogin = () => {
   useEffect(() => {
@@ -62,7 +62,6 @@ const AClogin = () => {
       })
       .then((result) => {
         toast.success("Đăng nhập thành công !");
-        console.log(result);
       })
       .catch((err) => {
         console.log(err.response.data);
@@ -145,7 +144,7 @@ const AClogin = () => {
                       onChange={(e) => setPassword(e.target.value)}
                       placeholder="Nhập mật khẩu ..."
                       iconRender={(visible) =>
-                        visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
+                        visible ? <AiOutlineEye /> : <AiOutlineEyeInvisible />
                       }
                     />
 

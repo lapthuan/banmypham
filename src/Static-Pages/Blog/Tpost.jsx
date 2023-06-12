@@ -1,38 +1,52 @@
 import React, { useState, useEffect } from "react";
 import "./Tpost.css";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Carts from "../HomePage/Cart";
 import CartBlog from "./CartBlog";
+import { useDispatch, useSelector } from "react-redux";
+import { blogGetAll, blogGetDetail } from "../../redux/action/blogActions";
 const Tpost = () => {
-  return (
+  const params = useParams();
+  let idBlog = params.id;
+  const dispatch = new useDispatch()
+  const blogdetail = useSelector((state) => state.blogDetail)
+  const { blog, loading } = blogdetail
+  const blogList = useSelector((state) => state.blogList)
+  const { blogs } = blogList
+
+  useEffect(() => {
+    dispatch(blogGetAll())
+    dispatch(blogGetDetail(idBlog));
+  }, [idBlog])
+  const filteredBlogs = blogs?.filter(
+    (article) => article.category._id === blog?.category
+  );
+ 
+
+  return loading == false ? (
     <>
       <div>
         <main>
           <div className="Con_Tpost">
             <section className="contentsBlog mtop">
-              <Link>
-                <img
-                  src="https://upload.lixibox.com/system/blogs/covers/000/001/664/original/1682565610.jpg"
-                  className="rounded-md h-[40%] w-[80%] object-cover ml-auto mr-auto mb-[20px] block relative rounded-[8px]"
-                  alt=""
-                />
-              </Link>
+
+              <img
+                src={blog?.images[0].url}
+                className="rounded-md h-[40%] w-[80%] object-cover ml-auto mr-auto mb-[20px] block relative rounded-[8px]"
+                alt=""
+              />
+
               <div className="titleBlog">
                 <h1 className="contentBlog_h1">
-                  Quỳnh Thi, Hoa Mỹ, Hàn Hằng mách bạn cách uốn tóc xoăn phồng
-                  mượt tại nhà cực nhanh gọn
+                  {blog?.title}
                 </h1>
               </div>
               <div className="contentBlog_span">
                 <span>
-                  Để có một mái tóc uốn vừa phồng mượt xinh xắn, vừa tiết kiệm
-                  mà lại không khiến tóc bị hư tổn như Quỳnh Thi, Hàn Hằng, Hoa
-                  Mỹ, Trang Ash, Tring Tây, Linh Sim, thì hãy cùng xem các cô
-                  nàng này đã biến hóa mái tóc như thế nào với 2 dòng máy uốn
-                  tóc Halio Premium cực hot dạo gần đây nhé.
+                  {blog.description}
                 </span>
               </div>
-              <div className="pt-10 flex justify-center items-center">
+              {/* <div className="pt-10 flex justify-center items-center">
                 <div className="contentBlog_diveder "></div>
               </div>
               <div>
@@ -75,9 +89,9 @@ const Tpost = () => {
                     uốn tóc Halio và cái kết đáng suy ngẫm
                   </a>
                 </p>
-              </div>
+              </div> */}
               <div>
-                <CartBlog />
+                <CartBlog filteredBlogs={filteredBlogs} />
               </div>
               <div>
                 <Carts />
@@ -89,7 +103,7 @@ const Tpost = () => {
         </main>
       </div>
     </>
-  );
+  ) : <div>Loading...</div>;
 };
 
 export default Tpost;

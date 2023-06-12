@@ -1,21 +1,11 @@
 import { useState } from "react";
-import "./UserInfor.css";
+import "./css/UserInfor.css";
 import React from "react";
-import "mdb-react-ui-kit/dist/css/mdb.min.css";
-import {
-  MDBCol,
-  MDBContainer,
-  MDBRow,
-  MDBCard,
-  MDBCardText,
-  MDBCardBody,
-  MDBCardImage,
-} from "mdb-react-ui-kit";
 import UsrAcount from "./UserAcount";
 import User from "./User";
 import UserBody from "./UserBody";
-import UserHistory from "./UserHistory";
 export const UserInfo = () => {
+  const [tab, setTab] = useState(1);
   return (
     <div>
       <section
@@ -33,15 +23,15 @@ export const UserInfo = () => {
                   <div className="UserNav">
                     <User />
                   </div>
-                  <div className="mt-3 UserNavHis">
-                    <UserHistory />
-                  </div>
+                  {/* <div className="mt-3 UserNavHis">
+                    <UserHistory setTab={setTab} tab={tab} />
+                  </div> */}
                   <div className="mt-3 UserAC pb-3">
                     <UsrAcount />
                   </div>
                 </div>
                 <div className="main_styler w-[100%] mb-2">
-                  <UserBody />
+                  <UserBody setTab={setTab} tab={tab} />
                 </div>
               </div>
             </div>

@@ -18,7 +18,7 @@ const IviteBlog = () => {
                   <div className="bg-white rounded-[8px]">
                     <div>
                       <div className="Ivite_loho">
-                        <div className="flex flex-column">
+                        <div className="flex flex-col">
                           <div className="Ivite_header">
                             <img src={img1} alt="" />
                           </div>
@@ -39,7 +39,7 @@ const IviteBlog = () => {
                                 </Link>
                               </div>
                             </div>
-                            <div>
+                            <div className="text-[15px]">
                               Mời bạn bè áp dụng mã khuyến mãi này trên Lixibox,
                               khi mua đơn hàng đầu tiên với các sản phẩm từ
                               thương hiệu Halio, Hemi, The Auragins, Okame,
@@ -47,39 +47,32 @@ const IviteBlog = () => {
                               Hemi mua tại website và app Lixibox với giá trị từ
                               300.000&nbsp;₫
                             </div>
-                            <div className="mt-5">
+                            <div className="mt-5 ml-10">
                               <ul className="list-disc text-[15px] text-left">
                                 <li>
                                   Tài khoản của bạn (người giới thiệu) sẽ được
-                                  100.000Đ + 50 Lixicoin cho mỗi đơn hàng giới
-                                  thiệu thành công, thưởng không giới hạn. để
-                                  thoả sức mua sắm và đổi quà.
+                                  100.000Đ cho mỗi đơn hàng giới thiệu thành
+                                  công, thưởng không giới hạn. để thoả sức mua
+                                  sắm và đổi quà.
                                 </li>
                                 <li>
                                   Bạn của bạn (người được giới thiệu) sẽ được
-                                  Giảm 60.000Đ + 100 Lixicoin cho đơn hàng đầu
-                                  tiên.
+                                  Giảm 60.000Đ cho đơn hàng đầu tiên.
                                 </li>
                               </ul>
                             </div>
                             <div className="mt-3 text-left ml-5">
-                              <span className="text-[#f7ab13]">
+                              <span className="text-[#f7ab13] text-[15px]">
                                 Ngày kết thúc: 31/05/2023
                               </span>
                             </div>
-                            <div>
-                              <span>Lưu ý: </span>
+                            <div className="mb-10">
+                              <span className="text-[15px]">Lưu ý: </span>
                               <div>
-                                <ul className="list-disc text-[15px] text-left">
+                                <ul className="list-disc text-[15px] ml-10 text-left">
                                   <li>
                                     Chỉ áp dụng cho đơn hàng có số điện thoại
-                                    chưa từng mua hàng ở Lixibox.
-                                  </li>
-                                  <li>
-                                    Tiền thưởng và Lixicoin của người được giới
-                                    thiệu sẽ được cộng ngay khi đơn hàng của
-                                    người được giới thiệu được giao và thanh
-                                    toán thành công
+                                    chưa từng mua hàng ở Luxubu.
                                   </li>
                                 </ul>
                               </div>

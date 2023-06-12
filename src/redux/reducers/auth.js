@@ -7,7 +7,6 @@ import {
 } from "../const/actionsTypes";
 
 let local = localStorage.getItem("userrole");
-console.log(local);
 
 var checkAdminAuth = false;
 if (local == "admin") {
@@ -38,15 +37,17 @@ export const loginReducer = (state = initialstate, { type, payload }) => {
       };
     }
     case LOGIN_GET_SUCCESS: {
-      // return console.log(payload.role);
 
       localStorage.setItem("user_infos", JSON.stringify(payload));
       localStorage.setItem("token", payload.token);
+      localStorage.setItem("userid", payload._id);
       localStorage.setItem("userfirstname", payload.firstname);
       localStorage.setItem("username", payload.lastname);
       localStorage.setItem("useremail", payload.email);
       localStorage.setItem("usermobile", payload.mobile);
       localStorage.setItem("usercreatedAt", payload.createdAt);
+      localStorage.setItem("userAddress", payload.address ? JSON.stringify(payload.address) : "");
+      localStorage.setItem("userimage", payload.picture ? payload.picture : "");
 
       return {
         ...state,
@@ -60,7 +61,6 @@ export const loginReducer = (state = initialstate, { type, payload }) => {
       };
     }
 
-
     case LOGIN_GET_ERROR: {
       return {
         ...state,
@@ -69,7 +69,14 @@ export const loginReducer = (state = initialstate, { type, payload }) => {
       };
     }
     case LOGOUT_GET: {
+      localStorage.removeItem("total");
+      localStorage.removeItem("searchHistory");
+      localStorage.removeItem("shipping");
+      localStorage.removeItem("userAddress");
+      localStorage.removeItem("userfirstname");
+      localStorage.removeItem("userimage");
       localStorage.removeItem("token");
+      localStorage.removeItem("userid");
       localStorage.removeItem("user_infos");
       localStorage.removeItem("username");
       localStorage.removeItem("useremail");
@@ -84,3 +91,4 @@ export const loginReducer = (state = initialstate, { type, payload }) => {
       return state;
   }
 };
+

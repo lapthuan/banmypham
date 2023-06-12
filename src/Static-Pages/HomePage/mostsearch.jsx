@@ -1,19 +1,31 @@
 import "./mostsearch.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const MostSearch = () => {
+  const dispatch = useDispatch();
+  const categorylist = useSelector((state) => state.categoryList);
+  const { categorys } = categorylist;
+
+  // const handerCategorys = (idCategorys) => {
+  //   dispatch(findProductsPrice("", "", "", "", `["${idCategorys}"]`));
+  // };
+
   return (
     <div className="most-search mt-5">
-      <h3 className="text-left">TÌM KIẾM NHIỀU NHẤT</h3>
+      <div className="text-[22px] mt-10 font-bold text-left">
+        TÌM KIẾM NHIỀU NHẤT
+      </div>
       <ul className="mt-5">
         <Swiper
           className=""
-          slidesPerView={7}
+          slidesPerView={6}
           spaceBetween={10}
           breakpoints={{
             992: {
-              slidesPerView: 7,
+              slidesPerView: 6,
               spaceBetween: 10,
             },
             768: {
@@ -30,51 +42,19 @@ const MostSearch = () => {
             },
           }}
         >
-          <SwiperSlide>
-            <li className="w-[80%] mr-[10px] text-center">
-              <button>Máy triệt lông</button>
-            </li>
-          </SwiperSlide>
-          <SwiperSlide>
-            <li className="w-[80%] mr-[10px] text-center">
-              <button>Máy uốn tóc</button>
-            </li>
-          </SwiperSlide>
-          <SwiperSlide>
-            <li className="w-[80%] mr-[10px] text-center">
-              <button>Bàn chải điện</button>
-            </li>
-          </SwiperSlide>
-          <SwiperSlide>
-            <li className="w-[80%] mr-[10px] text-center">
-              <button>Mặt nạ</button>
-            </li>
-          </SwiperSlide>
-          <SwiperSlide>
-            <li className="w-[80%] mr-[10px] text-center">
-              <button>Son</button>
-            </li>
-          </SwiperSlide>
-          <SwiperSlide>
-            <li className="w-[80%] mr-[10px] text-center">
-              <button>Tăm nước</button>
-            </li>
-          </SwiperSlide>
-          <SwiperSlide>
-            <li className="w-[80%] mr-[10px] text-center">
-              <button>Máy rửa mặt</button>
-            </li>
-          </SwiperSlide>
-          <SwiperSlide>
-            <li className="w-[80%] mr-[10px] text-center">
-              <button>Halio</button>
-            </li>
-          </SwiperSlide>
-          <SwiperSlide>
-            <li className="w-[80%] mr-[10px] text-center">
-              <button>Kem chống nắng</button>
-            </li>
-          </SwiperSlide>
+          {categorys?.map((item, index) => (
+            <SwiperSlide>
+              <li className="w-[80%] mr-[10px] text-center">
+                <Link
+                  // key={index}
+                  // onClick={handerCategorys(item._id)}
+                  to="/Sale"
+                >
+                  <button>{item.title}</button>
+                </Link>
+              </li>
+            </SwiperSlide>
+          ))}
         </Swiper>
       </ul>
     </div>

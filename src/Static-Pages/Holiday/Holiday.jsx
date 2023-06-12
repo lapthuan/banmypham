@@ -1,173 +1,225 @@
+import React, { useState } from "react";
+import imgError from "../../Image/imgError.jpg";
+import "../SalesPage/Sales.module.css";
+import {
+  AiOutlineHeart,
+  AiOutlineHome,
+  AiOutlineShoppingCart,
+} from "react-icons/ai";
+import Stars from "../SalesPage/Stars";
+import { Link, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import FilTer from "./filter";
+import { findProductsPrice } from "../../redux/action/productActions";
+import { useEffect } from "react";
+import { listbrandDetails } from "../../redux/action/brandActions";
 
-import '../HomePage/HomePage.css'
-import HolidaySlider from './HolidaySlider'
-import {HiOutlineShoppingBag} from 'react-icons/hi'
-import { useNavigate } from 'react-router-dom'
+import LoadPage from "../../Loadpage/Loadpage";
+import logo1 from "../Brands/imageBrand/Nivea_logo.svg.png";
+
 function Holiday() {
- const navigate=useNavigate()
-  const handleredirect=()=>{
-navigate('/Sale')
- }
- 
+  const params = useParams();
+  let idBrand = params.id;
+  const dispatch = useDispatch();
+
+  const productList = useSelector((state) => state.productList);
+  const { products, loading } = productList;
+  const branddetail = useSelector((state) => state.brandDetails);
+  const { brand } = branddetail;
+  console.log(brand);
+  useEffect(() => {
+
+    dispatch(listbrandDetails(idBrand))
+
+    dispatch(
+      findProductsPrice("", "", `["${idBrand}"]`, "", "")
+    );
+
+  }, [idBrand]);
+
   return (
-    <>
-    {/* slider  */}
-<HolidaySlider/>
-{/* first red div  */}
-<div className="Trending_wala" onClick={handleredirect}>
-        <div className='heightkm'>
-          <img
-            src="https://static.thcdn.com/images/small/webp/widgets/121-us/01/original-original-SkinStore_Q4_Photography_2022_-_October_-_THG0035163_-_BATCHING_shot21500x500-052147-021101.jpg"
-            alt="Smart Splurges"
-          />
-          <h4>
-Budget Friendly Finds</h4>
-          <p>
-          Make room for everyone on your list—from skin care to hair tools, we’ve rounded up the gifts that wow without breaking the bank.
-          </p>
-          <button>SHOP NOW</button>
-        </div>
-          <div className='heightkm'>
-          <img
-            src="https://static.thcdn.com/images/small/webp/widgets/121-us/36/original-SkinStore_Q4_Photography_2022_-_October_-_THG0035163_-_BATCHING_shot20500x500-052136.jpg"
-            alt="Smart Splurges"
-          />
-          <h4>Smart Splurges</h4>
-          <p>
-           
-Splurge on something sentimental and give an extra thoughtful gift to someone you love.
-          </p>
-          <button>SHOP NOW</button>
-        </div>
-        <div className='heightkm'>
-          <img
-            src="https://static.thcdn.com/images/small/webp/widgets/121-us/57/original-original-original-SkinStore_Q4_Photography_2022_-_October_-_THG0035163_-_BATCHING_shot23500x500-053709-091327-021057.jpg"
-            alt="
-Luxury Gifts"
-          />
-          <h4>
-Luxury Gifts</h4>
-          <p>
-           
-There's no better time to indulge in a luxury gift for you and yours. Shop the most opulent beauty presents here.
-          </p>
-          <button>SHOP NOW</button>
-        </div>
-        <div className='heightkm'>
-          <img
-            src="https://static.thcdn.com/images/small/webp/widgets/121-us/05/original-SkinStore_Q4_Photography_2022_-_October_-_THG0035163_-_BATCHING_shot22500x500-053705.jpg"
-            alt="Stocking Stuffers"
-          />
-          <h4>Stocking Stuffers</h4>
-          <p>
-          Small but mighty beauty gifts sure to delight all season long.
-          </p>
-          <button>SHOP NOW</button>
-        </div>
-        <div className="Neoutics">
-          <img
-            src="https://static.thcdn.com/images/small/webp/widgets/121-us/58/original-Shot34-500x500-091258.jpeg"
-            alt="Home"
-          />
-          <h4>Festive Finds for the Home</h4>
-          <p>
-          Deck your home for the holidays with cozy scents guaranteed to make spirits bright.
-          </p>
-          <button>SHOP NOW</button>
-        </div>
-        <div>
-          <img
-            src="https://static.thcdn.com/images/small/webp/widgets/121-us/17/original-SkinStore_Q4_Photography_2022_-_October_-_THG0035163_-_BATCHING_shot24500x500-053717.jpg"
-            alt=""
-          />
-          <h4>
-Gifts For You</h4>
-          <p>
-          Find and buy everything you need to make your inner beauty guru smile.
-          </p>
-          <button>SHOP NOW</button>
-        </div>
-        <div className="Estee">
-          <img
-            src="https://static.thcdn.com/images/small/webp/widgets/121-us/41/original-Shot27-500x500-091541.jpeg"
-            alt=""
-          />
-          <h4>Skin and Hair Devices</h4>
-          <p>
-          Skin and hair tools sure to delight all the beauty lovers on your list.
-          </p>
-          <button>SHOP NOW</button>
-        </div>
-        <div className="DHC">
-          <img
-            src="https://static.thcdn.com/images/small/webp/widgets/121-us/15/original-SkinStore_Q4_Photography_2022_-_October_-_THG0035163_-_BATCHING_shot25500x500-054015.jpg"
-            alt=""
-          />
-          <h4>Holiday Skincare</h4>
-          <p>
-          Deck the halls with holiday gift boxes and kits that add a little bit of skin care spice to your present lineup.
+    <div className="main__sales">
+      <nav
+        class="container w-[80%] flex px-5 py-3 text-gray-700 border border-gray-200 rounded-lg mx-auto"
+        aria-label="Breadcrumb"
+      >
+        <ol class="inline-flex pt-2 items-center space-x-1 md:space-x-3">
+          <li class="inline-flex items-center">
+            <Link
+              to={"/"}
+              class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-[#fe2c6d] "
+            >
+              <AiOutlineHome />
+              <div class="ml-1 text-sm font-medium text-gray-700 hover:text-[#fe2c6d] md:ml-2 ">
+                Trang chủ{" "}
+              </div>
+            </Link>
+          </li>
+          <li>
+            <div class="flex items-center">
+              <svg
+                aria-hidden="true"
+                class="w-6 h-6 text-gray-400"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
 
-SHOP NOW
-          </p>
-          <button>SHOP NOW</button>
-        </div>
-        <div>
-          <img
-            src="https://static.thcdn.com/images/small/webp/widgets/121-us/19/original-SkinStore_Q4_Photography_2022_-_October_-_THG0035163_-_BATCHING_shot26500x500-054019.jpg"
-            alt=""
-          />
-          <h4>Best Selling Holiday</h4>
-          <p>
-          If you don’t know what to buy (or even if you do) check out the best-sellers that top our list every year.
-          </p>
-          <button>SHOP NOW</button>
+              <Link
+                to={"/Brands"}
+                class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-[#fe2c6d] "
+              >
+                <AiOutlineShoppingCart />
+                <div class="ml-1 text-sm font-medium text-gray-700 hover:text-[#fe2c6d] md:ml-2 ">
+                  Thương hiệu{" "}
+                </div>
+              </Link>
+            </div>
+          </li>
+          <li>
+            <div class="flex items-center">
+              <svg
+                aria-hidden="true"
+                class="w-6 h-6 text-gray-400"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+
+              <Link
+                to={`/brands/${brand?._id}`}
+                class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-[#fe2c6d] "
+              >
+
+                <div class="ml-1 text-sm font-medium text-gray-700 hover:text-[#fe2c6d] md:ml-2 ">
+                  {brand?.title}
+                </div>
+              </Link>
+            </div>
+          </li>
+        </ol>
+      </nav>
+
+      <div className="container max-w-screen-xl mx-auto px-4">
+        <div className="flex flex-col md:flex-row -mx-4">
+          <aside className="md:w-1/3 lg:w-1/4 px-4 py-4">
+            <div className="space-y-1">
+              <div>
+                <div className="hidden md:block mt-10">
+                  <div className="flex-col">
+                    <div>
+                      <img src={brand.images?.url} alt="" className="w-[60%] mx-auto" />
+                    </div>
+                    <div className="leading-loose text-[15px] mt-3 text-left text-justify text-[#696969]">
+                      {brand.description}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </aside>
+          <main className="md:w-2/3 lg:w-3/4 w-4/4 px-3">
+            <div>
+              <div className="mt-4 hidden md:block">
+                <FilTer />
+              </div>
+              {loading === false ? (
+                <div className="mt-4 grid gap-y-10 gap-x-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+                  {products?.length != 0 ? (
+                    <>
+                      {products?.map((item) => (
+                        <div
+                          key={item._id}
+                          className="shadow-md shadow-red-300 min-h-80 aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md bg-color-basic group-hover:opacity-75 lg:aspect-none lg:h-50"
+                        >
+                          <div>
+                            <div className="wishlist px-2 py-2">
+                              <AiOutlineHeart className="text-2xl text-[#fe2c6d]" />
+                            </div>
+                            <Link
+                              to={`/Sale/${item._id}`}
+                              className="group relative bg-color-card rounded-md shadow overflow-hidden"
+                            >
+                              <img
+                                src={
+                                  item.images[0] === undefined
+                                    ? imgError
+                                    : item.images[0].url
+                                }
+                                className="rounded-lg"
+                                alt="product_img"
+                              />
+                            </Link>
+                          </div>
+                          <hr className="w-[100%] mx-auto text-[#fe2c6d]" />
+                          <Link
+                            to={`/Sale/${item._id}`}
+                            className="group relative bg-color-card rounded-md shadow overflow-hidden"
+                          >
+                            <div className="mt-2 flex justify-center pl-[10px] py-1 overflow-hidden">
+                              <div>
+                                <div className="flex justify-between ">
+                                  <Link to={`../brands/${item.brand._id}`} className=" text-[#fe2c6d] text-sm border border-[#fe2c6d] p-1 rounded-lg ">{item.brand.title}</Link>
+                                  <div className="text-left text-sm p-1">{item.category.title.slice(0, 15)}...</div>
+                                </div>
+                                <br />
+                                <p className="text-sm text-[#3E4048] text-left">
+                                  {item.title.slice(0, 55)}...
+                                </p>
+                                <div className="text-left mt-2">
+                                  <Stars stars={item.totalrating} />
+                                </div>
+                                <p className="text-left text-black font-bold text-lg mt-2">
+                                  {item.price
+                                    ? item.price.toLocaleString("vi-VN", {
+                                      style: "currency",
+                                      currency: "VND",
+                                    })
+                                    : ""}
+                                </p>
+
+                              </div>
+                            </div>
+                          </Link>
+                        </div>
+                      ))}
+                    </>
+                  ) : (
+                    <div className="text-center">Không tìm thấy sản phẩm</div>
+                  )}
+                </div>
+              ) : (
+                <></>
+              )}
+
+              {/* <div
+          className={`${styles.sort_page} ${styles.responsive__sort_page}`}
+          style={{ marginTop: "50px" }}
+        >
+          <div className={`${styles.sorting} ${styles.hide__sorting}`}></div>
+
+          <div className={styles.pagination}>
+            <Pagination setCurrentPage={setCurrentPage} />
+          </div>
+        </div> */}
+            </div>
+          </main>
         </div>
       </div>
-      
-      <h1 className="Shophai"> Top Holiday Gift Packs</h1>
-{/* gift packs  */}
-
-<div className="buying_people" onClick={handleredirect}>
-        <div>
-          <img
-            src="https://static.thcdn.com/images/small/webp//productimg/480/480/13812007-1244993329820695.jpg"
-            alt="Skinstore"
-          />
-          <p>Skinstore 2022 Holiday Edit - $670 Value</p>
-          <p>$149.00</p>
-          <div><HiOutlineShoppingBag/>SHOP NOW</div>
-        </div>
-        <div>
-          <img
-            src="https://static.thcdn.com/images/small/webp//productimg/480/480/13949126-6304993388536680.jpg"
-            alt="Ritual"
-          />
-          <p>Rituals The Ritual of Advent 3D</p>
-          <p>$125.00</p>
-          <div><HiOutlineShoppingBag/>SHOP NOW</div>
-        </div>
-        <div className="Riley">
-          <img
-            src="https://static.thcdn.com/images/small/webp//productimg/480/480/13903619-1444998250558359.jpg"
-            alt="hair"
-          />
-          <p>Olaplex Hair Repair Treatment Holiday Kit (Worth $90.00) </p>
-          <p>$62.00</p>
-          <div><HiOutlineShoppingBag/>SHOP NOW</div>
-        </div>
-        <div className="Riley">
-          <img
-            src="https://static.thcdn.com/images/small/webp//productimg/480/480/13953421-1574996250285994.jpg"
-            alt=""
-          />
-          <p>Natura Bissé Diamond Extreme Holiday Set (Worth $633.00)</p>
-          <p>$397.00</p>
-          <div><HiOutlineShoppingBag/>SHOP NOW</div>
-        </div>
-      </div>
-
-    </>
-  )
+    </div>
+  );
 }
 
-export default Holiday
+export default Holiday;

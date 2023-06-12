@@ -2,18 +2,16 @@ import axios from "axios";
 import { SIGNUP_LOADING, SIGNUP_SUCCESS, SIGNUP_ERROR } from "./signup.types";
 import * as api from "../../api/index";
 let API = process.env.API;
-console.log(API);
 
 export const signup = (creds) => async (dispatch) => {
   dispatch({ type: SIGNUP_LOADING });
   try {
-    // return console.log(creds)
     let res = await axios.post(
       "https://ecom-z3we.onrender.com/api/users/register",
       creds
     );
     const data = await res.data;
-    console.log(creds);
+
     dispatch({ type: SIGNUP_SUCCESS, payload: data });
     return data;
   } catch (e) {
