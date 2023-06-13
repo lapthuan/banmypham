@@ -136,7 +136,7 @@ const Sales = () => {
                               <div>
                                 <div className="flex justify-around ">
                                   <Link to={`../brands/${item.brand._id}`} className=" text-[#fe2c6d] text-sm border border-[#fe2c6d] p-1 rounded-lg ">{item.brand.title}</Link>
-                                  <div className="text-left text-sm p-1">{item.category.title.slice(0, 15)}...</div>
+                                  <div className="text-left truncate max-w-[130px] text-sm p-1">{item.category?.title}...</div>
                                 </div>
                                 <br />
                                 <p className="text-sm text-[#3E4048] text-left">

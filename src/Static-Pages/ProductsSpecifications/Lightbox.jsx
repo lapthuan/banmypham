@@ -51,8 +51,9 @@ export const Lightbox = ({ productData, setLightbox }) => {
                     }
                     className="lightbox-control control-prev"
                 >
-                    <svg width="13" height="18" xmlns="http://www.w3.org/2000/svg">
+                    <svg color='white' width="13" height="18" xmlns="http://www.w3.org/2000/svg">
                         <path
+                            className='fill-white'
                             d="M11 1 3 9l8 8"
                             stroke="#1D2026"
                             strokeWidth="3"
@@ -71,6 +72,7 @@ export const Lightbox = ({ productData, setLightbox }) => {
                 >
                     <svg width="13" height="18" xmlns="http://www.w3.org/2000/svg">
                         <path
+                            className='fill-white'
                             d="m2 1 8 8-8 8"
                             stroke="#1D2026"
                             strokeWidth="3"

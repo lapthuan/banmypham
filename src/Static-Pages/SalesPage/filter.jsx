@@ -11,6 +11,8 @@ import {
   faChevronRight,
   faChevronDown,
 } from "@fortawesome/free-solid-svg-icons";
+
+import { MdOutlineFindReplace } from "react-icons/md"
 const modalStyles = {
   overlay: {
     zIndex: 50,
@@ -104,6 +106,7 @@ const Filter = () => {
   const [selectedBrands, setSelectedBrands] = useState([]);
   const [selectedCategorys, setSelectedCategorys] = useState([]);
   const [inStock, setInStock] = useState("");
+  const [isFind, setIsFind] = useState(false);
   const [selectIDPrice, setSelectIDPrice] = useState();
   const brandlist = useSelector((state) => state.brandList);
   const { brands } = brandlist;
@@ -112,6 +115,12 @@ const Filter = () => {
 
   const isIdSelectedBrand = (id) => selectedBrands.includes(id);
   const isIdSelectedCategory = (id) => selectedCategorys.includes(id);
+
+  useEffect(() => {
+    dispatch(listProducts());
+  }, []);
+
+
 
   const handleModalToggle = () => {
     if (isModalOpen == false) {
@@ -202,6 +211,9 @@ const Filter = () => {
     setIsModalOpenBranch(false);
     setIsModalOpenPrice(false);
     setIsModalOpen(false);
+    setIsModalOpenCategory(false);
+    setIsFind(true);
+
   };
   const handleResetButtonClick = () => {
     setIsModalOpenBranch(false);
@@ -214,8 +226,16 @@ const Filter = () => {
     setSelectedBrands([]);
     setSelectedCategorys([]);
     dispatch(listProducts());
-  };
+    setIsFind(false);
 
+  };
+  const handleCloseButtonClick = () => {
+    setIsModalOpenBranch(false);
+    setIsModalOpenPrice(false);
+    setIsModalOpen(false);
+    setIsModalOpenCategory(false);
+
+  };
   return (
     <div className="h-[100px] w-[100%]">
       <div className="bg-[#fff] relative w-[100%] z-99">
@@ -281,6 +301,19 @@ const Filter = () => {
                     />
                   </div>
                 </div>
+                {isFind && (
+                  <div className="relative">
+                    <button
+                      className="bg-sky-950 py-2 px-4 pr-6 rounded shadow leading-tight text-white focus:outline-none focus:shadow-outline"
+                      onClick={handleResetButtonClick}
+                    >
+                      Bỏ lọc
+                    </button>
+                    <div className="pointer-events-none absolute inset-y-0 pr-1 right-0 flex items-center text-white">
+                      <MdOutlineFindReplace />
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -325,6 +358,12 @@ const Filter = () => {
               >
                 Bỏ lọc
               </button>
+              <button
+                className="text-pink-600 py-2 px-4 rounded"
+                onClick={handleCloseButtonClick}
+              >
+                Đóng
+              </button>
             </div>
           </div>
         </Modal>
@@ -368,6 +407,12 @@ const Filter = () => {
                 onClick={handleResetButtonClick}
               >
                 Bỏ lọc
+              </button>
+              <button
+                className="text-pink-600 py-2 px-4 rounded"
+                onClick={handleCloseButtonClick}
+              >
+                Đóng
               </button>
             </div>
           </div>
@@ -456,6 +501,12 @@ const Filter = () => {
               >
                 Bỏ lọc
               </button>
+              <button
+                className="text-pink-600 py-2 px-4 rounded"
+                onClick={handleCloseButtonClick}
+              >
+                Đóng
+              </button>
             </div>
           </div>
         </Modal>
@@ -510,6 +561,12 @@ const Filter = () => {
                 onClick={handleResetButtonClick}
               >
                 Bỏ lọc
+              </button>
+              <button
+                className="text-pink-600 py-2 px-4 rounded"
+                onClick={handleCloseButtonClick}
+              >
+                Đóng
               </button>
             </div>
           </div>

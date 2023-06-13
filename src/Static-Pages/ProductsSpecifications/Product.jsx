@@ -38,7 +38,6 @@ const Product = () => {
 
   const [currentProductImage, setCurrentProductImage] = useState(0);
   const [lightbox, setLightbox] = useState(false);
-  const [rating, setRating] = useState(0);
   const { isauth } = useSelector((store) => store.login);
 
   const productDetails = useSelector((state) => state.productDetails);
@@ -48,7 +47,7 @@ const Product = () => {
 
   useEffect(() => {
     dispatch(listProductDetails(id));
-  }, [id, dispatch]);
+  }, [id]);
 
   useEffect(() => {
     if (product.category?._id) {
@@ -56,7 +55,7 @@ const Product = () => {
         findProducts("", "", "", "", JSON.stringify([product.category?._id]))
       );
     }
-  }, [product.category]);
+  }, [id]);
 
   const handleAddToCart = (e) => {
     if (productQuantity && id) {
@@ -232,8 +231,8 @@ const Product = () => {
                         {product.description}
                     </p> */}
           <Rate
-            allowHalf
-            value={rating}
+
+            value={product.totalrating}
             style={{
               color: "#fe2c6d",
               fontSize: "16px",
@@ -248,9 +247,9 @@ const Product = () => {
               <span className="fw-700 blue fs-700">
                 {product.price
                   ? product.price.toLocaleString("vi-VN", {
-                      style: "currency",
-                      currency: "VND",
-                    })
+                    style: "currency",
+                    currency: "VND",
+                  })
                   : ""}
               </span>
               {/* <span className="offer fw-700 fs-400 Orange">50%</span>
@@ -358,7 +357,7 @@ const Product = () => {
         <FeaturedCard2 products={productFind} />
       </div>
 
-      <FeedBack product={id} setRating={setRating} />
+      <FeedBack product={id} />
     </main>
   ) : (
     <LoadPage />

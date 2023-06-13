@@ -9,7 +9,7 @@ import { useEffect } from "react";
 const { TextArea } = Input;
 const desc = ["terrible", "bad", "normal", "good", "wonderful"];
 
-const FeedBack = ({ product, setRating }) => {
+const FeedBack = ({ product }) => {
   const dispatch = new useDispatch();
   const userId = window.localStorage.getItem("userid");
 
@@ -29,7 +29,7 @@ const FeedBack = ({ product, setRating }) => {
     dispatch(reviewInProduct(product));
   }, [product]);
 
-  const approvedReviews = reviews?.filter((item) => item.status === "Approved");
+  const approvedReviews = reviews?.filter((item) => item.status === "Approved") || [];
 
   const handlerClickSendReview = () => {
     dispatch(addReview(product, userId, rate, title, review));
@@ -58,10 +58,10 @@ const FeedBack = ({ product, setRating }) => {
       0
     );
     const averageRating = totalRating / approvedReviews.length;
-    setRating(averageRating.toFixed(1));
+
     return averageRating.toFixed(1); // Làm tròn đến 1 chữ số thập phân
   };
-  const totalReviews = approvedReviews.length;
+  const totalReviews = approvedReviews?.length;
   const fiveStarPercentage = calculateRatingPercentage(approvedReviews, 5);
   const fourStarPercentage = calculateRatingPercentage(approvedReviews, 4);
   const threeStarPercentage = calculateRatingPercentage(approvedReviews, 3);
