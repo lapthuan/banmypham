@@ -9,12 +9,14 @@ const InforProduct = ({ description }) => {
           MÔ TẢ SẢN PHẨM
         </div>
         <div className="pt-3 pb-5">
-          <div className="text-left text-[15px]">
-            {React.createElement('div', { className: 'text-left', dangerouslySetInnerHTML: { __html: description } })}
+          <div className="text-left text-[15px] leading-normal ">
+            {React.createElement("div", {
+              className: "text-left",
+              dangerouslySetInnerHTML: { __html: description },
+            })}
           </div>
           <div>
             <div className="info_Product"></div>
-
           </div>
         </div>
       </div>

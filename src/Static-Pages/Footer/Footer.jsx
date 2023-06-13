@@ -155,7 +155,6 @@ const Footer2 = () => {
               <p>{t("footertitle3")}</p>
             </h2>
             <ul className="text-gray-500 dark:text-gray-400 font-medium">
-              {" "}
               {brands
                 ?.map((item, i) => (
                   <li className="mb-4 text-left " key={i}>
