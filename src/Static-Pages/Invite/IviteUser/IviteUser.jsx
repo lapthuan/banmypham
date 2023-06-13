@@ -116,7 +116,7 @@ const Iviteuser = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="items-center bg-[#fff] rounded-[8px] mb-[10px] pb-[40px] mt-2  ">
+                  {/* <div className="items-center bg-[#fff] rounded-[8px] mb-[10px] pb-[40px] mt-2  ">
                     <div className="mt-2">
                       <h5>Danh sách đã giới thiệu</h5>
                     </div>
@@ -213,7 +213,7 @@ const Iviteuser = () => {
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
