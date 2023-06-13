@@ -1,21 +1,21 @@
 
-import {HiOutlineShoppingBag} from 'react-icons/hi'
+import { HiOutlineShoppingBag } from 'react-icons/hi'
 import '../HomePage/HomePage.css'
 import '../SkinCare/SkinCare.css'
 import { useNavigate } from 'react-router-dom'
 
 function Hair() {
-  const navigate=useNavigate()
-  const handleredirect=()=>{
-navigate('/Sale')
- }
-  
+  const navigate = useNavigate()
+  const handleredirect = () => {
+    navigate('/Sale')
+  }
+
   return (
     <>
- <div className='topdiv' onClick={handleredirect}>
+      <div className='topdiv' onClick={handleredirect}>
         <img src="https://static.thcdn.com/images/xlarge/webp/widgets/121-us/23/SS-Batching-Christmas-Category_Banner-EG1180x450_4-082423.jpg" alt="" />
       </div>
-      
+
       <div className="overblog" id='overblog1' onClick={handleredirect}>
         <div>
           <img
@@ -24,10 +24,10 @@ navigate('/Sale')
           />
           <h4>30% off Christophe Robin + Gift</h4>
           <p>
-           
 
-         
-Receive a Christophe Robin Cleansing Volumizing Deluxe Paste 12ml (Free Gift) when you spend $80 or more.
+
+
+            Receive a Christophe Robin Cleansing Volumizing Deluxe Paste 12ml (Free Gift) when you spend $80 or more.
           </p>
           <button>SHOP NOW</button>
         </div>
@@ -38,7 +38,7 @@ Receive a Christophe Robin Cleansing Volumizing Deluxe Paste 12ml (Free Gift) wh
           />
           <h4>25% off RAINCRY with code SINGLES</h4>
           <p>
-          Luxury haircare brand RAINCRY was founded by hairstylist Feisal Qureshi
+            Luxury haircare brand RAINCRY was founded by hairstylist Feisal Qureshi
           </p>
           <button>SHOP NOW</button>
         </div>
@@ -49,10 +49,10 @@ Receive a Christophe Robin Cleansing Volumizing Deluxe Paste 12ml (Free Gift) wh
           />
           <h4>30% off Grow Gorgeous</h4>
           <p>
-           
 
-          
-Looking for thicker hair? Grow Gorgeous' range of hair growth products, which includes their popular Hair Density Serum,.
+
+
+            Looking for thicker hair? Grow Gorgeous' range of hair growth products, which includes their popular Hair Density Serum,.
           </p>
           <button>SHOP NOW</button>
         </div>
@@ -66,10 +66,10 @@ Looking for thicker hair? Grow Gorgeous' range of hair growth products, which in
           />
           <h4>25% off Philip Kingsley with code SINGLES</h4>
           <p>
-           
 
-          
-Whether you’re after a hair growth treatment, expert hair brushes or moisturizing shampoo,
+
+
+            Whether you’re after a hair growth treatment, expert hair brushes or moisturizing shampoo,
           </p>
           <button>SHOP NOW</button>
         </div>
@@ -80,7 +80,7 @@ Whether you’re after a hair growth treatment, expert hair brushes or moisturiz
           />
           <h4>25% off David Mallett with code SINGLES</h4>
           <p>
-          The vibrant Australian sunshine combined with the culture and worldliness of Europe has influenced David Mallett
+            The vibrant Australian sunshine combined with the culture and worldliness of Europe has influenced David Mallett
           </p>
           <button>SHOP NOW</button>
         </div>
@@ -91,17 +91,17 @@ Whether you’re after a hair growth treatment, expert hair brushes or moisturiz
           />
           <h4>25% off FEKKAI with code SINGLES</h4>
           <p>
-           
 
-          
-FEKKAI offers clean, high-performance haircare that doesn't compromise.
+
+
+            FEKKAI offers clean, high-performance haircare that doesn't compromise.
 
 
           </p>
           <button>SHOP NOW</button>
         </div>
       </div>
-   
+
       <h1 className="Shophai" id='shop'> Shop by Hair Focus</h1>
 
       <div className="Shopcateg" onClick={handleredirect}>
@@ -153,7 +153,7 @@ FEKKAI offers clean, high-performance haircare that doesn't compromise.
           />
           <p>Alterna Caviar Anti-Aging Replenishing Moisture Shampoo </p>
           <p>$104.00</p>
-          <div><HiOutlineShoppingBag/>SHOP NOW</div>
+          <div><HiOutlineShoppingBag />SHOP NOW</div>
         </div>
         <div>
           <img
@@ -161,9 +161,9 @@ FEKKAI offers clean, high-performance haircare that doesn't compromise.
             alt=""
           />
           <p>
-Christophe Robin Cleansing Purifying Scrub with Sea Salt 250ml</p>
+            Christophe Robin Cleansing Purifying Scrub with Sea Salt 250ml</p>
           <p>$49.00</p>
-          <div><HiOutlineShoppingBag/>SHOP NOW</div>
+          <div><HiOutlineShoppingBag />SHOP NOW</div>
         </div>
         <div className="Riley">
           <img
@@ -172,7 +172,7 @@ Christophe Robin Cleansing Purifying Scrub with Sea Salt 250ml</p>
           />
           <p>RAINCRY Regenerating Shampoo and Repairing Conditioner Bundle </p>
           <p>$73.00</p>
-          <div><HiOutlineShoppingBag/>SHOP NOW</div>
+          <div><HiOutlineShoppingBag />SHOP NOW</div>
         </div>
         <div className="Riley">
           <img
@@ -180,10 +180,10 @@ Christophe Robin Cleansing Purifying Scrub with Sea Salt 250ml</p>
             alt=""
           />
           <p>
-         
-Grow Gorgeous Density Serum Intense 60ml</p>
+
+            Grow Gorgeous Density Serum Intense 60ml</p>
           <p>$35.00</p>
-          <div><HiOutlineShoppingBag/>SHOP NOW</div>
+          <div><HiOutlineShoppingBag />SHOP NOW</div>
         </div>
       </div>
 
@@ -197,9 +197,9 @@ Grow Gorgeous Density Serum Intense 60ml</p>
           />
           <h4>Learn about the Hair Care Brands!</h4>
           <p>
-           
-         
-Get the inside scoop on haircare brands like Olaplex at SkinStore!
+
+
+            Get the inside scoop on haircare brands like Olaplex at SkinStore!
           </p>
           <button>READ MORE</button>
         </div>
@@ -210,7 +210,7 @@ Get the inside scoop on haircare brands like Olaplex at SkinStore!
           />
           <h4>Hair Color 101</h4>
           <p>
-          Start your hair color journey here!
+            Start your hair color journey here!
           </p>
           <button>READ MORE</button>
         </div>
@@ -221,8 +221,8 @@ Get the inside scoop on haircare brands like Olaplex at SkinStore!
           />
           <h4>Soft Curls with T3</h4>
           <p>
-           
-          See hoe T3 gives you beach
+
+            See hoe T3 gives you beach
           </p>
           <button>READ MORE</button>
         </div>

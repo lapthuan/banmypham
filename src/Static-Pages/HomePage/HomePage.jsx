@@ -6,12 +6,10 @@ import { useNavigate } from "react-router-dom";
 import Carts from "./Cart";
 import Promotion from "./Promotion";
 import MostSearch from "./mostsearch";
-import CartSale from "./CartSale";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { listProducts } from "../../redux/action/productActions";
-import { listbrand } from "../../redux/action/brandActions";
-import { listCategory } from "../../redux/action/categoryActions";
+
 function HomePage() {
   const dispatch = useDispatch();
   const productList = useSelector((state) => state.productList);
@@ -21,7 +19,9 @@ function HomePage() {
   const categorylist = useSelector((state) => state.categoryList);
   const { categorys } = categorylist;
   const [recentlyViewedProducts, setRecentlyViewedProducts] = useState([]);
-
+  useEffect(() => {
+    dispatch(listProducts());
+  }, []);
   const jsonDataCopy1 = [...products];
   const jsonDataCopy2 = [...products];
   const jsonDataCopy3 = [...products];

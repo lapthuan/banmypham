@@ -38,43 +38,43 @@ const Sales = () => {
   return (
     <div className="main__sales">
       <nav
-        class="container w-[80%] flex px-5 py-3 text-gray-700 border border-gray-200 rounded-lg mx-auto"
+        className="container w-[80%] flex px-5 py-3 text-gray-700 border border-gray-200 rounded-lg mx-auto"
         aria-label="Breadcrumb"
       >
-        <ol class="inline-flex pt-2 items-center space-x-1 md:space-x-3">
-          <li class="inline-flex items-center">
+        <ol className="inline-flex pt-2 items-center space-x-1 md:space-x-3">
+          <li className="inline-flex items-center">
             <Link
               to={"/"}
-              class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-[#fe2c6d] "
+              className="inline-flex items-center text-sm font-medium text-gray-700 hover:text-[#fe2c6d] "
             >
               <AiOutlineHome />
-              <div class="ml-1 text-sm font-medium text-gray-700 hover:text-[#fe2c6d] md:ml-2 ">
+              <div className="ml-1 text-sm font-medium text-gray-700 hover:text-[#fe2c6d] md:ml-2 ">
                 Trang chủ{" "}
               </div>
             </Link>
           </li>
           <li>
-            <div class="flex items-center">
+            <div className="flex items-center">
               <svg
                 aria-hidden="true"
-                class="w-6 h-6 text-gray-400"
+                className="w-6 h-6 text-gray-400"
                 fill="currentColor"
                 viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  fill-rule="evenodd"
+                  fillRule="evenodd"
                   d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                  clip-rule="evenodd"
+                  clipRule="evenodd"
                 ></path>
               </svg>
 
               <Link
                 to={"/Sale"}
-                class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-[#fe2c6d] "
+                className="inline-flex items-center text-sm font-medium text-gray-700 hover:text-[#fe2c6d] "
               >
                 <AiOutlineShoppingCart />
-                <div class="ml-1 text-sm font-medium text-gray-700 hover:text-[#fe2c6d] md:ml-2 ">
+                <div className="ml-1 text-sm font-medium text-gray-700 hover:text-[#fe2c6d] md:ml-2 ">
                   Tất cả sản phẩm{" "}
                 </div>
               </Link>
@@ -114,7 +114,7 @@ const Sales = () => {
                             </div>
                             <Link
                               to={`/Sale/${item._id}`}
-                              className="group relative bg-color-card rounded-md shadow overflow-hidden"
+                              className="group relative bg-color-card rounded-md shadow overflow-hidden flex justify-center"
                             >
                               <img
                                 src={
@@ -122,7 +122,7 @@ const Sales = () => {
                                     ? imgError
                                     : item.images[0].url
                                 }
-                                className="rounded-lg"
+                                className="rounded-lg h-[160px] w-full flex"
                                 alt="product_img"
                               />
                             </Link>
@@ -134,14 +134,16 @@ const Sales = () => {
                           >
                             <div className="mt-2 flex justify-between pl-[10px] py-1 overflow-hidden">
                               <div>
-                                <div className="flex justify-around ">
+                                <div className="flex justify-around">
                                   <Link to={`../brands/${item.brand._id}`} className=" text-[#fe2c6d] text-sm border border-[#fe2c6d] p-1 rounded-lg ">{item.brand.title}</Link>
                                   <div className="text-left truncate max-w-[130px] text-sm p-1">{item.category?.title}...</div>
                                 </div>
                                 <br />
-                                <p className="text-sm text-[#3E4048] text-left">
-                                  {item.title.slice(0, 55)}...
-                                </p>
+                                <div className=" h-[35px]">
+                                  <p className="text-sm text-[#3E4048] text-left">
+                                    {item.title.slice(0, 55)}...
+                                  </p>
+                                </div>
                                 <div className="text-left mt-2">
                                   <Stars stars={item.totalrating} />
                                 </div>

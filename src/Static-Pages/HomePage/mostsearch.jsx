@@ -4,6 +4,7 @@ import "swiper/css";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
+
 const MostSearch = () => {
   const dispatch = useDispatch();
   const categorylist = useSelector((state) => state.categoryList);
@@ -43,10 +44,10 @@ const MostSearch = () => {
           }}
         >
           {categorys?.map((item, index) => (
-            <SwiperSlide>
-              <li className="w-[80%] mr-[10px] text-center">
+            <SwiperSlide key={index}>
+              <li className="w-[80%] mr-[10px] text-center" >
                 <Link
-                  // key={index}
+
                   // onClick={handerCategorys(item._id)}
                   to="/Sale"
                 >

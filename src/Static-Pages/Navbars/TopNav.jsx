@@ -3,7 +3,7 @@ import styles from "./TopNav.module.css"
 export const TopNav = () => {
   return (
     <div>
-      <div class="mar" className='Adbar_cont'>
+      <div className="mar" className='Adbar_cont'>
         <div className='Adbar_innerDiv'>
           <div className='Adbar_imgDiv'>
             <div>

@@ -185,9 +185,8 @@ const Stepper = () => {
         {steps?.map((step, i) => (
           <div
             key={i}
-            className={`step-item ${currentStep === i + 1 && "active"} ${
-              (i + 1 < currentStep || complete) && "complete"
-            } `}
+            className={`step-item ${currentStep === i + 1 && "active"} ${(i + 1 < currentStep || complete) && "complete"
+              } `}
           >
             <div className="step">
               {i + 1 < currentStep || complete ? (
@@ -247,7 +246,7 @@ const Stepper = () => {
                 <div className="h-[350px] overflow-y-scroll">
                   <form className="mt-5 grid gap-6">
                     {payments.map((item, index) => (
-                      <div className="relative" key={item.id}>
+                      <div className="relative" key={index}>
 
                         <input
                           className="peer hidden"
@@ -436,9 +435,9 @@ const Stepper = () => {
         </div>
       ) : (
         <div>
-          <div class="pyro">
-            <div class="before"></div>
-            <div class="after"></div>
+          <div className="pyro">
+            <div className="before"></div>
+            <div className="after"></div>
           </div>
           <div className="grid-flow-col flex justify-center">
             <p className="text-[30px] mt-10 font-bold">

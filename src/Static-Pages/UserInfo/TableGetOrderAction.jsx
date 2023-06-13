@@ -31,11 +31,11 @@ const TableAntdAction = ({ orderData }) => {
   const productList = useSelector((state) => state.productList);
   const { products } = productList;
 
-  useEffect(() => {   
+  useEffect(() => {
     if (!products || products?.length == 0) dispatch(listProducts());
   }, []);
   const userId = window.localStorage.getItem("userid");
-  useEffect(() => {}, [userId]);
+  useEffect(() => { }, [userId]);
   const getProductNameById = (productId) => {
     const pro = products.find((item) => item._id === productId);
     return pro ? pro.title : "Sản phẩm không tồn tại";

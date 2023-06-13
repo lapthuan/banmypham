@@ -81,9 +81,9 @@ const DealsSale = () => {
                     {" "}
                     {item.price
                       ? item.price.toLocaleString("vi-VN", {
-                          style: "currency",
-                          currency: "VND",
-                        })
+                        style: "currency",
+                        currency: "VND",
+                      })
                       : ""}
                   </p>
                   <br />

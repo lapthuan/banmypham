@@ -101,63 +101,63 @@ const FeedBack = ({ product }) => {
                 <div className="pt-2 text-[15px]">{totalReviews} Đánh giá</div>
               </div>
               <div className="text-center items-center w-[40%]">
-                <div class="flex items-center">
-                  <span class="text-sm font-medium text-black">5 sao</span>
-                  <div class="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-[#e8e8e8]">
+                <div className="flex items-center">
+                  <span className="text-sm font-medium text-black">5 sao</span>
+                  <div className="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-[#e8e8e8]">
                     <div
-                      class="h-5 bg-yellow-400 rounded"
+                      className="h-5 bg-yellow-400 rounded"
                       style={{ width: `${fiveStarPercentage}%` }}
                     ></div>
                   </div>
-                  <span class="text-sm font-medium text-black">
+                  <span className="text-sm font-medium text-black">
                     {Math.floor(fiveStarPercentage)}%
                   </span>
                 </div>
-                <div class="flex items-center mt-2">
-                  <span class="text-sm font-medium text-black">4 sao</span>
-                  <div class="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-[#e8e8e8]">
+                <div className="flex items-center mt-2">
+                  <span className="text-sm font-medium text-black">4 sao</span>
+                  <div className="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-[#e8e8e8]">
                     <div
-                      class="h-5 bg-yellow-400 rounded"
+                      className="h-5 bg-yellow-400 rounded"
                       style={{ width: `${fourStarPercentage}%` }}
                     ></div>
                   </div>
-                  <span class="text-sm font-medium text-black">
+                  <span className="text-sm font-medium text-black">
                     {Math.floor(fourStarPercentage)}%
                   </span>
                 </div>
-                <div class="flex items-center mt-2">
-                  <span class="text-sm font-medium text-black">3 sao</span>
-                  <div class="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-[#e8e8e8]">
+                <div className="flex items-center mt-2">
+                  <span className="text-sm font-medium text-black">3 sao</span>
+                  <div className="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-[#e8e8e8]">
                     <div
-                      class="h-5 bg-yellow-400 rounded"
+                      className="h-5 bg-yellow-400 rounded"
                       style={{ width: `${threeStarPercentage}%` }}
                     ></div>
                   </div>
-                  <span class="text-sm font-medium text-black">
+                  <span className="text-sm font-medium text-black">
                     {Math.floor(threeStarPercentage)}%
                   </span>
                 </div>
-                <div class="flex items-center mt-2">
-                  <span class="text-sm font-medium text-black">2 sao</span>
-                  <div class="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-[#e8e8e8]">
+                <div className="flex items-center mt-2">
+                  <span className="text-sm font-medium text-black">2 sao</span>
+                  <div className="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-[#e8e8e8]">
                     <div
-                      class="h-5 bg-yellow-400 rounded"
+                      className="h-5 bg-yellow-400 rounded"
                       style={{ width: `${twoStarPercentage}%` }}
                     ></div>
                   </div>
-                  <span class="text-sm font-medium text-black">
+                  <span className="text-sm font-medium text-black">
                     {Math.floor(twoStarPercentage)}%
                   </span>
                 </div>
-                <div class="flex items-center mt-2">
-                  <span class="text-sm font-medium text-black">1 sao</span>
-                  <div class="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-[#e8e8e8]">
+                <div className="flex items-center mt-2">
+                  <span className="text-sm font-medium text-black">1 sao</span>
+                  <div className="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-[#e8e8e8]">
                     <div
-                      class="h-5 bg-yellow-400 rounded"
+                      className="h-5 bg-yellow-400 rounded"
                       style={{ width: `${oneStarPercentage}%` }}
                     ></div>
                   </div>
-                  <span class="text-sm font-medium text-black">
+                  <span className="text-sm font-medium text-black">
                     {Math.floor(oneStarPercentage)}%
                   </span>
                 </div>
@@ -225,22 +225,22 @@ const FeedBack = ({ product }) => {
         </div>
       )}
       <div className="bg-white w-[100%] mx-auto">
-        <div class="antialiased mx-auto ">
-          <h3 class="mb-4 text-2xl font-bold text-gray-900">Bình luận</h3>
+        <div className="antialiased mx-auto ">
+          <h3 className="mb-4 text-2xl font-bold text-gray-900">Bình luận</h3>
           {approvedReviews?.length != 0 ? (
-            <div class="space-y-4 pt-3 h-[380px] w-[100%] overflow-y-scroll">
+            <div className="space-y-4 pt-3 h-[380px] w-[100%] overflow-y-scroll">
               {approvedReviews?.map((item) => (
-                <div class="flex" key={item._id}>
-                  <div class="flex-shrink-0 mr-3">
+                <div className="flex" key={item._id}>
+                  <div className="flex-shrink-0 mr-3">
                     <img
-                      class="mt-2 rounded-full w-8 h-8 sm:w-10 sm:h-10"
+                      className="mt-2 rounded-full w-8 h-8 sm:w-10 sm:h-10"
                       src={
                         item.profilePicture ? item.profilePicture : imageUser
                       }
                       alt="avatar"
                     />
                   </div>
-                  <div class="flex-1 border rounded-lg px-4 py-2 sm:px-6 sm:py-4 leading-relaxed text-left">
+                  <div className="flex-1 border rounded-lg px-4 py-2 sm:px-6 sm:py-4 leading-relaxed text-left">
                     <strong>
                       {item.user.firstname} {item.user.lastname}
                     </strong>
@@ -252,11 +252,11 @@ const FeedBack = ({ product }) => {
                       disabled
                     />
                     <br />
-                    <span class="text-xs text-gray-400">{item.title}</span>
-                    <p class="text-sm">{item.review}</p>
+                    <span className="text-xs text-gray-400">{item.title}</span>
+                    <p className="text-sm">{item.review}</p>
 
-                    <div class="mt-4 flex items-center relative">
-                      <div class="text-sm text-gray-400 font-medium">
+                    <div className="mt-4 flex items-center relative">
+                      <div className="text-sm text-gray-400 font-medium">
                         {formatDateTime(item.created)}
                       </div>
                     </div>

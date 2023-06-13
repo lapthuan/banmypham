@@ -1,18 +1,18 @@
-import {HiOutlineShoppingBag} from 'react-icons/hi'
+import { HiOutlineShoppingBag } from 'react-icons/hi'
 import '../HomePage/HomePage.css'
 import '../SkinCare/SkinCare.css'
 import { useNavigate } from 'react-router-dom'
 
 function Tools() {
-  const navigate=useNavigate()
-  const handleredirect=()=>{
-navigate('/Sale')
- }
+  const navigate = useNavigate()
+  const handleredirect = () => {
+    navigate('/Sale')
+  }
   return (
     <>
-<h1 className="Shophai"> Shop Tools</h1>
+      <h1 className="Shophai"> Shop Tools</h1>
 
-<div className="Shopcateg" onClick={handleredirect}>
+      <div className="Shopcateg" onClick={handleredirect}>
         <div>
           <img
             src="https://static.thcdn.com/images/small/webp/widgets/121-us/53/Page-001-024853.png"
@@ -63,8 +63,8 @@ navigate('/Sale')
           />
           <h4>Up to 40% off TriPollar</h4>
           <p>
-       
-Slip is the world’s first silk pillowcase offered as a beauty product which provides immediateand dramatic results.
+
+            Slip is the world’s first silk pillowcase offered as a beauty product which provides immediateand dramatic results.
           </p>
           <button>SHOP NOW</button>
         </div>
@@ -75,7 +75,7 @@ Slip is the world’s first silk pillowcase offered as a beauty product which pr
           />
           <h4>25% off Lelo with code SINGLES</h4>
           <p>
-          LELO’s story is inseparably entwined with the changing sexual landscape.
+            LELO’s story is inseparably entwined with the changing sexual landscape.
 
 
           </p>
@@ -87,15 +87,15 @@ Slip is the world’s first silk pillowcase offered as a beauty product which pr
             alt=""
           />
           <h4>
-          
-25% off Michael Todd Beauty with code SINGLES</h4>
+
+            25% off Michael Todd Beauty with code SINGLES</h4>
           <p>
-           
 
-         
 
-          
-You can buy the full range ESPA skin care products online and enjoy the luxury of ESPA at home.
+
+
+
+            You can buy the full range ESPA skin care products online and enjoy the luxury of ESPA at home.
           </p>
           <button>SHOP NOW</button>
         </div>
@@ -109,11 +109,11 @@ You can buy the full range ESPA skin care products online and enjoy the luxury o
           />
           <h4>25% off Trophy Skin with code SINGLES</h4>
           <p>
-           
 
-         
-         
-Receive a Trophy Skin Light Enhancing Serum when you buy a tool from the brand.
+
+
+
+            Receive a Trophy Skin Light Enhancing Serum when you buy a tool from the brand.
           </p>
           <button>SHOP NOW</button>
         </div>
@@ -124,7 +124,7 @@ Receive a Trophy Skin Light Enhancing Serum when you buy a tool from the brand.
           />
           <h4>25% off Nursui Jamie with code SINGLES</h4>
           <p>
-          Professional skin care brand founded in 1996 with a conscious,
+            Professional skin care brand founded in 1996 with a conscious,
           </p>
           <button>SHOP NOW</button>
         </div>
@@ -134,12 +134,12 @@ Receive a Trophy Skin Light Enhancing Serum when you buy a tool from the brand.
             alt=""
           />
           <h4>
-          25% off ReFa with code SINGLES</h4>
+            25% off ReFa with code SINGLES</h4>
           <p>
-           
 
-         
-Enjoy the ultimate Spa-Inspired experience at home with our natural products.
+
+
+            Enjoy the ultimate Spa-Inspired experience at home with our natural products.
           </p>
           <button>SHOP NOW</button>
         </div>
@@ -155,7 +155,7 @@ Enjoy the ultimate Spa-Inspired experience at home with our natural products.
           />
           <p>TriPollar STOP X Device - Rose Gold</p>
           <p>$199.75</p>
-          <div><HiOutlineShoppingBag/>SHOP NOW</div>
+          <div><HiOutlineShoppingBag />SHOP NOW</div>
         </div>
         <div>
           <img
@@ -164,7 +164,7 @@ Enjoy the ultimate Spa-Inspired experience at home with our natural products.
           />
           <p>Fur Silk Scrub 6 fl. oz</p>
           <p>$119.00</p>
-          <div><HiOutlineShoppingBag/>SHOP NOW</div>
+          <div><HiOutlineShoppingBag />SHOP NOW</div>
         </div>
         <div className="Riley">
           <img
@@ -173,7 +173,7 @@ Enjoy the ultimate Spa-Inspired experience at home with our natural products.
           />
           <p>T3 AireLuxe Hair Dryer </p>
           <p>$199.00</p>
-          <div><HiOutlineShoppingBag/>SHOP NOW</div>
+          <div><HiOutlineShoppingBag />SHOP NOW</div>
         </div>
         <div className="Riley">
           <img
@@ -181,10 +181,10 @@ Enjoy the ultimate Spa-Inspired experience at home with our natural products.
             alt=""
           />
           <p>
-          
-          NuFACE Trinity + Trinity ELE Attachment Set</p>
+
+            NuFACE Trinity + Trinity ELE Attachment Set</p>
           <p>$449.00</p>
-          <div><HiOutlineShoppingBag/>SHOP NOW</div>
+          <div><HiOutlineShoppingBag />SHOP NOW</div>
         </div>
       </div>
 
@@ -194,20 +194,20 @@ Enjoy the ultimate Spa-Inspired experience at home with our natural products.
 
 
 
-<div className='extradiv'>
-  <div>
-    <img src="https://static.thcdn.com/images/medium/webp/widgets/121-us/30/Kassir-FI_1582321427-091730.jpg" alt="lady" />
-    <h4>Meet the Experts:Introdicing Dr.Shiela Kassir</h4>
-    <p>Dr. Kassir is one of our esteemed beauty experts! See which skincare tools she recommends here at SkinStore!</p>
+      <div className='extradiv'>
+        <div>
+          <img src="https://static.thcdn.com/images/medium/webp/widgets/121-us/30/Kassir-FI_1582321427-091730.jpg" alt="lady" />
+          <h4>Meet the Experts:Introdicing Dr.Shiela Kassir</h4>
+          <p>Dr. Kassir is one of our esteemed beauty experts! See which skincare tools she recommends here at SkinStore!</p>
 
-  </div>
-  <div>
-    <img src="https://static.thcdn.com/images/medium/webp/widgets/121-us/41/original-0520-STDCRE-13944-SS-MF-SkinStore_Summer_Commercial_Campaign_Photography_%28June%29_THG0033114_-_BATCHING-shot_18-580x384-044941.jpg" alt="Product" />
-    <h4>Learn about NuFace</h4>
-    <p>See what's the scoop on the skincare tech scene with NuFACE during our Founder Q+A!</p>
+        </div>
+        <div>
+          <img src="https://static.thcdn.com/images/medium/webp/widgets/121-us/41/original-0520-STDCRE-13944-SS-MF-SkinStore_Summer_Commercial_Campaign_Photography_%28June%29_THG0033114_-_BATCHING-shot_18-580x384-044941.jpg" alt="Product" />
+          <h4>Learn about NuFace</h4>
+          <p>See what's the scoop on the skincare tech scene with NuFACE during our Founder Q+A!</p>
 
-  </div>
-</div>
+        </div>
+      </div>
 
 
 

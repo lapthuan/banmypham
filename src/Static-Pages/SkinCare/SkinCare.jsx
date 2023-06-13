@@ -1,16 +1,16 @@
 import React from 'react'
 import '../HomePage/HomePage.css'
 import './SkinCare.css'
-import {HiOutlineShoppingBag} from 'react-icons/hi'
+import { HiOutlineShoppingBag } from 'react-icons/hi'
 import { useNavigate } from 'react-router-dom'
 
 
 function SkinCare() {
-  const navigate=useNavigate()
-  const handleredirect=()=>{
-navigate('/Sale')
- }
- 
+  const navigate = useNavigate()
+  const handleredirect = () => {
+    navigate('/Sale')
+  }
+
   return (
     <>
       <div className='topdiv' onClick={handleredirect}>
@@ -25,9 +25,9 @@ navigate('/Sale')
           />
           <h4>SkinCeuticals Gift</h4>
           <p>
-           
 
-          Receive a SkinCeuticals Triple Lipid Restore 2:4:2 Sample when you spend $150 or more on the brand.
+
+            Receive a SkinCeuticals Triple Lipid Restore 2:4:2 Sample when you spend $150 or more on the brand.
           </p>
           <button>SHOP NOW</button>
         </div>
@@ -38,7 +38,7 @@ navigate('/Sale')
           />
           <h4>25% off Alpha-H with code SINGLES</h4>
           <p>
-          With over 25 years of award-winning results, today Alpha-H is a global leader in transformative skincare.
+            With over 25 years of award-winning results, today Alpha-H is a global leader in transformative skincare.
           </p>
           <button>SHOP NOW</button>
         </div>
@@ -49,9 +49,9 @@ navigate('/Sale')
           />
           <h4>25% off Dr. Zenovia with code SINGLES</h4>
           <p>
-           
 
-          Internationally distinguished board-certified Dermatologist and hormonal skin expert.
+
+            Internationally distinguished board-certified Dermatologist and hormonal skin expert.
           </p>
           <button>SHOP NOW</button>
         </div>
@@ -65,9 +65,9 @@ navigate('/Sale')
           />
           <h4>25% off with code SINGLES + $16 First</h4>
           <p>
-           
 
-          Receive a First Aid Beauty Ultra Repair Cream 2.0 oz (Worth $16) when you spend $40 or more on the 
+
+            Receive a First Aid Beauty Ultra Repair Cream 2.0 oz (Worth $16) when you spend $40 or more on the
           </p>
           <button>SHOP NOW</button>
         </div>
@@ -78,7 +78,7 @@ navigate('/Sale')
           />
           <h4>Brand of the Month: Obagi Medical</h4>
           <p>
-          Obagi crafts advanced skincare products that help unleash skin’s full potential with an extensive portfolio designed.
+            Obagi crafts advanced skincare products that help unleash skin’s full potential with an extensive portfolio designed.
           </p>
           <button>SHOP NOW</button>
         </div>
@@ -89,14 +89,14 @@ navigate('/Sale')
           />
           <h4>25% off Neostrata with code SINGLES</h4>
           <p>
-           
 
-          NEOSTRATA professional skin care products are recommended by Dermatologists and Plastic Surgeons in over 42 countries.
+
+            NEOSTRATA professional skin care products are recommended by Dermatologists and Plastic Surgeons in over 42 countries.
           </p>
           <button>SHOP NOW</button>
         </div>
       </div>
-   
+
       <h1 className="Shophai" id='shop'> Shop by Ingredient</h1>
 
       <div className="Shopcateg" onClick={handleredirect}>
@@ -148,7 +148,7 @@ navigate('/Sale')
           />
           <p>SkinMedica TNS Advanced+ Serum 1oz</p>
           <p>$265.00</p>
-          <div><HiOutlineShoppingBag/>SHOP NOW</div>
+          <div><HiOutlineShoppingBag />SHOP NOW</div>
         </div>
         <div>
           <img
@@ -157,7 +157,7 @@ navigate('/Sale')
           />
           <p>Elemis Pro-Collagen Cleansing Balm 100g</p>
           <p>$49.00</p>
-          <div><HiOutlineShoppingBag/>SHOP NOW</div>
+          <div><HiOutlineShoppingBag />SHOP NOW</div>
         </div>
         <div className="Riley">
           <img
@@ -166,7 +166,7 @@ navigate('/Sale')
           />
           <p>Sunday Riley GOOD GENES All-In-One Lactic Acid Treatment (1.7oz) </p>
           <p>$128.00</p>
-          <div><HiOutlineShoppingBag/>SHOP NOW</div>
+          <div><HiOutlineShoppingBag />SHOP NOW</div>
         </div>
         <div className="Riley">
           <img
@@ -174,9 +174,9 @@ navigate('/Sale')
             alt=""
           />
           <p>
-EltaMD UV Clear Tinted Broad-Spectrum SPF46</p>
+            EltaMD UV Clear Tinted Broad-Spectrum SPF46</p>
           <p>$41.00</p>
-          <div><HiOutlineShoppingBag/>SHOP NOW</div>
+          <div><HiOutlineShoppingBag />SHOP NOW</div>
         </div>
       </div>
 
@@ -190,8 +190,8 @@ EltaMD UV Clear Tinted Broad-Spectrum SPF46</p>
           />
           <h4>Intentional Skin Care with Dermalogica</h4>
           <p>
-           
-          Learn about Dermalogica at SkinStore!
+
+            Learn about Dermalogica at SkinStore!
           </p>
           <button>READ MORE</button>
         </div>
@@ -202,7 +202,7 @@ EltaMD UV Clear Tinted Broad-Spectrum SPF46</p>
           />
           <h4>Beauty Reset: Products that Reveal Younger Skin</h4>
           <p>
-          Reset your skin this year with the right products!
+            Reset your skin this year with the right products!
           </p>
           <button>READ MORE</button>
         </div>
@@ -213,8 +213,8 @@ EltaMD UV Clear Tinted Broad-Spectrum SPF46</p>
           />
           <h4>Hyaluronic Acid: The Secret Ingredient</h4>
           <p>
-           
-          Learn about hyaluronic acid here at SkinStore!
+
+            Learn about hyaluronic acid here at SkinStore!
           </p>
           <button>SHOP NOW</button>
         </div>

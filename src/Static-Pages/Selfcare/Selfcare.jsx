@@ -1,17 +1,17 @@
-import {HiOutlineShoppingBag} from 'react-icons/hi'
+import { HiOutlineShoppingBag } from 'react-icons/hi'
 import '../HomePage/HomePage.css'
 import '../SkinCare/SkinCare.css'
 import { useNavigate } from 'react-router-dom'
 
 
 function Selfcare() {
-  const navigate=useNavigate()
-  const handleredirect=()=>{
-navigate('/Sale')
- }
+  const navigate = useNavigate()
+  const handleredirect = () => {
+    navigate('/Sale')
+  }
   return (
     <div>
- <div className="Shopcateg" onClick={handleredirect}>
+      <div className="Shopcateg" onClick={handleredirect}>
         <div>
           <img
             src="https://static.thcdn.com/images/small/webp/widgets/121-us/37/Page-001-033837.png"
@@ -62,8 +62,8 @@ navigate('/Sale')
           />
           <h4>Up to 30% off Slip</h4>
           <p>
-       
-Slip is the world’s first silk pillowcase offered as a beauty product which provides immediateand dramatic results.
+
+            Slip is the world’s first silk pillowcase offered as a beauty product which provides immediateand dramatic results.
           </p>
           <button>SHOP NOW</button>
         </div>
@@ -74,7 +74,7 @@ Slip is the world’s first silk pillowcase offered as a beauty product which pr
           />
           <h4>25% off Aromatherapy Associates with code SINGLES</h4>
           <p>
-          We are Dr Roebuck’s, and we makeskincare full of function, not fillers.
+            We are Dr Roebuck’s, and we makeskincare full of function, not fillers.
 
 
           </p>
@@ -86,14 +86,14 @@ Slip is the world’s first silk pillowcase offered as a beauty product which pr
             alt=""
           />
           <h4>
-          Up to 40% off ESPA</h4>
+            Up to 40% off ESPA</h4>
           <p>
-           
 
-         
 
-          
-You can buy the full range ESPA skin care products online and enjoy the luxury of ESPA at home.
+
+
+
+            You can buy the full range ESPA skin care products online and enjoy the luxury of ESPA at home.
           </p>
           <button>SHOP NOW</button>
         </div>
@@ -107,10 +107,10 @@ You can buy the full range ESPA skin care products online and enjoy the luxury o
           />
           <h4>25% off LELO with code SINGLES</h4>
           <p>
-           
 
-         
-Kerstin Florian’s luxury skincare range was founded by skincare expert, Florian.
+
+
+            Kerstin Florian’s luxury skincare range was founded by skincare expert, Florian.
           </p>
           <button>SHOP NOW</button>
         </div>
@@ -121,7 +121,7 @@ Kerstin Florian’s luxury skincare range was founded by skincare expert, Floria
           />
           <h4>25% off Comfort Zone with code SINGLES</h4>
           <p>
-          Professional skin care brand founded in 1996 with a conscious,
+            Professional skin care brand founded in 1996 with a conscious,
           </p>
           <button>SHOP NOW</button>
         </div>
@@ -131,12 +131,12 @@ Kerstin Florian’s luxury skincare range was founded by skincare expert, Floria
             alt=""
           />
           <h4>
-          25% off Borghese with code SINGLES</h4>
+            25% off Borghese with code SINGLES</h4>
           <p>
-           
 
-         
-Enjoy the ultimate Spa-Inspired experience at home with our natural products.
+
+
+            Enjoy the ultimate Spa-Inspired experience at home with our natural products.
           </p>
           <button>SHOP NOW</button>
         </div>
@@ -152,7 +152,7 @@ Enjoy the ultimate Spa-Inspired experience at home with our natural products.
           />
           <p>Smile Makers - The Firefighter</p>
           <p>$60.00</p>
-          <div><HiOutlineShoppingBag/>SHOP NOW</div>
+          <div><HiOutlineShoppingBag />SHOP NOW</div>
         </div>
         <div>
           <img
@@ -161,7 +161,7 @@ Enjoy the ultimate Spa-Inspired experience at home with our natural products.
           />
           <p>Fur Silk Scrub 6 fl. oz</p>
           <p>$50.00</p>
-          <div><HiOutlineShoppingBag/>SHOP NOW</div>
+          <div><HiOutlineShoppingBag />SHOP NOW</div>
         </div>
         <div className="Riley">
           <img
@@ -170,7 +170,7 @@ Enjoy the ultimate Spa-Inspired experience at home with our natural products.
           />
           <p>this works Deep Sleep Pillow Spray </p>
           <p>$30.00</p>
-          <div><HiOutlineShoppingBag/>SHOP NOW</div>
+          <div><HiOutlineShoppingBag />SHOP NOW</div>
         </div>
         <div className="Riley">
           <img
@@ -178,10 +178,10 @@ Enjoy the ultimate Spa-Inspired experience at home with our natural products.
             alt=""
           />
           <p>
-          
-Aromatherapy Associates Moment of Grounding Set </p>
+
+            Aromatherapy Associates Moment of Grounding Set </p>
           <p>$70.00</p>
-          <div><HiOutlineShoppingBag/>SHOP NOW</div>
+          <div><HiOutlineShoppingBag />SHOP NOW</div>
         </div>
       </div>
       <h1 className="Shophai"> Over On The Blog</h1>
@@ -193,7 +193,7 @@ Aromatherapy Associates Moment of Grounding Set </p>
           />
           <h4>Signs To Change Your Skin Care Regimen </h4>
           <p>
-See what’s new at SkinStore this month with our new brand.</p>
+            See what’s new at SkinStore this month with our new brand.</p>
           <button>READ MORE</button>
         </div>
         <div className="Tripoller">
@@ -203,7 +203,7 @@ See what’s new at SkinStore this month with our new brand.</p>
           />
           <h4>Beauty Solutions for 2022</h4>
           <p>
-          See how to fake a good night's sleep with makeup and skincare!
+            See how to fake a good night's sleep with makeup and skincare!
           </p>
           <button>READ MORE</button>
         </div>
@@ -214,9 +214,9 @@ See what’s new at SkinStore this month with our new brand.</p>
           />
           <h4>NEOM and natura: Now at SkinStore</h4>
           <p>
-           
 
-          Find the perfect match with Dermablend!
+
+            Find the perfect match with Dermablend!
           </p>
           <button>READ MORE</button>
         </div>

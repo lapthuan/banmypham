@@ -9,7 +9,7 @@ import { useDispatch } from "react-redux";
 import { updateUserAddress } from "../../redux/action/auth";
 const { Option } = Select;
 const EditMap = () => {
-  const userAddress =window.localStorage.getItem("userAddress") ? JSON.parse(window.localStorage.getItem("userAddress")) : ""
+  const userAddress = window.localStorage.getItem("userAddress") ? JSON.parse(window.localStorage.getItem("userAddress")) : ""
   const userId = window.localStorage.getItem("userid")
   const [cities, setCities] = useState([]);
   const [districts, setDistricts] = useState([]);

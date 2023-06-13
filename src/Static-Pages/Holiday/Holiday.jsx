@@ -40,70 +40,70 @@ function Holiday() {
   return (
     <div className="main__sales">
       <nav
-        class="container w-[80%] flex px-5 py-3 text-gray-700 border border-gray-200 rounded-lg mx-auto"
+        className="container w-[80%] flex px-5 py-3 text-gray-700 border border-gray-200 rounded-lg mx-auto"
         aria-label="Breadcrumb"
       >
-        <ol class="inline-flex pt-2 items-center space-x-1 md:space-x-3">
-          <li class="inline-flex items-center">
+        <ol className="inline-flex pt-2 items-center space-x-1 md:space-x-3">
+          <li className="inline-flex items-center">
             <Link
               to={"/"}
-              class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-[#fe2c6d] "
+              className="inline-flex items-center text-sm font-medium text-gray-700 hover:text-[#fe2c6d] "
             >
               <AiOutlineHome />
-              <div class="ml-1 text-sm font-medium text-gray-700 hover:text-[#fe2c6d] md:ml-2 ">
+              <div className="ml-1 text-sm font-medium text-gray-700 hover:text-[#fe2c6d] md:ml-2 ">
                 Trang chủ{" "}
               </div>
             </Link>
           </li>
           <li>
-            <div class="flex items-center">
+            <div className="flex items-center">
               <svg
                 aria-hidden="true"
-                class="w-6 h-6 text-gray-400"
+                className="w-6 h-6 text-gray-400"
                 fill="currentColor"
                 viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  fill-rule="evenodd"
+                  fillRule="evenodd"
                   d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                  clip-rule="evenodd"
+                  clipRule="evenodd"
                 ></path>
               </svg>
 
               <Link
                 to={"/Brands"}
-                class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-[#fe2c6d] "
+                className="inline-flex items-center text-sm font-medium text-gray-700 hover:text-[#fe2c6d] "
               >
                 <AiOutlineShoppingCart />
-                <div class="ml-1 text-sm font-medium text-gray-700 hover:text-[#fe2c6d] md:ml-2 ">
+                <div className="ml-1 text-sm font-medium text-gray-700 hover:text-[#fe2c6d] md:ml-2 ">
                   Thương hiệu{" "}
                 </div>
               </Link>
             </div>
           </li>
           <li>
-            <div class="flex items-center">
+            <div className="flex items-center">
               <svg
                 aria-hidden="true"
-                class="w-6 h-6 text-gray-400"
+                className="w-6 h-6 text-gray-400"
                 fill="currentColor"
                 viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  fill-rule="evenodd"
+                  fillRule="evenodd"
                   d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                  clip-rule="evenodd"
+                  clipRule="evenodd"
                 ></path>
               </svg>
 
               <Link
                 to={`/brands/${brand?._id}`}
-                class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-[#fe2c6d] "
+                className="inline-flex items-center text-sm font-medium text-gray-700 hover:text-[#fe2c6d] "
               >
 
-                <div class="ml-1 text-sm font-medium text-gray-700 hover:text-[#fe2c6d] md:ml-2 ">
+                <div className="ml-1 text-sm font-medium text-gray-700 hover:text-[#fe2c6d] md:ml-2 ">
                   {brand?.title}
                 </div>
               </Link>
@@ -150,7 +150,7 @@ function Holiday() {
                             </div>
                             <Link
                               to={`/Sale/${item._id}`}
-                              className="group relative bg-color-card rounded-md shadow overflow-hidden"
+                              className="group relative bg-color-card rounded-md shadow overflow-hidden flex justify-center"
                             >
                               <img
                                 src={
@@ -158,7 +158,7 @@ function Holiday() {
                                     ? imgError
                                     : item.images[0].url
                                 }
-                                className="rounded-lg"
+                                className="rounded-lg h-[160px] w-full flex"
                                 alt="product_img"
                               />
                             </Link>
@@ -175,9 +175,11 @@ function Holiday() {
                                   <div className="text-left text-sm p-1">{item.category.title.slice(0, 15)}...</div>
                                 </div>
                                 <br />
-                                <p className="text-sm text-[#3E4048] text-left">
-                                  {item.title.slice(0, 55)}...
-                                </p>
+                                <div className=" h-[35px]">
+                                  <p className="text-sm text-[#3E4048] text-left">
+                                    {item.title.slice(0, 55)}...
+                                  </p>
+                                </div>
                                 <div className="text-left mt-2">
                                   <Stars stars={item.totalrating} />
                                 </div>

@@ -16,7 +16,7 @@ const NewPassword = () => {
 
   const password = async () => {
     if (pw === newPw) {
-      dispatch(resetPassword(token, pw,navigate))
+      dispatch(resetPassword(token, pw, navigate))
     } else {
       toast.warning("Mật khẩu không trùng khớp");
     }

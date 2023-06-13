@@ -1,18 +1,18 @@
-import {HiOutlineShoppingBag} from 'react-icons/hi'
+import { HiOutlineShoppingBag } from 'react-icons/hi'
 import '../HomePage/HomePage.css'
 import '../SkinCare/SkinCare.css'
 import { useNavigate } from 'react-router-dom'
 
 function Fragrance() {
-  const navigate=useNavigate()
-  const handleredirect=()=>{
-navigate('/Sale')
- }
+  const navigate = useNavigate()
+  const handleredirect = () => {
+    navigate('/Sale')
+  }
   return (
     <>
 
-<h1 className="Shophai">Fragrance</h1>
-  <div className="Shopcateg" onClick={handleredirect}>
+      <h1 className="Shophai">Fragrance</h1>
+      <div className="Shopcateg" onClick={handleredirect}>
         <div>
           <img
             src="https://static.thcdn.com/images/small/webp/widgets/121-us/37/Page-001-043237.png"
@@ -63,10 +63,10 @@ navigate('/Sale')
           />
           <h4>25% off Confessions with code SINGLES</h4>
           <p>
-           
 
-         
-We were born in 2018, holding fast to the idea that the fragrance industry was in dire need of a change.
+
+
+            We were born in 2018, holding fast to the idea that the fragrance industry was in dire need of a change.
           </p>
           <button className='Hovereff'>SHOP NOW</button>
         </div>
@@ -77,7 +77,7 @@ We were born in 2018, holding fast to the idea that the fragrance industry was i
           />
           <h4>25% off Juliette Has a Gun with code SINGLES</h4>
           <p>
-          We are Dr Roebuck’s, and we makeskincare full of function, not fillers.
+            We are Dr Roebuck’s, and we makeskincare full of function, not fillers.
 
 
           </p>
@@ -89,13 +89,13 @@ We were born in 2018, holding fast to the idea that the fragrance industry was i
             alt=""
           />
           <h4>
-25% off Aromatherapy Associates with code SINGLES</h4>
+            25% off Aromatherapy Associates with code SINGLES</h4>
           <p>
-           
 
-         
 
-          Starting out as therapists in the early 1970s, our founders, Geraldine Howard and Sue Beechey, connected with the emerging practice of aromatherapy.
+
+
+            Starting out as therapists in the early 1970s, our founders, Geraldine Howard and Sue Beechey, connected with the emerging practice of aromatherapy.
           </p>
           <button className='Hovereff'>SHOP NOW</button>
         </div>
@@ -109,10 +109,10 @@ We were born in 2018, holding fast to the idea that the fragrance industry was i
           />
           <h4>25% off Kerstin Florian with code SINGLES</h4>
           <p>
-           
 
-         
-Kerstin Florian’s luxury skincare range was founded by skincare expert, Florian.
+
+
+            Kerstin Florian’s luxury skincare range was founded by skincare expert, Florian.
           </p>
           <button>SHOP NOW</button>
         </div>
@@ -123,7 +123,7 @@ Kerstin Florian’s luxury skincare range was founded by skincare expert, Floria
           />
           <h4>25% off PUR with code SINGLES</h4>
           <p>
-          Professional skin care brand founded in 1996 with a conscious,
+            Professional skin care brand founded in 1996 with a conscious,
           </p>
           <button>SHOP NOW</button>
         </div>
@@ -133,12 +133,12 @@ Kerstin Florian’s luxury skincare range was founded by skincare expert, Floria
             alt=""
           />
           <h4>
-          25% off thisworks with code SINGLES</h4>
+            25% off thisworks with code SINGLES</h4>
           <p>
-           
 
-         
-Enjoy the ultimate Spa-Inspired experience at home with our natural products.
+
+
+            Enjoy the ultimate Spa-Inspired experience at home with our natural products.
           </p>
           <button>SHOP NOW</button>
         </div>
@@ -154,7 +154,7 @@ Enjoy the ultimate Spa-Inspired experience at home with our natural products.
           />
           <p>NEST New York Bamboo Reed Diffuser</p>
           <p>$58.00</p>
-          <div><HiOutlineShoppingBag/>SHOP NOW</div>
+          <div><HiOutlineShoppingBag />SHOP NOW</div>
         </div>
         <div>
           <img
@@ -163,7 +163,7 @@ Enjoy the ultimate Spa-Inspired experience at home with our natural products.
           />
           <p>Glasshouse Fragrances  I'Ll Take Manhattan</p>
           <p>$50.00</p>
-          <div><HiOutlineShoppingBag/>SHOP NOW</div>
+          <div><HiOutlineShoppingBag />SHOP NOW</div>
         </div>
         <div className="Riley">
           <img
@@ -172,7 +172,7 @@ Enjoy the ultimate Spa-Inspired experience at home with our natural products.
           />
           <p>NEOM Perfect Nights Sleep Scented Travel Candle </p>
           <p>$18.00</p>
-          <div><HiOutlineShoppingBag/>SHOP NOW</div>
+          <div><HiOutlineShoppingBag />SHOP NOW</div>
         </div>
         <div className="Riley">
           <img
@@ -180,12 +180,12 @@ Enjoy the ultimate Spa-Inspired experience at home with our natural products.
             alt=""
           />
           <p>
-          Bioderma Atoderm Shower Oil 1000ml</p>
+            Bioderma Atoderm Shower Oil 1000ml</p>
           <p>$28.00</p>
-          <div><HiOutlineShoppingBag/>SHOP NOW</div>
+          <div><HiOutlineShoppingBag />SHOP NOW</div>
         </div>
       </div>
-    
+
       <div className="overblog" id='overblog1'>
         <div id='nichekro'>
           <img
@@ -194,7 +194,7 @@ Enjoy the ultimate Spa-Inspired experience at home with our natural products.
           />
           <h4>NEOM and natura: What's New on SkinStore </h4>
           <p>
-See what’s new at SkinStore this month with our new brand.</p>
+            See what’s new at SkinStore this month with our new brand.</p>
           <button>READ MORE</button>
         </div>
         <div className="Tripoller" id='nichekro'>
@@ -204,7 +204,7 @@ See what’s new at SkinStore this month with our new brand.</p>
           />
           <h4>The Best Hand Cream for Softer Hands</h4>
           <p>
-          See how to fake a good night's sleep with makeup and skincare!
+            See how to fake a good night's sleep with makeup and skincare!
           </p>
           <button>READ MORE</button>
         </div>
@@ -215,9 +215,9 @@ See what’s new at SkinStore this month with our new brand.</p>
           />
           <h4>Recharge For Winter With The This Works</h4>
           <p>
-           
 
-          Find the perfect match with Dermablend!
+
+            Find the perfect match with Dermablend!
           </p>
           <button>READ MORE</button>
         </div>

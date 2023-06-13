@@ -2,7 +2,7 @@ import moment from "moment";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./StarRating.css";
-const ShowFeedBackProduct = ({}) => {
+const ShowFeedBackProduct = ({ }) => {
   const [feedbackproduct, setFeedbackProduct] = useState([]);
 
   const renderStar = (starIndex) => {
