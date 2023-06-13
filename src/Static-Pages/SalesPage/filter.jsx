@@ -121,7 +121,6 @@ const Filter = () => {
   }, []);
 
 
-
   const handleModalToggle = () => {
     if (isModalOpen == false) {
       setIsModalOpenPrice(false);
