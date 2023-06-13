@@ -116,14 +116,14 @@ body {
   background-color: #fff;
 }
 
-.thumbnail > img {
+.thumbnail>img {
   cursor: pointer;
   width: 88px;
   aspect-ratio: 1;
 }
 
-.thumbnail > img > img:hover,
-.thumbnail > img > img:focus {
+.thumbnail>img>img:hover,
+.thumbnail>img>img:focus {
   filter: opacity(0.5);
 }
 
@@ -147,7 +147,7 @@ body {
   gap: 1rem;
 }
 
-.flow > * + * {
+.flow>*+* {
   margin-top: 1.5rem;
 }
 
@@ -405,13 +405,13 @@ body {
   gap: 1rem;
 }
 
-.cart .cart__items .cart__item .item > img:first-child {
+.cart .cart__items .cart__item .item>img:first-child {
   width: 50px;
   aspect-ratio: 1;
   border-radius: 0.25rem;
 }
 
-.cart .cart__items .cart__item .item > img:last-child {
+.cart .cart__items .cart__item .item>img:last-child {
   cursor: pointer;
 }
 
@@ -477,11 +477,7 @@ body {
   gap: 1rem;
 }
 
-.product
-  .product-container
-  .product-description
-  .action-wrapper
-  .product-quantity {
+.product .product-container .product-description .action-wrapper .product-quantity {
   gap: 3.5rem;
   align-items: center;
   padding: 1rem;
@@ -489,18 +485,8 @@ body {
   background-color: #f7f8fd;
 }
 
-.product
-  .product-container
-  .product-description
-  .action-wrapper
-  .product-quantity
-  > img:hover,
-.product
-  .product-container
-  .product-description
-  .action-wrapper
-  .product-quantity
-  > img:focus {
+.product .product-container .product-description .action-wrapper .product-quantity>img:hover,
+.product .product-container .product-description .action-wrapper .product-quantity>img:focus {
   cursor: pointer;
   filter: opacity(0.5);
 }
@@ -528,11 +514,7 @@ body {
     align-items: stretch;
   }
 
-  .product
-    .product-container
-    .product-description
-    .action-wrapper
-    .product-quantity {
+  .product .product-container .product-description .action-wrapper .product-quantity {
     justify-content: center;
   }
 }
@@ -628,14 +610,14 @@ body {
 }
 
 .lightbox-overlay .lightbox .control-prev {
-  top: 45%;
-  left: -5%;
+  top: 15%;
+  left: -10%;
   transform: translateY(-45%);
 }
 
 .lightbox-overlay .lightbox .control-next {
-  top: 45%;
-  right: -5%;
+  top: 15%;
+  right: -10%;
   transform: translateY(-45%);
 }
 
