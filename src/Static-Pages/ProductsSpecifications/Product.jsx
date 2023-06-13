@@ -230,17 +230,22 @@ const Product = () => {
           {/* <p className="fw-400 line-height-500 fs-400 darkGrayishBlue">
                         {product.description}
                     </p> */}
-          <Rate
+          <div >
 
-            value={product.totalrating}
-            style={{
-              color: "#fe2c6d",
-              fontSize: "16px",
-              display: "flex",
-              position: "static",
-            }}
-            disabled
-          />
+            <Rate 
+              className="flex"
+              value={product.totalrating}
+              style={{
+                color: "#fe2c6d",
+                fontSize: "16px",
+                display: "flex",
+                position: "static",
+              }}
+              disabled
+            />
+            <p className="flex text-lg">({product.reviewCount}) Đánh giá</p>
+            
+          </div>
           <div className="product-price">
             <div className="discounted-price flex text-lg">
               Giá :{" "}
