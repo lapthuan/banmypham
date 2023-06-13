@@ -57,7 +57,7 @@ const EditPass = () => {
                             className=" ml-2 placeholder:text-black border-b-2 color-[black]"
                           />
                         </div>
-                        <button className="btn btn-primary m-4">
+                        <button className="mt-4 mb-8 w-full text-[15px] rounded-md bg-[#fe2c6d] px-6 py-2 font-medium text-white">
                           Cập nhật
                         </button>
                       </div>

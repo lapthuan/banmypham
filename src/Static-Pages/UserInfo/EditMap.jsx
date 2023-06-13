@@ -9,31 +9,43 @@ import { useDispatch } from "react-redux";
 import { updateUserAddress } from "../../redux/action/auth";
 const { Option } = Select;
 const EditMap = () => {
-  const userAddress = window.localStorage.getItem("userAddress") ? JSON.parse(window.localStorage.getItem("userAddress")) : ""
-  const userId = window.localStorage.getItem("userid")
+  const userAddress = window.localStorage.getItem("userAddress")
+    ? JSON.parse(window.localStorage.getItem("userAddress"))
+    : "";
+  const userId = window.localStorage.getItem("userid");
   const [cities, setCities] = useState([]);
   const [districts, setDistricts] = useState([]);
   const [wards, setWards] = useState([]);
-  const [selectedCity, setSelectedCity] = useState(userAddress.city ? userAddress.city : "");
-  const [selectedDistrict, setSelectedDistrict] = useState(userAddress.district ? userAddress.district : "");
-  const [selectedWard, setSelectedWard] = useState(userAddress.ward ? userAddress.ward : "");
-  const [selectedAddress, setSelectedAddress] = useState(userAddress.address ? userAddress.address : "");
+  const [selectedCity, setSelectedCity] = useState(
+    userAddress.city ? userAddress.city : ""
+  );
+  const [selectedDistrict, setSelectedDistrict] = useState(
+    userAddress.district ? userAddress.district : ""
+  );
+  const [selectedWard, setSelectedWard] = useState(
+    userAddress.ward ? userAddress.ward : ""
+  );
+  const [selectedAddress, setSelectedAddress] = useState(
+    userAddress.address ? userAddress.address : ""
+  );
   const [result, setResult] = useState("");
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   useEffect(() => {
     const fetchCities = async () => {
-      const response = await axios.get("https://provinces.open-api.vn/api/?depth=1");
+      const response = await axios.get(
+        "https://provinces.open-api.vn/api/?depth=1"
+      );
       setCities(response.data);
     };
 
     fetchCities();
   }, []);
 
-
-
   useEffect(() => {
     const fetchDistricts = async () => {
-      const response = await axios.get(`https://provinces.open-api.vn/api/p/${selectedCity}?depth=2`);
+      const response = await axios.get(
+        `https://provinces.open-api.vn/api/p/${selectedCity}?depth=2`
+      );
       setDistricts(response.data.districts);
     };
 
@@ -42,7 +54,9 @@ const EditMap = () => {
 
   useEffect(() => {
     const fetchWards = async () => {
-      const response = await axios.get(`https://provinces.open-api.vn/api/d/${selectedDistrict}?depth=2`);
+      const response = await axios.get(
+        `https://provinces.open-api.vn/api/d/${selectedDistrict}?depth=2`
+      );
       setWards(response.data.wards);
     };
 
@@ -50,12 +64,16 @@ const EditMap = () => {
   }, [selectedDistrict]);
 
   const fetchDistricts = async (cityId) => {
-    const response = await axios.get(`https://provinces.open-api.vn/api/p/${cityId}?depth=2`);
+    const response = await axios.get(
+      `https://provinces.open-api.vn/api/p/${cityId}?depth=2`
+    );
     setDistricts(response.data.districts);
   };
 
   const fetchWards = async (districtId) => {
-    const response = await axios.get(`https://provinces.open-api.vn/api/d/${districtId}?depth=2`);
+    const response = await axios.get(
+      `https://provinces.open-api.vn/api/d/${districtId}?depth=2`
+    );
     setWards(response.data.wards);
   };
 
@@ -90,7 +108,7 @@ const EditMap = () => {
   };
 
   const handleSaveAddress = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     if (selectedCity && selectedDistrict && selectedWard) {
       // Do something with the selected values
       console.log("Selected City:", selectedCity);
@@ -98,7 +116,15 @@ const EditMap = () => {
       console.log("Selected Ward:", selectedWard);
       console.log("Selected Addres:", selectedAddress);
 
-      dispatch(updateUserAddress(userId, selectedCity, selectedDistrict, selectedWard, selectedAddress))
+      dispatch(
+        updateUserAddress(
+          userId,
+          selectedCity,
+          selectedDistrict,
+          selectedWard,
+          selectedAddress
+        )
+      );
     } else {
       console.log("Please select all fields");
     }
@@ -107,7 +133,9 @@ const EditMap = () => {
   const printResult = () => {
     if (selectedCity && selectedDistrict && selectedWard) {
       const cityText = cities.find((city) => city.code === selectedCity)?.name;
-      const districtText = districts.find((district) => district.code === selectedDistrict)?.name;
+      const districtText = districts.find(
+        (district) => district.code === selectedDistrict
+      )?.name;
       const wardText = wards.find((ward) => ward.code === selectedWard)?.name;
       const resultText = `${cityText} | ${districtText} | ${wardText}`;
       setResult(resultText);
@@ -141,7 +169,9 @@ const EditMap = () => {
                       <form onSubmit={handleSaveAddress}>
                         <div className="Ivite_loho">
                           <div className="text-left my-2 mx-auto">
-                            <label className="my-2 text-lg">Tỉnh / Thành phố: </label>
+                            <label className="my-2 text-lg">
+                              Tỉnh / Thành phố:{" "}
+                            </label>
                             <br />
                             <Select
                               showSearch
@@ -150,7 +180,11 @@ const EditMap = () => {
                               }}
                               placeholder="Chọn tỉnh thành"
                               optionFilterProp="children"
-                              filterOption={(input, option) => (option?.children ?? "").toLowerCase().indexOf(input.toLowerCase()) >= 0}
+                              filterOption={(input, option) =>
+                                (option?.children ?? "")
+                                  .toLowerCase()
+                                  .indexOf(input.toLowerCase()) >= 0
+                              }
                               value={selectedCity}
                               onChange={handleCityChange}
                             >
@@ -160,11 +194,12 @@ const EditMap = () => {
                                 </Option>
                               ))}
                             </Select>
-
                           </div>
 
                           <div className="text-left my-2 mx-auto">
-                            <label className="my-2 text-lg">Quận / Huyện: </label>
+                            <label className="my-2 text-lg">
+                              Quận / Huyện:{" "}
+                            </label>
                             <br />
                             <Select
                               showSearch
@@ -173,20 +208,28 @@ const EditMap = () => {
                               }}
                               placeholder="Chọn quận huyện"
                               optionFilterProp="children"
-                              filterOption={(input, option) => (option?.children ?? "").toLowerCase().indexOf(input.toLowerCase()) >= 0}
+                              filterOption={(input, option) =>
+                                (option?.children ?? "")
+                                  .toLowerCase()
+                                  .indexOf(input.toLowerCase()) >= 0
+                              }
                               value={selectedDistrict}
                               onChange={handleDistrictChange}
                             >
                               {districts?.map((district) => (
-                                <Option key={district.code} value={district.code}>
+                                <Option
+                                  key={district.code}
+                                  value={district.code}
+                                >
                                   {district.name}
                                 </Option>
                               ))}
                             </Select>
-
                           </div>
                           <div className="text-left my-2 mx-auto">
-                            <label className="my-2 text-lg">Phường / Xã: </label>
+                            <label className="my-2 text-lg">
+                              Phường / Xã:{" "}
+                            </label>
                             <br />
                             <Select
                               showSearch
@@ -195,7 +238,11 @@ const EditMap = () => {
                               }}
                               placeholder="Chọn phường xã"
                               optionFilterProp="children"
-                              filterOption={(input, option) => (option?.children ?? "").toLowerCase().indexOf(input.toLowerCase()) >= 0}
+                              filterOption={(input, option) =>
+                                (option?.children ?? "")
+                                  .toLowerCase()
+                                  .indexOf(input.toLowerCase()) >= 0
+                              }
                               value={selectedWard}
                               onChange={handleWardChange}
                             >
@@ -213,13 +260,18 @@ const EditMap = () => {
                             <br />
                             <input
                               value={selectedAddress}
-                              onChange={(e) => setSelectedAddress(e.target.value)}
+                              onChange={(e) =>
+                                setSelectedAddress(e.target.value)
+                              }
                               type="text"
                               className="w-[400px] text-lg ml-2 placeholder:text-black border-b-2 color-[black]"
                             />
                           </div>
                           <div className="">
-                            <button type="submit" className="btn btn-primary w-[400px] m-4">
+                            <button
+                              type="submit"
+                              className="mt-4 mb-8 w-full text-[15px] rounded-md bg-[#fe2c6d] px-6 py-2 font-medium text-white"
+                            >
                               Cập nhật
                             </button>
                           </div>

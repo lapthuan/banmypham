@@ -8,20 +8,19 @@ import { blogGetAll, blogGetDetail } from "../../redux/action/blogActions";
 const Tpost = () => {
   const params = useParams();
   let idBlog = params.id;
-  const dispatch = new useDispatch()
-  const blogdetail = useSelector((state) => state.blogDetail)
-  const { blog, loading } = blogdetail
-  const blogList = useSelector((state) => state.blogList)
-  const { blogs } = blogList
+  const dispatch = new useDispatch();
+  const blogdetail = useSelector((state) => state.blogDetail);
+  const { blog, loading } = blogdetail;
+  const blogList = useSelector((state) => state.blogList);
+  const { blogs } = blogList;
 
   useEffect(() => {
-    dispatch(blogGetAll())
+    dispatch(blogGetAll());
     dispatch(blogGetDetail(idBlog));
-  }, [idBlog])
+  }, [idBlog]);
   const filteredBlogs = blogs?.filter(
     (article) => article.category._id === blog?.category
   );
-
 
   return loading == false ? (
     <>
@@ -29,7 +28,6 @@ const Tpost = () => {
         <main>
           <div className="Con_Tpost">
             <section className="contentsBlog mtop">
-
               <img
                 src={blog?.images[0].url}
                 className="rounded-md h-[40%] w-[80%] object-cover ml-auto mr-auto mb-[20px] block relative rounded-[8px]"
@@ -37,14 +35,10 @@ const Tpost = () => {
               />
 
               <div className="titleBlog">
-                <h1 className="contentBlog_h1">
-                  {blog?.title}
-                </h1>
+                <h1 className="contentBlog_h1">{blog?.title}</h1>
               </div>
-              <div className="contentBlog_span">
-                <span>
-                  {blog.description}
-                </span>
+              <div className="w-[80%] mx-auto mt-5 text-[15px] text-left text-justify leading-normal">
+                <span>{blog.description}</span>
               </div>
               {/* <div className="pt-10 flex justify-center items-center">
                 <div className="contentBlog_diveder "></div>
@@ -93,9 +87,9 @@ const Tpost = () => {
               <div>
                 <CartBlog filteredBlogs={filteredBlogs} />
               </div>
-              <div>
+              {/* <div>
                 <Carts />
-              </div>
+              </div> */}
             </section>
 
             <section className="sideContent"></section>
@@ -103,7 +97,9 @@ const Tpost = () => {
         </main>
       </div>
     </>
-  ) : <div>Loading...</div>;
+  ) : (
+    <div>Loading...</div>
+  );
 };
 
 export default Tpost;

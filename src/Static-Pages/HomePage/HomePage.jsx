@@ -9,8 +9,11 @@ import MostSearch from "./mostsearch";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { listProducts } from "../../redux/action/productActions";
+import { useTranslation } from "react-i18next";
 
 function HomePage() {
+  const { t } = useTranslation();
+
   const dispatch = useDispatch();
   const productList = useSelector((state) => state.productList);
   const { products, loading } = productList;
@@ -78,14 +81,11 @@ function HomePage() {
         </div> */}
 
         <div className="">
-          <Carts title={"SẢN PHẨM MỚI"} productfiter={filteredProductsCreate} />
+          <Carts title={t("carts")} productfiter={filteredProductsCreate} />
         </div>
 
         <div>
-          <Carts
-            title={"SẢN PHẨM BÁN CHẠY"}
-            productfiter={filteredProductsHot}
-          />
+          <Carts title={t("carts2")} productfiter={filteredProductsHot} />
         </div>
 
         <div className="magazine mt-5">
@@ -102,20 +102,16 @@ function HomePage() {
                 alt="alt"
               />
             </div>
-            /
           </div>
         </div>
 
         <div className="">
-          <Carts
-            title={"THƯƠNG HIỆU BÁN CHẠY"}
-            productfiter={filteredProducts}
-          />
+          <Carts title={t("carts3")} productfiter={filteredProducts} />
         </div>
         <div className=" w-[90%] ml-auto mr-auto">
           <MostSearch />
         </div>
-        <Carts title={"SẢN PHẨM DÀNH CHO BẠN"} productfiter={randomProducts} />
+        <Carts title={t("carts4")} productfiter={randomProducts} />
         <div className="w-[90%] ml-auto mr-auto mb-5 pt-5 lg:flex md:hidden hidden">
           <Promotion />
         </div>
