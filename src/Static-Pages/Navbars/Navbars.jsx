@@ -20,8 +20,10 @@ import deleteIcon from "../../Image/icon-delete.svg";
 import { loadCart, removeItem } from "../../redux/action/cartActions";
 import { listProducts } from "../../redux/action/productActions";
 import Highlighter from "react-highlight-words";
+import { useTranslation } from "react-i18next";
 
 const Navbars = () => {
+  const { t } = useTranslation();
   const [isNavExpanded, setIsNavExpanded] = useState(false);
   const userData = localStorage.getItem("token") || "";
   const userName = localStorage.getItem("username");
@@ -54,8 +56,6 @@ const Navbars = () => {
     const value = event.target.value;
     setSearchData(value);
     setShowModal(value.trim() !== "");
-
-
   };
   const filteredData = products?.filter((item) =>
     item.title.toLowerCase().includes(searchData.toLowerCase())
@@ -112,7 +112,6 @@ const Navbars = () => {
   const handlelogout = (e) => {
     dispatch(logout());
     dispatch(loadCart());
-
   };
 
   return (
@@ -147,7 +146,7 @@ const Navbars = () => {
             <input
               type="search"
               className="search-data"
-              placeholder="Tìm kiếm son, sữa rữa mặt, bông tẩy trang,...."
+              placeholder={t("search")}
               value={searchData}
               onChange={handleSearch}
               onClick={handleInputClick}
@@ -237,7 +236,7 @@ const Navbars = () => {
               ) : (
                 <div>
                   <Link to="/Login" className="mt-7">
-                    Đăng nhập / Đăng ký
+                    <p>{t("LoginLogout")}</p>
                   </Link>
                 </div>
               )}
@@ -460,20 +459,23 @@ const Navbars = () => {
                   <div className="border-t-2">
                     <h3 className="pt-3">Gợi ý cho bạn:</h3>
                     <ul className="overflow-y-scroll">
-                      {products?.map((item, index) => (
-                        <li key={item._id}>
-                          <Link className="flex " to={`sale/${item._id}`} >
-                            <div className="flex w-[20%] justify-center">
-                              <img src={item.images[0]?.url} className="w-[50px] h-[50px] rounded-lg" />
-                            </div>
-                            <div className="flex  w-[80%] text-justify pt-2 pr-2">
-
-                              {item.title}
-
-                            </div>
-                          </Link>
-                        </li>
-                      )).slice(-4)}
+                      {products
+                        ?.map((item, index) => (
+                          <li key={item._id}>
+                            <Link className="flex " to={`sale/${item._id}`}>
+                              <div className="flex w-[20%] justify-center">
+                                <img
+                                  src={item.images[0]?.url}
+                                  className="w-[50px] h-[50px] rounded-lg"
+                                />
+                              </div>
+                              <div className="flex  w-[80%] text-justify pt-2 pr-2">
+                                {item.title}
+                              </div>
+                            </Link>
+                          </li>
+                        ))
+                        .slice(-4)}
                     </ul>
                   </div>
                 </>

@@ -29,7 +29,8 @@ const FeedBack = ({ product }) => {
     dispatch(reviewInProduct(product));
   }, [product]);
 
-  const approvedReviews = reviews?.filter((item) => item.status === "Approved") || [];
+  const approvedReviews =
+    reviews?.filter((item) => item.status === "Approved") || [];
 
   const handlerClickSendReview = () => {
     dispatch(addReview(product, userId, rate, title, review));
@@ -167,7 +168,7 @@ const FeedBack = ({ product }) => {
                   Chia sẽ nhận xét của bạn về sản phẩm
                 </div>
                 <button
-                  className="mt-4 mb-8 w-[30%] text-[15px] rounded-md bg-[#fe2c6d] px-6 py-3 font-medium text-white"
+                  className="mt-4 mb-8 w-[30%] text-[15px] rounded-xl bg-[#fe2c6d] px-6 py-3 font-medium text-white"
                   onClick={toggleCommentForm}
                 >
                   {showCommentForm ? "Thu gọn" : "Viết bình luận"}

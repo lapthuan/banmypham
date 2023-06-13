@@ -8,7 +8,11 @@ import { Link } from "react-router-dom";
 import ModalBlog from "./Model/ModalBlog";
 import Category from "./Model/Category";
 import ModalBrand from "./Model/ModalBrand";
+import { useTranslation } from "react-i18next";
+
 const Navbar = ({ navigationData, currentRoute, setCurrentRoute }) => {
+  const { t } = useTranslation();
+
   const [show, setShow] = useState(false);
   const [show2, setShow2] = useState(false);
   const [show3, setShow3] = useState(false);
@@ -63,7 +67,7 @@ const Navbar = ({ navigationData, currentRoute, setCurrentRoute }) => {
             <ul className="menuNav">
               <Link to={"/"}>
                 <li className="dropdown nav-link nav-link-fade-up transition-all duration-700 mx-10 hover:text-[#ff2b70]">
-                  Trang chủ
+                  <p>{t("menu1")}</p>
                 </li>
               </Link>
 
@@ -72,7 +76,7 @@ const Navbar = ({ navigationData, currentRoute, setCurrentRoute }) => {
                   className="dropdown nav-link nav-link-fade-up mx-10 hover:text-[#ff2b70]"
                   onMouseOver={showHandler2}
                 >
-                  Sản phẩm
+                  <p>{t("menu2")}</p>
                   {show2 && (
                     <ul
                       className="dropdown-nav dropdown-nav2"
@@ -89,10 +93,13 @@ const Navbar = ({ navigationData, currentRoute, setCurrentRoute }) => {
                   className="dropdown nav-link nav-link-fade-up mx-10 hover:text-[#ff2b70] "
                   onMouseOver={showHandler}
                 >
-                  Thương hiệu
+                   <p>{t("menu3")}</p>
                   {show && (
                     <div>
-                      <ul className="dropdown-nav" onMouseLeave={dontShowHandler}>
+                      <ul
+                        className="dropdown-nav"
+                        onMouseLeave={dontShowHandler}
+                      >
                         <ModalBrand />
                       </ul>
                     </div>
@@ -102,7 +109,7 @@ const Navbar = ({ navigationData, currentRoute, setCurrentRoute }) => {
 
               <Link to={"/Invite"}>
                 <li className="dropdown nav-link nav-link-fade-up mx-10 hover:text-[#ff2b70]">
-                  Dịch vụ
+                <p>{t("menu4")}</p>
                   {/* {show3 && (
                     <ul
                       className="dropdown-nav dropdown-nav3"
@@ -117,7 +124,7 @@ const Navbar = ({ navigationData, currentRoute, setCurrentRoute }) => {
                   className="dropdown nav-link nav-link-fade-up mx-10 hover:text-[#ff2b70]"
                   onMouseOver={showHandler3}
                 >
-                  Blog
+                  <p>Blog</p>
                   {show3 && (
                     <ul
                       className="dropdown-nav dropdown-nav3"
@@ -131,7 +138,7 @@ const Navbar = ({ navigationData, currentRoute, setCurrentRoute }) => {
 
               <Link to={"/Contact"}>
                 <li className="dropdown nav-link nav-link-fade-up mx-10 hover:text-[#ff2b70]">
-                  Liên hệ
+                <p>{t("menu6")}</p>
                 </li>
               </Link>
             </ul>

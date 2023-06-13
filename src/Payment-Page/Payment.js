@@ -222,7 +222,7 @@ const Stepper = () => {
         <div className="grid grid-flow-col justify-center p-4 ">
           {currentStep != 1 ? (
             <button
-              className=" w-full rounded-md bg-[#fe2c6d] px-3 py-3 font-medium text-white"
+              className=" w-full rounded-md bg-[#fe2c6d] px-3 py-3 font-medium text-white text-[15px]"
               onClick={() => {
                 setCurrentStep((prev) => prev - 1);
               }}
@@ -232,7 +232,7 @@ const Stepper = () => {
           ) : null}
           {currentStep === steps.length - 1 ? null : (
             <button
-              className="  rounded-md bg-[#fe2c6d] px-3 py-3 font-medium text-white"
+              className="  rounded-md bg-[#fe2c6d] px-3 py-3 font-medium text-white text-[15px]"
               onClick={handerClicknext}
             >
               tiếp tục
