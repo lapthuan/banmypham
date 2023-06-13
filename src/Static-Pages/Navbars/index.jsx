@@ -58,24 +58,24 @@ const Navbar = ({ navigationData, currentRoute, setCurrentRoute }) => {
       }
     >
       <div>
-        <header class="banner" role="banner">
-          <nav class="navbar" role="navigation" aria-label="menu">
-            <ul class="menuNav">
+        <header className="banner" role="banner">
+          <nav className="navbar" role="navigation" aria-label="menu">
+            <ul className="menuNav">
               <Link to={"/"}>
-                <li class="dropdown nav-link nav-link-fade-up transition-all duration-700 mx-10 hover:text-[#ff2b70]">
+                <li className="dropdown nav-link nav-link-fade-up transition-all duration-700 mx-10 hover:text-[#ff2b70]">
                   Trang chủ
                 </li>
               </Link>
 
               <Link to={"/Sale"}>
                 <li
-                  class="dropdown nav-link nav-link-fade-up mx-10 hover:text-[#ff2b70]"
+                  className="dropdown nav-link nav-link-fade-up mx-10 hover:text-[#ff2b70]"
                   onMouseOver={showHandler2}
                 >
                   Sản phẩm
                   {show2 && (
                     <ul
-                      class="dropdown-nav dropdown-nav2"
+                      className="dropdown-nav dropdown-nav2"
                       onMouseLeave={dontShowHandler}
                     >
                       <Category />
@@ -86,13 +86,13 @@ const Navbar = ({ navigationData, currentRoute, setCurrentRoute }) => {
 
               <Link to={"/Brands"}>
                 <li
-                  class="dropdown nav-link nav-link-fade-up mx-10 hover:text-[#ff2b70] "
+                  className="dropdown nav-link nav-link-fade-up mx-10 hover:text-[#ff2b70] "
                   onMouseOver={showHandler}
                 >
                   Thương hiệu
                   {show && (
                     <div>
-                      <ul class="dropdown-nav" onMouseLeave={dontShowHandler}>
+                      <ul className="dropdown-nav" onMouseLeave={dontShowHandler}>
                         <ModalBrand />
                       </ul>
                     </div>
@@ -101,11 +101,11 @@ const Navbar = ({ navigationData, currentRoute, setCurrentRoute }) => {
               </Link>
 
               <Link to={"/Invite"}>
-                <li class="dropdown nav-link nav-link-fade-up mx-10 hover:text-[#ff2b70]">
+                <li className="dropdown nav-link nav-link-fade-up mx-10 hover:text-[#ff2b70]">
                   Dịch vụ
                   {/* {show3 && (
                     <ul
-                      class="dropdown-nav dropdown-nav3"
+                      className="dropdown-nav dropdown-nav3"
                       onMouseLeave={dontShowHandler}
                     ></ul>
                   )} */}
@@ -114,13 +114,13 @@ const Navbar = ({ navigationData, currentRoute, setCurrentRoute }) => {
 
               <Link to={"/blog"}>
                 <li
-                  class="dropdown nav-link nav-link-fade-up mx-10 hover:text-[#ff2b70]"
+                  className="dropdown nav-link nav-link-fade-up mx-10 hover:text-[#ff2b70]"
                   onMouseOver={showHandler3}
                 >
                   Blog
                   {show3 && (
                     <ul
-                      class="dropdown-nav dropdown-nav3"
+                      className="dropdown-nav dropdown-nav3"
                       onMouseLeave={dontShowHandler}
                     >
                       <ModalBlog />
@@ -130,7 +130,7 @@ const Navbar = ({ navigationData, currentRoute, setCurrentRoute }) => {
               </Link>
 
               <Link to={"/Contact"}>
-                <li class="dropdown nav-link nav-link-fade-up mx-10 hover:text-[#ff2b70]">
+                <li className="dropdown nav-link nav-link-fade-up mx-10 hover:text-[#ff2b70]">
                   Liên hệ
                 </li>
               </Link>

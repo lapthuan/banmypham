@@ -3,7 +3,27 @@ import "./Invite.css";
 import { Link } from "react-router-dom";
 import img1 from "../../Image/Ivite1.jpg";
 import IviteNav from "./IviteNav";
+import { useSelector } from "react-redux";
 const IviteBlog = () => {
+  const [copied, setCopied] = useState(false);
+
+  const { isauth } = useSelector((store) => store.login);
+  const userId = window.localStorage.getItem("userid");
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(userId).then(
+      () => {
+        setCopied(true);
+        // changing back to default state after 2 seconds.
+        setTimeout(() => {
+          setCopied(false);
+        }, 2000);
+      },
+      (err) => {
+        console.log("failed to copy", err.mesage);
+      }
+    );
+  };
+  const btnStyle = copied ? "bg-gray-500 text-white" : "";
   return (
     <>
       <div className="Iv-container">
@@ -33,7 +53,19 @@ const IviteBlog = () => {
                                 <Link to={"/Login"} className="w-[80%]">
                                   <div className="bor flex justify-end items-center h-[40px] ">
                                     <span className=" text-[14px] text-[#fe2c6d] w-[100%] text-center">
-                                      Đăng nhập để xem mã giới thiệu
+                                      {isauth ? (
+                                        <div>
+                                          {" "}
+                                          {copied ? "Đã copy" : userId}
+                                        </div>
+                                      ) : (
+                                        <Link
+                                          to={"/login"}
+                                          className="text-[#fe2c6d]"
+                                        >
+                                          Đăng nhập để xem mã giới thiệu
+                                        </Link>
+                                      )}
                                     </span>
                                   </div>
                                 </Link>

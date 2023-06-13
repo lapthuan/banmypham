@@ -38,7 +38,6 @@ const Product = () => {
 
   const [currentProductImage, setCurrentProductImage] = useState(0);
   const [lightbox, setLightbox] = useState(false);
-  const [rating, setRating] = useState(0);
   const { isauth } = useSelector((store) => store.login);
 
   const productDetails = useSelector((state) => state.productDetails);
@@ -48,7 +47,7 @@ const Product = () => {
 
   useEffect(() => {
     dispatch(listProductDetails(id));
-  }, [id, dispatch]);
+  }, [id]);
 
   useEffect(() => {
     if (product.category?._id) {
@@ -56,7 +55,7 @@ const Product = () => {
         findProducts("", "", "", "", JSON.stringify([product.category?._id]))
       );
     }
-  }, [product.category]);
+  }, [id]);
 
   const handleAddToCart = (e) => {
     if (productQuantity && id) {
@@ -67,68 +66,68 @@ const Product = () => {
   return product ? (
     <main className="product">
       <nav
-        class="container w-[80%] flex px-5 py-3 text-gray-700 border border-gray-200 rounded-lg  mx-auto"
+        className="container w-[80%] flex px-5 py-3 text-gray-700 border border-gray-200 rounded-lg  mx-auto"
         aria-label="Breadcrumb"
       >
-        <ol class="inline-flex pt-2 items-center space-x-1 md:space-x-3">
-          <li class="inline-flex items-center">
+        <ol className="inline-flex pt-2 items-center space-x-1 md:space-x-3">
+          <li className="inline-flex items-center">
             <Link
               to={"/"}
-              class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-[#fe2c6d] "
+              className="inline-flex items-center text-sm font-medium text-gray-700 hover:text-[#fe2c6d] "
             >
               <AiOutlineHome />
-              <div class="ml-1 text-sm font-medium text-gray-700 hover:text-[#fe2c6d] md:ml-2 ">
+              <div className="ml-1 text-sm font-medium text-gray-700 hover:text-[#fe2c6d] md:ml-2 ">
                 Trang chủ{" "}
               </div>
             </Link>
           </li>
           <li>
-            <div class="flex items-center">
+            <div className="flex items-center">
               <svg
                 aria-hidden="true"
-                class="w-6 h-6 text-gray-400"
+                className="w-6 h-6 text-gray-400"
                 fill="currentColor"
                 viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  fill-rule="evenodd"
+                  fillRule="evenodd"
                   d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                  clip-rule="evenodd"
+                  clipRule="evenodd"
                 ></path>
               </svg>
 
               <Link
                 to={"/Sale"}
-                class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-[#fe2c6d] "
+                className="inline-flex items-center text-sm font-medium text-gray-700 hover:text-[#fe2c6d] "
               >
                 <AiOutlineShoppingCart />
-                <div class="ml-1 text-sm font-medium text-gray-700 hover:text-[#fe2c6d] md:ml-2 ">
+                <div className="ml-1 text-sm font-medium text-gray-700 hover:text-[#fe2c6d] md:ml-2 ">
                   Tất cả sản phẩm{" "}
                 </div>
               </Link>
             </div>
           </li>
           <li>
-            <div class="flex items-center">
+            <div className="flex items-center">
               <svg
                 aria-hidden="true"
-                class="w-6 h-6 text-gray-400"
+                className="w-6 h-6 text-gray-400"
                 fill="currentColor"
                 viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  fill-rule="evenodd"
+                  fillRule="evenodd"
                   d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                  clip-rule="evenodd"
+                  clipRule="evenodd"
                 ></path>
               </svg>
               <Link
                 to={`/${id}`}
-                class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-[#fe2c6d] "
+                className="inline-flex items-center text-sm font-medium text-gray-700 hover:text-[#fe2c6d] "
               >
-                <div class="ml-1 text-sm font-medium text-gray-700 hover:text-[#fe2c6d] md:ml-2 truncate w-56">
+                <div className="ml-1 text-sm font-medium text-gray-700 hover:text-[#fe2c6d] md:ml-2 truncate w-56">
                   {product.title}{" "}
                 </div>
               </Link>
@@ -231,26 +230,31 @@ const Product = () => {
           {/* <p className="fw-400 line-height-500 fs-400 darkGrayishBlue">
                         {product.description}
                     </p> */}
-          <Rate
-            allowHalf
-            value={rating}
-            style={{
-              color: "#fe2c6d",
-              fontSize: "16px",
-              display: "flex",
-              position: "static",
-            }}
-            disabled
-          />
+          <div >
+
+            <Rate
+              className="flex"
+              value={product.totalrating}
+              style={{
+                color: "#fe2c6d",
+                fontSize: "16px",
+                display: "flex",
+                position: "static",
+              }}
+              disabled
+            />
+            <p className="flex text-lg">({product.reviewCount}) Đánh giá</p>
+
+          </div>
           <div className="product-price">
             <div className="discounted-price flex text-lg">
               Giá :{" "}
               <span className="fw-700 blue fs-700">
                 {product.price
                   ? product.price.toLocaleString("vi-VN", {
-                      style: "currency",
-                      currency: "VND",
-                    })
+                    style: "currency",
+                    currency: "VND",
+                  })
                   : ""}
               </span>
               {/* <span className="offer fw-700 fs-400 Orange">50%</span>
@@ -358,7 +362,7 @@ const Product = () => {
         <FeaturedCard2 products={productFind} />
       </div>
 
-      <FeedBack product={id} setRating={setRating} />
+      <FeedBack product={id} />
     </main>
   ) : (
     <LoadPage />

@@ -17,7 +17,7 @@ function Slider() {
     <BannerAnim prefixCls="maindivhai" autoPlay autoPlaySpeed={3000}>
       <Element prefixCls="banner-user-elem" key="0">
         <BgElement
-          key="bg"
+
           className="bg"
           style={{
             backgroundImage: `url(${Page3})`,
@@ -36,7 +36,7 @@ function Slider() {
       </Element>
       <Element prefixCls="banner-user-elem" key="1">
         <BgElement
-          key="bg"
+
           className="bg"
           style={{
             backgroundImage: `url(${Page})`,
@@ -53,9 +53,9 @@ function Slider() {
           animation={{ y: 30, opacity: 0, type: "from" }}
         ></TweenOne>
       </Element>
-      <Element prefixCls="banner-user-elem" key="1">
+      <Element prefixCls="banner-user-elem" key="2">
         <BgElement
-          key="bg"
+
           className="bg"
           style={{
             backgroundImage: `url(${Page1})`,
@@ -72,9 +72,9 @@ function Slider() {
           animation={{ y: 30, opacity: 0, type: "from" }}
         ></TweenOne>
       </Element>
-      <Element prefixCls="banner-user-elem" key="2">
+      <Element prefixCls="banner-user-elem" key="3">
         <BgElement
-          key="bg"
+
           className="bg"
           style={{
             backgroundImage: `url(${Page2})`,
@@ -93,16 +93,7 @@ function Slider() {
       </Element>
     </BannerAnim>
   );
-  //     <div className='maindivhai'>
-  //   <Carousel autoPlay infiniteLoop showArrows showIndicators>
 
-  // {slider.map((el)=>{
-  // return <img src={el.image} alt="additional-image" height='100%' width='90%' />
-  // })}
-
-  //   </Carousel>
-
-  //     </div>
 }
 
 export default Slider;

@@ -33,12 +33,12 @@ const IviteNav = () => {
           </div>
           <p className="text-black text-[17px] ml-4 mt-1">Mã giảm giá</p>
         </Link>
-        <Link to="/Iviteuser" className="flex mt-2 ml-1">
+        {/* <Link to="/Iviteuser" className="flex mt-2 ml-1">
           <div>
             <BsPersonPlus size={25} color="black" />
           </div>
           <p className="text-black text-[17px] ml-3 mt-1">Giới thiệu bạn bè</p>
-        </Link>
+        </Link> */}
         <Link to="/Information" className="flex mt-2 ">
           <div>
             <AiOutlineExclamationCircle size={25} color="black" />

@@ -50,6 +50,13 @@ import Chat from "./Static-Pages/ProductsSpecifications/Chat";
 import MessengerChat from "./Static-Pages/ProductsSpecifications/Chatmess";
 import DealsSale from "./Static-Pages/SalesPage/DealsSale";
 function AllRoutes() {
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(loadUser);
+  }, [])
+
+
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />

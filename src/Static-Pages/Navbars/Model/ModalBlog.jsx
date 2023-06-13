@@ -17,7 +17,7 @@ const ModalBlog = () => {
   const { bCategorys } = categoryList;
   const dispatch = new useDispatch();
 
-  useEffect(() => {}, []);
+  useEffect(() => { }, []);
 
   const formatDateTime = (time) => {
     const formattedDatetime = moment(time).format("HH:mm | DD/MM/YYYY");
@@ -34,9 +34,8 @@ const ModalBlog = () => {
           {bCategorys?.map((item, index) => (
             <Link to={`/blog/`} key={index}>
               <p
-                className={`hover:text-[#ff2b70] text-left ${
-                  index !== 0 ? "mt-5" : ""
-                }`}
+                className={`hover:text-[#ff2b70] text-left ${index !== 0 ? "mt-5" : ""
+                  }`}
               >
                 {item.title}
               </p>

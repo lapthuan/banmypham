@@ -1,20 +1,20 @@
-import {HiOutlineShoppingBag} from 'react-icons/hi'
+import { HiOutlineShoppingBag } from 'react-icons/hi'
 import '../HomePage/HomePage.css'
 import '../SkinCare/SkinCare.css'
 import { useNavigate } from 'react-router-dom'
 
 
 function Bath() {
-  const navigate=useNavigate()
-  const handleredirect=()=>{
-navigate('/Sale')
- }
-  
+  const navigate = useNavigate()
+  const handleredirect = () => {
+    navigate('/Sale')
+  }
+
   return (
     <>
- 
 
-<div className="Shopcateg" onClick={handleredirect}>
+
+      <div className="Shopcateg" onClick={handleredirect}>
         <div>
           <img
             src="https://static.thcdn.com/images/small/webp/widgets/121-us/11/Page-001-035911.png"
@@ -65,9 +65,9 @@ navigate('/Sale')
           />
           <h4>25% off Illamasqua with code SINGLES</h4>
           <p>
-           
 
-          Self-care is more than a luxury in Italian culture, it’s a way of life.
+
+            Self-care is more than a luxury in Italian culture, it’s a way of life.
           </p>
           <button>SHOP NOW</button>
         </div>
@@ -78,7 +78,7 @@ navigate('/Sale')
           />
           <h4>25% off Dr. Roebuck's with code SINGLES</h4>
           <p>
-          We are Dr Roebuck’s, and we makeskincare full of function, not fillers.
+            We are Dr Roebuck’s, and we makeskincare full of function, not fillers.
 
 
           </p>
@@ -91,10 +91,10 @@ navigate('/Sale')
           />
           <h4>25% off Aurelia London with code SINGLES</h4>
           <p>
-           
 
-         
-Containing carefully blended levels of bespoke essential oils, our products are suitable skin.
+
+
+            Containing carefully blended levels of bespoke essential oils, our products are suitable skin.
           </p>
           <button>SHOP NOW</button>
         </div>
@@ -108,10 +108,10 @@ Containing carefully blended levels of bespoke essential oils, our products are 
           />
           <h4>25% off Kerstin Florian with code SINGLES</h4>
           <p>
-           
 
-         
-Kerstin Florian’s luxury skincare range was founded by skincare expert, Florian.
+
+
+            Kerstin Florian’s luxury skincare range was founded by skincare expert, Florian.
           </p>
           <button>SHOP NOW</button>
         </div>
@@ -122,7 +122,7 @@ Kerstin Florian’s luxury skincare range was founded by skincare expert, Floria
           />
           <h4>25% off PUR with code SINGLES</h4>
           <p>
-          Professional skin care brand founded in 1996 with a conscious,
+            Professional skin care brand founded in 1996 with a conscious,
           </p>
           <button>SHOP NOW</button>
         </div>
@@ -132,12 +132,12 @@ Kerstin Florian’s luxury skincare range was founded by skincare expert, Floria
             alt=""
           />
           <h4>
-          25% off Cowshed with code SINGLES</h4>
+            25% off Cowshed with code SINGLES</h4>
           <p>
-           
 
-         
-Enjoy the ultimate Spa-Inspired experience at home with our natural products.
+
+
+            Enjoy the ultimate Spa-Inspired experience at home with our natural products.
           </p>
           <button>SHOP NOW</button>
         </div>
@@ -153,7 +153,7 @@ Enjoy the ultimate Spa-Inspired experience at home with our natural products.
           />
           <p>NUXE Huile Prodigieuse Oil</p>
           <p>$26.00</p>
-          <div><HiOutlineShoppingBag/>SHOP NOW</div>
+          <div><HiOutlineShoppingBag />SHOP NOW</div>
         </div>
         <div>
           <img
@@ -162,7 +162,7 @@ Enjoy the ultimate Spa-Inspired experience at home with our natural products.
           />
           <p>Aesop Resurrection Hand Wash 500ml</p>
           <p>$30.00</p>
-          <div><HiOutlineShoppingBag/>SHOP NOW</div>
+          <div><HiOutlineShoppingBag />SHOP NOW</div>
         </div>
         <div className="Riley">
           <img
@@ -171,7 +171,7 @@ Enjoy the ultimate Spa-Inspired experience at home with our natural products.
           />
           <p>Aesop Resurrection Hand Wash 500ml </p>
           <p>$48.00</p>
-          <div><HiOutlineShoppingBag/>SHOP NOW</div>
+          <div><HiOutlineShoppingBag />SHOP NOW</div>
         </div>
         <div className="Riley">
           <img
@@ -179,9 +179,9 @@ Enjoy the ultimate Spa-Inspired experience at home with our natural products.
             alt=""
           />
           <p>
-          Bioderma Atoderm Shower Oil 1000ml</p>
+            Bioderma Atoderm Shower Oil 1000ml</p>
           <p>$28.00</p>
-          <div><HiOutlineShoppingBag/>SHOP NOW</div>
+          <div><HiOutlineShoppingBag />SHOP NOW</div>
         </div>
       </div>
       <h1 className="Shophai">What Blog Says</h1>
@@ -194,9 +194,9 @@ Enjoy the ultimate Spa-Inspired experience at home with our natural products.
           />
           <h4>Winter Foot Care at SkinStore </h4>
           <p>
-           
 
-          Turn your favorite products into the ideal tinted moisturizer!
+
+            Turn your favorite products into the ideal tinted moisturizer!
           </p>
           <button>READ MORE</button>
         </div>
@@ -207,7 +207,7 @@ Enjoy the ultimate Spa-Inspired experience at home with our natural products.
           />
           <h4>The Best Hand Cream for Softer Hands</h4>
           <p>
-          See how to fake a good night's sleep with makeup and skincare!
+            See how to fake a good night's sleep with makeup and skincare!
           </p>
           <button>SHOP NOW</button>
         </div>
@@ -218,9 +218,9 @@ Enjoy the ultimate Spa-Inspired experience at home with our natural products.
           />
           <h4>How To Get Rid Of Bumps On Arms</h4>
           <p>
-           
 
-          Find the perfect match with Dermablend!
+
+            Find the perfect match with Dermablend!
           </p>
           <button>READ MORE</button>
         </div>

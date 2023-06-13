@@ -87,9 +87,8 @@ const Pagination = ({ setCurrentPage }) => {
         })}
 
         <span
-          className={`${
-            currentButton === numberOfPages.length ? `${styles.disabled}` : ""
-          }`}
+          className={`${currentButton === numberOfPages.length ? `${styles.disabled}` : ""
+            }`}
           onClick={() =>
             setCurrentButton((prev) =>
               prev >= numberOfPages.length ? prev : prev + 1

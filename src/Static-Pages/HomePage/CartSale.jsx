@@ -161,7 +161,7 @@ const CartSale = () => {
             </div>
           </div>
           <div className="card flex flex-col">
-            <div class="image-container2">
+            <div className="image-container2">
               <img
                 src={img3}
                 style={{
@@ -170,7 +170,7 @@ const CartSale = () => {
                   marginLeft: "auto",
                   marginRight: "auto",
                 }}
-                class="image-1"
+                className="image-1"
               />
               <img
                 src="	https://upload.lixibox.com/system/pictures/files/000/080/309/large/1672817972.webp?v=2"
@@ -181,7 +181,7 @@ const CartSale = () => {
                   marginRight: "auto",
                 }}
                 alt=""
-                class="image-2"
+                className="image-2"
               />
             </div>
             <div className="card-bottom">

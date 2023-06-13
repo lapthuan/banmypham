@@ -73,7 +73,7 @@ const FeaturedCard = ({ title, productfiter }) => {
 
         <Slider {...settings} ref={sliderRef} className="h-[300px]">
           {productfiter?.map((item) => (
-            <Link to={`Sale/${item._id}`}>
+            <Link to={`Sale/${item._id}`} key={item._id}>
               <div className="card flex flex-col">
                 <div className="image-container">
                   <img

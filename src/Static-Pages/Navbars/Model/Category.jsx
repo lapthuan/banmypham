@@ -23,9 +23,8 @@ const Category = () => {
           {categorys?.map((item, index) => (
             <Link key={item._id} to="Sale">
               <p
-                className={`hover:text-[#ff2b70] text-left ${
-                  index !== 0 ? "mt-5" : ""
-                }`}
+                className={`hover:text-[#ff2b70] text-left ${index !== 0 ? "mt-5" : ""
+                  }`}
               >
                 {item.title}
               </p>
