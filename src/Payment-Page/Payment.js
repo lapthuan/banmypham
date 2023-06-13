@@ -76,12 +76,26 @@ const payments = [
 const Stepper = () => {
   const dispatch = new useDispatch();
   let total = JSON.parse(localStorage.getItem("total")) || 0;
-  const userAddress = window.localStorage.getItem("userAddress") != "" ? JSON.parse(window.localStorage.getItem("userAddress")) : null
-  const coupon = window.localStorage.getItem("coupon") != "" ? JSON.parse(window.localStorage.getItem("coupon")) : null
-  const [selectedCity, setSelectedCity] = useState(userAddress != null ? userAddress.city : "");
-  const [selectedDistrict, setSelectedDistrict] = useState(userAddress != null ? userAddress.district : "");
-  const [selectedWard, setSelectedWard] = useState(userAddress != null ? userAddress.ward : "");
-  const [selectedAddress, setSelectedAddress] = useState(userAddress != null ? userAddress.address : "");
+  const userAddress =
+    window.localStorage.getItem("userAddress") != ""
+      ? JSON.parse(window.localStorage.getItem("userAddress"))
+      : null;
+  const coupon =
+    window.localStorage.getItem("coupon") != ""
+      ? JSON.parse(window.localStorage.getItem("coupon"))
+      : null;
+  const [selectedCity, setSelectedCity] = useState(
+    userAddress != null ? userAddress.city : ""
+  );
+  const [selectedDistrict, setSelectedDistrict] = useState(
+    userAddress != null ? userAddress.district : ""
+  );
+  const [selectedWard, setSelectedWard] = useState(
+    userAddress != null ? userAddress.ward : ""
+  );
+  const [selectedAddress, setSelectedAddress] = useState(
+    userAddress != null ? userAddress.address : ""
+  );
   const [userId, setUserId] = useState(localStorage.getItem("userid") || "");
   const [userName, setUserName] = useState(
     localStorage.getItem("username") || ""
@@ -136,9 +150,7 @@ const Stepper = () => {
     setCurrentStep(1);
     dispatch(createOrder(cartItems, payment, shipping, userId, totalprice));
 
-
-    if (coupon !== null)
-      dispatch(updateCoupon(coupon._id, userId))
+    if (coupon !== null) dispatch(updateCoupon(coupon._id, userId));
   };
   useEffect(() => {
     if (isloading == true) {
@@ -172,7 +184,13 @@ const Stepper = () => {
       toast.warning("Hãy chọn phương thức thanh toán");
       return;
     }
-    if (currentStep == 2 && !selectedCity && !selectedDistrict && !selectedWard && !selectedAddress) {
+    if (
+      currentStep == 2 &&
+      !selectedCity &&
+      !selectedDistrict &&
+      !selectedWard &&
+      !selectedAddress
+    ) {
       toast.warning("Thông tin giao hàng chưa đầy đủ");
       return;
     }
@@ -185,8 +203,9 @@ const Stepper = () => {
         {steps?.map((step, i) => (
           <div
             key={i}
-            className={`step-item ${currentStep === i + 1 && "active"} ${(i + 1 < currentStep || complete) && "complete"
-              } `}
+            className={`step-item ${currentStep === i + 1 && "active"} ${
+              (i + 1 < currentStep || complete) && "complete"
+            } `}
           >
             <div className="step">
               {i + 1 < currentStep || complete ? (
@@ -199,7 +218,28 @@ const Stepper = () => {
           </div>
         ))}
       </div>
-
+      {!complete && (
+        <div className="grid grid-flow-col justify-center p-4 ">
+          {currentStep != 1 ? (
+            <button
+              className=" w-full rounded-md bg-[#fe2c6d] px-3 py-3 font-medium text-white"
+              onClick={() => {
+                setCurrentStep((prev) => prev - 1);
+              }}
+            >
+              Trở về
+            </button>
+          ) : null}
+          {currentStep === steps.length - 1 ? null : (
+            <button
+              className="  rounded-md bg-[#fe2c6d] px-3 py-3 font-medium text-white"
+              onClick={handerClicknext}
+            >
+              tiếp tục
+            </button>
+          )}
+        </div>
+      )}
       {!complete ? (
         <div className="grid sm:px-10 lg:grid-cols-2 lg:px-20 xl:px-32 pt-1">
           <div className="px-4 pt-8">
@@ -221,7 +261,7 @@ const Stepper = () => {
                   />
                   <div className="flex w-full flex-col px-4 py-4">
                     <span className="font-semibold">{item.title}</span>
-                    <span className="float-right text-gray-400">
+                    <span className="float-right text-gray-400 mt-2">
                       {item.price.toLocaleString("vi-VN", {
                         style: "currency",
                         currency: "VND",
@@ -247,7 +287,6 @@ const Stepper = () => {
                   <form className="mt-5 grid gap-6">
                     {payments.map((item, index) => (
                       <div className="relative" key={index}>
-
                         <input
                           className="peer hidden"
                           id={`radio_${index}`}
@@ -453,29 +492,6 @@ const Stepper = () => {
               Tiếp tục mua hàng
             </button>
           </Link>
-        </div>
-      )}
-
-      {!complete && (
-        <div className="grid grid-flow-col justify-center p-4">
-          {currentStep != 1 ? (
-            <button
-              className=" w-full rounded-md bg-[#fe2c6d] px-3 py-3 font-medium text-white"
-              onClick={() => {
-                setCurrentStep((prev) => prev - 1);
-              }}
-            >
-              Trở về
-            </button>
-          ) : null}
-          {currentStep === steps.length - 1 ? null : (
-            <button
-              className=" w-full rounded-md bg-[#fe2c6d] px-3 py-3 font-medium text-white"
-              onClick={handerClicknext}
-            >
-              tiếp tục
-            </button>
-          )}
         </div>
       )}
     </>
