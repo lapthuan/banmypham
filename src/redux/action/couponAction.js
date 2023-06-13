@@ -109,3 +109,29 @@ export const updateCoupon = (idCoupon, iduser) =>
 
     }
 
+export const giveCoupon = (email) =>
+    async (dispatch) => {
+        let toastId = toast("Đang xử lý...", { autoClose: false });
+        try {
+            const { data } = await api.post(`/api/coupon/givecoupon`,
+                {
+                    email: email
+                }
+            )
+            console.log(data);
+            if (toastId >= 0) {
+
+                toast.update(toastId, {
+                    render: "Chúng tôi đã gửi tới email bạn 1 Voucher.",
+                    type: "success",
+                    autoClose: 3000
+                });
+            } else {
+                toast("Chúng tôi đã gửi tới email bạn 1 Voucher.", { type: "success", autoClose: 3000 });
+            }
+        } catch (error) {
+            console.log(error);
+        }
+
+    }
+
