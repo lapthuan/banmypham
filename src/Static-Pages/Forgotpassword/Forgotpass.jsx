@@ -6,7 +6,6 @@ import { Input } from "antd";
 import { generatePassword } from "../../redux/action/auth";
 import { toast } from "react-toastify";
 
-
 function Forgotpass() {
   const [email, setEmail] = useState([]);
   const dispatch = useDispatch();
@@ -19,7 +18,7 @@ function Forgotpass() {
       toast.warning("Email không hợp lệ!");
       return;
     }
-    dispatch(generatePassword(email))
+    dispatch(generatePassword(email));
   };
 
   return (
@@ -27,7 +26,9 @@ function Forgotpass() {
       <div className={styles.register_existing}>
         <div className={styles.existing_user}>
           <div className={styles.existing_content_register}>
-            <h1 className="text-lg">Quên mật khẩu</h1>
+            <h1 className="text-[25px] text-left font-bold mt-3">
+              Quên mật khẩu
+            </h1>
             <div className={styles.ip_forgotpass_label}>
               Nhập địa chỉ email đã đăng ký
               <br />
@@ -35,8 +36,14 @@ function Forgotpass() {
             </div>
             <div className={styles.register_social_links}></div>
             <div className="text-lg">
-              <span className="">Bạn đã có tài khoản?</span>
-              <Link className="hover:text-red-500" to={"/Login"}> Đăng nhập</Link>
+              <span className="text-[15px]">Bạn đã có tài khoản?</span>
+              <Link
+                className="hover:text-red-500 text-[15px] underline"
+                to={"/Login"}
+              >
+                {" "}
+                Đăng nhập
+              </Link>
             </div>
           </div>
         </div>
