@@ -50,6 +50,7 @@ const Login = () => {
           toast.error("Người dùng không tồn tại vui lòng đăng ký");
         }
       });
+    callApi()
   };
 
   const onFailure = (e) => {
