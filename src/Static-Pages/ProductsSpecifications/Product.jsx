@@ -230,8 +230,7 @@ const Product = () => {
           {/* <p className="fw-400 line-height-500 fs-400 darkGrayishBlue">
                         {product.description}
                     </p> */}
-          <div >
-
+          <div>
             <Rate
               className="flex"
               value={product.totalrating}
@@ -244,7 +243,6 @@ const Product = () => {
               disabled
             />
             <p className="flex text-lg">({product.reviewCount}) Đánh giá</p>
-
           </div>
           <div className="product-price">
             <div className="discounted-price flex text-lg">
@@ -252,9 +250,9 @@ const Product = () => {
               <span className="fw-700 blue fs-700">
                 {product.price
                   ? product.price.toLocaleString("vi-VN", {
-                    style: "currency",
-                    currency: "VND",
-                  })
+                      style: "currency",
+                      currency: "VND",
+                    })
                   : ""}
               </span>
               {/* <span className="offer fw-700 fs-400 Orange">50%</span>
@@ -292,7 +290,7 @@ const Product = () => {
             </div>
             {product.quantity == 0 ? (
               <button
-                className="btn flex fw-700 fs-400 "
+                className="bg-[#6d6b6c] w-full py-3 flex text-center justify-center text-white text-[17px] rounded-xl "
                 style={{ display: "flex" }}
               >
                 <svg width="22" height="20" xmlns="http://www.w3.org/2000/svg">
@@ -302,12 +300,12 @@ const Product = () => {
                     fillRule="nonzero"
                   />
                 </svg>
-                Hết hàng
+                <p className="ml-2 mt-[2px]">Hết hàng</p>
               </button>
             ) : isauth ? (
               <button
                 onClick={handleAddToCart}
-                className="btn flex fw-700 fs-400 "
+                className="bg-[#fe2c6d] w-full py-3 flex text-center justify-center text-white text-[17px] rounded-xl "
                 style={{ display: "flex" }}
               >
                 <svg width="22" height="20" xmlns="http://www.w3.org/2000/svg">
@@ -317,13 +315,13 @@ const Product = () => {
                     fillRule="nonzero"
                   />
                 </svg>
-                Thêm vào giỏ hàng
+                <p className="ml-2 mt-[2px]">Thêm vào giỏ hàng</p>
               </button>
             ) : (
               <Link to={"../login"}>
                 <button
                   onClick={() => alert("Bạn cần đăng nhập trước")}
-                  className="btn flex fw-700 fs-400 "
+                  className="bg-[#fe2c6d] w-full py-3 flex text-center justify-center text-white text-[17px] rounded-xl  "
                   style={{ display: "flex" }}
                 >
                   <svg
@@ -337,7 +335,7 @@ const Product = () => {
                       fillRule="nonzero"
                     />
                   </svg>
-                  Thêm vào giỏ hàng
+                  <p className="ml-2 mt-[2px]">Thêm vào giỏ hàng</p>
                 </button>
               </Link>
             )}

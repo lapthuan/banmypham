@@ -37,10 +37,7 @@ function Forgotpass() {
             <div className={styles.register_social_links}></div>
             <div className="text-lg">
               <span className="text-[15px]">Bạn đã có tài khoản?</span>
-              <Link
-                className="hover:text-red-500 text-[15px] underline"
-                to={"/Login"}
-              >
+              <Link className=" text-[15px] underline" to={"/Login"}>
                 {" "}
                 Đăng nhập
               </Link>

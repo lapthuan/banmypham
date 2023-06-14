@@ -5,6 +5,7 @@ import { listCategory } from "../../redux/action/categoryActions";
 import { Link } from "react-router-dom";
 import { listbrand } from "../../redux/action/brandActions";
 import { blogCategoryGetAll, blogGetAll } from "../../redux/action/blogActions";
+import { useTranslation } from "react-i18next";
 
 export const Footer = () => {
   return (
@@ -15,6 +16,8 @@ export const Footer = () => {
 };
 
 const Footer2 = () => {
+  const { t } = useTranslation();
+
   const dispatch = useDispatch();
   const categorylist = useSelector((state) => state.categoryList);
   const { categorys } = categorylist;
@@ -38,7 +41,7 @@ const Footer2 = () => {
           <div>
             <div className="text-white text-[40px] text-left">LUXUBU</div>
             <div className="text-[#9a9b9b] text-[15px] text-left mt-5 leading-5 ">
-              Luxubu - Mang hàng cao cấp vừa túi tiền đến dân thành thị
+              <p>{t("footertitle")}</p>
             </div>
             <div className="mt-5">
               <div className="flex mt-4 space-x-6  md:mt-0">
@@ -83,15 +86,15 @@ const Footer2 = () => {
           </div>
           <div className="ml-5">
             <h2 className="mb-6 text-[22px] mt-3 text-gray-900 text-left  dark:text-[#9a9b9b]">
-              Danh mục
+              <p>{t("footertitle1")}</p>
             </h2>
             <ul className="text-gray-500 font-medium">
               {categorys
                 ?.map((item, i) => (
                   <li className="mb-4 text-left " key={i}>
                     <Link
-                 
-                      className=" hover:text-[#ff2b70] text-[#9a9b9b] text-[13px] "
+                      className=" hover:text-[#ff2b70] text-[#9a9b9b] text-[13px]   "
+                      to="/Sale"
                     >
                       {item.title}
                     </Link>
@@ -102,63 +105,62 @@ const Footer2 = () => {
           </div>
           <div className="ml-5">
             <h2 className="mb-6 text-[22px] mt-3 text-gray-900 text-left  dark:text-[#9a9b9b]">
-              Hướng dẫn
+              <p>{t("footertitle2")}</p>
             </h2>
             <ul className="text-gray-500 dark:text-gray-400 font-medium">
               <li className="mb-4 text-left">
-                <a
-                  href="#"
-                  className=" hover:underline text-[#9a9b9b] text-[13px] "
+                <Link
+                  to="/"
+                  className="hover:text-[#ff2b70] text-[#9a9b9b] text-[13px] "
                 >
-                  Mã giảm giá
-                </a>
+                  Trang chủ
+                </Link>
               </li>
               <li className="mb-4 text-left">
-                <a
-                  href="#"
-                  className="hover:underline text-[#9a9b9b] text-[13px] text-left"
+                <Link
+                  to={"/Sale"}
+                  className="hover:text-[#ff2b70] text-[#9a9b9b] text-[13px] "
                 >
-                  Giới thiệu bạn bè
-                </a>
+                  Sản phẩm
+                </Link>
               </li>
               <li className="mb-4 text-left">
-                <a
-                  href="#"
-                  className="hover:underline text-[#9a9b9b] text-[13px] text-left"
+                <Link
+                  to={"/Brands"}
+                  className="hover:text-[#ff2b70] text-[#9a9b9b] text-[13px] "
                 >
-                  Thông tin về Luxubu
-                </a>
+                  Thương hiệu
+                </Link>
               </li>
               <li className="mb-4 text-left">
-                <a
-                  href="#"
-                  className="hover:underline text-[#9a9b9b] text-[13px] text-left"
+                <Link
+                  to={"/Invite"}
+                  className="hover:text-[#ff2b70] text-[#9a9b9b] text-[13px] "
                 >
-                  Hướng dẫn mua hàng
-                </a>
+                  Dịch vụ
+                </Link>
               </li>
               <li className="mb-4 text-left">
-                <a
-                  href="#"
-                  className="hover:underline text-[#9a9b9b] text-[13px] text-left"
+                <Link
+                  to={"/blog"}
+                  className="hover:text-[#ff2b70] text-[#9a9b9b] text-[13px] "
                 >
-                  Gửi yêu cầu hỗ trợ
-                </a>
+                  Blog
+                </Link>
               </li>
             </ul>
           </div>
           <div className="ml-5">
             <h2 className="mb-6 text-[22px] mt-3 text-gray-900 text-left  dark:text-[#9a9b9b]">
-              Thương hiệu
+              <p>{t("footertitle3")}</p>
             </h2>
             <ul className="text-gray-500 dark:text-gray-400 font-medium">
-              {" "}
               {brands
                 ?.map((item, i) => (
                   <li className="mb-4 text-left " key={i}>
                     <Link
-                    
                       className=" hover:text-[#ff2b70] text-[#9a9b9b] text-[13px] "
+                      to="/Brands"
                     >
                       {item.title}
                     </Link>

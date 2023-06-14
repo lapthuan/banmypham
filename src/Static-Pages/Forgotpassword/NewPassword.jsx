@@ -9,14 +9,14 @@ import { useNavigate, Link } from "react-router-dom";
 
 const NewPassword = () => {
   const navigate = useNavigate();
-  const dispatch = new useDispatch()
+  const dispatch = new useDispatch();
   const [pw, setPw] = useState([]);
   const [newPw, setNewPw] = useState([]);
   const { token } = useParams();
 
   const password = async () => {
     if (pw === newPw) {
-      dispatch(resetPassword(token, pw, navigate))
+      dispatch(resetPassword(token, pw, navigate));
     } else {
       toast.warning("Mật khẩu không trùng khớp");
     }
@@ -27,15 +27,18 @@ const NewPassword = () => {
       <div className={styles.register_existing}>
         <div className={styles.existing_user}>
           <div className={styles.existing_content_register}>
-            <h4>Cập nhật mật khẩu</h4>
+            <h4 className="text-[20px] font-bold mt-3">Cập nhật mật khẩu</h4>
             <div className={styles.ip_forgotpass_label}>
               Hãy cập nhật lại mật khẩu mới và tiếp tục trải nghiệm nào
               <br />
             </div>
             <div className={styles.register_social_links}></div>
-            <div>
-              <span className="">Bạn đã có tài khoản?</span>
-              <Link to={"/Login"}> Đăng nhập</Link>
+            <div className="">
+              <span className="text-[15px]">Bạn đã có tài khoản?</span>
+              <Link to={"/Login"} className="text-[15px] underline ml-2">
+                {" "}
+                Đăng nhập
+              </Link>
             </div>
           </div>
         </div>

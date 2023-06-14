@@ -13,11 +13,19 @@ import { updateUser } from "../../redux/action/auth";
 const EditAC = () => {
   const userCreate = localStorage.getItem("usercreatedAt") || "";
   const userId = localStorage.getItem("userid") || "";
-  const [phone, setPhone] = useState(localStorage.getItem("usermobile") == undefined ? localStorage.getItem("usermobile") : "");
+  const [phone, setPhone] = useState(
+    localStorage.getItem("usermobile") == undefined
+      ? localStorage.getItem("usermobile")
+      : ""
+  );
   const [email, setEmail] = useState(localStorage.getItem("useremail") || "");
-  const [firstName, setFirstName] = useState(localStorage.getItem("userfirstname") || "");
-  const [lastName, setLastName] = useState(localStorage.getItem("username") || "");
-  const dispatch = useDispatch()
+  const [firstName, setFirstName] = useState(
+    localStorage.getItem("userfirstname") || ""
+  );
+  const [lastName, setLastName] = useState(
+    localStorage.getItem("username") || ""
+  );
+  const dispatch = useDispatch();
 
   const handleEditUser = (e) => {
     e.preventDefault();
@@ -26,7 +34,7 @@ const EditAC = () => {
     console.log("Last Name:", lastName);
     console.log("Email:", email);
     console.log("Phone:", phone);
-  }
+  };
   return (
     <>
       <div className="Iv-container">
@@ -56,7 +64,10 @@ const EditAC = () => {
                       <div className="Ivite_loho text-lg ">
                         <form onSubmit={handleEditUser}>
                           <div className="text-left">
-                            <label htmlFor="first-name-input" className="block mb-2 text-base font-medium text-gray-900">
+                            <label
+                              htmlFor="first-name-input"
+                              className="block mb-2 text-base font-medium text-gray-900"
+                            >
                               Họ:
                             </label>
                             <input
@@ -69,7 +80,10 @@ const EditAC = () => {
                             />
                           </div>
                           <div className="text-left mt-2">
-                            <label htmlFor="last-name-input" className="block mb-2 text-base font-medium text-gray-900">
+                            <label
+                              htmlFor="last-name-input"
+                              className="block mb-2 text-base font-medium text-gray-900"
+                            >
                               Tên:
                             </label>
                             <input
@@ -82,7 +96,10 @@ const EditAC = () => {
                             />
                           </div>
                           <div className="text-left mt-2">
-                            <label htmlFor="email-input" className="block mb-2 text-base font-medium text-gray-900">
+                            <label
+                              htmlFor="email-input"
+                              className="block mb-2 text-base font-medium text-gray-900"
+                            >
                               Email:
                             </label>
                             <input
@@ -96,7 +113,10 @@ const EditAC = () => {
                           </div>
 
                           <div className="text-left mt-2">
-                            <label htmlFor="phone-input" className="block mb-2 text-base font-medium text-gray-900">
+                            <label
+                              htmlFor="phone-input"
+                              className="block mb-2 text-base font-medium text-gray-900"
+                            >
                               Số điện thoại:
                             </label>
                             <input
@@ -117,11 +137,13 @@ const EditAC = () => {
                             />
                           </div>
 
-                          <button type="submit" className="btn btn-primary m-4">
+                          <button
+                            type="submit"
+                            className="mt-4 mb-8 w-full text-[15px] rounded-md bg-[#fe2c6d] px-6 py-1 font-medium text-white"
+                          >
                             Cập nhật
                           </button>
                         </form>
-
                       </div>
                     </div>
                   </div>
