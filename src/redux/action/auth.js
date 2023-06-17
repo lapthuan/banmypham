@@ -31,87 +31,83 @@ export const signin = (dataForm, navigate) => async (dispatch) => {
   dispatch({ type: LOGIN_GET_LOADING });
   let toastId = toast("Đang xử lý...", { autoClose: false });
   const emailUser = dataForm.email
-  await apis
-    .get(`/api/users/find/${dataForm.email}`)
-    .then((result) => {
-      if (result.data.isBlocked == true) {
-        if (toastId >= 0) {
-
-          toast.update(toastId, {
-            render: "Tài khoản đã bị khóa vui lòng liên hệ Admin để mở lại",
-            type: "error",
-            autoClose: 3000
-          });// does nothing
-        } else {
-          toast("Tài khoản đã bị khóa vui lòng liên hệ Admin để mở lại", { type: "error", autoClose: 3000 });
-        }
-      }
-      return;
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-
-  try {
-    const { data } = await api.signIn(dataForm);
-
-    await window.localStorage.setItem(JSON.stringify(emailUser), "0");
-
+  const { data } = await apis.get(`/api/users/find/${dataForm.email}`)
+  console.log(data);
+  if (data.isBlocked == true) {
     if (toastId >= 0) {
+
       toast.update(toastId, {
-        render: "Đăng nhập thành công",
-        type: "success",
+        render: "Tài khoản đã bị khóa vui lòng liên hệ Admin để mở lại",
+        type: "error",
         autoClose: 3000
       });// does nothing
     } else {
-      toast("Đăng nhập thành công", { type: "success", autoClose: 3000 });
+      toast("Tài khoản đã bị khóa vui lòng liên hệ Admin để mở lại", { type: "error", autoClose: 3000 });
     }
-    navigate("/");
-    return dispatch({ type: LOGIN_GET_SUCCESS, payload: data });
-  } catch (err) {
-    if (err.response.data.message == "Invalid Credentials") {
+  } else {
+    try {
+      const { data } = await api.signIn(dataForm);
+
+      await window.localStorage.setItem(JSON.stringify(emailUser), "0");
+
       if (toastId >= 0) {
         toast.update(toastId, {
-          render: "Sai tài khoản hoặc mật khẩu ",
-          type: "warning",
+          render: "Đăng nhập thành công",
+          type: "success",
           autoClose: 3000
         });// does nothing
       } else {
-        toast("Sai tài khoản hoặc mật khẩu", { type: "warning", autoClose: 3000 });
+        toast("Đăng nhập thành công", { type: "success", autoClose: 3000 });
       }
-      const storedAttempts = parseInt(window.localStorage.getItem(JSON.stringify(emailUser)));
-      if (isNaN(storedAttempts)) {
-        await window.localStorage.setItem(JSON.stringify(emailUser), "1");
-      } else {
-        await window.localStorage.setItem(JSON.stringify(emailUser), String(storedAttempts + 1));
-      }
+      navigate("/");
+      return dispatch({ type: LOGIN_GET_SUCCESS, payload: data });
+    } catch (err) {
+      if (err.response.data.message == "Invalid Credentials") {
+        if (toastId >= 0) {
+          toast.update(toastId, {
+            render: "Sai tài khoản hoặc mật khẩu",
+            type: "warning",
+            autoClose: 3000
+          });// does nothing
+        } else {
+          toast("Sai tài khoản hoặc mật khẩu", { type: "warning", autoClose: 3000 });
+        }
+        const storedAttempts = parseInt(window.localStorage.getItem(JSON.stringify(emailUser)));
+        if (isNaN(storedAttempts)) {
+          await window.localStorage.setItem(JSON.stringify(emailUser), "1");
+        } else {
+          await window.localStorage.setItem(JSON.stringify(emailUser), String(storedAttempts + 1));
+        }
 
-      const storedAttempt = parseInt(window.localStorage.getItem(JSON.stringify(emailUser)))
+        const storedAttempt = parseInt(window.localStorage.getItem(JSON.stringify(emailUser)))
 
-      if (storedAttempt == 5) {
+        if (storedAttempt == 5) {
 
 
-        await apis
-          .post(`/api/users/block-user/${emailUser}`)
-          .then((result) => {
-            if (toastId >= 0) {
-              toast.update(toastId, {
-                render: "Tài khoản đã bị khóa",
-                type: "warning",
-                autoClose: 3000
-              });// does nothing
-            } else {
-              toast("Tài khoản đã bị khóa", { type: "warning", autoClose: 3000 });
-            }
+          await apis
+            .post(`/api/users/block-user/${emailUser}`)
+            .then((result) => {
+              if (toastId >= 0) {
+                toast.update(toastId, {
+                  render: "Tài khoản đã bị khóa",
+                  type: "warning",
+                  autoClose: 3000
+                });// does nothing
+              } else {
+                toast("Tài khoản đã bị khóa", { type: "warning", autoClose: 3000 });
+              }
 
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-        await window.localStorage.setItem(JSON.stringify(emailUser), "0");
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+          await window.localStorage.setItem(JSON.stringify(emailUser), "0");
+        }
       }
     }
   }
+
+
 }
 
 
