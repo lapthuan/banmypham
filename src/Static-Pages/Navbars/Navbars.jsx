@@ -17,7 +17,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../redux/action/auth";
 import deleteIcon from "../../Image/icon-delete.svg";
-import { loadCart, removeItem } from "../../redux/action/cartActions";
+import { loadCart, resetCart, removeItem } from "../../redux/action/cartActions";
 import { listProducts } from "../../redux/action/productActions";
 import Highlighter from "react-highlight-words";
 import { useTranslation } from "react-i18next";
@@ -110,8 +110,9 @@ const Navbars = () => {
     setSearchHistory([]);
   };
   const handlelogout = (e) => {
+    dispatch(resetCart());
+
     dispatch(logout());
-    dispatch(loadCart());
   };
 
   return (
