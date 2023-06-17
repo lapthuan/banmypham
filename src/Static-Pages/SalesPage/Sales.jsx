@@ -21,7 +21,6 @@ const Sales = () => {
   const param = useParams();
   const { category } = param;
 
-
   const dispatch = useDispatch();
   const productList = useSelector((state) => state.productList);
   const { products, loading } = productList;
@@ -135,8 +134,15 @@ const Sales = () => {
                             <div className="mt-2 flex justify-between pl-[10px] py-1 overflow-hidden">
                               <div>
                                 <div className="flex justify-around">
-                                  <Link to={`../brands/${item.brand._id}`} className=" text-[#fe2c6d] text-sm border border-[#fe2c6d] p-1 rounded-lg ">{item.brand.title}</Link>
-                                  <div className="text-left truncate max-w-[130px] text-sm p-1">{item.category?.title}...</div>
+                                  <Link
+                                    to={`../brands/${item.brand._id}`}
+                                    className=" text-[#fe2c6d] text-sm border border-[#fe2c6d] p-1 rounded-lg "
+                                  >
+                                    {item.brand.title}
+                                  </Link>
+                                  <div className="text-left truncate max-w-[130px] text-sm p-1">
+                                    {item.category?.title}...
+                                  </div>
                                 </div>
                                 <br />
                                 <div className=" h-[35px]">
@@ -150,12 +156,11 @@ const Sales = () => {
                                 <p className="text-left text-black font-bold text-lg mt-2">
                                   {item.price
                                     ? item.price.toLocaleString("vi-VN", {
-                                      style: "currency",
-                                      currency: "VND",
-                                    })
+                                        style: "currency",
+                                        currency: "VND",
+                                      })
                                     : ""}
                                 </p>
-
                               </div>
                             </div>
                           </Link>
@@ -167,7 +172,7 @@ const Sales = () => {
                   )}
                 </div>
               ) : (
-                <LoadPage />
+                <></>
               )}
 
               {/* <div
