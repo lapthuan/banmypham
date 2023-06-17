@@ -35,7 +35,7 @@ const Login = () => {
     const accessToken = e.access_token;
     const typeLogin = "facebook";
     const callApi = await axios
-      .post("http://localhost:5000/api/users/login", {
+      .post("https://api-thuongmai.vercel.app/api/users/login", {
         accessToken,
         typeLogin,
       })
@@ -50,6 +50,7 @@ const Login = () => {
           toast.error("Người dùng không tồn tại vui lòng đăng ký");
         }
       });
+    callApi()
   };
 
   const onFailure = (e) => {
