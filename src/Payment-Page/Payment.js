@@ -199,7 +199,7 @@ const Stepper = () => {
 
   return (
     <>
-      <div className="flex justify-between z-10">
+      <div className="flex justify-between z-2">
         {steps?.map((step, i) => (
           <div
             key={i}
@@ -219,7 +219,7 @@ const Stepper = () => {
         ))}
       </div>
       {!complete && (
-        <div className="grid grid-flow-col justify-center p-4 ">
+        <div className="grid grid-flow-col justify-center p-4  justify-around ">
           {currentStep != 1 ? (
             <button
               className=" w-full rounded-md bg-[#fe2c6d] px-3 py-3 font-medium text-white text-[15px]"
