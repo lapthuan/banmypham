@@ -147,7 +147,7 @@ const Sales = () => {
                                 <br />
                                 <div className=" h-[35px]">
                                   <p className="text-sm text-[#3E4048] text-left">
-                                    {item.title.slice(0, 55)}...
+                                    {item.title.slice(0, 50)}...
                                   </p>
                                 </div>
                                 <div className="text-left mt-2">
