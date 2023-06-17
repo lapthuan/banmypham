@@ -16,7 +16,7 @@ import axios from "axios";
 const test = "test";
 const apis = axios.create({
   // baseURL: "https://api-thuongmai.vercel.app",
-  baseURL: "http://localhost:5000" ,
+  baseURL: "http://localhost:5000",
 });
 
 
@@ -31,43 +31,46 @@ export const signin = (dataForm, navigate) => async (dispatch) => {
   dispatch({ type: LOGIN_GET_LOADING });
   let toastId = toast("Đang xử lý...", { autoClose: false });
   const emailUser = dataForm.email
-  await apis
-    .get(`/api/users/find/${dataForm.email}`)
-    .then((result) => {
-      if (result.data.isBlocked == true) {
-        if (toastId >= 0) {
 
-          toast.update(toastId, {
-            render: "Tài khoản đã bị khóa vui lòng liên hệ Admin để mở lại",
-            type: "error",
-            autoClose: 3000
-          });// does nothing
-        } else {
-          toast("Tài khoản đã bị khóa vui lòng liên hệ Admin để mở lại", { type: "error", autoClose: 3000 });
-        }
-      }
-      return;
-    })
-    .catch((err) => {
-      console.log(err);
-    });
 
   try {
-    const { data } = await api.signIn(dataForm);
+    await apis
+      .get(`/api/users/find/${dataForm.email}`)
+      .then((result) => {
+        if (result.data.isBlocked == true) {
+          if (toastId >= 0) {
 
-    await window.localStorage.setItem(JSON.stringify(emailUser), "0");
+            toast.update(toastId, {
+              render: "Tài khoản đã bị khóa vui lòng liên hệ Admin để mở lại",
+              type: "error",
+              autoClose: 3000
+            });// does nothing
+          } else {
+            toast("Tài khoản đã bị khóa vui lòng liên hệ Admin để mở lại", { type: "error", autoClose: 3000 });
+          }
+        }
+        else {
+          const { data } = api.signIn(dataForm);
 
-    if (toastId >= 0) {
-      toast.update(toastId, {
-        render: "Đăng nhập thành công",
-        type: "success",
-        autoClose: 3000
-      });// does nothing
-    } else {
-      toast("Đăng nhập thành công", { type: "success", autoClose: 3000 });
-    }
-    navigate("/");
-    return dispatch({ type: LOGIN_GET_SUCCESS, payload: data });
+          window.localStorage.setItem(JSON.stringify(emailUser), "0");
+
+          if (toastId >= 0) {
+            toast.update(toastId, {
+              render: "Đăng nhập thành công",
+              type: "success",
+              autoClose: 3000
+            });// does nothing
+          } else {
+            toast("Đăng nhập thành công", { type: "success", autoClose: 3000 });
+          }
+          navigate("/");
+          return dispatch({ type: LOGIN_GET_SUCCESS, payload: data });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
   } catch (err) {
     if (err.response.data.message == "Invalid Credentials") {
       if (toastId >= 0) {
@@ -133,20 +136,22 @@ export const signinGoogle = (accessToken, navigate) => async (dispatch) => {
         toast("Tài khoản đã bị khóa", { type: "error", autoClose: 3000 });
       }
       return;
-    }
-    navigate("/");
-
-    if (toastId >= 0) {
-      toast.update(toastId, {
-        render: "Đăng nhập thành công",
-        type: "success",
-        autoClose: 3000
-      });// does nothing
     } else {
-      toast("Đăng nhập thành công", { type: "success", autoClose: 3000 });
+      navigate("/");
+
+      if (toastId >= 0) {
+        toast.update(toastId, {
+          render: "Đăng nhập thành công",
+          type: "success",
+          autoClose: 3000
+        });// does nothing
+      } else {
+        toast("Đăng nhập thành công", { type: "success", autoClose: 3000 });
+      }
+
+      return dispatch({ type: LOGIN_GET_SUCCESS, payload: data });
     }
 
-    return dispatch({ type: LOGIN_GET_SUCCESS, payload: data });
   } catch (err) {
     console.log(err);
     if (err.response.data.message == "User don't exist!") {
