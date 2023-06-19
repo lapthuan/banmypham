@@ -117,19 +117,19 @@ const Navbars = () => {
   return (
     <div>
       <nav className="my-6 px-[100px] ">
-        <div className="logo w-[33%]">
-          <Link to="/">
-            <GoogleFontLoader
-              fonts={[{ font: "Playfair", weights: [500, 900] }]}
-            />
-            <p
-              style={{ fontFamily: "Playfair, serif" }}
-              className="mt-[35px] text-black text-[50px]"
-            >
-              LUXUBU
-            </p>
-          </Link>
-        </div>
+          <div className="logo w-[33%]">
+            <Link to="/">
+              <GoogleFontLoader
+                fonts={[{ font: "Playfair", weights: [500, 900] }]}
+              />
+              <p
+                style={{ fontFamily: "Playfair, serif" }}
+                className="mt-[35px] text-black text-[50px]"
+              >
+                LUXUBU
+              </p>
+            </Link>
+          </div>
 
         <div className="search-icon">
           <span>

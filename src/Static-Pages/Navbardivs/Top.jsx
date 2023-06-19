@@ -7,6 +7,8 @@ import { FaUserFriends } from "react-icons/fa";
 import { FaStore } from "react-icons/fa";
 import { BsCoin } from "react-icons/bs";
 import { useTranslation } from "react-i18next";
+import logoUS from "../../Image/united-states.png";
+import logoVN from "../../Image/vietnam.png";
 
 function Top() {
   const { t } = useTranslation();
@@ -40,8 +42,12 @@ function Top() {
                 onChange={handleLanguageChange}
                 className="appearance-none bg-no-repeat bg-right pr-8 pl-3 h-8 border rounded text-[15px]"
               >
-                <option value="vi">Tiếng Việt</option>
-                <option value="en">English</option>
+                <option value="vi" className="mx-auto">
+                  Tiếng Việt
+                </option>
+                <option value="en" className="mx-auto">
+                  English
+                </option>
               </select>
             </div>
             <div className="flex items-center w-[200px]">

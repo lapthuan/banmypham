@@ -12,7 +12,11 @@ import OAuth2Login from "react-simple-oauth2-login";
 import { useGoogleLogin } from "@react-oauth/google";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useTranslation } from "react-i18next";
+
 const Login = () => {
+  const { t } = useTranslation();
+
   const MAX_LOGIN_ATTEMPTS = 3;
   const storedAttempts =
     parseInt(window.localStorage.getItem("loginAttempts")) || 0;
@@ -50,7 +54,7 @@ const Login = () => {
           toast.error("Người dùng không tồn tại vui lòng đăng ký");
         }
       });
-    callApi()
+    callApi();
   };
 
   const onFailure = (e) => {
@@ -72,11 +76,9 @@ const Login = () => {
         <div className={styles.existing_user}>
           <form action="" className={styles.existing_content_login}>
             <div className={styles.img}></div>
-            <h4 className="text-[25px]">Đăng nhập</h4>
-            <div className={styles.ip_label}>
-              Đăng nhập để mua hàng và sử dụng những tiện ích mới nhất từ
-              www.luxubu.com
-            </div>
+
+            <h4 className="text-[25px]">{t("logintitle1")}</h4>
+            <div className={styles.ip_label}>{t("logintitle2")}</div>
             <div className={styles.social_links}>
               <Link to={""} className={styles.btn_fb}>
                 <img src={facebook} alt="facebook_logo" />
@@ -98,9 +100,9 @@ const Login = () => {
               </Link>
             </div>
             <div>
-              <span className="text-[15px]">Bạn chưa có tài khoản?</span>
+              <span className="text-[15px]">{t("logintitle3")}</span>
               <Link to={"/Register"} className=" ml-2 underline text-[15px]">
-                Đăng ký
+                {t("logintitle4")}
               </Link>
             </div>
           </form>
@@ -113,23 +115,23 @@ const Login = () => {
                 type="email"
                 name="email"
                 required
-                placeholder="Nhập email..."
+                placeholder={t("logintitle6")}
                 onChange={(e) => setEmail(e.target.value)}
               />
               <Input.Password
                 required
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="Nhập mật khẩu ..."
+                placeholder={t("logintitle7")}
                 iconRender={(visible) =>
                   visible ? <AiOutlineEye /> : <AiOutlineEyeInvisible />
                 }
               />
 
               <button className={styles.sing_in_button} onClick={handleSubmit}>
-                Đăng nhập
+                {t("logintitle1")}
               </button>
               <Link to={"/Forgotpass"} className="text-[15px] underline">
-                Quên mật khẩu?
+                {t("logintitle5")}
               </Link>
             </form>
             {/* <button className={styles.new_continue}>
