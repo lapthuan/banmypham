@@ -22,12 +22,12 @@
   box-sizing: border-box;
 }
 
-.new_ac>div {
+.new_ac > div {
   width: 100%;
   height: auto;
 }
 
-.new_existing>div {
+.new_existing > div {
   width: 100%;
   height: auto;
 }
@@ -49,6 +49,7 @@
   gap: 10px;
   background: white;
   background-image: url(https://js.lixibox.com/image-assets/login/desktop-signin.png);
+  height: 100%;
 }
 
 .existing_content_login h4 {
@@ -88,7 +89,6 @@
 }
 
 .existing_content input {
-
   height: 40px;
   font-family: "Lato", sans-serif;
   font-size: 14px;
@@ -151,7 +151,7 @@
   border-radius: 8px;
 }
 
-.sing_in_button+p {
+.sing_in_button + p {
   color: #333333;
   font-size: 15px;
 }
@@ -188,7 +188,7 @@
   background: white;
 }
 
-.social_links>a>img {
+.social_links > a > img {
   width: 13%;
 }
 
@@ -257,7 +257,7 @@
 }
 
 @media (max-width: 480px) {
-  .social_links>a>img {
+  .social_links > a > img {
     width: 20%;
   }
 

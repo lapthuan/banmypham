@@ -80,6 +80,22 @@ function HomePage() {
           <CartSale />
         </div> */}
 
+        <div className="bg-gray-50 h-full border-2 border-green-600 transition duration-150 ease-linear transform group-hover:border-green-700 rounded shadow-lg">
+          <div className="bg-green-100 text-gray-900 px-6 py-2 rounded-t border-b flex items-center justify-center">
+            <h3 className="text-[20px] font-bold ">
+              Sản phẩm khuyến mãi và giá khuyến mãi
+            </h3>
+          </div>
+          <div className="overflow-hidden">
+            <div className="coupon coupon-home mx-4 my-5 block md:flex lg:flex md:justify-between lg:justify-between items-center bg-white rounded-md shadow">
+              <div className="tengah py-2 px-3 flex items-center justify-items-start">
+                <figure>
+                  <span className=""></span>
+                </figure>
+              </div>
+            </div>
+          </div>
+        </div>
         <div className="">
           <Carts title={t("carts")} productfiter={filteredProductsCreate} />
         </div>

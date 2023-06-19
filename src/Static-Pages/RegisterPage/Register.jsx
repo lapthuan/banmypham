@@ -9,6 +9,7 @@ import ReCAPTCHA from "react-google-recaptcha";
 import { useGoogleLogin } from "@react-oauth/google";
 import { signup, signupGoogle } from "../../redux/action/auth";
 import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
 
 const InitState = {
   firstname: "",
@@ -19,6 +20,8 @@ const InitState = {
 };
 
 function Register() {
+  const { t } = useTranslation();
+
   const nagivate = useNavigate();
   const dispatch = useDispatch();
   const [sForm, setsForm] = useState(InitState);
@@ -73,10 +76,9 @@ function Register() {
       <div className={styles.register_existing}>
         <div className={styles.existing_user}>
           <div className={styles.existing_content_register}>
-            <h4 className="text-[25px] mt-5">Đăng ký</h4>
+            <h4 className="text-[25px] mt-5">{t("Registertitle")}</h4>
             <div className={styles.ip_register_label}>
-              Đăng nhập để mua hàng và sử dụng những tiện ích mới nhất từ
-              www.luxubu.com
+              {t("Registertitle1")}
             </div>
             {/* <div className={styles.register_social_links}>
               <Link to={""} className={styles.register_btn_fb}>

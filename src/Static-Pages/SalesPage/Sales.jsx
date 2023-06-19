@@ -156,9 +156,9 @@ const Sales = () => {
                                 <p className="text-left text-black font-bold text-lg mt-2">
                                   {item.price
                                     ? item.price.toLocaleString("vi-VN", {
-                                      style: "currency",
-                                      currency: "VND",
-                                    })
+                                        style: "currency",
+                                        currency: "VND",
+                                      })
                                     : ""}
                                 </p>
                               </div>

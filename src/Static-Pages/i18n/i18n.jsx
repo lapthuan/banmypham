@@ -33,6 +33,17 @@ i18n.use(initReactI18next).init({
         footertitle1: "Category",
         footertitle2: "Link",
         footertitle3: "Brand",
+        logintitle1: "Login",
+        logintitle2:
+          "Sign in to purchase and use the latest gadgets from www.luxubu.com",
+        logintitle3: "Do not have an account?",
+        logintitle4: "Register",
+        logintitle5: "Forgot password",
+        logintitle6: "enter email",
+        logintitle7: "enter password",
+        Registertitle: "Register",
+        Registertitle1:
+          "Sign in to purchase and use the latest gadgets from www.luxubu.com",
       },
     },
     vi: {
@@ -63,6 +74,17 @@ i18n.use(initReactI18next).init({
         footertitle1: "Danh mục",
         footertitle2: "Đường dẫn",
         footertitle3: "Thương hiệu",
+        logintitle1: "Đăng nhập",
+        logintitle2:
+          "Đăng nhập để mua hàng và sử dụng những tiện ích mới nhất từ www.luxubu.com",
+        logintitle3: "Bạn chưa có tài khoản?",
+        logintitle4: "Đăng ký",
+        logintitle5: "Quên mật khẩu",
+        logintitle6: "Nhập email",
+        logintitle7: "Nhập mật khẩu",
+        Registertitle: "Đăng ký",
+        Registertitle1:
+          "Đăng nhập để mua hàng và sử dụng những tiện ích mới nhất từ www.luxubu.com",
       },
     },
   },
