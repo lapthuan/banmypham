@@ -290,7 +290,7 @@ const Product = () => {
             </div>
             {product.quantity == 0 ? (
               <button
-                className="bg-[#6d6b6c] w-full py-3 flex text-center justify-center text-white text-[17px] rounded-xl "
+                className="bg-[#6d6b6c] w-full py-3 px-6 flex text-center justify-center text-white text-[17px] rounded-xl "
                 style={{ display: "flex" }}
               >
                 <svg width="22" height="20" xmlns="http://www.w3.org/2000/svg">
@@ -305,7 +305,7 @@ const Product = () => {
             ) : isauth ? (
               <button
                 onClick={handleAddToCart}
-                className="bg-[#fe2c6d] w-full py-3 flex text-center justify-center text-white text-[17px] rounded-xl "
+                className="bg-[#fe2c6d] w-full py-3 px-6 flex text-center justify-center text-white text-[17px] rounded-xl "
                 style={{ display: "flex" }}
               >
                 <svg width="22" height="20" xmlns="http://www.w3.org/2000/svg">
@@ -321,7 +321,7 @@ const Product = () => {
               <Link to={"../login"}>
                 <button
                   onClick={() => alert("Bạn cần đăng nhập trước")}
-                  className="bg-[#fe2c6d] w-full py-3 flex text-center justify-center text-white text-[17px] rounded-xl  "
+                  className="bg-[#fe2c6d] w-full py-3 px-6 flex text-center justify-center text-white text-[17px] rounded-xl  "
                   style={{ display: "flex" }}
                 >
                   <svg
