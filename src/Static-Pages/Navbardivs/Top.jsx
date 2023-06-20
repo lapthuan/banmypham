@@ -42,10 +42,11 @@ function Top() {
                 onChange={handleLanguageChange}
                 className="appearance-none bg-no-repeat bg-right pr-8 pl-3 h-8 border rounded text-[15px]"
               >
-                <option value="vi" className="mx-auto">
+
+                <option value="vi" className="flex mx-auto" >
                   Tiếng Việt
                 </option>
-                <option value="en" className="mx-auto">
+                <option value="en" className="mx-auto" >
                   English
                 </option>
               </select>

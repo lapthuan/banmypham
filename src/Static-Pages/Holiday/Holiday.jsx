@@ -13,13 +13,13 @@ import FilTer from "./filter";
 import { findProductsPrice } from "../../redux/action/productActions";
 import { useEffect } from "react";
 import { listbrandDetails } from "../../redux/action/brandActions";
+import { useTranslation } from "react-i18next";
 
-import LoadPage from "../../Loadpage/Loadpage";
-import logo1 from "../Brands/imageBrand/Nivea_logo.svg.png";
 
 function Holiday() {
   const params = useParams();
   let idBrand = params.id;
+  const { t } = useTranslation();
   const dispatch = useDispatch();
 
   const productList = useSelector((state) => state.productList);
@@ -35,7 +35,8 @@ function Holiday() {
       findProductsPrice("", "", `["${idBrand}"]`, "", "")
     );
 
-  }, [idBrand]);
+  }, []);
+
 
   return (
     <div className="main__sales">
@@ -51,7 +52,7 @@ function Holiday() {
             >
               <AiOutlineHome />
               <div className="ml-1 text-sm font-medium text-gray-700 hover:text-[#fe2c6d] md:ml-2 ">
-                Trang chủ{" "}
+                {t("TagHome")}{" "}
               </div>
             </Link>
           </li>
@@ -77,7 +78,7 @@ function Holiday() {
               >
                 <AiOutlineShoppingCart />
                 <div className="ml-1 text-sm font-medium text-gray-700 hover:text-[#fe2c6d] md:ml-2 ">
-                  Thương hiệu{" "}
+                  {t("TagAllBrand")}{" "}
                 </div>
               </Link>
             </div>
@@ -120,7 +121,7 @@ function Holiday() {
                 <div className="hidden md:block mt-10">
                   <div className="flex-col">
                     <div>
-                      <img src={brand.images?.url} alt="" className="w-[60%] mx-auto" />
+                      <img src={brand.images ? brand.images[0].url : ""} alt="" className="w-[60%] mx-auto" />
                     </div>
                     <div className="leading-loose text-[15px] mt-3 text-left text-justify text-[#696969]">
                       {brand.description}
@@ -177,7 +178,7 @@ function Holiday() {
                                 <br />
                                 <div className=" h-[35px]">
                                   <p className="text-sm text-[#3E4048] text-left">
-                                    {item.title.slice(0, 55)}...
+                                    {item.title.slice(0, 50)}...
                                   </p>
                                 </div>
                                 <div className="text-left mt-2">
@@ -199,7 +200,7 @@ function Holiday() {
                       ))}
                     </>
                   ) : (
-                    <div className="text-center">Không tìm thấy sản phẩm</div>
+                    <div className="text-center">{t("productNotFound")}</div>
                   )}
                 </div>
               ) : (
