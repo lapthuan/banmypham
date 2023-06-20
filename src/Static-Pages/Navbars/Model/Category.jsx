@@ -5,19 +5,19 @@ import logo1 from "../logo/1666751678.png";
 import logo2 from "../logo/1681098600.jpg";
 import logo3 from "../logo/1666751998.png";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { listCategory } from "../../../redux/action/categoryActions";
+import { useTranslation } from "react-i18next";
 
 const Category = () => {
   const dispatch = useDispatch();
   const categorylist = useSelector((state) => state.categoryList);
   const { categorys } = categorylist;
+  const { t } = useTranslation();
 
   return (
     <div className="giftSetMainParent ">
       <div className="flex flex-col gap-2 bestSellerPriceHolder w-[250px]">
         <div className="text-left font-bold text-black text-[20px]   ">
-          Danh mục sản phẩm
+          {t("listCategory")}
         </div>
         <div className="h-[400px] overflow-y-scroll mt-3">
           {categorys?.map((item, index) => (

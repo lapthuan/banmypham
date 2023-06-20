@@ -74,7 +74,7 @@ function Brands() {
                     <div className="w-[40%]">
                       {" "}
                       <img
-                        src={item.images?.url}
+                        src={item.images[0]?.url}
                         alt=""
                         className="rounded-full "
                       />

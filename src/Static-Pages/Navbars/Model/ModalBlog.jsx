@@ -1,23 +1,16 @@
 import React, { useEffect } from "react";
 import "./ModalBlog.css";
 import { Link } from "react-router-dom";
-import imageBlog1 from "../logo/1685960467.webp";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  blogCategoryGetAll,
-  blogGetAll,
-} from "../../../redux/action/blogActions";
 import moment from "moment";
+import { useTranslation } from "react-i18next";
 
 const ModalBlog = () => {
   const blogList = useSelector((state) => state.blogList);
   const { blogs } = blogList;
-
+  const { t } = useTranslation();
   const categoryList = useSelector((state) => state.bCategoryList);
   const { bCategorys } = categoryList;
-  const dispatch = new useDispatch();
-
-  useEffect(() => { }, []);
 
   const formatDateTime = (time) => {
     const formattedDatetime = moment(time).format("HH:mm | DD/MM/YYYY");
@@ -28,7 +21,7 @@ const ModalBlog = () => {
     <div className="blogSetMainParent">
       <div className="flex flex-col gap-2 blogPriceHolder w-[250px]">
         <div className="text-left font-bold text-black text-[20px]   ">
-          Danh mục thương hiệu
+          {t("listCategoryBlog")}
         </div>
         <div className="h-[400px]  mt-3">
           {bCategorys?.map((item, index) => (

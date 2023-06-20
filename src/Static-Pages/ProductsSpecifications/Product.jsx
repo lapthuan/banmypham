@@ -12,34 +12,27 @@ import {
 } from "../../redux/action/productActions";
 import imgError from "../../Image/imgError.jpg";
 import { addItem } from "../../redux/action/cartActions";
-import { toast } from "react-toastify";
-import { listCategoryDetails } from "../../redux/action/categoryActions";
-import { listbrandDetails } from "../../redux/action/brandActions";
 import {
-  AiOutlineHeart,
   AiOutlineHome,
   AiOutlineShoppingCart,
 } from "react-icons/ai";
 import { Rate } from "antd";
 import InforProduct from "./InforProduct";
 import FeaturedCard2 from "../HomePage/Cart2";
-import CartBlog from "../Blog/CartBlog";
-import ShowFeedBack from "./showFeedback";
 import FeedBack from "./feedback";
-
 import "./StarRating.css";
 import LoadPage from "../../Loadpage/Loadpage";
+import { useTranslation } from "react-i18next";
 
 const Product = () => {
   const params = useParams();
   let id = params.id;
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const [productQuantity, setProductQuantity] = useState(1);
-
   const [currentProductImage, setCurrentProductImage] = useState(0);
   const [lightbox, setLightbox] = useState(false);
   const { isauth } = useSelector((store) => store.login);
-
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, product, error } = productDetails;
   const Findproduct = useSelector((state) => state.productFind);
@@ -77,7 +70,7 @@ const Product = () => {
             >
               <AiOutlineHome />
               <div className="ml-1 text-sm font-medium text-gray-700 hover:text-[#fe2c6d] md:ml-2 ">
-                Trang chủ{" "}
+                {t("TagHome")}{" "}
               </div>
             </Link>
           </li>
@@ -103,7 +96,7 @@ const Product = () => {
               >
                 <AiOutlineShoppingCart />
                 <div className="ml-1 text-sm font-medium text-gray-700 hover:text-[#fe2c6d] md:ml-2 ">
-                  Tất cả sản phẩm{" "}
+                  {t("TagAllProduct")}{" "}
                 </div>
               </Link>
             </div>
@@ -165,7 +158,7 @@ const Product = () => {
                 </div>
               ))
             ) : (
-              <div>Loading...</div>
+              <div>{t("loading")}...</div>
             )}
           </div>
 
@@ -215,21 +208,19 @@ const Product = () => {
         )}
         <div className="product-description flow">
           <p className="text-uppercase fw-700 fs-100 letter-spacing-1 Orange text-left">
-            Danh mục : {product.category?.title}
+            {t("productCategory")} : {product.category?.title}
           </p>
           <h1 className="fw-700 line-height-300 fs-230 blue text-left text-2xl">
             {product.title}
           </h1>
           <p className="text-left text-lg text-[#fe2c6d]">
-            Nhãn hàng : {product.brand?.title}
+            {t("productBrand")} : {product.brand?.title}
           </p>
           <p className=" text-left text-lg">
-            Số lượng còn : {product.quantity}
+            {t("productQuantity")}  : {product.quantity}
           </p>
-          <p className="text-left text-lg">Đã bán : {product.sold}</p>
-          {/* <p className="fw-400 line-height-500 fs-400 darkGrayishBlue">
-                        {product.description}
-                    </p> */}
+          <p className="text-left text-lg">{t("productSold")} : {product.sold}</p>
+
           <div>
             <Rate
               className="flex"
@@ -242,17 +233,17 @@ const Product = () => {
               }}
               disabled
             />
-            <p className="flex text-lg">({product.reviewCount}) Đánh giá</p>
+            <p className="flex text-lg">({product.reviewCount}) {t("productReview")}</p>
           </div>
           <div className="product-price">
             <div className="discounted-price flex text-lg">
-              Giá :{" "}
+              {t("productPrice")} :{" "}
               <span className="fw-700 blue fs-700">
                 {product.price
                   ? product.price.toLocaleString("vi-VN", {
-                      style: "currency",
-                      currency: "VND",
-                    })
+                    style: "currency",
+                    currency: "VND",
+                  })
                   : ""}
               </span>
               {/* <span className="offer fw-700 fs-400 Orange">50%</span>
@@ -300,7 +291,7 @@ const Product = () => {
                     fillRule="nonzero"
                   />
                 </svg>
-                <p className="ml-2 mt-[2px]">Hết hàng</p>
+                <p className="ml-2 mt-[2px]">{t("productButtonOutOfStock")}</p>
               </button>
             ) : isauth ? (
               <button
@@ -315,12 +306,12 @@ const Product = () => {
                     fillRule="nonzero"
                   />
                 </svg>
-                <p className="ml-2 mt-[2px]">Thêm vào giỏ hàng</p>
+                <p className="ml-2 mt-[2px]">{t("productButtonAddCart")}</p>
               </button>
             ) : (
               <Link to={"../login"}>
                 <button
-                  onClick={() => alert("Bạn cần đăng nhập trước")}
+                  onClick={() => alert(t("productAlertLogin"))}
                   className="bg-[#fe2c6d] w-full py-3 px-6 flex text-center justify-center text-white text-[17px] rounded-xl  "
                   style={{ display: "flex" }}
                 >
@@ -335,19 +326,13 @@ const Product = () => {
                       fillRule="nonzero"
                     />
                   </svg>
-                  <p className="ml-2 mt-[2px]">Thêm vào giỏ hàng</p>
+                  <p className="ml-2 mt-[2px]">{t("productButtonAddCart")}</p>
                 </button>
               </Link>
             )}
           </div>
 
-          {/* <div>
-            <Link to="/Chat">
-              <button className="bg-black text-white w-[50%] h-[40px] rounded-[8px] text-[18px]">
-                Liên hệ
-              </button>
-            </Link>
-          </div> */}
+
         </div>
       </div>
 

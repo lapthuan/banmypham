@@ -11,8 +11,9 @@ import {
   faChevronRight,
   faChevronDown,
 } from "@fortawesome/free-solid-svg-icons";
-
 import { MdOutlineFindReplace } from "react-icons/md"
+import { useTranslation } from "react-i18next";
+
 const modalStyles = {
   overlay: {
     zIndex: 50,
@@ -40,7 +41,6 @@ const modalStyles = {
     outline: "none",
   },
 };
-
 const modalPrice = {
   overlay: {
     zIndex: 50,
@@ -97,6 +97,7 @@ const modalCategory = {
 };
 const Filter = () => {
   const dispatch = new useDispatch();
+  const { t } = useTranslation();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalOpenPrice, setIsModalOpenPrice] = useState(false);
   const [isModalOpenBranch, setIsModalOpenBranch] = useState(false);
@@ -247,7 +248,7 @@ const Filter = () => {
                     className="bg-white py-2 px-4 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
                     onClick={handleModalPrice}
                   >
-                    GIÁ
+                    {t("saleFindPrice")}
                   </button>
                   <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center text-gray-700">
                     <FontAwesomeIcon
@@ -261,7 +262,7 @@ const Filter = () => {
                     className="bg-white py-2 px-4 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
                     onClick={handleModalToggle}
                   >
-                    TRẠNG THÁI
+                    {t("saleFindCondition")}
                   </button>
                   <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center text-gray-700">
                     <FontAwesomeIcon
@@ -275,7 +276,7 @@ const Filter = () => {
                     className="bg-white py-2 px-4 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
                     onClick={handleModalBranch}
                   >
-                    THƯƠNG HIỆU
+                    {t("saleFindBrand")}
                   </button>
                   <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center text-gray-700">
                     <FontAwesomeIcon
@@ -289,7 +290,7 @@ const Filter = () => {
                     className="bg-white py-2 px-4 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
                     onClick={handleModalCategory}
                   >
-                    DANH MỤC
+                    {t("saleFindCategory")}
                   </button>
                   <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center text-gray-700">
                     <FontAwesomeIcon
@@ -306,7 +307,7 @@ const Filter = () => {
                       className="bg-sky-950 py-2 px-4 pr-6 rounded shadow leading-tight text-white focus:outline-none focus:shadow-outline"
                       onClick={handleResetButtonClick}
                     >
-                      Bỏ lọc
+                      {t("saleFindCancel")}
                     </button>
                     <div className="pointer-events-none absolute inset-y-0 pr-1 right-0 flex items-center text-white">
                       <MdOutlineFindReplace />
@@ -349,19 +350,14 @@ const Filter = () => {
                 className="bg-black text-white w-[40%] py-2 rounded mr-2"
                 onClick={handleFindButtonClick}
               >
-                Áp dụng
+                {t("saleFindApply")}
               </button>
-              <button
-                className="text-black py-2 px-4 rounded"
-                onClick={handleResetButtonClick}
-              >
-                Bỏ lọc
-              </button>
+
               <button
                 className="text-pink-600 py-2 px-4 rounded"
                 onClick={handleCloseButtonClick}
               >
-                Đóng
+                {t("saleFindClose")}
               </button>
             </div>
           </div>
@@ -399,19 +395,14 @@ const Filter = () => {
                 className="bg-black text-white w-[40%] py-2 rounded mr-2"
                 onClick={handleFindButtonClick}
               >
-                Áp dụng
+                {t("saleFindApply")}
               </button>
-              <button
-                className="text-black py-2 px-4 rounded"
-                onClick={handleResetButtonClick}
-              >
-                Bỏ lọc
-              </button>
+
               <button
                 className="text-pink-600 py-2 px-4 rounded"
                 onClick={handleCloseButtonClick}
               >
-                Đóng
+                {t("saleFindClose")}
               </button>
             </div>
           </div>
@@ -492,19 +483,14 @@ const Filter = () => {
                 className="bg-black text-white w-[40%] py-2 rounded mr-2"
                 onClick={handleFindButtonClick}
               >
-                Áp dụng
+                {t("saleFindApply")}
               </button>
-              <button
-                className="text-black py-2 px-4 rounded"
-                onClick={handleResetButtonClick}
-              >
-                Bỏ lọc
-              </button>
+
               <button
                 className="text-pink-600 py-2 px-4 rounded"
                 onClick={handleCloseButtonClick}
               >
-                Đóng
+                {t("saleFindClose")}
               </button>
             </div>
           </div>
@@ -553,19 +539,14 @@ const Filter = () => {
                 className="bg-black text-white w-[40%] py-2 rounded mr-2"
                 onClick={handleFindButtonClick}
               >
-                Áp dụng
+                {t("saleFindApply")}
               </button>
-              <button
-                className="text-black py-2 px-4 rounded"
-                onClick={handleResetButtonClick}
-              >
-                Bỏ lọc
-              </button>
+
               <button
                 className="text-pink-600 py-2 px-4 rounded"
                 onClick={handleCloseButtonClick}
               >
-                Đóng
+                {t("saleFindClose")}
               </button>
             </div>
           </div>

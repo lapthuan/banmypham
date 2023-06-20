@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import "./InforProduct.css";
-import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+
 const InforProduct = ({ description }) => {
+  const { t } = useTranslation();
+
   return (
     <div>
       <div>
         <div className="text-[22px] text-left font-[600] tracking-[.5px] leading-[60px] text-black">
-          MÔ TẢ SẢN PHẨM
+          {t("productDescriptionProduct")}
         </div>
         <div className="pt-3 pb-5">
           <div className="text-left text-[15px] leading-normal ">

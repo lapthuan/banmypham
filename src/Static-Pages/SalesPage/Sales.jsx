@@ -16,11 +16,12 @@ import { useEffect } from "react";
 import { listbrand } from "../../redux/action/brandActions";
 import { listCategory } from "../../redux/action/categoryActions";
 import LoadPage from "../../Loadpage/Loadpage";
+import { useTranslation } from "react-i18next";
 
 const Sales = () => {
   const param = useParams();
   const { category } = param;
-
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const productList = useSelector((state) => state.productList);
   const { products, loading } = productList;
@@ -48,7 +49,7 @@ const Sales = () => {
             >
               <AiOutlineHome />
               <div className="ml-1 text-sm font-medium text-gray-700 hover:text-[#fe2c6d] md:ml-2 ">
-                Trang chủ{" "}
+                {t("TagHome")}{" "}
               </div>
             </Link>
           </li>
@@ -74,7 +75,7 @@ const Sales = () => {
               >
                 <AiOutlineShoppingCart />
                 <div className="ml-1 text-sm font-medium text-gray-700 hover:text-[#fe2c6d] md:ml-2 ">
-                  Tất cả sản phẩm{" "}
+                  {t("TagAllProduct")}{" "}
                 </div>
               </Link>
             </div>
@@ -156,9 +157,9 @@ const Sales = () => {
                                 <p className="text-left text-black font-bold text-lg mt-2">
                                   {item.price
                                     ? item.price.toLocaleString("vi-VN", {
-                                        style: "currency",
-                                        currency: "VND",
-                                      })
+                                      style: "currency",
+                                      currency: "VND",
+                                    })
                                     : ""}
                                 </p>
                               </div>

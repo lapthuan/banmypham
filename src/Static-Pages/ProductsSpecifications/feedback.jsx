@@ -6,20 +6,22 @@ import moment from "moment";
 import imageUser from "../../Image/user.png";
 import { addReview, reviewInProduct } from "../../redux/action/reviewActions";
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
+
 const { TextArea } = Input;
 const desc = ["terrible", "bad", "normal", "good", "wonderful"];
 
 const FeedBack = ({ product }) => {
   const dispatch = new useDispatch();
   const userId = window.localStorage.getItem("userid");
-
+  const { t } = useTranslation();
   const [rate, setRate] = useState(5);
   const [title, setTitle] = useState("");
   const [review, setReview] = useState("");
+  const [showCommentForm, setShowCommentForm] = useState(false);
+
   const reviewList = useSelector((state) => state.reviewGet);
   const { reviews } = reviewList;
-
-  const [showCommentForm, setShowCommentForm] = useState(false);
 
   const toggleCommentForm = () => {
     setShowCommentForm(!showCommentForm);
@@ -48,7 +50,7 @@ const FeedBack = ({ product }) => {
       (review) => review.rating === rating
     ).length;
     const percentage = (ratingCount / totalReviews) * 100;
-    return percentage.toFixed(2); // Làm tròn đến 2 chữ số thập phân
+    return percentage.toFixed(2);
   };
 
   const calculateAverageRating = (approvedReviews) => {
@@ -60,7 +62,7 @@ const FeedBack = ({ product }) => {
     );
     const averageRating = totalRating / approvedReviews.length;
 
-    return averageRating.toFixed(1); // Làm tròn đến 1 chữ số thập phân
+    return averageRating.toFixed(1);
   };
   const totalReviews = approvedReviews?.length;
   const fiveStarPercentage = calculateRatingPercentage(approvedReviews, 5);
@@ -73,12 +75,12 @@ const FeedBack = ({ product }) => {
   return (
     <div className="w-[90%] ml-auto mr-auto ">
       <div className=" p-4 bg-[#f5f6f6]">
-        <div className="text-[25px] font-bold mr-2 text-left">Đánh giá</div>
+        <div className="text-[25px] font-bold mr-2 text-left">{t("productReview")}</div>
         <div className="flex mt-3  ">
           <div className="w-full">
             <div className="mb-2">
               <div className="text-[15px] text-left mr-2">
-                Đánh giá trung bình
+                {t("productAverageRating")}
               </div>
             </div>
             <div className="flex justify-around ">
@@ -99,11 +101,11 @@ const FeedBack = ({ product }) => {
                     disabled
                   />
                 </div>
-                <div className="pt-2 text-[15px]">{totalReviews} Đánh giá</div>
+                <div className="pt-2 text-[15px]">{totalReviews} {t("productReview")}</div>
               </div>
               <div className="text-center items-center w-[40%]">
                 <div className="flex items-center">
-                  <span className="text-sm font-medium text-black">5 sao</span>
+                  <span className="text-sm font-medium text-black">5 {t("productRating")}</span>
                   <div className="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-[#e8e8e8]">
                     <div
                       className="h-5 bg-yellow-400 rounded"
@@ -115,7 +117,7 @@ const FeedBack = ({ product }) => {
                   </span>
                 </div>
                 <div className="flex items-center mt-2">
-                  <span className="text-sm font-medium text-black">4 sao</span>
+                  <span className="text-sm font-medium text-black">4 {t("productRating")}</span>
                   <div className="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-[#e8e8e8]">
                     <div
                       className="h-5 bg-yellow-400 rounded"
@@ -127,7 +129,7 @@ const FeedBack = ({ product }) => {
                   </span>
                 </div>
                 <div className="flex items-center mt-2">
-                  <span className="text-sm font-medium text-black">3 sao</span>
+                  <span className="text-sm font-medium text-black">3 {t("productRating")}</span>
                   <div className="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-[#e8e8e8]">
                     <div
                       className="h-5 bg-yellow-400 rounded"
@@ -139,7 +141,7 @@ const FeedBack = ({ product }) => {
                   </span>
                 </div>
                 <div className="flex items-center mt-2">
-                  <span className="text-sm font-medium text-black">2 sao</span>
+                  <span className="text-sm font-medium text-black">2 {t("productRating")}</span>
                   <div className="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-[#e8e8e8]">
                     <div
                       className="h-5 bg-yellow-400 rounded"
@@ -151,7 +153,7 @@ const FeedBack = ({ product }) => {
                   </span>
                 </div>
                 <div className="flex items-center mt-2">
-                  <span className="text-sm font-medium text-black">1 sao</span>
+                  <span className="text-sm font-medium text-black">1 {t("productRating")}</span>
                   <div className="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-[#e8e8e8]">
                     <div
                       className="h-5 bg-yellow-400 rounded"
@@ -165,13 +167,13 @@ const FeedBack = ({ product }) => {
               </div>
               <div className="w-[50%]">
                 <div className="mt-10 text-center items-center text-[15px]">
-                  Chia sẽ nhận xét của bạn về sản phẩm
+                  {t("productShare")}
                 </div>
                 <button
                   className="mt-4 mb-8 w-[30%] text-[15px] rounded-xl bg-[#fe2c6d] px-6 py-3 font-medium text-white"
                   onClick={toggleCommentForm}
                 >
-                  {showCommentForm ? "Thu gọn" : "Viết bình luận"}
+                  {showCommentForm ? t("productButtonHide") : t("productButtonWriteAReview")}
                 </button>
               </div>
             </div>
@@ -183,7 +185,7 @@ const FeedBack = ({ product }) => {
           <div className=" bg-[#f5f6f6] w-[100%]">
             <div className="box_comment">
               <div className="text-left text-[15px]">
-                Đánh giá sản phẩm này *
+                {t("productReviewThisProduct")} *
               </div>
               <div className="text-left mt-3 mb-4 w-1/2 flex Relative">
                 <Rate
@@ -198,20 +200,21 @@ const FeedBack = ({ product }) => {
                   }}
                 />
               </div>
-              <div className="text-left text-[15px]">Tiêu đề </div>
+              <div className="text-left text-[15px]">{t("productReviewTitle")} </div>
               <div className="mt-2 ">
                 <Input
                   onChange={(e) => setTitle(e.target.value)}
                   type="text"
-                  placeholder="Nhập tiêu đề"
+                  placeholder={t("productPlaceHolderTitle")}
+
                 />
               </div>
-              <div className="mt-3 text-left text-[15px]">Mô tả nhận xét *</div>
+              <div className="mt-3 text-left text-[15px]">{t("productDiscription")}</div>
               <div className="mt-2 mb-5">
                 <TextArea
                   onChange={(e) => setReview(e.target.value)}
                   rows={4}
-                  placeholder="Kí tự tối đa 2500"
+                  placeholder={t("productPlaceHolderDiscription")}
                   maxLength={2500}
                 />
               </div>
@@ -219,7 +222,7 @@ const FeedBack = ({ product }) => {
                 onClick={handlerClickSendReview}
                 className="mb-5 w-[30%] text-[15px] rounded-md bg-[#fe2c6d] px-6 py-3 font-medium text-white"
               >
-                Gưi
+                {t("productButtonSend")}
               </button>
             </div>
           </div>
@@ -227,7 +230,7 @@ const FeedBack = ({ product }) => {
       )}
       <div className="bg-white w-[100%] mx-auto">
         <div className="antialiased mx-auto ">
-          <h3 className="mb-4 text-2xl font-bold text-gray-900">Bình luận</h3>
+          <h3 className="mb-4 text-2xl font-bold text-gray-900">{t("productComment")}</h3>
           {approvedReviews?.length != 0 ? (
             <div className="space-y-4 pt-3 h-[380px] w-[100%] overflow-y-scroll">
               {approvedReviews?.map((item) => (
@@ -266,7 +269,7 @@ const FeedBack = ({ product }) => {
               ))}
             </div>
           ) : (
-            <div className="text-xs text-gray-700">Chưa có đánh giá nào</div>
+            <div className="text-xs text-gray-700">{t("productReviewNoComment")}</div>
           )}
         </div>
       </div>
