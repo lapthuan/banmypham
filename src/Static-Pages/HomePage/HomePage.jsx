@@ -80,7 +80,7 @@ function HomePage() {
           <CartSale />
         </div> */}
 
-        <div className="bg-gray-50 h-full border-2 border-green-600 transition duration-150 ease-linear transform group-hover:border-green-700 rounded shadow-lg">
+        {/* <div className="bg-gray-50 h-full border-2 border-green-600 transition duration-150 ease-linear transform group-hover:border-green-700 rounded shadow-lg">
           <div className="bg-green-100 text-gray-900 px-6 py-2 rounded-t border-b flex items-center justify-center">
             <h3 className="text-[20px] font-bold ">
               Sản phẩm khuyến mãi và giá khuyến mãi
@@ -95,7 +95,7 @@ function HomePage() {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
         <div className="">
           <Carts title={t("carts")} productfiter={filteredProductsCreate} />
         </div>
