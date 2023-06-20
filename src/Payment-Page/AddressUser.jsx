@@ -3,7 +3,7 @@ import "moment-timezone";
 import { Select } from "antd";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { updateUserAddress } from "../redux/action/auth";
+import { updateUserAddress,loadUser } from "../redux/action/auth";
 import { toast } from "react-toastify";
 const { Option } = Select;
 
@@ -119,6 +119,8 @@ const AddressUser = () => {
           selectedAddress
         )
       );
+    dispatch(loadUser());
+
     } else {
       toast.warning("Hãy kiểm tra lại còn dữ liệu chưa chọn");
     }
