@@ -4,14 +4,16 @@ import Modal from "react-modal";
 import { useDispatch, useSelector } from "react-redux";
 import {
   findProductsPrice,
-  listProducts,
 } from "../../redux/action/productActions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronRight,
   faChevronDown,
 } from "@fortawesome/free-solid-svg-icons";
+import { MdOutlineFindReplace } from "react-icons/md"
 import { useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+
 const modalStyles = {
   overlay: {
     zIndex: 50,
@@ -97,13 +99,15 @@ const modalCategory = {
 const Filter = () => {
   const params = useParams();
   let idBrand = params.id;
+  const { t } = useTranslation();
+
   const dispatch = new useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalOpenPrice, setIsModalOpenPrice] = useState(false);
-  const [isModalOpenBranch, setIsModalOpenBranch] = useState(false);
   const [isModalOpenCategory, setIsModalOpenCategory] = useState(false);
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
+  const [isFind, setIsFind] = useState(false);
   const [selectedCategorys, setSelectedCategorys] = useState([]);
   const [inStock, setInStock] = useState("");
   const [selectIDPrice, setSelectIDPrice] = useState();
@@ -115,7 +119,6 @@ const Filter = () => {
   const handleModalToggle = () => {
     if (isModalOpen == false) {
       setIsModalOpenPrice(false);
-      setIsModalOpenBranch(false);
       setIsModalOpenCategory(false);
     }
     setIsModalOpen(!isModalOpen);
@@ -125,7 +128,6 @@ const Filter = () => {
     if (isModalOpenPrice == false) {
       setIsModalOpen(false);
       setIsModalOpenCategory(false);
-      setIsModalOpenBranch(false);
     }
     setIsModalOpenPrice(!isModalOpenPrice);
   };
@@ -134,7 +136,6 @@ const Filter = () => {
     if (isModalOpenCategory == false) {
       setIsModalOpen(false);
       setIsModalOpenPrice(false);
-      setIsModalOpenBranch(false);
     }
     setIsModalOpenCategory(!isModalOpenCategory);
   };
@@ -174,12 +175,12 @@ const Filter = () => {
           : JSON.stringify(selectedCategorys)
       )
     );
-    setIsModalOpenBranch(false);
     setIsModalOpenPrice(false);
     setIsModalOpen(false);
+    setIsModalOpenCategory(false);
+    setIsFind(true);
   };
   const handleResetButtonClick = () => {
-    setIsModalOpenBranch(false);
     setIsModalOpenPrice(false);
     setIsModalOpen(false);
     setIsModalOpenCategory(false);
@@ -188,8 +189,14 @@ const Filter = () => {
     setInStock("");
     setSelectedCategorys([]);
     dispatch(findProductsPrice("", "", `["${idBrand}"]`, "", ""));
+    setIsFind(false);
   };
+  const handleCloseButtonClick = () => {
+    setIsModalOpenPrice(false);
+    setIsModalOpen(false);
+    setIsModalOpenCategory(false);
 
+  };
   return (
     <div className="h-[100px] w-[100%]">
       <div className="bg-[#fff] relative w-[100%] z-99">
@@ -202,7 +209,7 @@ const Filter = () => {
                     className="bg-white py-2 px-4 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
                     onClick={handleModalPrice}
                   >
-                    GIÁ
+                    {t("saleFindPrice")}
                   </button>
                   <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center text-gray-700">
                     <FontAwesomeIcon
@@ -216,7 +223,7 @@ const Filter = () => {
                     className="bg-white py-2 px-4 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
                     onClick={handleModalToggle}
                   >
-                    TRẠNG THÁI
+                    {t("saleFindCondition")}
                   </button>
                   <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center text-gray-700">
                     <FontAwesomeIcon
@@ -231,7 +238,7 @@ const Filter = () => {
                     className="bg-white py-2 px-4 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
                     onClick={handleModalCategory}
                   >
-                    DANH MỤC
+                    {t("saleFindCategory")}
                   </button>
                   <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center text-gray-700">
                     <FontAwesomeIcon
@@ -242,6 +249,19 @@ const Filter = () => {
                     />
                   </div>
                 </div>
+                {isFind && (
+                  <div className="relative">
+                    <button
+                      className="bg-sky-950 py-2 px-4 pr-6 rounded shadow leading-tight text-white focus:outline-none focus:shadow-outline"
+                      onClick={handleResetButtonClick}
+                    >
+                      {t("saleFindCancel")}
+                    </button>
+                    <div className="pointer-events-none absolute inset-y-0 pr-1 right-0 flex items-center text-white">
+                      <MdOutlineFindReplace />
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -281,14 +301,15 @@ const Filter = () => {
                 className="bg-black text-white w-[40%] py-2 rounded mr-2"
                 onClick={handleFindButtonClick}
               >
-                Áp dụng
+                {t("saleFindApply")}
               </button>
               <button
-                className="text-black py-2 px-4 rounded"
-                onClick={handleResetButtonClick}
+                className="text-pink-600 py-2 px-4 rounded"
+                onClick={handleCloseButtonClick}
               >
-                Bỏ lọc
+                {t("saleFindClose")}
               </button>
+
             </div>
           </div>
         </Modal>
@@ -368,13 +389,13 @@ const Filter = () => {
                 className="bg-black text-white w-[40%] py-2 rounded mr-2"
                 onClick={handleFindButtonClick}
               >
-                Áp dụng
+                {t("saleFindApply")}
               </button>
               <button
-                className="text-black py-2 px-4 rounded"
-                onClick={handleResetButtonClick}
+                className="text-pink-600 py-2 px-4 rounded"
+                onClick={handleCloseButtonClick}
               >
-                Bỏ lọc
+                {t("saleFindClose")}
               </button>
             </div>
           </div>
@@ -400,7 +421,7 @@ const Filter = () => {
                 className="w-4 h-4 text-blue-600 mr-3 bg-gray-100 border-2 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
               />
               <label className="text-[15px] font-medium text-black">
-                Còn hàng
+                {t("productButtonInStock")}
               </label>
             </div>
             <div className="flex items-center ">
@@ -413,7 +434,7 @@ const Filter = () => {
                 className="w-4 h-4 text-blue-600 mr-3 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
               />
               <label className="text-[15px] font-medium text-black">
-                Hết hàng
+                {t("productButtonOutOfStock")}
               </label>
             </div>
 
@@ -423,13 +444,13 @@ const Filter = () => {
                 className="bg-black text-white w-[40%] py-2 rounded mr-2"
                 onClick={handleFindButtonClick}
               >
-                Áp dụng
+                {t("saleFindApply")}
               </button>
               <button
-                className="text-black py-2 px-4 rounded"
-                onClick={handleResetButtonClick}
+                className="text-pink-600 py-2 px-4 rounded"
+                onClick={handleCloseButtonClick}
               >
-                Bỏ lọc
+                {t("saleFindClose")}
               </button>
             </div>
           </div>

@@ -169,23 +169,14 @@ const Sales = () => {
                       ))}
                     </>
                   ) : (
-                    <div className="text-center">Không tìm thấy sản phẩm</div>
+                    <div className="text-center">{t("productNotFound")}</div>
                   )}
                 </div>
               ) : (
-                <div>Đang tải...</div>
+                <div>{t("loading")}</div>
               )}
 
-              {/* <div
-            className={`${styles.sort_page} ${styles.responsive__sort_page}`}
-            style={{ marginTop: "50px" }}
-          >
-            <div className={`${styles.sorting} ${styles.hide__sorting}`}></div>
 
-            <div className={styles.pagination}>
-              <Pagination setCurrentPage={setCurrentPage} />
-            </div>
-          </div> */}
             </div>
           </main>
         </div>

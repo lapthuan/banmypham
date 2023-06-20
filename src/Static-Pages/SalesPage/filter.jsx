@@ -317,7 +317,6 @@ const Filter = () => {
               </div>
             </div>
           </div>
-          <div></div>
         </div>
       </div>
       {isModalOpenBranch && (
@@ -516,7 +515,8 @@ const Filter = () => {
                 className="w-4 h-4 text-blue-600 mr-3 bg-gray-100 border-2 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
               />
               <label className="text-[15px] font-medium text-black">
-                Còn hàng
+                {t("productButtonInStock")}
+
               </label>
             </div>
             <div className="flex items-center ">
@@ -529,7 +529,8 @@ const Filter = () => {
                 className="w-4 h-4 text-blue-600 mr-3 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
               />
               <label className="text-[15px] font-medium text-black">
-                Hết hàng
+                {t("productButtonOutOfStock")}
+
               </label>
             </div>
 

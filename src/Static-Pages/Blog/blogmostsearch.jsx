@@ -2,10 +2,12 @@ import "./blogmost.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 
-const blogmost = ({ bCategorys }) => {
+
+const blogmost = ({ bCategorys, title }) => {
+
   return (
     <div className="blog-search mt-5">
-      <h3 className="text-center text-[30px]">DANH MỤC TIN TỨC</h3>
+      <h3 className="text-center text-[30px]">{title}</h3>
       <ul className="mt-5">
         <Swiper className="" slidesPerView={5} spaceBetween={5}>
           <SwiperSlide>

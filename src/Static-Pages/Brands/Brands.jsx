@@ -5,12 +5,15 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { listbrand } from "../../redux/action/brandActions";
 import {
-  AiOutlineHeart,
   AiOutlineHome,
   AiOutlineShoppingCart,
 } from "react-icons/ai";
+import { useTranslation } from "react-i18next";
+
+
 function Brands() {
   const dispatch = new useDispatch();
+  const { t } = useTranslation();
   const brandlist = useSelector((state) => state.brandList);
   const { brands } = brandlist;
   useEffect(() => {
@@ -31,7 +34,7 @@ function Brands() {
             >
               <AiOutlineHome />
               <div className="ml-1 text-sm font-medium text-gray-700 hover:text-[#fe2c6d] md:ml-2 ">
-                Trang chủ{" "}
+                {t("TagHome")}{" "}
               </div>
             </Link>
           </li>
@@ -57,7 +60,7 @@ function Brands() {
               >
                 <AiOutlineShoppingCart />
                 <div className="ml-1 text-sm font-medium text-gray-700 hover:text-[#fe2c6d] md:ml-2 ">
-                  Thương hiệu{" "}
+                  {t("TagAllBrand")}{" "}
                 </div>
               </Link>
             </div>

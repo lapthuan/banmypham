@@ -9,7 +9,7 @@ i18n.use(initReactI18next).init({
         navtop1: "Shop",
         navtop2: "Order",
         sale: "DEALS",
-        xemtatca: "See all",
+        xemtatca: "All product",
         footer: "Gift",
         ani_text1: "Get 700,000 VND for orders from 1 Million - Enter APR1000",
         ani_text2:
@@ -64,6 +64,7 @@ i18n.use(initReactI18next).init({
         productPrice: "Price",
         productButtonAddCart: "Add to cart",
         productButtonOutOfStock: "Out of stock",
+        productButtonInStock: "In stock",
         productAlertLogin: "You need to login first",
         productDescriptionProduct: "Product description",
         productRelated: "Related products",
@@ -81,10 +82,21 @@ i18n.use(initReactI18next).init({
         productReviewNoComment: "No reviews",
         productPlaceHolderTitle: "Enter title",
         productPlaceHolderDiscription: "Enter description, maximum 2500 characters",
+        productNotFound: "No products found",
 
         listCategoryBlog: "Category blog",
         listCategoryBrand: "Category brand",
         listCategory: "Category",
+
+        contactSend: "SEND FEEDBACK",
+        contactName: "Full Name",
+        contactEmail: "Email",
+        contactContent: "Content",
+        contactPHName: "Enter full name",
+        contactPHEmail: "Enter email",
+        contactPHContent: "Enter content",
+        contactButtonSendContact: "Send",
+        contactLocation: "Location"
       },
     },
     vi: {
@@ -147,6 +159,7 @@ i18n.use(initReactI18next).init({
         productPrice: "Giá",
         productButtonAddCart: "Thêm vào giỏ hàng",
         productButtonOutOfStock: "Hết hàng",
+        productButtonInStock: "Còn hàng",
         productAlertLogin: "Bạn cần đăng nhập trước",
         productDescriptionProduct: "Mô tả sản phẩm",
         productRelated: "Sản phẩm liên quan",
@@ -164,10 +177,21 @@ i18n.use(initReactI18next).init({
         productReviewNoComment: "Chưa có đánh giá nào",
         productPlaceHolderTitle: "Nhập tiêu đề",
         productPlaceHolderDiscription: "Nhập mô tả tối đa 2500 kí tự",
+        productNotFound: "Không tìm thấy sản phẩm",
 
         listCategoryBlog: "Danh mục Blog",
         listCategoryBrand: "Danh mục nhãn hàng",
         listCategory: "Danh mục",
+
+        contactSend: "GỬI PHẢN HỒI",
+        contactName: "Họ Tên",
+        contactEmail: "Email",
+        contactContent: "Nội dung",
+        contactPHName: "Nhập họ tên",
+        contactPHEmail: "Nhập Email",
+        contactPHContent: "Nhập nội dung",
+        contactButtonSendContact: "Gửi",
+        contactLocation: "Vị trí"
       },
     },
   },
