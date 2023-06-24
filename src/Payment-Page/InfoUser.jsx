@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { updateUser,loadUser } from "../redux/action/auth";
+import { updateUser} from "../redux/action/auth";
 
 import { AiOutlineMail, AiOutlinePhone } from "react-icons/ai";
 import { GrUserExpert } from "react-icons/gr";
@@ -35,7 +35,7 @@ const InfoUser = () => {
       return;
     }
     dispatch(updateUser(userId, firstName, userName, userEmail, userMobile));
-    dispatch(loadUser());
+  
   };
 
   return (

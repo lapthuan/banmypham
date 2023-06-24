@@ -76,7 +76,10 @@ const payments = [
 const Stepper = () => {
   const dispatch = new useDispatch();
   let total = JSON.parse(localStorage.getItem("total")) || 0;
- 
+ const userAddress =
+    window.localStorage.getItem("userAddress") != ""
+      ? JSON.parse(window.localStorage.getItem("userAddress"))
+      : null;
   const coupon =
     window.localStorage.getItem("coupon") != ""
       ? JSON.parse(window.localStorage.getItem("coupon"))
